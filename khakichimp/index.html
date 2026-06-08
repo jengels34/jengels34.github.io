@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khakichimp HQ · Native, privacy-first iOS apps</title>
+<meta name="description" content="Khakichimp HQ — native, privacy-first iOS apps built by Josh Engels. Tasks - Uniflow, ReadMe, and Food in Five. No trackers, ever.">
+<style>
+    :root{
+        --khaki:#c2a878; --khaki-deep:#9c8455; --bark:#3a2f23;
+        --jungle:#2f7d4f; --jungle-deep:#1d5536; --banana:#ffcf3f;
+        --coral:#ff6b54; --cream:#fbf6ea; --ink:#241d14;
+        --leaf:#4caa6a;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+        background:var(--bark);color:var(--cream);line-height:1.6;
+        letter-spacing:-0.011em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+        overflow-x:hidden;
+    }
+    a{color:inherit}
+    ::selection{background:var(--banana);color:var(--ink)}
+
+    /* scroll progress */
+    .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+        background:linear-gradient(90deg,var(--banana),var(--coral));transition:width .1s linear}
+
+    /* ---------- HERO ---------- */
+    .hero{
+        position:relative;min-height:100vh;display:flex;flex-direction:column;
+        align-items:center;justify-content:center;text-align:center;padding:40px 20px;
+        background:radial-gradient(120% 120% at 50% 0%, #3f6d4d 0%, #28523a 38%, #1c3a2a 70%, #15291f 100%);
+        overflow:hidden;
+    }
+    #leaves{position:absolute;inset:0;z-index:0;pointer-events:none}
+    .hero-inner{position:relative;z-index:2;max-width:760px}
+    .topbar{
+        position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;
+        align-items:center;padding:18px 24px;font-weight:700;
+    }
+    .topbar .brand{display:flex;align-items:center;gap:9px;font-size:1.05em}
+    .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--banana);box-shadow:0 0 0 4px rgba(255,207,63,.25)}
+    .topbar a.back{
+        text-decoration:none;font-weight:600;font-size:.9em;opacity:.85;
+        padding:8px 14px;border:1px solid rgba(251,246,234,.25);border-radius:999px;transition:.2s;
+    }
+    .topbar a.back:hover{opacity:1;background:rgba(251,246,234,.1);transform:translateY(-1px)}
+
+    .chimp-stage{position:relative;width:min(360px,80vw);margin:0 auto 10px;cursor:pointer;user-select:none}
+    .chimp-stage::before{
+        content:"";position:absolute;left:50%;top:45%;width:78%;aspect-ratio:1;transform:translate(-50%,-50%);
+        background:radial-gradient(circle, rgba(255,207,63,.38), rgba(76,170,106,.14) 52%, transparent 70%);
+        filter:blur(6px);z-index:0;animation:aura 4.5s ease-in-out infinite;
+    }
+    @keyframes aura{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.07)}}
+    .chimp-stage svg,.chimp-stage img{position:relative;z-index:1;width:100%;height:auto;display:block;filter:drop-shadow(0 22px 26px rgba(0,0,0,.45));will-change:transform}
+    .chimp-hint{font-size:.8em;opacity:.6;letter-spacing:.04em;text-transform:uppercase;margin-top:-4px}
+
+    .eyebrow{
+        display:inline-block;font-size:.78em;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+        color:var(--banana);background:rgba(255,207,63,.12);padding:6px 14px;border-radius:999px;margin-bottom:18px;
+    }
+    .hero h1{
+        font-size:clamp(2.6em,8vw,4.6em);line-height:1.02;font-weight:800;letter-spacing:-0.03em;
+        background:linear-gradient(180deg,#fff 0%,#ffe9a8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero h1 .pants{color:var(--khaki);-webkit-text-fill-color:var(--khaki)}
+    .hero .tag{font-size:clamp(1em,2.4vw,1.25em);opacity:.92;margin-top:14px;min-height:1.6em}
+    .hero .tag .rot{color:var(--banana);font-weight:800;display:inline-block}
+    .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+    .cta{
+        display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
+        background:var(--banana);color:var(--ink);padding:14px 26px;border-radius:999px;
+        box-shadow:0 10px 24px rgba(255,207,63,.32);transition:box-shadow .2s;will-change:transform;
+    }
+    .cta:hover{box-shadow:0 16px 32px rgba(255,207,63,.45)}
+    .cta.alt{background:transparent;color:var(--cream);border:1px solid rgba(251,246,234,.3);box-shadow:none}
+    .cta.alt:hover{background:rgba(251,246,234,.08)}
+    .scrolldown{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;font-size:.78em;opacity:.7;letter-spacing:.12em;text-transform:uppercase}
+    .scrolldown span{display:block;font-size:1.4em;margin-top:2px;animation:bob 1.6s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+    /* live banana counter chip */
+    .banana-meter{
+        position:fixed;right:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;
+        background:rgba(21,41,31,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,207,63,.35);
+        color:var(--cream);padding:9px 14px;border-radius:999px;font-weight:700;font-size:.9em;
+        box-shadow:0 10px 24px rgba(0,0,0,.3);cursor:pointer;transition:transform .2s;user-select:none;
+    }
+    .banana-meter:hover{transform:translateY(-2px)}
+    .banana-meter .n{color:var(--banana);min-width:1ch}
+    .combo-pop{position:fixed;z-index:55;transform:translate(-50%,-50%);pointer-events:none;
+        font-weight:800;color:var(--banana);text-shadow:0 2px 10px rgba(0,0,0,.4);white-space:nowrap}
+
+    /* ---------- SECTIONS ---------- */
+    section{position:relative;z-index:1}
+    .wrap{max-width:1040px;margin:0 auto;padding:84px 24px}
+    .section-head{text-align:center;margin-bottom:46px}
+    .section-head .kick{font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--banana);opacity:.9}
+    .section-head h2{font-size:clamp(1.9em,5vw,2.8em);font-weight:800;letter-spacing:-0.02em;margin-top:6px}
+    .section-head p{opacity:.7;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto}
+
+    /* ---------- STATS ---------- */
+    .stats{background:linear-gradient(180deg,#15291f,#1a3326)}
+    .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:center;padding-top:60px;padding-bottom:60px}
+    .stat .num{font-size:clamp(2.1em,5.5vw,3.2em);font-weight:800;letter-spacing:-0.03em;color:var(--banana);line-height:1}
+    .stat .cap{font-size:.85em;opacity:.78;margin-top:8px}
+    @media(max-width:640px){.stats .wrap{grid-template-columns:repeat(2,1fr);gap:30px}}
+
+    /* ---------- APPS ---------- */
+    .apps{background:var(--cream);color:var(--ink)}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+    .app-card{
+        display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;
+        border-radius:22px;padding:28px;border:1px solid rgba(58,47,35,.08);
+        box-shadow:0 10px 30px rgba(58,47,35,.08);transform-style:preserve-3d;transition:box-shadow .2s;
+        position:relative;overflow:hidden;min-height:260px;
+    }
+    .app-card::before{content:"";position:absolute;inset:0 0 auto 0;height:6px}
+    .app-card.tasks::before{background:linear-gradient(90deg,var(--jungle),var(--leaf))}
+    .app-card.readme::before{background:linear-gradient(90deg,var(--coral),var(--banana))}
+    .app-card.food::before{background:linear-gradient(90deg,var(--banana),var(--khaki-deep))}
+    .app-card:hover{box-shadow:0 22px 50px rgba(58,47,35,.18)}
+    .app-icon{font-size:2.4em;margin-bottom:14px;transform:translateZ(40px)}
+    .app-card h3{font-size:1.4em;font-weight:800;transform:translateZ(30px)}
+    .app-card .desc{color:#5b5345;margin-top:8px;transform:translateZ(20px)}
+    .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;flex:1;align-content:flex-start;transform:translateZ(26px)}
+    .pills span{font-size:.72em;font-weight:600;color:#6b6150;background:#f3efe5;border-radius:999px;padding:4px 10px}
+    .app-card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:18px;transform:translateZ(30px)}
+    .badge{font-size:.72em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+    .badge.live{background:rgba(47,125,79,.14);color:var(--jungle-deep)}
+    .badge.soon{background:rgba(58,47,35,.08);color:#8a7d68}
+    .app-card .go{font-weight:700;color:var(--jungle-deep)}
+
+    /* ---------- MARQUEE ---------- */
+    .marquee-sec{background:var(--bark);padding:34px 0;border-top:1px solid rgba(251,246,234,.06);border-bottom:1px solid rgba(251,246,234,.06)}
+    .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+        mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+    .marquee .track{display:flex;gap:16px;width:max-content;animation:scroll 26s linear infinite}
+    .marquee:hover .track{animation-play-state:paused}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .marquee .chip{
+        font-size:.95em;font-weight:700;padding:11px 18px;border-radius:999px;white-space:nowrap;
+        background:rgba(251,246,234,.06);border:1px solid rgba(251,246,234,.14);
+    }
+    .marquee .chip .dot{color:var(--banana);margin-right:8px}
+
+    /* ---------- STACK ---------- */
+    .stack{background:var(--bark)}
+    .stack .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+    .stack h2{font-size:clamp(1.8em,4.5vw,2.6em);font-weight:800;letter-spacing:-0.02em;margin-bottom:14px}
+    .stack p{opacity:.82}
+    .philosophy{
+        background:linear-gradient(160deg,rgba(76,170,106,.16),rgba(255,207,63,.06));
+        border:1px solid rgba(251,246,234,.12);border-radius:24px;padding:30px;
+    }
+    .philosophy .big{font-size:2.4em}
+    .philosophy h3{margin:10px 0 6px;font-size:1.3em}
+    .philosophy p{opacity:.82;font-size:.98em}
+    .feed{margin-top:22px}
+    .feed-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:700;font-size:.95em;
+        background:var(--banana);color:var(--ink);border:none;padding:12px 20px;border-radius:999px;
+        box-shadow:0 10px 24px rgba(255,207,63,.3);transition:transform .15s}
+    .feed-btn:active{transform:scale(.95)}
+
+    /* ---------- FOOTER ---------- */
+    footer{background:#15110b;text-align:center;padding:60px 24px}
+    footer .mark{font-size:2em}
+    footer h3{font-size:1.4em;font-weight:800;margin:8px 0 16px}
+    footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+    footer a{color:var(--banana);text-decoration:none;font-weight:600}
+    footer a:hover{text-decoration:underline}
+    footer .copy{opacity:.5;font-size:.85em}
+
+    .reveal{opacity:0;transform:translateY(30px)}
+
+    @media(max-width:760px){
+        .stack .wrap{grid-template-columns:1fr;gap:30px}
+        .topbar a.back .full{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){
+        *{animation:none!important;transition:none!important}
+        .reveal{opacity:1;transform:none}
+        html{scroll-behavior:auto}
+        .marquee .track{transform:none}
+    }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+    <canvas id="leaves"></canvas>
+    <div class="topbar">
+        <div class="brand"><span class="dot"></span> Khakichimp</div>
+        <a class="back" href="/">← <span class="full">Josh Engels</span></a>
+    </div>
+
+    <div class="hero-inner">
+        <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" aria-label="Poke the chimp to throw bananas">
+            <img id="chimp" class="chimp-img" src="/assets/chimp.svg" alt="Khakichimp — a chimp in khaki pants" draggable="false">
+        </div>
+        <div class="chimp-hint">↑ poke me for bananas</div>
+
+        <span class="eyebrow">Native · Privacy-first · iOS</span>
+        <h1>Khaki<span class="pants">chimp</span> HQ</h1>
+        <p class="tag">Building iOS apps that are <span class="rot" id="rotator">native</span>.</p>
+        <div class="cta-row">
+            <a class="cta" id="ctaApps" href="#apps">See the apps ↓</a>
+            <a class="cta alt" href="#stack">How they're built</a>
+        </div>
+    </div>
+
+    <div class="scrolldown">Scroll<span>↓</span></div>
+</header>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+    <div class="wrap">
+        <div class="stat"><div class="num"><span class="val" data-count="3">0</span></div><div class="cap">Apps shipped &amp; in flight</div></div>
+        <div class="stat"><div class="num"><span class="val" data-count="100">0</span>%</div><div class="cap">Native SwiftUI</div></div>
+        <div class="stat"><div class="num"><span class="val" data-count="0">0</span></div><div class="cap">Trackers &amp; ad SDKs</div></div>
+        <div class="stat"><div class="num">∞</div><div class="cap">Bananas available</div></div>
+    </div>
+</section>
+
+<!-- ============ APPS ============ -->
+<section class="apps" id="apps">
+    <div class="wrap">
+        <div class="section-head reveal">
+            <div class="kick">The Apps</div>
+            <h2>Three apps. One philosophy.</h2>
+            <p>Native to the bone, private by default. Tap one to dive in.</p>
+        </div>
+        <div class="card-grid">
+            <a class="app-card tasks reveal" href="/tasks-uniflow/" data-tilt>
+                <div class="app-icon">✅</div>
+                <h3>Tasks - Uniflow</h3>
+                <p class="desc">One task manager that unifies local tasks, Notion, Apple Reminders, and Google Tasks — synced via CloudKit, secured in Keychain.</p>
+                <div class="pills"><span>SwiftUI</span><span>CloudKit</span><span>Notion API</span><span>Keychain</span></div>
+                <div class="foot"><span class="badge live">On the App Store</span><span class="go">Open →</span></div>
+            </a>
+            <a class="app-card readme reveal" href="/readme/" data-tilt>
+                <div class="app-icon">📖</div>
+                <h3>ReadMe</h3>
+                <p class="desc">A native reading companion in the works — built with the same privacy-first, on-device philosophy.</p>
+                <div class="pills"><span>SwiftUI</span><span>SwiftData</span><span>On-device</span></div>
+                <div class="foot"><span class="badge soon">Coming soon</span><span class="go">Peek →</span></div>
+            </a>
+            <a class="app-card food reveal" href="/food-in-five/" data-tilt>
+                <div class="app-icon">🍽️</div>
+                <h3>Food in Five</h3>
+                <p class="desc">Location-based restaurant discovery powered by Google Places, MapKit &amp; SwiftData — smart filters and favorites, all on-device.</p>
+                <div class="pills"><span>MapKit</span><span>Google Places</span><span>SwiftData</span><span>No backend</span></div>
+                <div class="foot"><span class="badge soon">Coming soon</span><span class="go">Peek →</span></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============ TECH MARQUEE ============ -->
+<section class="marquee-sec">
+    <div class="marquee">
+        <div class="track" id="track">
+            <span class="chip"><span class="dot">●</span>SwiftUI</span>
+            <span class="chip"><span class="dot">●</span>SwiftData</span>
+            <span class="chip"><span class="dot">●</span>CloudKit</span>
+            <span class="chip"><span class="dot">●</span>MapKit</span>
+            <span class="chip"><span class="dot">●</span>Keychain</span>
+            <span class="chip"><span class="dot">●</span>Background Tasks</span>
+            <span class="chip"><span class="dot">●</span>Local Notifications</span>
+            <span class="chip"><span class="dot">●</span>Notion API</span>
+            <span class="chip"><span class="dot">●</span>Google Places</span>
+            <span class="chip"><span class="dot">●</span>WidgetKit</span>
+        </div>
+    </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section class="stack" id="stack">
+    <div class="wrap">
+        <div class="reveal">
+            <h2>Built the Apple way</h2>
+            <p>Every Khakichimp app is fully native and declarative — SwiftUI front to back, with data that stays on your device unless you explicitly sync it. No cross-platform shortcuts, no compromise on feel.</p>
+        </div>
+        <div class="philosophy reveal">
+            <div class="big">🔒</div>
+            <h3>Privacy isn't a feature — it's the default</h3>
+            <p>No analytics SDKs, no ad networks, no hidden data collection. Your data lives on your device (and your iCloud, if you choose). That's the whole point.</p>
+            <div class="feed">
+                <button class="feed-btn" id="feedBtn" type="button">🍌 Feed the chimp</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+    <div class="mark">🐵</div>
+    <h3>Khakichimp</h3>
+    <div class="links">
+        <a href="mailto:khakichimp@gmail.com">khakichimp@gmail.com</a>
+        <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
+        <a href="/">← Back to Josh Engels</a>
+    </div>
+    <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
+</footer>
+
+<!-- live banana counter -->
+<div class="banana-meter" id="bananaMeter" title="Throw a banana">🍌 <span class="n" id="bananaN">0</span> thrown</div>
+
+<!-- ============ LIBRARIES ============ -->
+<script src="/assets/vendor/gsap.min.js"></script>
+<script src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script src="/assets/vendor/vanilla-tilt.min.js"></script>
+<script src="/assets/vendor/confetti.browser.js"></script>
+<script>
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('yr').textContent = new Date().getFullYear();
+const chimp = document.getElementById('chimp');
+
+/* scroll progress */
+const progress = document.getElementById('progress');
+function setProgress(){
+    const h=document.documentElement, max=h.scrollHeight-h.clientHeight;
+    progress.style.width=(max>0?(h.scrollTop/max)*100:0)+'%';
+}
+window.addEventListener('scroll', setProgress, {passive:true}); setProgress();
+
+/* ---------- Banana cannon + live counter ---------- */
+let bananaShape = null;
+if(typeof confetti === 'function' && confetti.shapeFromText){
+    try{ bananaShape = confetti.shapeFromText({text:'🍌', scalar:2.2}); }catch(e){}
+}
+let bananaCount = 0;
+const bananaN = document.getElementById('bananaN');
+function bumpCounter(by){
+    bananaCount += by;
+    bananaN.textContent = bananaCount;
+    if(window.gsap && !reduceMotion) gsap.fromTo('#bananaMeter',{scale:1},{scale:1.12,duration:.12,yoyo:true,repeat:1});
+}
+function throwBananas(origin, count){
+    count = count || 18;
+    if(typeof confetti === 'function'){
+        confetti({
+            particleCount:count, spread:72, startVelocity:42, origin,
+            shapes: bananaShape?[bananaShape]:undefined,
+            colors: bananaShape?undefined:['#ffcf3f','#f5b921','#ff6b54'],
+            scalar: bananaShape?1.7:1.1, ticks:220
+        });
+    }
+    bumpCounter(count);
+}
+
+/* ---------- Chimp leans toward cursor + poke ---------- */
+if(!reduceMotion && window.gsap){
+    window.addEventListener('mousemove', e=>{
+        const rect = chimp.getBoundingClientRect();
+        const dx = (e.clientX - (rect.left+rect.width/2)) / window.innerWidth;
+        const dy = (e.clientY - (rect.top+rect.height/2)) / window.innerHeight;
+        gsap.to(chimp, {rotation:dx*6, x:dx*14, y:dy*8, duration:.6, overwrite:'auto', transformOrigin:'50% 90%'});
+    });
+}
+const stage = document.getElementById('chimpStage');
+let combo = 0, comboTimer = null;
+function showCombo(n){
+    if(reduceMotion || !window.gsap) return;
+    const rect = stage.getBoundingClientRect();
+    const el = document.createElement('div');
+    el.className = 'combo-pop';
+    el.textContent = '×' + n + (n>=8?' 🔥🔥':(n>=4?' 🔥':''));
+    el.style.left = (rect.left+rect.width/2) + 'px';
+    el.style.top  = (rect.top+rect.height*0.18) + 'px';
+    el.style.fontSize = Math.min(1.1 + n*0.12, 2.6) + 'em';
+    document.body.appendChild(el);
+    gsap.fromTo(el,{y:0,opacity:1,scale:.7},{y:-70,opacity:0,scale:1.25,duration:.9,ease:'power2.out',onComplete:()=>el.remove()});
+}
+function poke(){
+    combo++; clearTimeout(comboTimer); comboTimer = setTimeout(()=>combo=0, 1400);
+    const burst = Math.min(14 + combo*6, 72);
+    const rect = stage.getBoundingClientRect();
+    throwBananas({x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight}, burst);
+    if(combo>=2) showCombo(combo);
+    if(reduceMotion || !window.gsap) return;
+    const lift = Math.min(30 + combo*4, 64);
+    gsap.fromTo(chimp,{},{keyframes:[
+        {y:-lift,scale:1.06,rotation:combo%2?5:-5,duration:.18,ease:'power2.out'},
+        {y:0,scale:1,rotation:0,duration:.55,ease:'bounce.out'}
+    ], transformOrigin:'50% 90%', overwrite:'auto'});
+}
+stage.addEventListener('click', poke);
+stage.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
+stage.tabIndex = 0;
+
+/* feed button + banana meter */
+document.getElementById('feedBtn').addEventListener('click', e=>{
+    const r=e.currentTarget.getBoundingClientRect();
+    throwBananas({x:(r.left+r.width/2)/innerWidth, y:(r.top+r.height/2)/innerHeight}, 22);
+});
+document.getElementById('bananaMeter').addEventListener('click', ()=>{
+    throwBananas({x:0.92, y:0.92}, 10);
+});
+
+/* idle bob */
+if(!reduceMotion && window.gsap){
+    gsap.to('#chimpStage',{y:'+=8',duration:2.2,yoyo:true,repeat:-1,ease:'sine.inOut'});
+}
+
+/* welcome banana shower */
+window.addEventListener('load', ()=>{
+    if(reduceMotion) return;
+    setTimeout(()=>throwBananas({x:0.5, y:0.15}, 26), 450);
+});
+
+/* ---------- Rotating word ---------- */
+(function(){
+    const el = document.getElementById('rotator');
+    const words = ['native','private','delightful','yours','offline-first','fast'];
+    let i = 0;
+    if(reduceMotion || !window.gsap) return;
+    setInterval(()=>{
+        i = (i+1)%words.length;
+        gsap.to(el,{opacity:0,y:-8,duration:.25,onComplete:()=>{
+            el.textContent = words[i];
+            gsap.fromTo(el,{opacity:0,y:8},{opacity:1,y:0,duration:.3});
+        }});
+    }, 1900);
+})();
+
+/* ---------- Magnetic CTA ---------- */
+if(!reduceMotion && window.gsap){
+    document.querySelectorAll('.cta').forEach(btn=>{
+        btn.addEventListener('mousemove', e=>{
+            const r=btn.getBoundingClientRect();
+            gsap.to(btn,{x:(e.clientX-(r.left+r.width/2))*.3, y:(e.clientY-(r.top+r.height/2))*.4, duration:.3});
+        });
+        btn.addEventListener('mouseleave', ()=>gsap.to(btn,{x:0,y:0,duration:.4,ease:'elastic.out(1,0.4)'}));
+    });
+}
+
+/* ---------- Tilt cards ---------- */
+if(window.VanillaTilt && !reduceMotion){
+    VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {max:9, speed:400, glare:true, 'max-glare':0.18, scale:1.02});
+}
+
+/* ---------- Count-up stats ---------- */
+(function(){
+    const vals = document.querySelectorAll('.val[data-count]');
+    function run(el){
+        const t=+el.dataset.count;
+        if(reduceMotion || !window.gsap){ el.textContent=t; return; }
+        const o={n:0}; gsap.to(o,{n:t,duration:1.2,ease:'power2.out',onUpdate:()=>el.textContent=Math.round(o.n)});
+    }
+    if(window.gsap && window.ScrollTrigger && !reduceMotion){
+        gsap.registerPlugin(ScrollTrigger);
+        vals.forEach(el=>ScrollTrigger.create({trigger:el,start:'top 92%',once:true,onEnter:()=>run(el)}));
+    } else vals.forEach(run);
+})();
+
+/* ---------- Scroll reveals ---------- */
+if(window.gsap && window.ScrollTrigger && !reduceMotion){
+    gsap.utils.toArray('.reveal').forEach(el=>{
+        gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'}});
+    });
+} else {
+    document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
+}
+
+/* ---------- Floating leaves canvas (with mouse parallax) ---------- */
+(function(){
+    const c = document.getElementById('leaves'); if(!c) return;
+    const ctx = c.getContext('2d');
+    let w,h,leaves,mx=0,my=0;
+    const COLORS = ['#4caa6a','#3c8a55','#5cba7a','#2f7d4f'];
+    function resize(){ w=c.width=c.offsetWidth; h=c.height=c.offsetHeight; }
+    function make(){ return {x:Math.random()*w, y:Math.random()*h, r:6+Math.random()*10,
+        sp:0.3+Math.random()*0.7, sway:Math.random()*Math.PI*2, depth:0.4+Math.random()*0.8,
+        col:COLORS[Math.floor(Math.random()*COLORS.length)], rot:Math.random()*Math.PI}; }
+    function init(){ resize(); leaves = Array.from({length: window.innerWidth<700?14:28}, make); }
+    function leaf(l){
+        ctx.save(); ctx.translate(l.x + mx*l.depth*30, l.y + my*l.depth*16); ctx.rotate(l.rot);
+        ctx.globalAlpha=.5; ctx.fillStyle=l.col;
+        ctx.beginPath(); ctx.ellipse(0,0,l.r,l.r*0.5,0,0,Math.PI*2); ctx.fill(); ctx.restore();
+    }
+    function tick(){
+        ctx.clearRect(0,0,w,h);
+        for(const l of leaves){
+            l.y += l.sp; l.sway += 0.02; l.x += Math.sin(l.sway)*0.6; l.rot += 0.01;
+            if(l.y > h+20){ l.y = -20; l.x = Math.random()*w; }
+            leaf(l);
+        }
+        requestAnimationFrame(tick);
+    }
+    window.addEventListener('mousemove', e=>{ mx=(e.clientX/innerWidth-.5); my=(e.clientY/innerHeight-.5); });
+    init(); window.addEventListener('resize', init);
+    if(!reduceMotion) tick(); else { for(const l of leaves) leaf(l); }
+})();
+</script>
+</body>
+</html>

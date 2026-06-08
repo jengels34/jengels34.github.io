@@ -1,55 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="j_NbcN-2qeRhGIFVQXqVtMTq3ZnCeipy3fx87GvOpDA" />
-    <title>Khakichimp · Apps</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { background: white; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6; background: white; color: #262d35; min-height: 100vh;
-            letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-        }
-        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-        .header {
-            background: linear-gradient(135deg, hsl(210, 80%, 55%) 0%, hsl(210, 80%, 65%) 100%);
-            color: white; text-align: center; padding: 40px 30px; border-radius: 24px; margin-bottom: 30px;
-            box-shadow: 0 8px 30px hsla(210, 80%, 55%, 0.35);
-        }
-        .header h1 { margin: 0; font-size: 2em; }
-        .header p { margin-top: 10px; opacity: 0.9; }
-        .app-card {
-            display: block; text-decoration: none; color: inherit; background: #fafafa;
-            padding: 25px; border-radius: 20px; border-left: 4px solid hsl(210, 80%, 55%);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin: 18px 0;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .app-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); }
-        .app-card h2 { color: hsl(210, 80%, 55%); margin: 0 0 6px 0; font-size: 1.3em; }
-        .app-card p { color: #475569; margin: 0; }
-        .footer { text-align: center; color: #94a3b8; font-size: 0.9em; margin-top: 40px; }
-        .footer a { color: hsl(210, 80%, 55%); }
-        ::selection { background: hsla(210, 80%, 55%, 0.3); color: #262d35; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="j_NbcN-2qeRhGIFVQXqVtMTq3ZnCeipy3fx87GvOpDA" />
+<title>Josh Engels · Technology Leader & iOS Developer</title>
+<meta name="description" content="Josh Engels — fifteen-plus years turning hard problems into resilient systems. Intelligence analyst, Apple Maps, Director of Incident Management at DraftKings, and indie iOS developer behind Khakichimp.">
+<style>
+    :root{
+        --ink:#15202b; --slate:#475569; --mist:#64748b;
+        --paper:#f7f6f2; --card:#ffffff; --line:#e6e2d8;
+        --khaki:#b89b6a; --khaki-deep:#8f7647;
+        --jungle:#2f7d4f; --jungle-deep:#1d5536; --banana:#f5b921; --coral:#ff6b54;
+        --accent:#2f7d4f;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+        background:var(--paper);color:var(--ink);line-height:1.65;
+        letter-spacing:-0.011em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+        overflow-x:hidden;
+    }
+    a{color:var(--jungle-deep)}
+    ::selection{background:var(--banana);color:var(--ink)}
+    .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+    /* scroll progress */
+    .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+        background:linear-gradient(90deg,var(--jungle),var(--khaki));transition:width .1s linear}
+
+    /* ---------- NAV ---------- */
+    nav{
+        position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(10px);
+        background:rgba(247,246,242,.82);border-bottom:1px solid var(--line);
+    }
+    nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    nav .name{font-weight:800;letter-spacing:-0.02em;font-size:1.05em}
+    nav .menu{display:flex;gap:24px;align-items:center}
+    nav .menu a{text-decoration:none;color:var(--slate);font-weight:600;font-size:.92em;transition:.2s}
+    nav .menu a:hover{color:var(--ink)}
+    nav .menu a.hq{
+        color:var(--ink);background:var(--banana);padding:8px 15px;border-radius:999px;
+        box-shadow:0 6px 16px rgba(245,185,33,.35);display:inline-flex;align-items:center;gap:6px;
+    }
+    nav .menu a.hq:hover{transform:translateY(-1px)}
+    @media(max-width:640px){nav .menu a.txt{display:none}}
+
+    /* ---------- HERO ---------- */
+    .hero{position:relative;padding:84px 0 56px;overflow:hidden}
+    .hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+    .hero .eyebrow{
+        display:inline-block;font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+        color:var(--jungle-deep);background:rgba(47,125,79,.1);padding:6px 13px;border-radius:999px;margin-bottom:18px;
+    }
+    .hero h1{font-size:clamp(2.4em,6.5vw,4em);line-height:1.04;font-weight:800;letter-spacing:-0.03em}
+    .hero h1 em{font-style:normal;color:var(--jungle-deep)}
+    .hero .sub{font-size:clamp(1.05em,2.4vw,1.25em);color:var(--slate);margin-top:16px;max-width:560px}
+    .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .btn{text-decoration:none;font-weight:700;padding:13px 22px;border-radius:999px;transition:.2s;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent}
+    .btn.primary{background:var(--ink);color:#fff;box-shadow:0 10px 22px rgba(21,32,43,.22)}
+    .btn.primary:hover{transform:translateY(-2px)}
+    .btn.ghost{border-color:var(--line);color:var(--ink);background:var(--card)}
+    .btn.ghost:hover{transform:translateY(-2px);border-color:var(--khaki)}
+
+    /* experience strip */
+    .worked{margin-top:30px}
+    .worked .lbl{font-size:.7em;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:12px}
+    .worked .row{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
+    .logo{display:inline-flex;align-items:center;height:30px}
+    .logo img{height:30px;width:auto;max-width:140px;object-fit:contain;opacity:.85;transition:opacity .2s,filter .2s;filter:saturate(.95)}
+    .logo:hover img{opacity:1;filter:saturate(1.05)}
+    .logo b{font-weight:800;color:var(--slate);opacity:.78;font-size:1.02em;letter-spacing:-0.01em}
+    .logo.ok b{display:none}
+
+    /* small chimp portal */
+    .portal{position:relative;display:flex;justify-content:center}
+    .portal .ring{
+        position:relative;width:min(280px,72vw);aspect-ratio:1;border-radius:50%;cursor:pointer;
+        background:radial-gradient(120% 120% at 50% 25%,#3f6d4d,#1f4030);
+        box-shadow:0 26px 50px rgba(21,32,43,.28), inset 0 0 0 6px rgba(255,255,255,.06);
+        display:flex;align-items:flex-end;justify-content:center;overflow:hidden;text-decoration:none;
+    }
+    .portal .ring svg,.portal .ring img{width:82%;height:auto;margin-bottom:-2%;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35));will-change:transform}
+    .portal .label{
+        position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;
+        background:var(--banana);color:var(--ink);font-weight:700;font-size:.82em;padding:7px 15px;border-radius:999px;
+        box-shadow:0 6px 14px rgba(245,185,33,.4);
+    }
+    @media(max-width:760px){
+        .hero .wrap{grid-template-columns:1fr;gap:36px}
+        .portal{order:-1}
+    }
+
+    /* ---------- STATS BAND ---------- */
+    .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fbfaf6}
+    .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:38px 24px;text-align:center}
+    .stat .num{font-size:clamp(2em,5vw,2.8em);font-weight:800;letter-spacing:-0.03em;color:var(--ink);line-height:1}
+    .stat .num .suf{color:var(--khaki-deep)}
+    .stat .cap{font-size:.86em;color:var(--slate);margin-top:8px}
+    @media(max-width:640px){.stats .wrap{grid-template-columns:repeat(2,1fr);gap:28px}}
+
+    /* ---------- SECTION SHELL ---------- */
+    section.block{padding:70px 0;border-top:1px solid var(--line)}
+    section.block:first-of-type{border-top:none}
+    .head{margin-bottom:40px}
+    .head .kicker{font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--khaki-deep)}
+    .head h2{font-size:clamp(1.7em,4.5vw,2.4em);font-weight:800;letter-spacing:-0.02em;margin-top:6px}
+    .head .lead{color:var(--slate);margin-top:10px;max-width:620px}
+
+    /* ---------- KEYNOTE (selected work) ---------- */
+    .keynote{background:linear-gradient(165deg,#15271d 0%,#0e1813 100%);color:#eef3ee;position:relative;overflow:hidden}
+    .keynote .kn-pin{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:70px 0}
+    .kn-head{max-width:980px;margin:0 auto;padding:0 24px;width:100%;margin-bottom:34px}
+    .kn-head .kicker{color:var(--banana)}
+    .kn-head h2{color:#fff;font-size:clamp(1.8em,4.5vw,2.6em);font-weight:800;letter-spacing:-0.02em;margin-top:6px}
+    .kn-head .lead{color:rgba(238,243,238,.7);margin-top:10px;max-width:620px}
+    .kn-viewport{width:100%;overflow:hidden}
+    .kn-track{display:flex;flex-direction:column;gap:18px;max-width:980px;margin:0 auto;padding:0 24px}
+    .kn-track.horizontal{flex-direction:row;gap:30px;max-width:none;margin:0;padding:0 max(24px,9vw);align-items:stretch;will-change:transform}
+    .kn-panel{
+        background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:24px;
+        padding:38px;display:flex;flex-direction:column;position:relative;overflow:hidden;
+    }
+    .kn-track.horizontal .kn-panel{flex:0 0 min(72vw,600px)}
+    .kn-panel .idx{font-size:3.2em;font-weight:800;line-height:1;color:rgba(245,185,33,.22);letter-spacing:-0.04em}
+    .kn-panel .era{font-size:.74em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--banana);opacity:.9;margin-top:14px}
+    .kn-panel h3{font-size:clamp(1.4em,3vw,2em);font-weight:800;letter-spacing:-0.02em;margin:8px 0 12px;color:#fff}
+    .kn-panel p{color:rgba(238,243,238,.82);font-size:1.02em;flex:1}
+    .kn-panel a.more{display:inline-block;margin-top:18px;font-size:.9em;font-weight:700;color:var(--banana);text-decoration:none}
+    .kn-panel a.more:hover{text-decoration:underline}
+    .kn-progress{display:flex;gap:8px;justify-content:center;margin-top:34px}
+    .kn-progress i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);transition:.3s}
+    .kn-progress i.on{background:var(--banana);width:24px;border-radius:5px}
+    .kn-hint{text-align:center;color:rgba(238,243,238,.5);font-size:.78em;letter-spacing:.08em;text-transform:uppercase;margin-top:14px}
+    @media(max-width:819px){
+        .keynote .kn-pin{min-height:0;padding:64px 0}
+        .kn-progress,.kn-hint{display:none}
+    }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline{position:relative;margin-left:8px}
+    .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:3px;
+        background:linear-gradient(var(--jungle),var(--khaki));border-radius:3px}
+    .role{position:relative;padding:0 0 34px 42px}
+    .role::before{content:"";position:absolute;left:0;top:4px;width:21px;height:21px;border-radius:50%;
+        background:var(--card);border:4px solid var(--jungle);box-shadow:0 2px 6px rgba(0,0,0,.1)}
+    .role.current::before{border-color:var(--banana);background:var(--banana)}
+    .role .when{font-size:.82em;font-weight:700;color:var(--khaki-deep);letter-spacing:.02em}
+    .role h3{font-size:1.22em;font-weight:800;margin:2px 0 1px}
+    .role .org{font-weight:700;color:var(--jungle-deep)}
+    .role .loc{color:var(--mist);font-size:.9em}
+    .role p{color:var(--slate);margin-top:8px;max-width:680px}
+    .role .reflinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .role .reflinks a{
+        font-size:.82em;font-weight:600;text-decoration:none;color:var(--jungle-deep);
+        background:rgba(47,125,79,.09);padding:6px 12px;border-radius:999px;transition:.2s;
+    }
+    .role .reflinks a:hover{background:rgba(47,125,79,.18);transform:translateY(-1px)}
+    .role .reflinks a.apps{background:var(--banana);color:var(--ink)}
+
+    /* ---------- SKILLS / EDU ---------- */
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+    @media(max-width:760px){.cols{grid-template-columns:1fr;gap:30px}}
+    .subhead{font-size:.78em;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--khaki-deep);margin-bottom:14px}
+    .badges{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}
+    .badges span{font-size:.88em;font-weight:600;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+    .edu li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line)}
+    .edu li:last-child{border-bottom:none}
+    .edu .deg{font-weight:700}
+    .edu .school{color:var(--slate);font-size:.92em}
+    .edu .yr{float:right;color:var(--mist);font-size:.85em;font-weight:600}
+
+    /* ---------- ALTER EGO ---------- */
+    .alter{background:linear-gradient(150deg,#1f4030,#15291f);color:#fbf6ea;border-radius:28px;
+        padding:46px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;overflow:hidden;position:relative}
+    .alter::before{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
+        background:radial-gradient(circle,rgba(245,185,33,.25),transparent 70%)}
+    .alter .face{width:120px;height:120px;flex:none;object-fit:contain;position:relative;z-index:1}
+    .alter .txt{position:relative;z-index:1}
+    .alter h2{font-size:clamp(1.6em,4vw,2.2em);font-weight:800;letter-spacing:-0.02em}
+    .alter h2 span{color:var(--banana)}
+    .alter p{opacity:.85;margin-top:8px;max-width:480px}
+    .alter .btn{margin-top:18px;background:var(--banana);color:var(--ink)}
+    @media(max-width:620px){.alter{grid-template-columns:1fr;text-align:center;padding:34px 24px}.alter .face{margin:0 auto}}
+
+    /* ---------- FOOTER ---------- */
+    footer{padding:50px 0;border-top:1px solid var(--line);text-align:center;color:var(--mist)}
+    footer .links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+    footer a{color:var(--jungle-deep);text-decoration:none;font-weight:600}
+    footer a:hover{text-decoration:underline}
+    footer .copy{font-size:.85em}
+
+    .reveal{opacity:0;transform:translateY(26px)}
+    @media(prefers-reduced-motion:reduce){
+        *{animation:none!important;transition:none!important}
+        .reveal{opacity:1;transform:none}
+        html{scroll-behavior:auto}
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Khakichimp</h1>
-            <p>Native iOS apps, built with a focus on privacy and simplicity.</p>
-        </div>
+<div class="progress" id="progress"></div>
 
-        <a class="app-card" href="tasks-uniflow/">
-            <h2>Tasks - Uniflow</h2>
-            <p>A native iOS task manager that unifies local tasks, Notion, Apple Reminders, and Google Tasks in one interface. Support &amp; privacy policy &rarr;</p>
-        </a>
-
-        <div class="footer">
-            <p>Contact: <a href="mailto:khakichimp@gmail.com">khakichimp@gmail.com</a></p>
+<nav>
+    <div class="wrap">
+        <div class="name">Josh Engels</div>
+        <div class="menu">
+            <a class="txt" href="#work">Work</a>
+            <a class="txt" href="#career">Career</a>
+            <a class="txt" href="#skills">Skills</a>
+            <a class="hq" href="/khakichimp/"><span>🐵</span> Khakichimp HQ</a>
         </div>
     </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+    <div class="wrap">
+        <div>
+            <span class="eyebrow">Technology Leader · iOS Developer</span>
+            <h1>I turn hard problems into <em>resilient systems</em> and <em>products people trust</em>.</h1>
+            <p class="sub">Fifteen-plus years across defense intelligence, Apple Maps, and high-scale iGaming — and these days, shipping privacy-first iOS apps end to end.</p>
+            <div class="actions">
+                <a class="btn primary" href="#work">See what I've done ↓</a>
+                <a class="btn ghost" href="/khakichimp/">🐵 Enter Khakichimp HQ</a>
+            </div>
+            <div class="worked">
+                <div class="lbl">Built &amp; led at</div>
+                <div class="row" id="logos">
+                    <span class="logo" data-name="Apple" data-srcs="/assets/logos/apple.svg|/assets/logos/apple.png|https://logo.clearbit.com/apple.com"><b>Apple</b></span>
+                    <span class="logo" data-name="DraftKings" data-srcs="/assets/logos/draftkings.svg|/assets/logos/draftkings.png|https://logo.clearbit.com/draftkings.com"><b>DraftKings</b></span>
+                    <span class="logo" data-name="SAIC" data-srcs="/assets/logos/saic.svg|/assets/logos/saic.png|https://logo.clearbit.com/saic.com"><b>SAIC</b></span>
+                    <span class="logo" data-name="U.S. Air Force" data-srcs="/assets/logos/usaf.svg|/assets/logos/usaf.png|https://logo.clearbit.com/airforce.com"><b>U.S. Air Force</b></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Small chimp portal to HQ -->
+        <div class="portal">
+            <a class="ring" id="portal" href="/khakichimp/" aria-label="Enter Khakichimp HQ — my developer apps">
+                <img id="miniChimp" class="portal-img" src="/assets/chimp.svg" alt="Khakichimp mascot — chimp in khaki pants" draggable="false">
+                <span class="label">Tap to enter HQ →</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+    <div class="wrap">
+        <div class="stat"><div class="num" data-count="15"><span class="val">0</span><span class="suf">+</span></div><div class="cap">Years building &amp; leading</div></div>
+        <div class="stat"><div class="num" data-count="4"><span class="val">0</span></div><div class="cap">Industries spanned</div></div>
+        <div class="stat"><div class="num" data-count="7"><span class="val">0</span><span class="suf">+</span></div><div class="cap">Years leading incident response</div></div>
+        <div class="stat"><div class="num" data-count="4"><span class="val">0</span></div><div class="cap">Degrees earned</div></div>
+    </div>
+</section>
+
+<!-- ============ KEYNOTE / SELECTED WORK ============ -->
+<section class="keynote" id="work">
+    <div class="kn-pin">
+        <div class="kn-head">
+            <div class="kicker">Selected work</div>
+            <h2>A few things I'm proud of</h2>
+            <p class="lead">From classified intelligence to one of the world's most-used maps to a 24/7 incident-response practice.</p>
+        </div>
+        <div class="kn-viewport">
+            <div class="kn-track" id="knTrack">
+                <article class="kn-panel">
+                    <div class="idx">01</div>
+                    <div class="era">Apple · 2012–2019</div>
+                    <h3>Apple Maps, in three dimensions</h3>
+                    <p>Directed end-to-end 3D dataset collection for Apple Maps — hardware, software, design support, and field execution that put entire cities into Flyover.</p>
+                    <a class="more" href="https://appleinsider.com/articles/13/07/31/apples-ios-7-3d-maps-leave-google-earth-nokia-3d-maps-looking-old-fashioned" target="_blank" rel="noopener">Read the coverage ↗</a>
+                </article>
+                <article class="kn-panel">
+                    <div class="idx">02</div>
+                    <div class="era">DraftKings · 2019–present</div>
+                    <h3>Resiliency at real scale</h3>
+                    <p>Built DraftKings' problem &amp; incident-management practice from the ground up — leading global 24/7 response that keeps a high-traffic platform stable, now augmented with AI-enabled tooling.</p>
+                    <a class="more" href="https://www.pagerduty.com/customer/draftkings/" target="_blank" rel="noopener">PagerDuty case study ↗</a>
+                </article>
+                <article class="kn-panel">
+                    <div class="idx">03</div>
+                    <div class="era">USAF &amp; SAIC · 2006–2011</div>
+                    <h3>Mission-critical intelligence</h3>
+                    <p>Six years as an intelligence analyst holding a top-secret clearance — briefing leadership, guiding mission planning, and standing up operations for a unique airborne sensor suite in Afghanistan.</p>
+                </article>
+                <article class="kn-panel">
+                    <div class="idx">04</div>
+                    <div class="era">Khakichimp · 2025–present</div>
+                    <h3>Shipping as an indie</h3>
+                    <p>Designing, building, and publishing privacy-first iOS apps solo — from first sketch to the App Store. Tasks - Uniflow is live, with more on the way.</p>
+                    <a class="more" href="/khakichimp/">Explore the apps →</a>
+                </article>
+            </div>
+        </div>
+        <div class="kn-progress" id="knDots"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="kn-hint">Scroll to explore →</div>
+    </div>
+</section>
+
+<!-- ============ CAREER ============ -->
+<section class="block" id="career">
+    <div class="wrap">
+        <div class="head reveal">
+            <div class="kicker">Career</div>
+            <h2>From intelligence to incident management to iOS</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="role current reveal">
+                <div class="when">Apr 2019 – Present · 7 yrs</div>
+                <h3>Director, Problem &amp; Incident Management</h3>
+                <div class="org">DraftKings Inc. <span class="loc">· Boston, MA</span></div>
+                <p>Lead the charge on a robust incident management response process — partnering with business leaders to close gaps, enhance engineering resiliency, and improve overall stability. Manage cross-functional teams delivering 24/7 support to engineering, and build AI-enabled tools that streamline developer workflows and reduce downtime.</p>
+                <div class="reflinks">
+                    <a href="https://www.pagerduty.com/customer/draftkings/" target="_blank" rel="noopener">PagerDuty case study ↗</a>
+                    <a href="https://www.youtube.com/watch?v=RaWqwQj3cCI" target="_blank" rel="noopener">Talk ↗</a>
+                    <a href="https://www.youtube.com/watch?v=Mu8cn7jN7ck" target="_blank" rel="noopener">Talk ↗</a>
+                </div>
+            </div>
+
+            <div class="role current reveal">
+                <div class="when">Aug 2025 – Present</div>
+                <h3>Independent iOS Developer</h3>
+                <div class="org">Self-employed <span class="loc">· Khakichimp</span></div>
+                <p>Building native, privacy-first apps with SwiftUI, SwiftData, CloudKit, and modern Apple frameworks. Shipped Tasks - Uniflow to the App Store, with Food in Five and ReadMe in the works.</p>
+                <div class="reflinks">
+                    <a class="apps" href="/khakichimp/">🐵 See my apps as Khakichimp →</a>
+                </div>
+            </div>
+
+            <div class="role reveal">
+                <div class="when">Mar 2012 – Apr 2019 · 7 yrs</div>
+                <h3>Production &amp; Operations Manager</h3>
+                <div class="org">Apple <span class="loc">· Cupertino, CA</span></div>
+                <p>Spearheaded business-driven technology projects for Apple Maps, leading teams through full product development lifecycles. Managed end-to-end 3D dataset collection — overseeing hardware, software, design support, and field execution.</p>
+                <div class="reflinks">
+                    <a href="https://appleinsider.com/articles/13/07/31/apples-ios-7-3d-maps-leave-google-earth-nokia-3d-maps-looking-old-fashioned" target="_blank" rel="noopener">Apple Maps 3D coverage ↗</a>
+                </div>
+            </div>
+
+            <div class="role reveal">
+                <div class="when">Oct 2010 – Nov 2011</div>
+                <h3>Intelligence Analyst</h3>
+                <div class="org">SAIC <span class="loc">· Afghanistan</span></div>
+                <p>Key contributor launching a groundbreaking project — setting up infrastructure and operations for a unique airborne sensor suite. Processed, analyzed, and disseminated operational data supporting tactical efforts on the ground.</p>
+            </div>
+
+            <div class="role reveal">
+                <div class="when">Apr 2006 – Apr 2010 · 4 yrs</div>
+                <h3>Intelligence Analyst</h3>
+                <div class="org">United States Air Force</div>
+                <p>Held top-secret clearance analyzing critical datasets on key locations. Delivered intelligence briefings to leadership, guided mission planning, and optimized training processes for accurate troop support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ SKILLS / EDU ============ -->
+<section class="block" id="skills">
+    <div class="wrap">
+        <div class="head reveal">
+            <div class="kicker">Skills &amp; Education</div>
+            <h2>The toolkit</h2>
+        </div>
+        <div class="cols">
+            <div class="reveal">
+                <div class="subhead">Top Skills</div>
+                <div class="badges">
+                    <span>Mobile Applications</span><span>React Native</span><span>Full-Stack Development</span>
+                    <span>SwiftUI · SwiftData</span><span>AI / LLM Tooling</span><span>Incident Management</span>
+                    <span>Systems Architecture</span><span>Team Leadership</span>
+                </div>
+                <div class="subhead">Certifications</div>
+                <div class="badges">
+                    <span>Certified Incident Responder</span><span>AI Prompting Essentials</span>
+                    <span>Supervised ML: Regression &amp; Classification</span>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="subhead">Education</div>
+                <ul class="edu">
+                    <li><span class="yr">2020–22</span><div class="deg">M.S., Finance</div><div class="school">Northeastern University</div></li>
+                    <li><span class="yr">2014–15</span><div class="deg">M.S., Human Resource Management</div><div class="school">Golden Gate University</div></li>
+                    <li><span class="yr">2013–14</span><div class="deg">M.B.A.</div><div class="school">University of Phoenix</div></li>
+                    <li><span class="yr">2007–09</span><div class="deg">B.S., Criminal Justice (Minor: Sociology)</div><div class="school">University of Maryland University College</div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ ALTER EGO ============ -->
+<section class="block">
+    <div class="wrap">
+        <div class="alter reveal">
+            <img class="face" src="/assets/chimp.svg" alt="Khakichimp" draggable="false">
+            <div class="txt">
+                <h2>By night, I build apps as <span>Khakichimp</span></h2>
+                <p>Native, privacy-first iOS apps — no trackers, no nonsense. Step into the lab to meet the chimp and explore everything I've shipped.</p>
+                <a class="btn" href="/khakichimp/">Enter Khakichimp HQ →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+    <div class="wrap">
+        <div class="links">
+            <a href="mailto:engelsjosh@gmail.com">engelsjosh@gmail.com</a>
+            <a href="https://www.linkedin.com/in/josh-engels/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
+            <a href="/khakichimp/">Khakichimp HQ</a>
+        </div>
+        <div class="copy">© <span id="yr"></span> Josh Engels · Overland Park, Kansas</div>
+    </div>
+</footer>
+
+<script src="/assets/vendor/gsap.min.js"></script>
+<script src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script>
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* scroll progress bar */
+const progress = document.getElementById('progress');
+function setProgress(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    progress.style.width = (max>0 ? (h.scrollTop/max)*100 : 0) + '%';
+}
+window.addEventListener('scroll', setProgress, {passive:true});
+setProgress();
+
+/* Scroll reveals */
+if(window.gsap && window.ScrollTrigger && !reduceMotion){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.reveal').forEach(el=>{
+        gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+    });
+} else {
+    document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
+}
+
+/* Count-up stats */
+(function(){
+    const nums = document.querySelectorAll('.num[data-count]');
+    function run(el){
+        const target = +el.dataset.count;
+        const val = el.querySelector('.val');
+        if(reduceMotion || !window.gsap){ val.textContent = target; return; }
+        const obj = {n:0};
+        gsap.to(obj,{n:target,duration:1.2,ease:'power2.out',onUpdate:()=>{val.textContent=Math.round(obj.n);}});
+    }
+    if(window.gsap && window.ScrollTrigger && !reduceMotion){
+        nums.forEach(el=>ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>run(el)}));
+    } else {
+        nums.forEach(run);
+    }
+})();
+
+/* Logo loader: try self-hosted, then CDN, else keep text fallback */
+document.querySelectorAll('#logos .logo').forEach(el=>{
+    const srcs = (el.dataset.srcs||'').split('|').filter(Boolean);
+    if(!srcs.length) return;
+    let i = 0;
+    const img = new Image();
+    img.alt = el.dataset.name || '';
+    img.decoding = 'async';
+    img.onload = ()=>{ el.insertBefore(img, el.firstChild); el.classList.add('ok'); };
+    img.onerror = ()=>{ i++; if(i<srcs.length) img.src = srcs[i]; };
+    img.src = srcs[0];
+});
+
+/* Apple-keynote horizontal pinned "Selected work" (desktop only) */
+(function(){
+    const track = document.getElementById('knTrack');
+    const dots = Array.from(document.querySelectorAll('#knDots i'));
+    const panels = Array.from(document.querySelectorAll('.kn-panel'));
+    if(!track || !window.gsap || !window.ScrollTrigger) return;
+    function setDot(i){ dots.forEach((d,k)=>d.classList.toggle('on', k===i)); }
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 820px) and (prefers-reduced-motion: no-preference)', () => {
+        track.classList.add('horizontal');
+        const distance = () => Math.max(0, track.scrollWidth - window.innerWidth);
+        const tween = gsap.to(track, {
+            x: () => -distance(), ease:'none',
+            scrollTrigger:{
+                trigger:'.keynote', start:'top top', end:()=> '+=' + distance(),
+                scrub:0.6, pin:true, anticipatePin:1, invalidateOnRefresh:true,
+                onUpdate:self=> setDot(Math.round(self.progress*(panels.length-1)))
+            }
+        });
+        return () => { track.classList.remove('horizontal'); gsap.set(track,{clearProps:'transform'}); };
+    });
+})();
+
+/* Mini chimp: idle bob, leans toward cursor, "leaps" to HQ on click */
+if(!reduceMotion && window.gsap){
+    const portal = document.getElementById('portal');
+    const mini = document.getElementById('miniChimp');
+    const bob = gsap.to(mini,{y:-6,duration:1.4,yoyo:true,repeat:-1,ease:'sine.inOut'});
+
+    portal.addEventListener('mousemove', e=>{
+        const r = portal.getBoundingClientRect();
+        const dx = (e.clientX - (r.left+r.width/2))/r.width;
+        gsap.to(mini,{x:dx*16,rotation:dx*5,duration:.4,overwrite:'auto'});
+    });
+    portal.addEventListener('mouseleave', ()=>gsap.to(mini,{x:0,rotation:0,duration:.5}));
+    /* leap transition */
+    portal.addEventListener('click', e=>{
+        e.preventDefault();
+        bob.kill();
+        gsap.killTweensOf(mini);
+        gsap.timeline({onComplete:()=>{window.location.href='/khakichimp/';}})
+            .to(mini,{y:-40,scale:1.08,duration:.18,ease:'power2.out'})
+            .to(mini,{y:-300,duration:.45,ease:'power2.in'},'+=0.02');
+    });
+}
+</script>
 </body>
 </html>
