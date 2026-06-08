@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khakichimp HQ · Native, privacy-first iOS apps</title>
+<meta name="description" content="Khakichimp HQ — native, privacy-first iOS apps built by Josh Engels. Tasks - Uniflow, ReadMe, and Food in Five.">
+<style>
+    :root{
+        --khaki:#c2a878; --khaki-deep:#9c8455; --bark:#3a2f23;
+        --jungle:#2f7d4f; --jungle-deep:#1d5536; --banana:#ffcf3f;
+        --coral:#ff6b54; --cream:#fbf6ea; --ink:#241d14;
+        --leaf:#4caa6a;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+        background:var(--bark);color:var(--cream);line-height:1.6;
+        letter-spacing:-0.011em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+        overflow-x:hidden;
+    }
+    a{color:inherit}
+    ::selection{background:var(--banana);color:var(--ink)}
+
+    /* ---------- HERO ---------- */
+    .hero{
+        position:relative;min-height:100vh;display:flex;flex-direction:column;
+        align-items:center;justify-content:center;text-align:center;padding:40px 20px;
+        background:radial-gradient(120% 120% at 50% 0%, #3f6d4d 0%, #28523a 38%, #1c3a2a 70%, #15291f 100%);
+        overflow:hidden;
+    }
+    #leaves{position:absolute;inset:0;z-index:0;pointer-events:none}
+    .hero-inner{position:relative;z-index:2;max-width:720px}
+    .topbar{
+        position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;
+        align-items:center;padding:18px 24px;font-weight:700;
+    }
+    .topbar .brand{display:flex;align-items:center;gap:9px;font-size:1.05em}
+    .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--banana);box-shadow:0 0 0 4px rgba(255,207,63,.25)}
+    .topbar a.back{
+        text-decoration:none;font-weight:600;font-size:.9em;opacity:.85;
+        padding:8px 14px;border:1px solid rgba(251,246,234,.25);border-radius:999px;transition:.2s;
+    }
+    .topbar a.back:hover{opacity:1;background:rgba(251,246,234,.1);transform:translateY(-1px)}
+
+    .chimp-stage{position:relative;width:min(360px,80vw);margin:0 auto 10px;cursor:pointer;user-select:none}
+    .chimp-stage svg{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 30px rgba(0,0,0,.45))}
+    .chimp-hint{font-size:.8em;opacity:.6;letter-spacing:.04em;text-transform:uppercase;margin-top:-4px}
+
+    .eyebrow{
+        display:inline-block;font-size:.78em;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+        color:var(--banana);background:rgba(255,207,63,.12);padding:6px 14px;border-radius:999px;margin-bottom:18px;
+    }
+    .hero h1{
+        font-size:clamp(2.6em,8vw,4.6em);line-height:1.02;font-weight:800;letter-spacing:-0.03em;
+        background:linear-gradient(180deg,#fff 0%,#ffe9a8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero h1 .pants{color:var(--khaki);-webkit-text-fill-color:var(--khaki)}
+    .hero .tag{font-size:clamp(1em,2.4vw,1.25em);opacity:.9;margin-top:14px}
+    .hero .cta{
+        display:inline-flex;align-items:center;gap:8px;margin-top:28px;text-decoration:none;font-weight:700;
+        background:var(--banana);color:var(--ink);padding:14px 26px;border-radius:999px;
+        box-shadow:0 10px 24px rgba(255,207,63,.32);transition:.2s;
+    }
+    .hero .cta:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(255,207,63,.45)}
+    .scrolldown{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;font-size:.78em;opacity:.7;letter-spacing:.12em;text-transform:uppercase}
+    .scrolldown span{display:block;font-size:1.4em;margin-top:2px;animation:bob 1.6s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+    /* ---------- SECTIONS ---------- */
+    section{position:relative;z-index:1}
+    .wrap{max-width:1040px;margin:0 auto;padding:90px 24px}
+    .section-head{text-align:center;margin-bottom:50px}
+    .section-head h2{font-size:clamp(1.9em,5vw,2.8em);font-weight:800;letter-spacing:-0.02em}
+    .section-head p{opacity:.7;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto}
+
+    .apps{background:var(--cream);color:var(--ink)}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+    .app-card{
+        display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;
+        border-radius:22px;padding:28px;border:1px solid rgba(58,47,35,.08);
+        box-shadow:0 10px 30px rgba(58,47,35,.08);transform-style:preserve-3d;transition:box-shadow .2s;
+        position:relative;overflow:hidden;min-height:230px;
+    }
+    .app-card::before{content:"";position:absolute;inset:0 0 auto 0;height:6px}
+    .app-card.tasks::before{background:linear-gradient(90deg,var(--jungle),var(--leaf))}
+    .app-card.readme::before{background:linear-gradient(90deg,var(--coral),var(--banana))}
+    .app-card.food::before{background:linear-gradient(90deg,var(--banana),var(--khaki-deep))}
+    .app-card:hover{box-shadow:0 22px 50px rgba(58,47,35,.18)}
+    .app-icon{font-size:2.4em;margin-bottom:14px;transform:translateZ(40px)}
+    .app-card h3{font-size:1.4em;font-weight:800;transform:translateZ(30px)}
+    .app-card .desc{color:#5b5345;margin-top:8px;flex:1;transform:translateZ(20px)}
+    .app-card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:18px;transform:translateZ(30px)}
+    .badge{font-size:.72em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+    .badge.live{background:rgba(47,125,79,.14);color:var(--jungle-deep)}
+    .badge.soon{background:rgba(58,47,35,.08);color:#8a7d68}
+    .app-card .go{font-weight:700;color:var(--jungle-deep)}
+
+    /* ---------- STACK ---------- */
+    .stack{background:var(--bark)}
+    .stack .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+    .stack h2{font-size:clamp(1.8em,4.5vw,2.6em);font-weight:800;letter-spacing:-0.02em;margin-bottom:14px}
+    .stack p{opacity:.82}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .chip{
+        font-size:.85em;font-weight:600;padding:9px 15px;border-radius:999px;
+        background:rgba(251,246,234,.07);border:1px solid rgba(251,246,234,.14);
+    }
+    .philosophy{
+        background:linear-gradient(160deg,rgba(76,170,106,.16),rgba(255,207,63,.06));
+        border:1px solid rgba(251,246,234,.12);border-radius:24px;padding:30px;
+    }
+    .philosophy .big{font-size:2.4em}
+    .philosophy h3{margin:10px 0 6px;font-size:1.3em}
+    .philosophy p{opacity:.82;font-size:.98em}
+
+    /* ---------- FOOTER ---------- */
+    footer{background:#15110b;text-align:center;padding:60px 24px}
+    footer .mark{font-size:2em}
+    footer h3{font-size:1.4em;font-weight:800;margin:8px 0 16px}
+    footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+    footer a{color:var(--banana);text-decoration:none;font-weight:600}
+    footer a:hover{text-decoration:underline}
+    footer .copy{opacity:.5;font-size:.85em}
+
+    .reveal{opacity:0;transform:translateY(30px)}
+
+    @media(max-width:760px){
+        .stack .wrap{grid-template-columns:1fr;gap:30px}
+        .topbar a.back .full{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){
+        *{animation:none!important;transition:none!important}
+        .reveal{opacity:1;transform:none}
+        html{scroll-behavior:auto}
+    }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+    <canvas id="leaves"></canvas>
+    <div class="topbar">
+        <div class="brand"><span class="dot"></span> Khakichimp</div>
+        <a class="back" href="/">← <span class="full">Josh Engels</span></a>
+    </div>
+
+    <div class="hero-inner">
+        <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" aria-label="Poke the chimp">
+            <!-- Inline SVG chimp in khaki pants -->
+            <svg id="chimp" viewBox="0 0 240 280" xmlns="http://www.w3.org/2000/svg">
+                <!-- shadow -->
+                <ellipse cx="120" cy="268" rx="70" ry="10" fill="rgba(0,0,0,.25)"/>
+                <!-- arms -->
+                <g id="armR"><path d="M150 150 q55 0 60 50" stroke="#5b4632" stroke-width="22" fill="none" stroke-linecap="round"/><circle cx="208" cy="198" r="14" fill="#6b5440"/></g>
+                <g id="armL"><path d="M90 150 q-55 0 -60 50" stroke="#5b4632" stroke-width="22" fill="none" stroke-linecap="round"/><circle cx="32" cy="198" r="14" fill="#6b5440"/></g>
+                <!-- khaki pants/legs -->
+                <g id="legs">
+                    <rect x="78" y="196" width="34" height="74" rx="15" fill="#c2a878"/>
+                    <rect x="128" y="196" width="34" height="74" rx="15" fill="#c2a878"/>
+                    <rect x="74" y="190" width="92" height="36" rx="16" fill="#cbb486"/>
+                    <rect x="74" y="206" width="92" height="5" fill="#9c8455"/>
+                    <circle cx="120" cy="208" r="4" fill="#8a743f"/>
+                    <ellipse cx="95" cy="272" rx="17" ry="9" fill="#4a3a29"/>
+                    <ellipse cx="145" cy="272" rx="17" ry="9" fill="#4a3a29"/>
+                </g>
+                <!-- body -->
+                <path d="M120 120 q44 0 44 50 v18 q0 22 -44 22 q-44 0 -44 -22 v-18 q0 -50 44 -50z" fill="#6b5440"/>
+                <ellipse cx="120" cy="178" rx="30" ry="34" fill="#caa980"/>
+                <!-- head -->
+                <g id="head">
+                    <circle cx="120" cy="86" r="60" fill="#6b5440"/>
+                    <!-- ears -->
+                    <circle cx="62" cy="86" r="18" fill="#6b5440"/><circle cx="62" cy="86" r="9" fill="#caa980"/>
+                    <circle cx="178" cy="86" r="18" fill="#6b5440"/><circle cx="178" cy="86" r="9" fill="#caa980"/>
+                    <!-- face -->
+                    <path d="M120 48 q40 0 40 44 q0 38 -40 38 q-40 0 -40 -38 q0 -44 40 -44z" fill="#e8cda3"/>
+                    <ellipse cx="120" cy="108" rx="24" ry="18" fill="#f0dcbd"/>
+                    <!-- brow -->
+                    <path d="M88 70 q14 -8 28 -2" stroke="#5b4632" stroke-width="5" fill="none" stroke-linecap="round"/>
+                    <path d="M124 68 q14 -6 28 2" stroke="#5b4632" stroke-width="5" fill="none" stroke-linecap="round"/>
+                    <!-- eyes (whites + pupils that track cursor) -->
+                    <g id="eyes">
+                        <ellipse cx="103" cy="84" rx="12" ry="13" fill="#fff"/>
+                        <ellipse cx="137" cy="84" rx="12" ry="13" fill="#fff"/>
+                        <circle id="pupilL" cx="103" cy="84" r="5.5" fill="#241d14"/>
+                        <circle id="pupilR" cx="137" cy="84" r="5.5" fill="#241d14"/>
+                        <g id="lids"></g>
+                    </g>
+                    <!-- nostrils + mouth -->
+                    <ellipse cx="113" cy="106" rx="2.6" ry="3.6" fill="#7a5c3c"/>
+                    <ellipse cx="127" cy="106" rx="2.6" ry="3.6" fill="#7a5c3c"/>
+                    <path id="mouth" d="M104 118 q16 12 32 0" stroke="#7a5c3c" stroke-width="4" fill="none" stroke-linecap="round"/>
+                </g>
+            </svg>
+        </div>
+        <div class="chimp-hint">↑ poke me</div>
+
+        <span class="eyebrow">Native · Privacy-first · iOS</span>
+        <h1>Khaki<span class="pants">chimp</span> HQ</h1>
+        <p class="tag">The lab where Josh Engels builds native, privacy-first iOS apps — no trackers, no nonsense, just polished Apple-platform craft.</p>
+        <a class="cta" href="#apps">See the apps ↓</a>
+    </div>
+
+    <div class="scrolldown">Scroll<span>↓</span></div>
+</header>
+
+<!-- ============ APPS ============ -->
+<section class="apps" id="apps">
+    <div class="wrap">
+        <div class="section-head reveal">
+            <h2>The Apps</h2>
+            <p>Three native iOS apps. Tap one to dive in.</p>
+        </div>
+        <div class="card-grid">
+            <a class="app-card tasks reveal" href="/tasks-uniflow/" data-tilt>
+                <div class="app-icon">✅</div>
+                <h3>Tasks - Uniflow</h3>
+                <p class="desc">One task manager that unifies local tasks, Notion, Apple Reminders, and Google Tasks — synced via CloudKit, secured in Keychain.</p>
+                <div class="foot"><span class="badge live">On the App Store</span><span class="go">Open →</span></div>
+            </a>
+            <a class="app-card readme reveal" href="/readme/" data-tilt>
+                <div class="app-icon">📖</div>
+                <h3>ReadMe</h3>
+                <p class="desc">A native reading companion in the works — built with the same privacy-first, on-device philosophy.</p>
+                <div class="foot"><span class="badge soon">Coming soon</span><span class="go">Peek →</span></div>
+            </a>
+            <a class="app-card food reveal" href="/food-in-five/" data-tilt>
+                <div class="app-icon">🍽️</div>
+                <h3>Food in Five</h3>
+                <p class="desc">Location-based restaurant discovery powered by Google Places, MapKit &amp; SwiftData. Smart filters, favorites, all on-device — no backend, no tracking.</p>
+                <div class="foot"><span class="badge soon">Coming soon</span><span class="go">Peek →</span></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section class="stack">
+    <div class="wrap">
+        <div class="reveal">
+            <h2>Built the Apple way</h2>
+            <p>Every Khakichimp app is fully native and declarative — SwiftUI front to back, with data that stays on your device unless you explicitly sync it.</p>
+            <div class="chips">
+                <span class="chip">SwiftUI</span>
+                <span class="chip">SwiftData</span>
+                <span class="chip">CloudKit</span>
+                <span class="chip">MapKit</span>
+                <span class="chip">Keychain</span>
+                <span class="chip">Background Tasks</span>
+                <span class="chip">Local Notifications</span>
+                <span class="chip">REST (Notion · Google Places)</span>
+            </div>
+        </div>
+        <div class="philosophy reveal">
+            <div class="big">🔒</div>
+            <h3>Privacy isn't a feature — it's the default</h3>
+            <p>No analytics SDKs, no ad networks, no hidden data collection. Your data lives on your device (and your iCloud, if you choose). That's the whole point.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+    <div class="mark">🐵</div>
+    <h3>Khakichimp</h3>
+    <div class="links">
+        <a href="mailto:khakichimp@gmail.com">khakichimp@gmail.com</a>
+        <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
+        <a href="/">← Back to Josh Engels</a>
+    </div>
+    <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
+</footer>
+
+<!-- ============ LIBRARIES ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<script>
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- Eye tracking ---------- */
+const pupilL = document.getElementById('pupilL');
+const pupilR = document.getElementById('pupilR');
+const baseEyes = {l:{x:103,y:84}, r:{x:137,y:84}};
+const chimp = document.getElementById('chimp');
+if(!reduceMotion){
+    window.addEventListener('mousemove', e=>{
+        const rect = chimp.getBoundingClientRect();
+        const cx = rect.left + rect.width/2;
+        const cy = rect.top + rect.height*0.30;
+        const ang = Math.atan2(e.clientY-cy, e.clientX-cx);
+        const r = 3.2;
+        pupilL.setAttribute('cx', baseEyes.l.x + Math.cos(ang)*r);
+        pupilL.setAttribute('cy', baseEyes.l.y + Math.sin(ang)*r);
+        pupilR.setAttribute('cx', baseEyes.r.x + Math.cos(ang)*r);
+        pupilR.setAttribute('cy', baseEyes.r.y + Math.sin(ang)*r);
+    });
+    /* blink */
+    const lids = document.getElementById('lids');
+    function blink(){
+        lids.innerHTML = '<rect x="91" y="71" width="24" height="26" rx="11" fill="#e8cda3"/><rect x="125" y="71" width="24" height="26" rx="11" fill="#e8cda3"/>';
+        setTimeout(()=>lids.innerHTML='', 130);
+        setTimeout(blink, 2200 + Math.random()*3500);
+    }
+    setTimeout(blink, 2500);
+}
+
+/* ---------- Poke the chimp ---------- */
+const stage = document.getElementById('chimpStage');
+const mouth = document.getElementById('mouth');
+function poke(){
+    if(typeof confetti === 'function'){
+        const rect = stage.getBoundingClientRect();
+        confetti({
+            particleCount: 60, spread: 75, startVelocity: 38,
+            origin:{ x:(rect.left+rect.width/2)/window.innerWidth, y:(rect.top+rect.height*0.4)/window.innerHeight },
+            colors:['#ffcf3f','#ff6b54','#4caa6a','#c2a878'],
+            scalar: 1.1
+        });
+    }
+    if(reduceMotion) return;
+    mouth.setAttribute('d','M102 116 q18 16 36 0');           // grin
+    if(window.gsap){
+        gsap.fromTo(chimp,{rotation:0},{rotation:0,keyframes:[
+            {y:-26,rotation:-6,duration:.18},{y:0,rotation:0,duration:.4,ease:'bounce.out'}
+        ], transformOrigin:'50% 90%'});
+    }
+    setTimeout(()=>mouth.setAttribute('d','M104 118 q16 12 32 0'), 900);
+}
+stage.addEventListener('click', poke);
+stage.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
+stage.tabIndex = 0;
+
+/* idle sway */
+if(!reduceMotion && window.gsap){
+    gsap.to('#head',{rotation:2.5,transformOrigin:'50% 80%',duration:2.4,yoyo:true,repeat:-1,ease:'sine.inOut'});
+    gsap.to('#armR',{rotation:-4,transformOrigin:'150px 150px',duration:1.8,yoyo:true,repeat:-1,ease:'sine.inOut'});
+}
+
+/* ---------- Tilt cards ---------- */
+if(window.VanillaTilt && !reduceMotion){
+    VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {max:9, speed:400, glare:true, 'max-glare':0.18, scale:1.02});
+}
+
+/* ---------- Scroll reveals ---------- */
+if(window.gsap && window.ScrollTrigger && !reduceMotion){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.reveal').forEach(el=>{
+        gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power2.out',
+            scrollTrigger:{trigger:el,start:'top 85%'}});
+    });
+} else {
+    document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
+}
+
+/* ---------- Floating leaves canvas ---------- */
+(function(){
+    const c = document.getElementById('leaves'); if(!c) return;
+    const ctx = c.getContext('2d');
+    let w,h,leaves;
+    const COLORS = ['#4caa6a','#3c8a55','#5cba7a','#2f7d4f'];
+    function resize(){ w=c.width=c.offsetWidth; h=c.height=c.offsetHeight; }
+    function make(){ return {x:Math.random()*w, y:Math.random()*h, r:6+Math.random()*10,
+        sp:0.3+Math.random()*0.7, sway:Math.random()*Math.PI*2, col:COLORS[Math.floor(Math.random()*COLORS.length)], rot:Math.random()*Math.PI}; }
+    function init(){ resize(); leaves = Array.from({length: window.innerWidth<700?14:26}, make); }
+    function leaf(l){
+        ctx.save(); ctx.translate(l.x,l.y); ctx.rotate(l.rot); ctx.globalAlpha=.5; ctx.fillStyle=l.col;
+        ctx.beginPath(); ctx.ellipse(0,0,l.r,l.r*0.5,0,0,Math.PI*2); ctx.fill(); ctx.restore();
+    }
+    function tick(){
+        ctx.clearRect(0,0,w,h);
+        for(const l of leaves){
+            l.y += l.sp; l.sway += 0.02; l.x += Math.sin(l.sway)*0.6; l.rot += 0.01;
+            if(l.y > h+20){ l.y = -20; l.x = Math.random()*w; }
+            leaf(l);
+        }
+        requestAnimationFrame(tick);
+    }
+    init(); window.addEventListener('resize', init);
+    if(!reduceMotion) tick(); else { for(const l of leaves) leaf(l); }
+})();
+</script>
+</body>
+</html>

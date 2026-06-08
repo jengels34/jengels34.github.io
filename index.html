@@ -1,55 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="j_NbcN-2qeRhGIFVQXqVtMTq3ZnCeipy3fx87GvOpDA" />
-    <title>Khakichimp · Apps</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { background: white; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6; background: white; color: #262d35; min-height: 100vh;
-            letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-        }
-        .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-        .header {
-            background: linear-gradient(135deg, hsl(210, 80%, 55%) 0%, hsl(210, 80%, 65%) 100%);
-            color: white; text-align: center; padding: 40px 30px; border-radius: 24px; margin-bottom: 30px;
-            box-shadow: 0 8px 30px hsla(210, 80%, 55%, 0.35);
-        }
-        .header h1 { margin: 0; font-size: 2em; }
-        .header p { margin-top: 10px; opacity: 0.9; }
-        .app-card {
-            display: block; text-decoration: none; color: inherit; background: #fafafa;
-            padding: 25px; border-radius: 20px; border-left: 4px solid hsl(210, 80%, 55%);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin: 18px 0;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .app-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); }
-        .app-card h2 { color: hsl(210, 80%, 55%); margin: 0 0 6px 0; font-size: 1.3em; }
-        .app-card p { color: #475569; margin: 0; }
-        .footer { text-align: center; color: #94a3b8; font-size: 0.9em; margin-top: 40px; }
-        .footer a { color: hsl(210, 80%, 55%); }
-        ::selection { background: hsla(210, 80%, 55%, 0.3); color: #262d35; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="j_NbcN-2qeRhGIFVQXqVtMTq3ZnCeipy3fx87GvOpDA" />
+<title>Josh Engels · Technology Leader & iOS Developer</title>
+<meta name="description" content="Josh Engels — technology leader and iOS developer. Director of Problem & Incident Management at DraftKings, ex-Apple, and indie iOS developer behind Khakichimp.">
+<style>
+    :root{
+        --ink:#15202b; --slate:#475569; --mist:#64748b;
+        --paper:#f7f6f2; --card:#ffffff; --line:#e6e2d8;
+        --khaki:#b89b6a; --khaki-deep:#8f7647;
+        --jungle:#2f7d4f; --jungle-deep:#1d5536; --banana:#f5b921; --coral:#ff6b54;
+        --accent:#2f7d4f;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+        background:var(--paper);color:var(--ink);line-height:1.65;
+        letter-spacing:-0.011em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+        overflow-x:hidden;
+    }
+    a{color:var(--jungle-deep)}
+    ::selection{background:var(--banana);color:var(--ink)}
+    .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+    /* ---------- NAV ---------- */
+    nav{
+        position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(10px);
+        background:rgba(247,246,242,.82);border-bottom:1px solid var(--line);
+    }
+    nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    nav .name{font-weight:800;letter-spacing:-0.02em;font-size:1.05em}
+    nav .menu{display:flex;gap:24px;align-items:center}
+    nav .menu a{text-decoration:none;color:var(--slate);font-weight:600;font-size:.92em;transition:.2s}
+    nav .menu a:hover{color:var(--ink)}
+    nav .menu a.hq{
+        color:var(--ink);background:var(--banana);padding:8px 15px;border-radius:999px;
+        box-shadow:0 6px 16px rgba(245,185,33,.35);display:inline-flex;align-items:center;gap:6px;
+    }
+    nav .menu a.hq:hover{transform:translateY(-1px)}
+    @media(max-width:640px){nav .menu a.txt{display:none}}
+
+    /* ---------- HERO ---------- */
+    .hero{position:relative;padding:90px 0 70px;overflow:hidden}
+    .hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+    .hero .eyebrow{
+        display:inline-block;font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+        color:var(--jungle-deep);background:rgba(47,125,79,.1);padding:6px 13px;border-radius:999px;margin-bottom:18px;
+    }
+    .hero h1{font-size:clamp(2.4em,6.5vw,4em);line-height:1.04;font-weight:800;letter-spacing:-0.03em}
+    .hero h1 em{font-style:normal;color:var(--jungle-deep)}
+    .hero .sub{font-size:clamp(1.05em,2.4vw,1.3em);color:var(--slate);margin-top:16px;max-width:540px}
+    .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .btn{text-decoration:none;font-weight:700;padding:13px 22px;border-radius:999px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+    .btn.primary{background:var(--ink);color:#fff;box-shadow:0 10px 22px rgba(21,32,43,.22)}
+    .btn.primary:hover{transform:translateY(-2px)}
+    .btn.ghost{border:1px solid var(--line);color:var(--ink);background:var(--card)}
+    .btn.ghost:hover{transform:translateY(-2px);border-color:var(--khaki)}
+
+    /* small chimp portal */
+    .portal{position:relative;display:flex;justify-content:center}
+    .portal .ring{
+        position:relative;width:min(280px,72vw);aspect-ratio:1;border-radius:50%;cursor:pointer;
+        background:radial-gradient(120% 120% at 50% 25%,#3f6d4d,#1f4030);
+        box-shadow:0 26px 50px rgba(21,32,43,.28), inset 0 0 0 6px rgba(255,255,255,.06);
+        display:flex;align-items:flex-end;justify-content:center;overflow:hidden;text-decoration:none;
+    }
+    .portal .ring svg{width:78%;height:auto;margin-bottom:-2%;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35))}
+    .portal .label{
+        position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;
+        background:var(--banana);color:var(--ink);font-weight:700;font-size:.82em;padding:7px 15px;border-radius:999px;
+        box-shadow:0 6px 14px rgba(245,185,33,.4);
+    }
+    .portal .spark{position:absolute;top:14px;right:24px;font-size:.72em;font-weight:700;letter-spacing:.04em;
+        text-transform:uppercase;color:#fff;opacity:.85}
+    @media(max-width:760px){
+        .hero .wrap{grid-template-columns:1fr;gap:36px}
+        .portal{order:-1}
+    }
+
+    /* ---------- SECTION SHELL ---------- */
+    section.block{padding:70px 0;border-top:1px solid var(--line)}
+    .head{margin-bottom:40px}
+    .head .kicker{font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--khaki-deep)}
+    .head h2{font-size:clamp(1.7em,4.5vw,2.4em);font-weight:800;letter-spacing:-0.02em;margin-top:6px}
+
+    /* ---------- TIMELINE ---------- */
+    .timeline{position:relative;margin-left:8px}
+    .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:3px;
+        background:linear-gradient(var(--jungle),var(--khaki));border-radius:3px}
+    .role{position:relative;padding:0 0 34px 42px}
+    .role::before{content:"";position:absolute;left:0;top:4px;width:21px;height:21px;border-radius:50%;
+        background:var(--card);border:4px solid var(--jungle);box-shadow:0 2px 6px rgba(0,0,0,.1)}
+    .role.current::before{border-color:var(--banana);background:var(--banana)}
+    .role .when{font-size:.82em;font-weight:700;color:var(--khaki-deep);letter-spacing:.02em}
+    .role h3{font-size:1.22em;font-weight:800;margin:2px 0 1px}
+    .role .org{font-weight:700;color:var(--jungle-deep)}
+    .role .loc{color:var(--mist);font-size:.9em}
+    .role p{color:var(--slate);margin-top:8px;max-width:680px}
+    .role .reflinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .role .reflinks a{
+        font-size:.82em;font-weight:600;text-decoration:none;color:var(--jungle-deep);
+        background:rgba(47,125,79,.09);padding:6px 12px;border-radius:999px;transition:.2s;
+    }
+    .role .reflinks a:hover{background:rgba(47,125,79,.18);transform:translateY(-1px)}
+    .role .reflinks a.apps{background:var(--banana);color:var(--ink)}
+
+    /* ---------- SKILLS / EDU ---------- */
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+    @media(max-width:760px){.cols{grid-template-columns:1fr;gap:30px}}
+    .subhead{font-size:.78em;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--khaki-deep);margin-bottom:14px}
+    .badges{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}
+    .badges span{font-size:.88em;font-weight:600;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+    .edu li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line)}
+    .edu li:last-child{border-bottom:none}
+    .edu .deg{font-weight:700}
+    .edu .school{color:var(--slate);font-size:.92em}
+    .edu .yr{float:right;color:var(--mist);font-size:.85em;font-weight:600}
+
+    /* ---------- ALTER EGO ---------- */
+    .alter{background:linear-gradient(150deg,#1f4030,#15291f);color:#fbf6ea;border-radius:28px;
+        padding:46px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;overflow:hidden;position:relative}
+    .alter .face{width:120px;height:120px;flex:none}
+    .alter h2{font-size:clamp(1.6em,4vw,2.2em);font-weight:800;letter-spacing:-0.02em}
+    .alter h2 span{color:var(--banana)}
+    .alter p{opacity:.85;margin-top:8px;max-width:480px}
+    .alter .btn{margin-top:18px;background:var(--banana);color:var(--ink)}
+    @media(max-width:620px){.alter{grid-template-columns:1fr;text-align:center;padding:34px 24px}.alter .face{margin:0 auto}}
+
+    /* ---------- FOOTER ---------- */
+    footer{padding:50px 0;border-top:1px solid var(--line);text-align:center;color:var(--mist)}
+    footer .links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+    footer a{color:var(--jungle-deep);text-decoration:none;font-weight:600}
+    footer a:hover{text-decoration:underline}
+    footer .copy{font-size:.85em}
+
+    .reveal{opacity:0;transform:translateY(26px)}
+    @media(prefers-reduced-motion:reduce){
+        *{animation:none!important;transition:none!important}
+        .reveal{opacity:1;transform:none}
+        html{scroll-behavior:auto}
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Khakichimp</h1>
-            <p>Native iOS apps, built with a focus on privacy and simplicity.</p>
-        </div>
 
-        <a class="app-card" href="tasks-uniflow/">
-            <h2>Tasks - Uniflow</h2>
-            <p>A native iOS task manager that unifies local tasks, Notion, Apple Reminders, and Google Tasks in one interface. Support &amp; privacy policy &rarr;</p>
-        </a>
-
-        <div class="footer">
-            <p>Contact: <a href="mailto:khakichimp@gmail.com">khakichimp@gmail.com</a></p>
+<nav>
+    <div class="wrap">
+        <div class="name">Josh Engels</div>
+        <div class="menu">
+            <a class="txt" href="#career">Career</a>
+            <a class="txt" href="#skills">Skills</a>
+            <a class="hq" href="/khakichimp/"><span>🐵</span> Khakichimp HQ</a>
         </div>
     </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+    <div class="wrap">
+        <div>
+            <span class="eyebrow">Technology Leader · iOS Developer</span>
+            <h1>Hi, I'm Josh — I build <em>resilient systems</em> and <em>privacy-first apps</em>.</h1>
+            <p class="sub">A results-driven technology leader with a track record of building high-performing teams, launching AI-driven tools, and shipping scalable products from concept to execution.</p>
+            <div class="actions">
+                <a class="btn primary" href="#career">View my career ↓</a>
+                <a class="btn ghost" href="/khakichimp/">🐵 Enter Khakichimp HQ</a>
+            </div>
+        </div>
+
+        <!-- Small chimp portal to HQ -->
+        <div class="portal">
+            <a class="ring" id="portal" href="/khakichimp/" aria-label="Enter Khakichimp HQ — my developer apps">
+                <span class="spark">my apps →</span>
+                <svg id="miniChimp" viewBox="0 0 200 210" xmlns="http://www.w3.org/2000/svg">
+                    <!-- khaki legs -->
+                    <rect x="68" y="150" width="26" height="56" rx="12" fill="#b89b6a"/>
+                    <rect x="106" y="150" width="26" height="56" rx="12" fill="#b89b6a"/>
+                    <rect x="64" y="146" width="72" height="28" rx="13" fill="#c6ac7e"/>
+                    <rect x="64" y="158" width="72" height="4" fill="#8f7647"/>
+                    <!-- body -->
+                    <path d="M100 96 q36 0 36 40 v12 q0 18 -36 18 q-36 0 -36 -18 v-12 q0 -40 36 -40z" fill="#6b5440"/>
+                    <ellipse cx="100" cy="142" rx="24" ry="27" fill="#caa980"/>
+                    <!-- arms waving -->
+                    <g id="miniArm"><path d="M128 120 q34 -10 40 -42" stroke="#5b4632" stroke-width="17" fill="none" stroke-linecap="round"/><circle cx="170" cy="78" r="11" fill="#6b5440"/></g>
+                    <path d="M72 120 q-34 0 -40 34" stroke="#5b4632" stroke-width="17" fill="none" stroke-linecap="round"/><circle cx="34" cy="156" r="11" fill="#6b5440"/>
+                    <!-- head -->
+                    <g id="miniHead">
+                        <circle cx="100" cy="70" r="48" fill="#6b5440"/>
+                        <circle cx="55" cy="70" r="14" fill="#6b5440"/><circle cx="55" cy="70" r="7" fill="#caa980"/>
+                        <circle cx="145" cy="70" r="14" fill="#6b5440"/><circle cx="145" cy="70" r="7" fill="#caa980"/>
+                        <path d="M100 40 q32 0 32 35 q0 30 -32 30 q-32 0 -32 -30 q0 -35 32 -35z" fill="#e8cda3"/>
+                        <ellipse cx="100" cy="88" rx="19" ry="14" fill="#f0dcbd"/>
+                        <ellipse cx="86" cy="68" rx="9" ry="10" fill="#fff"/>
+                        <ellipse cx="114" cy="68" rx="9" ry="10" fill="#fff"/>
+                        <circle cx="87" cy="69" r="4.2" fill="#241d14"/>
+                        <circle cx="113" cy="69" r="4.2" fill="#241d14"/>
+                        <path d="M88 96 q12 9 24 0" stroke="#7a5c3c" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+                    </g>
+                </svg>
+                <span class="label">Tap to enter HQ →</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- ============ CAREER ============ -->
+<section class="block" id="career">
+    <div class="wrap">
+        <div class="head reveal">
+            <div class="kicker">Career</div>
+            <h2>From intelligence to incident management to iOS</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="role current reveal">
+                <div class="when">Apr 2019 – Present · 7 yrs</div>
+                <h3>Director, Problem &amp; Incident Management</h3>
+                <div class="org">DraftKings Inc. <span class="loc">· Boston, MA</span></div>
+                <p>Lead the charge on a robust incident management response process — partnering with business leaders to close gaps, enhance engineering resiliency, and improve overall stability. Manage cross-functional teams delivering 24/7 support to engineering, and build AI-enabled tools that streamline developer workflows and reduce downtime.</p>
+                <div class="reflinks">
+                    <a href="https://www.pagerduty.com/customer/draftkings/" target="_blank" rel="noopener">PagerDuty case study ↗</a>
+                    <a href="https://www.youtube.com/watch?v=RaWqwQj3cCI" target="_blank" rel="noopener">Talk ↗</a>
+                    <a href="https://www.youtube.com/watch?v=Mu8cn7jN7ck" target="_blank" rel="noopener">Talk ↗</a>
+                </div>
+            </div>
+
+            <div class="role current reveal">
+                <div class="when">Aug 2025 – Present</div>
+                <h3>Independent iOS Developer</h3>
+                <div class="org">Self-employed <span class="loc">· Khakichimp</span></div>
+                <p>Building native, privacy-first apps with SwiftUI, SwiftData, CloudKit, and modern Apple frameworks. Shipped Tasks - Uniflow to the App Store, with Food in Five and ReadMe in the works.</p>
+                <div class="reflinks">
+                    <a class="apps" href="/khakichimp/">🐵 See my apps as Khakichimp →</a>
+                </div>
+            </div>
+
+            <div class="role reveal">
+                <div class="when">Mar 2012 – Apr 2019 · 7 yrs</div>
+                <h3>Production &amp; Operations Manager</h3>
+                <div class="org">Apple <span class="loc">· Cupertino, CA</span></div>
+                <p>Spearheaded business-driven technology projects for Apple Maps, leading teams through full product development lifecycles. Managed end-to-end 3D dataset collection — overseeing hardware, software, design support, and field execution.</p>
+                <div class="reflinks">
+                    <a href="https://appleinsider.com/articles/13/07/31/apples-ios-7-3d-maps-leave-google-earth-nokia-3d-maps-looking-old-fashioned" target="_blank" rel="noopener">Apple Maps 3D coverage ↗</a>
+                </div>
+            </div>
+
+            <div class="role reveal">
+                <div class="when">Oct 2010 – Nov 2011</div>
+                <h3>Intelligence Analyst</h3>
+                <div class="org">SAIC <span class="loc">· Afghanistan</span></div>
+                <p>Key contributor launching a groundbreaking project — setting up infrastructure and operations for a unique airborne sensor suite. Processed, analyzed, and disseminated operational data supporting tactical efforts on the ground.</p>
+            </div>
+
+            <div class="role reveal">
+                <div class="when">Apr 2006 – Apr 2010 · 4 yrs</div>
+                <h3>Intelligence Analyst</h3>
+                <div class="org">United States Air Force</div>
+                <p>Held top-secret clearance analyzing critical datasets on key locations. Delivered intelligence briefings to leadership, guided mission planning, and optimized training processes for accurate troop support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ SKILLS / EDU ============ -->
+<section class="block" id="skills">
+    <div class="wrap">
+        <div class="head reveal">
+            <div class="kicker">Skills &amp; Education</div>
+            <h2>The toolkit</h2>
+        </div>
+        <div class="cols">
+            <div class="reveal">
+                <div class="subhead">Top Skills</div>
+                <div class="badges">
+                    <span>Mobile Applications</span><span>React Native</span><span>Full-Stack Development</span>
+                    <span>SwiftUI · SwiftData</span><span>AI / LLM Tooling</span><span>Incident Management</span>
+                    <span>Systems Architecture</span><span>Team Leadership</span>
+                </div>
+                <div class="subhead">Certifications</div>
+                <div class="badges">
+                    <span>Certified Incident Responder</span><span>AI Prompting Essentials</span>
+                    <span>Supervised ML: Regression &amp; Classification</span>
+                </div>
+            </div>
+            <div class="reveal">
+                <div class="subhead">Education</div>
+                <ul class="edu">
+                    <li><span class="yr">2020–22</span><div class="deg">M.S., Finance</div><div class="school">Northeastern University</div></li>
+                    <li><span class="yr">2014–15</span><div class="deg">M.S., Human Resource Management</div><div class="school">Golden Gate University</div></li>
+                    <li><span class="yr">2013–14</span><div class="deg">M.B.A.</div><div class="school">University of Phoenix</div></li>
+                    <li><span class="yr">2007–09</span><div class="deg">B.S., Criminal Justice (Minor: Sociology)</div><div class="school">University of Maryland University College</div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ ALTER EGO ============ -->
+<section class="block">
+    <div class="wrap">
+        <div class="alter reveal">
+            <svg class="face" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="60" r="50" fill="#6b5440"/>
+                <circle cx="22" cy="60" r="13" fill="#6b5440"/><circle cx="22" cy="60" r="6" fill="#caa980"/>
+                <circle cx="98" cy="60" r="13" fill="#6b5440"/><circle cx="98" cy="60" r="6" fill="#caa980"/>
+                <path d="M60 28 q34 0 34 38 q0 32 -34 32 q-34 0 -34 -32 q0 -38 34 -38z" fill="#e8cda3"/>
+                <ellipse cx="60" cy="78" rx="20" ry="15" fill="#f0dcbd"/>
+                <ellipse cx="45" cy="56" rx="9" ry="10" fill="#fff"/><ellipse cx="75" cy="56" rx="9" ry="10" fill="#fff"/>
+                <circle cx="46" cy="57" r="4.4" fill="#241d14"/><circle cx="74" cy="57" r="4.4" fill="#241d14"/>
+                <path d="M48 86 q12 9 24 0" stroke="#7a5c3c" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+            </svg>
+            <div>
+                <h2>By night, I build apps as <span>Khakichimp</span></h2>
+                <p>Native, privacy-first iOS apps — no trackers, no nonsense. Step into the lab to meet the chimp and explore everything I've shipped.</p>
+                <a class="btn" href="/khakichimp/">Enter Khakichimp HQ →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+    <div class="wrap">
+        <div class="links">
+            <a href="mailto:engelsjosh@gmail.com">engelsjosh@gmail.com</a>
+            <a href="https://www.linkedin.com/in/josh-engels/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
+            <a href="/khakichimp/">Khakichimp HQ</a>
+        </div>
+        <div class="copy">© <span id="yr"></span> Josh Engels · Overland Park, Kansas</div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Scroll reveals */
+if(window.gsap && window.ScrollTrigger && !reduceMotion){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.reveal').forEach(el=>{
+        gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 88%'}});
+    });
+} else {
+    document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
+}
+
+/* Mini chimp: idle bob + wave, leans toward cursor, "leaps" to HQ on click */
+if(!reduceMotion && window.gsap){
+    gsap.to('#miniHead',{rotation:3,transformOrigin:'50% 80%',duration:1.8,yoyo:true,repeat:-1,ease:'sine.inOut'});
+    gsap.to('#miniArm',{rotation:-14,transformOrigin:'128px 120px',duration:.8,yoyo:true,repeat:-1,ease:'sine.inOut'});
+    gsap.to('#miniChimp',{y:-6,duration:1.4,yoyo:true,repeat:-1,ease:'sine.inOut'});
+
+    const portal = document.getElementById('portal');
+    const mini = document.getElementById('miniChimp');
+    portal.addEventListener('mousemove', e=>{
+        const r = portal.getBoundingClientRect();
+        const dx = (e.clientX - (r.left+r.width/2))/r.width;
+        gsap.to(mini,{x:dx*16,duration:.4,overwrite:'auto'});
+    });
+    portal.addEventListener('mouseleave', ()=>gsap.to(mini,{x:0,duration:.5}));
+    /* leap transition */
+    portal.addEventListener('click', e=>{
+        e.preventDefault();
+        gsap.timeline({onComplete:()=>{window.location.href='/khakichimp/';}})
+            .to(mini,{y:-40,scale:1.08,duration:.18,ease:'power2.out'})
+            .to(mini,{y:-300,duration:.45,ease:'power2.in'},'+=0.02');
+    });
+}
+</script>
 </body>
 </html>
