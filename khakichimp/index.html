@@ -45,7 +45,13 @@
     .topbar a.back:hover{opacity:1;background:rgba(251,246,234,.1);transform:translateY(-1px)}
 
     .chimp-stage{position:relative;width:min(360px,80vw);margin:0 auto 10px;cursor:pointer;user-select:none}
-    .chimp-stage svg,.chimp-stage img{width:100%;height:auto;display:block;filter:drop-shadow(0 22px 26px rgba(0,0,0,.45));will-change:transform}
+    .chimp-stage::before{
+        content:"";position:absolute;left:50%;top:45%;width:78%;aspect-ratio:1;transform:translate(-50%,-50%);
+        background:radial-gradient(circle, rgba(255,207,63,.38), rgba(76,170,106,.14) 52%, transparent 70%);
+        filter:blur(6px);z-index:0;animation:aura 4.5s ease-in-out infinite;
+    }
+    @keyframes aura{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.07)}}
+    .chimp-stage svg,.chimp-stage img{position:relative;z-index:1;width:100%;height:auto;display:block;filter:drop-shadow(0 22px 26px rgba(0,0,0,.45));will-change:transform}
     .chimp-hint{font-size:.8em;opacity:.6;letter-spacing:.04em;text-transform:uppercase;margin-top:-4px}
 
     .eyebrow{
@@ -149,7 +155,7 @@
 
     <div class="hero-inner">
         <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" aria-label="Poke the chimp">
-            <img id="chimp" class="chimp-img" src="/assets/chimp.png" alt="Khakichimp — a chimp in khaki pants" draggable="false">
+            <img id="chimp" class="chimp-img" src="/assets/chimp.svg" alt="Khakichimp — a chimp in khaki pants" draggable="false">
         </div>
         <div class="chimp-hint">↑ poke me</div>
 
