@@ -91,6 +91,8 @@
     }
     .banana-meter:hover{transform:translateY(-2px)}
     .banana-meter .n{color:var(--banana);min-width:1ch}
+    .combo-pop{position:fixed;z-index:55;transform:translate(-50%,-50%);pointer-events:none;
+        font-weight:800;color:var(--banana);text-shadow:0 2px 10px rgba(0,0,0,.4);white-space:nowrap}
 
     /* ---------- SECTIONS ---------- */
     section{position:relative;z-index:1}
@@ -311,10 +313,10 @@
 <div class="banana-meter" id="bananaMeter" title="Throw a banana">🍌 <span class="n" id="bananaN">0</span> thrown</div>
 
 <!-- ============ LIBRARIES ============ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<script src="/assets/vendor/gsap.min.js"></script>
+<script src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script src="/assets/vendor/vanilla-tilt.min.js"></script>
+<script src="/assets/vendor/confetti.browser.js"></script>
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();
@@ -363,13 +365,30 @@ if(!reduceMotion && window.gsap){
     });
 }
 const stage = document.getElementById('chimpStage');
-function poke(){
-    const rect = stage.getBoundingClientRect();
-    throwBananas({x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight}, 16);
+let combo = 0, comboTimer = null;
+function showCombo(n){
     if(reduceMotion || !window.gsap) return;
+    const rect = stage.getBoundingClientRect();
+    const el = document.createElement('div');
+    el.className = 'combo-pop';
+    el.textContent = '×' + n + (n>=8?' 🔥🔥':(n>=4?' 🔥':''));
+    el.style.left = (rect.left+rect.width/2) + 'px';
+    el.style.top  = (rect.top+rect.height*0.18) + 'px';
+    el.style.fontSize = Math.min(1.1 + n*0.12, 2.6) + 'em';
+    document.body.appendChild(el);
+    gsap.fromTo(el,{y:0,opacity:1,scale:.7},{y:-70,opacity:0,scale:1.25,duration:.9,ease:'power2.out',onComplete:()=>el.remove()});
+}
+function poke(){
+    combo++; clearTimeout(comboTimer); comboTimer = setTimeout(()=>combo=0, 1400);
+    const burst = Math.min(14 + combo*6, 72);
+    const rect = stage.getBoundingClientRect();
+    throwBananas({x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight}, burst);
+    if(combo>=2) showCombo(combo);
+    if(reduceMotion || !window.gsap) return;
+    const lift = Math.min(30 + combo*4, 64);
     gsap.fromTo(chimp,{},{keyframes:[
-        {y:-30,scale:1.06,duration:.18,ease:'power2.out'},
-        {y:0,scale:1,duration:.55,ease:'bounce.out'}
+        {y:-lift,scale:1.06,rotation:combo%2?5:-5,duration:.18,ease:'power2.out'},
+        {y:0,scale:1,rotation:0,duration:.55,ease:'bounce.out'}
     ], transformOrigin:'50% 90%', overwrite:'auto'});
 }
 stage.addEventListener('click', poke);
