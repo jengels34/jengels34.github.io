@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="j_NbcN-2qeRhGIFVQXqVtMTq3ZnCeipy3fx87GvOpDA" />
 <title>Josh Engels · Technology Leader & iOS Developer</title>
-<meta name="description" content="Josh Engels — technology leader and iOS developer. Director of Problem & Incident Management at DraftKings, ex-Apple, and indie iOS developer behind Khakichimp.">
+<meta name="description" content="Josh Engels — twenty years turning hard problems into resilient systems. Intelligence analyst, Apple Maps, Director of Incident Management at DraftKings, and indie iOS developer behind Khakichimp.">
 <style>
     :root{
         --ink:#15202b; --slate:#475569; --mist:#64748b;
@@ -26,6 +26,10 @@
     ::selection{background:var(--banana);color:var(--ink)}
     .wrap{max-width:980px;margin:0 auto;padding:0 24px}
 
+    /* scroll progress */
+    .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+        background:linear-gradient(90deg,var(--jungle),var(--khaki));transition:width .1s linear}
+
     /* ---------- NAV ---------- */
     nav{
         position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(10px);
@@ -44,7 +48,7 @@
     @media(max-width:640px){nav .menu a.txt{display:none}}
 
     /* ---------- HERO ---------- */
-    .hero{position:relative;padding:90px 0 70px;overflow:hidden}
+    .hero{position:relative;padding:84px 0 56px;overflow:hidden}
     .hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
     .hero .eyebrow{
         display:inline-block;font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
@@ -52,13 +56,20 @@
     }
     .hero h1{font-size:clamp(2.4em,6.5vw,4em);line-height:1.04;font-weight:800;letter-spacing:-0.03em}
     .hero h1 em{font-style:normal;color:var(--jungle-deep)}
-    .hero .sub{font-size:clamp(1.05em,2.4vw,1.3em);color:var(--slate);margin-top:16px;max-width:540px}
+    .hero .sub{font-size:clamp(1.05em,2.4vw,1.25em);color:var(--slate);margin-top:16px;max-width:560px}
     .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-    .btn{text-decoration:none;font-weight:700;padding:13px 22px;border-radius:999px;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+    .btn{text-decoration:none;font-weight:700;padding:13px 22px;border-radius:999px;transition:.2s;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent}
     .btn.primary{background:var(--ink);color:#fff;box-shadow:0 10px 22px rgba(21,32,43,.22)}
     .btn.primary:hover{transform:translateY(-2px)}
-    .btn.ghost{border:1px solid var(--line);color:var(--ink);background:var(--card)}
+    .btn.ghost{border-color:var(--line);color:var(--ink);background:var(--card)}
     .btn.ghost:hover{transform:translateY(-2px);border-color:var(--khaki)}
+
+    /* experience strip */
+    .worked{margin-top:30px}
+    .worked .lbl{font-size:.7em;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:10px}
+    .worked .row{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center}
+    .worked .row span{font-weight:800;color:var(--slate);opacity:.75;font-size:1.02em;letter-spacing:-0.01em}
+    .worked .row span+span::before{content:"·";margin-right:22px;color:var(--line);font-weight:400}
 
     /* small chimp portal */
     .portal{position:relative;display:flex;justify-content:center}
@@ -79,11 +90,36 @@
         .portal{order:-1}
     }
 
+    /* ---------- STATS BAND ---------- */
+    .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fbfaf6}
+    .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:38px 24px;text-align:center}
+    .stat .num{font-size:clamp(2em,5vw,2.8em);font-weight:800;letter-spacing:-0.03em;color:var(--ink);line-height:1}
+    .stat .num .suf{color:var(--khaki-deep)}
+    .stat .cap{font-size:.86em;color:var(--slate);margin-top:8px}
+    @media(max-width:640px){.stats .wrap{grid-template-columns:repeat(2,1fr);gap:28px}}
+
     /* ---------- SECTION SHELL ---------- */
     section.block{padding:70px 0;border-top:1px solid var(--line)}
+    section.block:first-of-type{border-top:none}
     .head{margin-bottom:40px}
     .head .kicker{font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--khaki-deep)}
     .head h2{font-size:clamp(1.7em,4.5vw,2.4em);font-weight:800;letter-spacing:-0.02em;margin-top:6px}
+    .head .lead{color:var(--slate);margin-top:10px;max-width:620px}
+
+    /* ---------- HIGHLIGHTS ---------- */
+    .hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media(max-width:720px){.hl-grid{grid-template-columns:1fr}}
+    .hl{
+        background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;
+        position:relative;transition:transform .2s,box-shadow .2s,border-color .2s;overflow:hidden;
+    }
+    .hl::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--khaki);opacity:.5}
+    .hl:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(21,32,43,.10);border-color:var(--khaki)}
+    .hl .era{font-size:.74em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
+    .hl h3{font-size:1.18em;font-weight:800;margin:6px 0 8px}
+    .hl p{color:var(--slate);font-size:.96em}
+    .hl a.more{display:inline-block;margin-top:12px;font-size:.84em;font-weight:700;text-decoration:none}
+    .hl a.more:hover{text-decoration:underline}
 
     /* ---------- TIMELINE ---------- */
     .timeline{position:relative;margin-left:8px}
@@ -121,7 +157,10 @@
     /* ---------- ALTER EGO ---------- */
     .alter{background:linear-gradient(150deg,#1f4030,#15291f);color:#fbf6ea;border-radius:28px;
         padding:46px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;overflow:hidden;position:relative}
-    .alter .face{width:120px;height:120px;flex:none;object-fit:contain}
+    .alter::before{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
+        background:radial-gradient(circle,rgba(245,185,33,.25),transparent 70%)}
+    .alter .face{width:120px;height:120px;flex:none;object-fit:contain;position:relative;z-index:1}
+    .alter .txt{position:relative;z-index:1}
     .alter h2{font-size:clamp(1.6em,4vw,2.2em);font-weight:800;letter-spacing:-0.02em}
     .alter h2 span{color:var(--banana)}
     .alter p{opacity:.85;margin-top:8px;max-width:480px}
@@ -144,11 +183,13 @@
 </style>
 </head>
 <body>
+<div class="progress" id="progress"></div>
 
 <nav>
     <div class="wrap">
         <div class="name">Josh Engels</div>
         <div class="menu">
+            <a class="txt" href="#work">Work</a>
             <a class="txt" href="#career">Career</a>
             <a class="txt" href="#skills">Skills</a>
             <a class="hq" href="/khakichimp/"><span>🐵</span> Khakichimp HQ</a>
@@ -161,11 +202,17 @@
     <div class="wrap">
         <div>
             <span class="eyebrow">Technology Leader · iOS Developer</span>
-            <h1>Hi, I'm Josh — I build <em>resilient systems</em> and <em>privacy-first apps</em>.</h1>
-            <p class="sub">A results-driven technology leader with a track record of building high-performing teams, launching AI-driven tools, and shipping scalable products from concept to execution.</p>
+            <h1>I turn hard problems into <em>resilient systems</em> and <em>products people trust</em>.</h1>
+            <p class="sub">Twenty years across defense intelligence, Apple Maps, and high-scale iGaming — and these days, shipping privacy-first iOS apps end to end.</p>
             <div class="actions">
-                <a class="btn primary" href="#career">View my career ↓</a>
+                <a class="btn primary" href="#work">See what I've done ↓</a>
                 <a class="btn ghost" href="/khakichimp/">🐵 Enter Khakichimp HQ</a>
+            </div>
+            <div class="worked">
+                <div class="lbl">Built &amp; led at</div>
+                <div class="row">
+                    <span>Apple</span><span>DraftKings</span><span>SAIC</span><span>U.S. Air Force</span>
+                </div>
             </div>
         </div>
 
@@ -178,6 +225,52 @@
         </div>
     </div>
 </header>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+    <div class="wrap">
+        <div class="stat"><div class="num" data-count="20"><span class="val">0</span><span class="suf">+</span></div><div class="cap">Years building &amp; leading</div></div>
+        <div class="stat"><div class="num" data-count="4"><span class="val">0</span></div><div class="cap">Industries spanned</div></div>
+        <div class="stat"><div class="num" data-count="7"><span class="val">0</span><span class="suf">+</span></div><div class="cap">Years leading incident response</div></div>
+        <div class="stat"><div class="num" data-count="4"><span class="val">0</span></div><div class="cap">Degrees earned</div></div>
+    </div>
+</section>
+
+<!-- ============ HIGHLIGHTS ============ -->
+<section class="block" id="work">
+    <div class="wrap">
+        <div class="head reveal">
+            <div class="kicker">Selected work</div>
+            <h2>A few things I'm proud of</h2>
+            <p class="lead">From classified intelligence to one of the world's most-used maps to a 24/7 incident-response practice — here's the short version.</p>
+        </div>
+        <div class="hl-grid">
+            <div class="hl reveal">
+                <div class="era">Apple · 2012–2019</div>
+                <h3>Apple Maps, in three dimensions</h3>
+                <p>Led end-to-end 3D dataset collection for Apple Maps — directing hardware, software, design support, and field execution that put cities into Flyover.</p>
+                <a class="more" href="https://appleinsider.com/articles/13/07/31/apples-ios-7-3d-maps-leave-google-earth-nokia-3d-maps-looking-old-fashioned" target="_blank" rel="noopener">Read the coverage ↗</a>
+            </div>
+            <div class="hl reveal">
+                <div class="era">DraftKings · 2019–present</div>
+                <h3>Resiliency at real scale</h3>
+                <p>Built DraftKings' problem &amp; incident-management practice from the ground up — leading global 24/7 response that keeps a high-traffic platform stable, now augmented with AI-enabled tooling.</p>
+                <a class="more" href="https://www.pagerduty.com/customer/draftkings/" target="_blank" rel="noopener">PagerDuty case study ↗</a>
+            </div>
+            <div class="hl reveal">
+                <div class="era">USAF &amp; SAIC · 2006–2011</div>
+                <h3>Mission-critical intelligence</h3>
+                <p>Six years as an intelligence analyst holding a top-secret clearance — briefing leadership, guiding mission planning, and standing up operations for a unique airborne sensor suite in Afghanistan.</p>
+            </div>
+            <div class="hl reveal">
+                <div class="era">Khakichimp · 2025–present</div>
+                <h3>Shipping as an indie</h3>
+                <p>Designing, building, and publishing privacy-first iOS apps solo — from first sketch to the App Store. Tasks - Uniflow is live, with more on the way.</p>
+                <a class="more" href="/khakichimp/">Explore the apps →</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ============ CAREER ============ -->
 <section class="block" id="career">
@@ -276,7 +369,7 @@
     <div class="wrap">
         <div class="alter reveal">
             <img class="face" src="/assets/chimp.svg" alt="Khakichimp" draggable="false">
-            <div>
+            <div class="txt">
                 <h2>By night, I build apps as <span>Khakichimp</span></h2>
                 <p>Native, privacy-first iOS apps — no trackers, no nonsense. Step into the lab to meet the chimp and explore everything I've shipped.</p>
                 <a class="btn" href="/khakichimp/">Enter Khakichimp HQ →</a>
@@ -304,6 +397,16 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();
 
+/* scroll progress bar */
+const progress = document.getElementById('progress');
+function setProgress(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    progress.style.width = (max>0 ? (h.scrollTop/max)*100 : 0) + '%';
+}
+window.addEventListener('scroll', setProgress, {passive:true});
+setProgress();
+
 /* Scroll reveals */
 if(window.gsap && window.ScrollTrigger && !reduceMotion){
     gsap.registerPlugin(ScrollTrigger);
@@ -313,6 +416,23 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
 } else {
     document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
 }
+
+/* Count-up stats */
+(function(){
+    const nums = document.querySelectorAll('.num[data-count]');
+    function run(el){
+        const target = +el.dataset.count;
+        const val = el.querySelector('.val');
+        if(reduceMotion || !window.gsap){ val.textContent = target; return; }
+        const obj = {n:0};
+        gsap.to(obj,{n:target,duration:1.2,ease:'power2.out',onUpdate:()=>{val.textContent=Math.round(obj.n);}});
+    }
+    if(window.gsap && window.ScrollTrigger && !reduceMotion){
+        nums.forEach(el=>ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>run(el)}));
+    } else {
+        nums.forEach(run);
+    }
+})();
 
 /* Mini chimp: idle bob, leans toward cursor, "leaps" to HQ on click */
 if(!reduceMotion && window.gsap){
