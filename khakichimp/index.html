@@ -45,7 +45,7 @@
     .topbar a.back:hover{opacity:1;background:rgba(251,246,234,.1);transform:translateY(-1px)}
 
     .chimp-stage{position:relative;width:min(360px,80vw);margin:0 auto 10px;cursor:pointer;user-select:none}
-    .chimp-stage svg{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 30px rgba(0,0,0,.45))}
+    .chimp-stage svg,.chimp-stage img{width:100%;height:auto;display:block;filter:drop-shadow(0 22px 26px rgba(0,0,0,.45));will-change:transform}
     .chimp-hint{font-size:.8em;opacity:.6;letter-spacing:.04em;text-transform:uppercase;margin-top:-4px}
 
     .eyebrow{
@@ -149,103 +149,7 @@
 
     <div class="hero-inner">
         <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" aria-label="Poke the chimp">
-            <!-- Inline SVG chimpanzee (semi-realistic) in khaki pants -->
-            <svg id="chimp" viewBox="0 0 280 330" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <radialGradient id="furG" cx="50%" cy="32%" r="74%">
-                        <stop offset="0%" stop-color="#5b4636"/><stop offset="52%" stop-color="#3d2e22"/><stop offset="100%" stop-color="#1e1610"/>
-                    </radialGradient>
-                    <radialGradient id="bodyFurG" cx="50%" cy="26%" r="82%">
-                        <stop offset="0%" stop-color="#4a3829"/><stop offset="100%" stop-color="#1b140f"/>
-                    </radialGradient>
-                    <radialGradient id="faceG" cx="50%" cy="44%" r="62%">
-                        <stop offset="0%" stop-color="#e7c8a4"/><stop offset="58%" stop-color="#cda47c"/><stop offset="100%" stop-color="#a37a55"/>
-                    </radialGradient>
-                    <radialGradient id="muzzleG" cx="50%" cy="36%" r="66%">
-                        <stop offset="0%" stop-color="#f1dcc1"/><stop offset="100%" stop-color="#c69a71"/>
-                    </radialGradient>
-                    <radialGradient id="earG" cx="50%" cy="50%" r="62%">
-                        <stop offset="0%" stop-color="#cba079"/><stop offset="100%" stop-color="#79593d"/>
-                    </radialGradient>
-                    <radialGradient id="irisG" cx="50%" cy="42%" r="58%">
-                        <stop offset="0%" stop-color="#8a5a2c"/><stop offset="68%" stop-color="#583716"/><stop offset="100%" stop-color="#31200f"/>
-                    </radialGradient>
-                    <linearGradient id="khakiG" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#dac491"/><stop offset="100%" stop-color="#a3873f"/>
-                    </linearGradient>
-                </defs>
-
-                <!-- ground shadow -->
-                <ellipse cx="140" cy="318" rx="88" ry="12" fill="rgba(0,0,0,.30)"/>
-
-                <!-- arms (behind body) -->
-                <g id="armL">
-                    <path d="M104 178 C 62 190 38 228 44 270" stroke="url(#bodyFurG)" stroke-width="30" fill="none" stroke-linecap="round"/>
-                    <g fill="#785a3e"><ellipse cx="44" cy="278" rx="16" ry="13"/><rect x="33" y="278" width="6" height="19" rx="3"/><rect x="41" y="280" width="6" height="21" rx="3"/><rect x="49" y="278" width="6" height="19" rx="3"/></g>
-                </g>
-                <g id="armR">
-                    <path d="M176 178 C 218 190 242 228 236 270" stroke="url(#bodyFurG)" stroke-width="30" fill="none" stroke-linecap="round"/>
-                    <g fill="#785a3e"><ellipse cx="236" cy="278" rx="16" ry="13"/><rect x="225" y="278" width="6" height="19" rx="3"/><rect x="233" y="280" width="6" height="21" rx="3"/><rect x="241" y="278" width="6" height="19" rx="3"/></g>
-                </g>
-
-                <!-- khaki pants / legs -->
-                <g id="legs">
-                    <path d="M110 238 C 102 282 102 298 106 314" stroke="url(#khakiG)" stroke-width="40" fill="none" stroke-linecap="round"/>
-                    <path d="M170 238 C 178 282 178 298 174 314" stroke="url(#khakiG)" stroke-width="40" fill="none" stroke-linecap="round"/>
-                    <path d="M94 230 q46 -16 92 0 l0 20 q-46 -14 -92 0 Z" fill="#c2a967"/>
-                    <rect x="135" y="234" width="10" height="11" rx="3" fill="#8a743f"/>
-                    <ellipse cx="100" cy="318" rx="21" ry="10" fill="#4f3d2b"/>
-                    <ellipse cx="180" cy="318" rx="21" ry="10" fill="#4f3d2b"/>
-                </g>
-
-                <!-- body -->
-                <path d="M140 150 C 94 150 78 190 78 216 C 78 246 108 260 140 260 C 172 260 202 246 202 216 C 202 190 186 150 140 150 Z" fill="url(#bodyFurG)"/>
-                <ellipse cx="140" cy="214" rx="33" ry="40" fill="url(#faceG)" opacity=".5"/>
-
-                <!-- head -->
-                <g id="head">
-                    <!-- ears -->
-                    <ellipse cx="64" cy="114" rx="24" ry="29" fill="url(#furG)"/><ellipse cx="67" cy="114" rx="13" ry="18" fill="url(#earG)"/>
-                    <ellipse cx="216" cy="114" rx="24" ry="29" fill="url(#furG)"/><ellipse cx="213" cy="114" rx="13" ry="18" fill="url(#earG)"/>
-                    <!-- skull fur -->
-                    <path d="M140 24 C 197 24 215 64 215 104 C 215 117 211 129 205 139 C 215 151 214 169 200 184 C 181 202 161 208 140 208 C 119 208 99 202 80 184 C 66 169 65 151 75 139 C 69 129 65 117 65 104 C 65 64 83 24 140 24 Z" fill="url(#furG)"/>
-                    <path d="M104 33 q11 -15 19 -3 M139 23 q7 -14 15 -2 M159 31 q11 -13 17 -1" stroke="#241a12" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/>
-                    <!-- bald face + prognathic muzzle -->
-                    <path d="M140 52 C 181 52 197 86 197 117 C 197 141 189 161 175 175 C 165 185 152 191 140 191 C 128 191 115 185 105 175 C 91 161 83 141 83 117 C 83 86 99 52 140 52 Z" fill="url(#faceG)"/>
-                    <ellipse cx="140" cy="158" rx="35" ry="31" fill="url(#muzzleG)"/>
-                    <!-- heavy brow ridge -->
-                    <path d="M90 96 C 103 83 128 79 140 79 C 152 79 177 83 190 96 C 181 107 167 102 140 102 C 113 102 99 107 90 96 Z" fill="#392b1f"/>
-                    <path d="M95 92 q23 -10 45 -8 q22 -2 45 8" stroke="#231a11" stroke-width="5" fill="none" stroke-linecap="round" opacity=".65"/>
-                    <!-- eyes -->
-                    <g id="eyes">
-                        <ellipse cx="120" cy="111" rx="17" ry="13" fill="#b58b62"/>
-                        <ellipse cx="160" cy="111" rx="17" ry="13" fill="#b58b62"/>
-                        <ellipse cx="120" cy="111" rx="14.5" ry="10.5" fill="#efe4d0"/>
-                        <ellipse cx="160" cy="111" rx="14.5" ry="10.5" fill="#efe4d0"/>
-                        <clipPath id="clipEyeL"><ellipse cx="120" cy="111" rx="14.5" ry="10.5"/></clipPath>
-                        <clipPath id="clipEyeR"><ellipse cx="160" cy="111" rx="14.5" ry="10.5"/></clipPath>
-                        <g clip-path="url(#clipEyeL)"><g id="eyeballL">
-                            <circle cx="120" cy="111" r="8.6" fill="url(#irisG)"/>
-                            <circle id="pupilL" cx="120" cy="111" r="4.2" fill="#130d08"/>
-                            <circle cx="116.5" cy="107.5" r="2" fill="#fff" opacity=".9"/>
-                        </g></g>
-                        <g clip-path="url(#clipEyeR)"><g id="eyeballR">
-                            <circle cx="160" cy="111" r="8.6" fill="url(#irisG)"/>
-                            <circle id="pupilR" cx="160" cy="111" r="4.2" fill="#130d08"/>
-                            <circle cx="156.5" cy="107.5" r="2" fill="#fff" opacity=".9"/>
-                        </g></g>
-                        <path d="M106 117 q14 7 28 0 M146 117 q14 7 28 0" stroke="#9c7350" stroke-width="2" fill="none" opacity=".55"/>
-                        <g id="lids"></g>
-                    </g>
-                    <!-- nose -->
-                    <path d="M140 121 C 134 135 130 143 132 149 C 135 153 145 153 148 149 C 150 143 146 135 140 121 Z" fill="#b1855d" opacity=".45"/>
-                    <ellipse cx="132" cy="147" rx="3.4" ry="4.4" fill="#6b4d35"/>
-                    <ellipse cx="148" cy="147" rx="3.4" ry="4.4" fill="#6b4d35"/>
-                    <!-- mouth -->
-                    <path d="M112 167 Q140 163 168 167" stroke="#8a6647" stroke-width="2.5" fill="none" opacity=".5"/>
-                    <path id="mouth" d="M114 173 Q140 185 166 173" stroke="#6b4d35" stroke-width="4" fill="none" stroke-linecap="round"/>
-                </g>
-            </svg>
+            <img id="chimp" class="chimp-img" src="/assets/chimp.png" alt="Khakichimp — a chimp in khaki pants" draggable="false">
         </div>
         <div class="chimp-hint">↑ poke me</div>
 
@@ -334,34 +238,20 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* ---------- Eye tracking ---------- */
-const eyeballL = document.getElementById('eyeballL');
-const eyeballR = document.getElementById('eyeballR');
 const chimp = document.getElementById('chimp');
-if(!reduceMotion){
+
+/* ---------- Chimp leans toward the cursor ---------- */
+if(!reduceMotion && window.gsap){
     window.addEventListener('mousemove', e=>{
         const rect = chimp.getBoundingClientRect();
-        const cx = rect.left + rect.width/2;
-        const cy = rect.top + rect.height*0.34;
-        const ang = Math.atan2(e.clientY-cy, e.clientX-cx);
-        const r = 4;
-        const dx = Math.cos(ang)*r, dy = Math.sin(ang)*r;
-        eyeballL.setAttribute('transform', `translate(${dx} ${dy})`);
-        eyeballR.setAttribute('transform', `translate(${dx} ${dy})`);
+        const dx = (e.clientX - (rect.left+rect.width/2)) / window.innerWidth;
+        const dy = (e.clientY - (rect.top+rect.height/2)) / window.innerHeight;
+        gsap.to(chimp, {rotation:dx*6, x:dx*14, y:dy*8, duration:.6, overwrite:'auto', transformOrigin:'50% 90%'});
     });
-    /* blink */
-    const lids = document.getElementById('lids');
-    function blink(){
-        lids.innerHTML = '<ellipse cx="120" cy="111" rx="15.5" ry="11.5" fill="#cda57d"/><ellipse cx="160" cy="111" rx="15.5" ry="11.5" fill="#cda57d"/>';
-        setTimeout(()=>lids.innerHTML='', 130);
-        setTimeout(blink, 2200 + Math.random()*3500);
-    }
-    setTimeout(blink, 2500);
 }
 
 /* ---------- Poke the chimp ---------- */
 const stage = document.getElementById('chimpStage');
-const mouth = document.getElementById('mouth');
 function poke(){
     if(typeof confetti === 'function'){
         const rect = stage.getBoundingClientRect();
@@ -372,23 +262,19 @@ function poke(){
             scalar: 1.1
         });
     }
-    if(reduceMotion) return;
-    mouth.setAttribute('d','M110 169 Q140 189 170 169');      // grin
-    if(window.gsap){
-        gsap.fromTo(chimp,{rotation:0},{rotation:0,keyframes:[
-            {y:-26,rotation:-6,duration:.18},{y:0,rotation:0,duration:.4,ease:'bounce.out'}
-        ], transformOrigin:'50% 90%'});
-    }
-    setTimeout(()=>mouth.setAttribute('d','M114 173 Q140 185 166 173'), 900);
+    if(reduceMotion || !window.gsap) return;
+    gsap.fromTo(chimp,{},{keyframes:[
+        {y:-28,scale:1.05,duration:.18,ease:'power2.out'},
+        {y:0,scale:1,duration:.5,ease:'bounce.out'}
+    ], transformOrigin:'50% 90%', overwrite:'auto'});
 }
 stage.addEventListener('click', poke);
 stage.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
 stage.tabIndex = 0;
 
-/* idle sway */
+/* gentle idle bob on the wrapper (keeps the img's own transforms free) */
 if(!reduceMotion && window.gsap){
-    gsap.to('#head',{rotation:2.5,transformOrigin:'50% 80%',duration:2.4,yoyo:true,repeat:-1,ease:'sine.inOut'});
-    gsap.to('#armR',{rotation:-4,transformOrigin:'176px 178px',duration:1.8,yoyo:true,repeat:-1,ease:'sine.inOut'});
+    gsap.to('#chimpStage',{y:'+=8',duration:2.2,yoyo:true,repeat:-1,ease:'sine.inOut'});
 }
 
 /* ---------- Tilt cards ---------- */
