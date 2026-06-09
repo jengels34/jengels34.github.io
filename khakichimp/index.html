@@ -7,10 +7,12 @@
 <meta name="description" content="Khakichimp HQ — native, privacy-first iOS apps built by Josh Engels. Tasks - Uniflow, ReadMe, and Food in Five. No trackers, ever.">
 <style>
     :root{
-        --khaki:#c2a878; --khaki-deep:#9c8455; --bark:#3a2f23;
-        --jungle:#2f7d4f; --jungle-deep:#1d5536; --banana:#ffcf3f;
-        --coral:#ff6b54; --cream:#fbf6ea; --ink:#241d14;
-        --leaf:#4caa6a;
+        /* vibrant jungle-pop */
+        --night:#08120c; --bark:#0b1410; --panel:#0f1d15;
+        --jungle:#19c172; --jungle-deep:#0e8a4f; --leaf:#42e08a; --lime:#a6f24a; --teal:#16d6c4;
+        --banana:#ffd23f; --coral:#ff5d49; --grape:#a878ff;
+        --khaki:#d8b87f; --khaki-deep:#b8965a;
+        --cream:#f3fbf3; --ink:#08120c;
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -21,17 +23,20 @@
         overflow-x:hidden;
     }
     a{color:inherit}
-    ::selection{background:var(--banana);color:var(--ink)}
+    ::selection{background:var(--lime);color:var(--ink)}
 
     /* scroll progress */
     .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
-        background:linear-gradient(90deg,var(--banana),var(--coral));transition:width .1s linear}
+        background:linear-gradient(90deg,var(--lime),var(--teal),var(--banana));transition:width .1s linear}
 
     /* ---------- HERO ---------- */
     .hero{
         position:relative;min-height:100vh;display:flex;flex-direction:column;
         align-items:center;justify-content:center;text-align:center;padding:40px 20px;
-        background:radial-gradient(120% 120% at 50% 0%, #3f6d4d 0%, #28523a 38%, #1c3a2a 70%, #15291f 100%);
+        background:
+            radial-gradient(70% 55% at 18% 12%, rgba(22,214,196,.28), transparent 60%),
+            radial-gradient(60% 50% at 88% 8%, rgba(166,242,74,.20), transparent 58%),
+            radial-gradient(125% 120% at 50% -8%, #1ba35e 0%, #0e7344 32%, #0a4029 64%, #081711 100%);
         overflow:hidden;
     }
     #leaves{position:absolute;inset:0;z-index:0;pointer-events:none}
@@ -41,18 +46,18 @@
         align-items:center;padding:18px 24px;font-weight:700;
     }
     .topbar .brand{display:flex;align-items:center;gap:9px;font-size:1.05em}
-    .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--banana);box-shadow:0 0 0 4px rgba(255,207,63,.25)}
+    .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(166,242,74,.25)}
     .topbar a.back{
         text-decoration:none;font-weight:600;font-size:.9em;opacity:.85;
-        padding:8px 14px;border:1px solid rgba(251,246,234,.25);border-radius:999px;transition:.2s;
+        padding:8px 14px;border:1px solid rgba(243,251,243,.25);border-radius:999px;transition:.2s;
     }
-    .topbar a.back:hover{opacity:1;background:rgba(251,246,234,.1);transform:translateY(-1px)}
+    .topbar a.back:hover{opacity:1;background:rgba(243,251,243,.1);transform:translateY(-1px)}
 
     .chimp-stage{position:relative;width:min(360px,80vw);margin:0 auto 10px;cursor:pointer;user-select:none}
     .chimp-stage::before{
         content:"";position:absolute;left:50%;top:45%;width:78%;aspect-ratio:1;transform:translate(-50%,-50%);
-        background:radial-gradient(circle, rgba(255,207,63,.38), rgba(76,170,106,.14) 52%, transparent 70%);
-        filter:blur(6px);z-index:0;animation:aura 4.5s ease-in-out infinite;
+        background:radial-gradient(circle, rgba(166,242,74,.42), rgba(22,214,196,.18) 50%, transparent 70%);
+        filter:blur(8px);z-index:0;animation:aura 4.5s ease-in-out infinite;
     }
     @keyframes aura{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.07)}}
     .chimp-stage svg,.chimp-stage img{position:relative;z-index:1;width:100%;height:auto;display:block;filter:drop-shadow(0 22px 26px rgba(0,0,0,.45));will-change:transform}
@@ -60,29 +65,33 @@
 
     .eyebrow{
         display:inline-block;font-size:.78em;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-        color:var(--banana);background:rgba(255,207,63,.12);padding:6px 14px;border-radius:999px;margin-bottom:18px;
+        color:var(--lime);background:rgba(166,242,74,.14);padding:6px 14px;border-radius:999px;margin-bottom:18px;
+        border:1px solid rgba(166,242,74,.28);
     }
     .hero h1{
         font-size:clamp(2.6em,8vw,4.6em);line-height:1.02;font-weight:800;letter-spacing:-0.03em;
-        background:linear-gradient(180deg,#fff 0%,#ffe9a8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+        background:linear-gradient(180deg,#ffffff 0%,#c9ffd9 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
     }
-    .hero h1 .pants{color:var(--khaki);-webkit-text-fill-color:var(--khaki)}
-    .hero .tag{font-size:clamp(1em,2.4vw,1.25em);opacity:.92;margin-top:14px;min-height:1.6em}
+    .hero h1 .pants{
+        background:linear-gradient(180deg,var(--lime),var(--teal));-webkit-background-clip:text;background-clip:text;
+        -webkit-text-fill-color:transparent;color:transparent;
+    }
+    .hero .tag{font-size:clamp(1em,2.4vw,1.25em);opacity:.94;margin-top:14px;min-height:1.6em}
     .hero .tag .rot{color:var(--banana);font-weight:800;display:inline-block}
     .hero .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
     .cta{
         display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
-        background:var(--banana);color:var(--ink);padding:14px 26px;border-radius:999px;
-        box-shadow:0 10px 24px rgba(255,207,63,.32);transition:box-shadow .2s;will-change:transform;
+        background:linear-gradient(120deg,var(--lime),var(--teal));color:var(--ink);padding:14px 26px;border-radius:999px;
+        box-shadow:0 12px 28px rgba(22,214,196,.34);transition:box-shadow .2s;will-change:transform;
     }
-    .cta:hover{box-shadow:0 16px 32px rgba(255,207,63,.45)}
-    .cta.alt{background:transparent;color:var(--cream);border:1px solid rgba(251,246,234,.3);box-shadow:none}
-    .cta.alt:hover{background:rgba(251,246,234,.08)}
+    .cta:hover{box-shadow:0 18px 38px rgba(22,214,196,.5)}
+    .cta.alt{background:transparent;color:var(--cream);border:1px solid rgba(243,251,243,.3);box-shadow:none}
+    .cta.alt:hover{background:rgba(243,251,243,.08)}
     .hero-apps{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:30px}
     .hero-apps a{display:block;line-height:0;border-radius:15px;transition:transform .2s;will-change:transform}
     .hero-apps a:hover{transform:translateY(-4px) scale(1.05)}
     .hero-apps img{width:58px;height:58px;border-radius:15px;display:block;
-        box-shadow:0 10px 22px rgba(0,0,0,.4);border:1px solid rgba(251,246,234,.14)}
+        box-shadow:0 10px 22px rgba(0,0,0,.4);border:1px solid rgba(243,251,243,.14)}
     .scrolldown{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;font-size:.78em;opacity:.7;letter-spacing:.12em;text-transform:uppercase}
     .scrolldown span{display:block;font-size:1.4em;margin-top:2px;animation:bob 1.6s ease-in-out infinite}
     @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
@@ -90,18 +99,17 @@
     /* live banana counter chip */
     .banana-meter{
         position:fixed;right:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;
-        background:rgba(21,41,31,.82);backdrop-filter:blur(8px);border:1px solid rgba(255,207,63,.35);
+        background:rgba(11,20,16,.82);backdrop-filter:blur(8px);border:1px solid rgba(166,242,74,.4);
         color:var(--cream);padding:9px 14px;border-radius:999px;font-weight:700;font-size:.9em;
-        box-shadow:0 10px 24px rgba(0,0,0,.3);cursor:pointer;transition:transform .2s;user-select:none;
+        box-shadow:0 10px 24px rgba(0,0,0,.34);cursor:pointer;transition:transform .2s;user-select:none;font:inherit;
     }
     .banana-meter:hover{transform:translateY(-2px)}
-    .banana-meter{border:1px solid rgba(255,207,63,.35);font:inherit}
     .banana-meter .lbl{opacity:.9;font-weight:600}
-    .banana-meter .track{width:52px;height:6px;border-radius:3px;background:rgba(251,246,234,.2);overflow:hidden;display:inline-block}
-    .banana-meter .fill{display:block;height:100%;width:0;background:var(--banana);border-radius:3px;transition:width .25s}
+    .banana-meter .track{width:52px;height:6px;border-radius:3px;background:rgba(243,251,243,.2);overflow:hidden;display:inline-block}
+    .banana-meter .fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--banana),var(--lime));border-radius:3px;transition:width .25s}
     .banana-meter .n{color:var(--banana);font-variant-numeric:tabular-nums}
     .banana-toast{position:fixed;left:50%;top:20%;transform:translate(-50%,-10px);z-index:56;max-width:90vw;
-        background:rgba(21,41,31,.94);border:1px solid rgba(255,207,63,.4);color:var(--cream);
+        background:rgba(11,20,16,.94);border:1px solid rgba(166,242,74,.45);color:var(--cream);
         padding:14px 22px;border-radius:14px;font-weight:700;text-align:center;
         box-shadow:0 16px 40px rgba(0,0,0,.4);opacity:0;pointer-events:none}
     .combo-pop{position:fixed;z-index:55;transform:translate(-50%,-50%);pointer-events:none;
@@ -111,80 +119,82 @@
     section{position:relative;z-index:1}
     .wrap{max-width:1040px;margin:0 auto;padding:84px 24px}
     .section-head{text-align:center;margin-bottom:46px}
-    .section-head .kick{font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--banana);opacity:.9}
+    .section-head .kick{font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--lime)}
     .section-head h2{font-size:clamp(1.9em,5vw,2.8em);font-weight:800;letter-spacing:-0.02em;margin-top:6px}
-    .section-head p{opacity:.7;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto}
+    .section-head p{opacity:.72;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto}
 
-    /* ---------- STATS ---------- */
-    .stats{background:linear-gradient(180deg,#15291f,#1a3326)}
-    .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:center;padding-top:60px;padding-bottom:60px}
-    .stat .num{font-size:clamp(2.1em,5.5vw,3.2em);font-weight:800;letter-spacing:-0.03em;color:var(--banana);line-height:1}
-    .stat .cap{font-size:.85em;opacity:.78;margin-top:8px}
-    @media(max-width:640px){.stats .wrap{grid-template-columns:repeat(2,1fr);gap:30px}}
-
-    /* ---------- APPS ---------- */
-    .apps{background:var(--cream);color:var(--ink)}
-    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+    /* ---------- APPS (bespoke dark-glass cards) ---------- */
+    .apps{
+        background:
+            radial-gradient(85% 70% at 100% 0%, rgba(22,214,196,.12), transparent 55%),
+            radial-gradient(75% 65% at 0% 100%, rgba(166,242,74,.10), transparent 55%),
+            var(--bark);
+        color:var(--cream);
+    }
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
     .app-card{
-        display:flex;flex-direction:column;text-decoration:none;color:inherit;background:#fff;
-        border-radius:22px;padding:28px;border:1px solid rgba(58,47,35,.08);
-        box-shadow:0 10px 30px rgba(58,47,35,.08);transform-style:preserve-3d;transition:box-shadow .2s;
-        position:relative;overflow:hidden;min-height:260px;
+        position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;
+        background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+        border:1px solid rgba(255,255,255,.1);border-radius:26px;padding:30px;
+        transform-style:preserve-3d;transition:border-color .25s,box-shadow .25s,transform .25s;
+        position:relative;overflow:hidden;min-height:288px;
     }
-    .app-card::before{content:"";position:absolute;inset:0 0 auto 0;height:6px}
-    .app-card.tasks::before{background:linear-gradient(90deg,var(--jungle),var(--leaf))}
-    .app-card.readme::before{background:linear-gradient(90deg,var(--coral),var(--banana))}
-    .app-card.food::before{background:linear-gradient(90deg,var(--banana),var(--khaki-deep))}
-    .app-card:hover{box-shadow:0 22px 50px rgba(58,47,35,.18)}
-    .app-icon{font-size:2.4em;margin-bottom:14px;transform:translateZ(40px)}
-    .app-icon img{width:56px;height:56px;border-radius:14px;display:block;filter:drop-shadow(0 8px 16px rgba(58,47,35,.22))}
-    .app-card h3{font-size:1.4em;font-weight:800;transform:translateZ(30px)}
-    .app-card .desc{color:#5b5345;margin-top:8px;transform:translateZ(20px)}
+    /* per-app corner glow — replaces the generic top stripe */
+    .app-card::after{
+        content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+        top:-110px;right:-80px;filter:blur(10px);opacity:.5;z-index:0;transition:opacity .25s,transform .25s;
+    }
+    .app-card.tasks::after{background:radial-gradient(circle,rgba(66,224,138,.6),transparent 66%)}
+    .app-card.readme::after{background:radial-gradient(circle,rgba(255,93,73,.55),transparent 66%)}
+    .app-card.food::after{background:radial-gradient(circle,rgba(168,120,255,.55),transparent 66%)}
+    .app-card:hover{border-color:rgba(255,255,255,.24);box-shadow:0 28px 64px rgba(0,0,0,.5)}
+    .app-card:hover::after{opacity:.9;transform:scale(1.08)}
+    .app-card>*{position:relative;z-index:1}
+    .app-icon{
+        width:66px;height:66px;border-radius:19px;display:flex;align-items:center;justify-content:center;
+        margin-bottom:18px;transform:translateZ(40px);
+        background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    }
+    .app-icon img{width:52px;height:52px;border-radius:13px;display:block;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))}
+    .app-card h3{font-size:1.45em;font-weight:800;transform:translateZ(30px)}
+    .app-card .desc{color:rgba(243,251,243,.74);margin-top:8px;transform:translateZ(20px)}
     .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;flex:1;align-content:flex-start;transform:translateZ(26px)}
-    .pills span{font-size:.72em;font-weight:600;color:#6b6150;background:#f3efe5;border-radius:999px;padding:4px 10px}
-    .app-card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:18px;transform:translateZ(30px)}
+    .pills span{font-size:.72em;font-weight:600;color:rgba(243,251,243,.82);background:rgba(255,255,255,.05);
+        border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:4px 10px}
+    .app-card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:20px;transform:translateZ(30px)}
     .badge{font-size:.72em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
-    .badge.live{background:rgba(47,125,79,.14);color:var(--jungle-deep)}
-    .badge.soon{background:rgba(58,47,35,.08);color:#8a7d68}
-    .app-card .go{font-weight:700;color:var(--jungle-deep)}
-
-    /* ---------- MARQUEE ---------- */
-    .marquee-sec{background:var(--bark);padding:34px 0;border-top:1px solid rgba(251,246,234,.06);border-bottom:1px solid rgba(251,246,234,.06)}
-    .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
-        mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-    .marquee .track{display:flex;gap:16px;width:max-content;animation:scroll 26s linear infinite}
-    .marquee:hover .track{animation-play-state:paused}
-    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    .marquee .chip{
-        font-size:.95em;font-weight:700;padding:11px 18px;border-radius:999px;white-space:nowrap;
-        background:rgba(251,246,234,.06);border:1px solid rgba(251,246,234,.14);
-    }
-    .marquee .chip .dot{color:var(--banana);margin-right:8px}
+    .badge.live{background:rgba(25,193,114,.18);color:var(--leaf);border:1px solid rgba(66,224,138,.3)}
+    .badge.soon{background:rgba(255,255,255,.07);color:rgba(243,251,243,.6)}
+    .app-card .go{font-weight:700;color:var(--banana)}
 
     /* ---------- STACK ---------- */
-    .stack{background:var(--bark)}
+    .stack{
+        background:
+            radial-gradient(60% 60% at 12% 10%, rgba(22,214,196,.10), transparent 60%),
+            var(--night);
+    }
     .stack .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
     .stack h2{font-size:clamp(1.8em,4.5vw,2.6em);font-weight:800;letter-spacing:-0.02em;margin-bottom:14px}
-    .stack p{opacity:.82}
+    .stack p{opacity:.84}
     .philosophy{
-        background:linear-gradient(160deg,rgba(76,170,106,.16),rgba(255,207,63,.06));
-        border:1px solid rgba(251,246,234,.12);border-radius:24px;padding:30px;
+        background:linear-gradient(160deg,rgba(22,214,196,.18),rgba(166,242,74,.07));
+        border:1px solid rgba(243,251,243,.14);border-radius:24px;padding:30px;
     }
     .philosophy .big{font-size:2.4em}
     .philosophy h3{margin:10px 0 6px;font-size:1.3em}
-    .philosophy p{opacity:.82;font-size:.98em}
+    .philosophy p{opacity:.84;font-size:.98em}
     .feed{margin-top:22px}
     .feed-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:700;font-size:.95em;
-        background:var(--banana);color:var(--ink);border:none;padding:12px 20px;border-radius:999px;
-        box-shadow:0 10px 24px rgba(255,207,63,.3);transition:transform .15s}
+        background:linear-gradient(120deg,var(--banana),var(--lime));color:var(--ink);border:none;padding:12px 20px;border-radius:999px;
+        box-shadow:0 12px 26px rgba(255,210,63,.3);transition:transform .15s}
     .feed-btn:active{transform:scale(.95)}
 
     /* ---------- FOOTER ---------- */
-    footer{background:#15110b;text-align:center;padding:60px 24px}
+    footer{background:#060c08;text-align:center;padding:60px 24px}
     footer .mark{font-size:2em}
     footer h3{font-size:1.4em;font-weight:800;margin:8px 0 16px}
     footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
-    footer a{color:var(--banana);text-decoration:none;font-weight:600}
+    footer a{color:var(--lime);text-decoration:none;font-weight:600}
     footer a:hover{text-decoration:underline}
     footer .copy{opacity:.5;font-size:.85em}
 
@@ -198,7 +208,6 @@
         *{animation:none!important;transition:none!important}
         .reveal{opacity:1;transform:none}
         html{scroll-behavior:auto}
-        .marquee .track{transform:none}
     }
 </style>
 </head>
@@ -215,7 +224,7 @@
 
     <div class="hero-inner">
         <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" aria-label="Poke the chimp to throw bananas">
-            <img id="chimp" class="chimp-img" src="/assets/chimp.svg" alt="Khakichimp — a chimp in khaki pants" draggable="false">
+            <div id="chimp" class="chimp-img" data-chimp aria-hidden="true"></div>
         </div>
         <div class="chimp-hint">↑ poke me to feed the chimp</div>
 
@@ -236,16 +245,6 @@
     <div class="scrolldown">Scroll<span>↓</span></div>
 </header>
 
-<!-- ============ STATS ============ -->
-<section class="stats">
-    <div class="wrap">
-        <div class="stat"><div class="num"><span class="val" data-count="3">0</span></div><div class="cap">Apps shipped &amp; in flight</div></div>
-        <div class="stat"><div class="num"><span class="val" data-count="100">0</span>%</div><div class="cap">Native SwiftUI</div></div>
-        <div class="stat"><div class="num"><span class="val" data-count="0">0</span></div><div class="cap">Trackers &amp; ad SDKs</div></div>
-        <div class="stat"><div class="num">∞</div><div class="cap">Bananas available</div></div>
-    </div>
-</section>
-
 <!-- ============ APPS ============ -->
 <section class="apps" id="apps">
     <div class="wrap">
@@ -256,44 +255,26 @@
         </div>
         <div class="card-grid">
             <a class="app-card tasks reveal" href="/tasks-uniflow/" data-tilt>
-                <div class="app-icon"><img src="/assets/icons/tasks-uniflow.png" alt="Tasks - Uniflow app icon" width="56" height="56"></div>
+                <div class="app-icon"><img src="/assets/icons/tasks-uniflow.png" alt="Tasks - Uniflow app icon" width="52" height="52"></div>
                 <h3>Tasks - Uniflow</h3>
                 <p class="desc">One task manager that unifies local tasks, Notion, Apple Reminders, and Google Tasks — synced via CloudKit, secured in Keychain.</p>
                 <div class="pills"><span>SwiftUI</span><span>CloudKit</span><span>Notion API</span><span>Keychain</span></div>
                 <div class="foot"><span class="badge live">On the App Store</span><span class="go">Open →</span></div>
             </a>
             <a class="app-card readme reveal" href="/readme/" data-tilt>
-                <div class="app-icon"><img src="/assets/icons/readme.png" alt="ReadMe app icon" width="56" height="56"></div>
+                <div class="app-icon"><img src="/assets/icons/readme.png" alt="ReadMe app icon" width="52" height="52"></div>
                 <h3>ReadMe</h3>
                 <p class="desc">A native, privacy-first book tracker — manage your library, log reading sessions, and watch your progress grow. All on-device, with optional iCloud sync.</p>
                 <div class="pills"><span>SwiftUI</span><span>SwiftData</span><span>CloudKit</span><span>On-device</span></div>
                 <div class="foot"><span class="badge live">On the App Store</span><span class="go">Open →</span></div>
             </a>
             <a class="app-card food reveal" href="/food-in-five/" data-tilt>
-                <div class="app-icon"><img src="/assets/icons/food-in-five.png" alt="Food in Five app icon" width="56" height="56"></div>
+                <div class="app-icon"><img src="/assets/icons/food-in-five.png" alt="Food in Five app icon" width="52" height="52"></div>
                 <h3>Food in Five</h3>
                 <p class="desc">Location-based restaurant discovery powered by Google Places, MapKit &amp; SwiftData — smart filters and favorites, all on-device.</p>
                 <div class="pills"><span>MapKit</span><span>Google Places</span><span>SwiftData</span><span>No backend</span></div>
                 <div class="foot"><span class="badge live">On the App Store</span><span class="go">Open →</span></div>
             </a>
-        </div>
-    </div>
-</section>
-
-<!-- ============ TECH MARQUEE ============ -->
-<section class="marquee-sec">
-    <div class="marquee">
-        <div class="track" id="track">
-            <span class="chip"><span class="dot">●</span>SwiftUI</span>
-            <span class="chip"><span class="dot">●</span>SwiftData</span>
-            <span class="chip"><span class="dot">●</span>CloudKit</span>
-            <span class="chip"><span class="dot">●</span>MapKit</span>
-            <span class="chip"><span class="dot">●</span>Keychain</span>
-            <span class="chip"><span class="dot">●</span>Background Tasks</span>
-            <span class="chip"><span class="dot">●</span>Local Notifications</span>
-            <span class="chip"><span class="dot">●</span>Notion API</span>
-            <span class="chip"><span class="dot">●</span>Google Places</span>
-            <span class="chip"><span class="dot">●</span>WidgetKit</span>
         </div>
     </div>
 </section>
@@ -340,10 +321,14 @@
 <script src="/assets/vendor/ScrollTrigger.min.js"></script>
 <script src="/assets/vendor/vanilla-tilt.min.js"></script>
 <script src="/assets/vendor/confetti.browser.js"></script>
+<script src="/assets/chimp.js"></script>
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();
 const chimp = document.getElementById('chimp');
+function chimpRig(){ return chimp && chimp._chimp; }
+function chimpReact(c){ const r = chimpRig(); if(r) r.react(c); }
+function chimpCelebrate(){ const r = chimpRig(); if(r) r.celebrate(); }
 
 /* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
 document.querySelectorAll('a.contact[data-u]').forEach(a=>{
@@ -378,7 +363,7 @@ function spray(origin, count){
     confetti({
         particleCount:count, spread:72, startVelocity:42, origin,
         shapes: bananaShape?[bananaShape]:undefined,
-        colors: bananaShape?undefined:['#ffcf3f','#f5b921','#ff6b54'],
+        colors: bananaShape?undefined:['#ffd23f','#a6f24a','#16d6c4'],
         scalar: bananaShape?1.7:1.1, ticks:220
     });
 }
@@ -402,13 +387,7 @@ function celebrate(){
         const end = Date.now()+800;
         (function frame(){ spray({x:Math.random(), y:-0.1}, 7); if(Date.now()<end) requestAnimationFrame(frame); })();
     } else spray({x:0.5,y:0.2}, 30);
-    if(window.gsap && !reduceMotion){
-        gsap.fromTo(chimp,{},{keyframes:[
-            {y:-44,scale:1.1,duration:.2,ease:'power2.out'},
-            {rotation:360,duration:.6,ease:'power1.inOut'},
-            {y:0,scale:1,rotation:0,duration:.4,ease:'bounce.out'}
-        ], transformOrigin:'50% 60%', overwrite:'auto'});
-    }
+    chimpCelebrate();
     toast(level===1
         ? "🎉 You filled the chimp! He's stuffed — now go meet the apps ↓"
         : "🍌 Level " + (level+1) + " — the chimp's hungry again!");
@@ -424,15 +403,7 @@ function feed(amount, origin){
     else updateMeter();
 }
 
-/* ---------- Chimp leans toward cursor + poke ---------- */
-if(!reduceMotion && window.gsap){
-    window.addEventListener('mousemove', e=>{
-        const rect = chimp.getBoundingClientRect();
-        const dx = (e.clientX - (rect.left+rect.width/2)) / window.innerWidth;
-        const dy = (e.clientY - (rect.top+rect.height/2)) / window.innerHeight;
-        gsap.to(chimp, {rotation:dx*6, x:dx*14, y:dy*8, duration:.6, overwrite:'auto', transformOrigin:'50% 90%'});
-    });
-}
+/* ---------- Poke the chimp (head/eye tracking is handled by the rig) ---------- */
 const stage = document.getElementById('chimpStage');
 let combo = 0, comboTimer = null;
 function showCombo(n){
@@ -454,12 +425,7 @@ function poke(){
     const rect = stage.getBoundingClientRect();
     feed(amount, {x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight});
     if(combo>=2) showCombo(combo);
-    if(reduceMotion || !window.gsap) return;
-    const lift = Math.min(28 + combo*4, 60);
-    gsap.fromTo(chimp,{},{keyframes:[
-        {y:-lift,scale:1.05,rotation:combo%2?5:-5,duration:.18,ease:'power2.out'},
-        {y:0,scale:1,rotation:0,duration:.5,ease:'bounce.out'}
-    ], transformOrigin:'50% 90%', overwrite:'auto'});
+    chimpReact(combo);
 }
 stage.addEventListener('click', poke);
 stage.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
@@ -511,22 +477,9 @@ if(window.VanillaTilt && !reduceMotion){
     VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {max:9, speed:400, glare:true, 'max-glare':0.18, scale:1.02});
 }
 
-/* ---------- Count-up stats ---------- */
-(function(){
-    const vals = document.querySelectorAll('.val[data-count]');
-    function run(el){
-        const t=+el.dataset.count;
-        if(reduceMotion || !window.gsap){ el.textContent=t; return; }
-        const o={n:0}; gsap.to(o,{n:t,duration:1.2,ease:'power2.out',onUpdate:()=>el.textContent=Math.round(o.n)});
-    }
-    if(window.gsap && window.ScrollTrigger && !reduceMotion){
-        gsap.registerPlugin(ScrollTrigger);
-        vals.forEach(el=>ScrollTrigger.create({trigger:el,start:'top 92%',once:true,onEnter:()=>run(el)}));
-    } else vals.forEach(run);
-})();
-
 /* ---------- Scroll reveals ---------- */
 if(window.gsap && window.ScrollTrigger && !reduceMotion){
+    gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray('.reveal').forEach(el=>{
         gsap.to(el,{opacity:1,y:0,duration:.7,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 85%'}});
     });
@@ -539,7 +492,7 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
     const c = document.getElementById('leaves'); if(!c) return;
     const ctx = c.getContext('2d');
     let w,h,leaves,mx=0,my=0;
-    const COLORS = ['#4caa6a','#3c8a55','#5cba7a','#2f7d4f'];
+    const COLORS = ['#42e08a','#19c172','#a6f24a','#16d6c4'];
     function resize(){ w=c.width=c.offsetWidth; h=c.height=c.offsetHeight; }
     function make(){ return {x:Math.random()*w, y:Math.random()*h, r:6+Math.random()*10,
         sp:0.3+Math.random()*0.7, sway:Math.random()*Math.PI*2, depth:0.4+Math.random()*0.8,

@@ -77,23 +77,25 @@
     .logo b{font-weight:800;color:var(--slate);opacity:.78;font-size:1.02em;letter-spacing:-0.01em}
     .logo.ok b{display:none}
 
-    /* small chimp portal */
+    /* hero portrait (keynote-style) */
     .portal{position:relative;display:flex;justify-content:center}
-    .portal .ring{
-        position:relative;width:min(280px,72vw);aspect-ratio:1;border-radius:50%;cursor:pointer;
-        background:radial-gradient(120% 120% at 50% 25%,#3f6d4d,#1f4030);
-        box-shadow:0 26px 50px rgba(21,32,43,.28), inset 0 0 0 6px rgba(255,255,255,.06);
-        display:flex;align-items:flex-end;justify-content:center;overflow:hidden;text-decoration:none;
+    .portrait{
+        position:relative;width:min(330px,78vw);aspect-ratio:4/5;border-radius:26px;overflow:hidden;
+        background:#0e1813;margin:0;
+        box-shadow:0 30px 60px rgba(21,32,43,.34), inset 0 0 0 1px rgba(21,32,43,.1);
     }
-    .portal .ring svg,.portal .ring img{width:82%;height:auto;margin-bottom:-2%;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35));will-change:transform}
-    .portal .label{
-        position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;
-        background:var(--banana);color:var(--ink);font-weight:700;font-size:.82em;padding:7px 15px;border-radius:999px;
-        box-shadow:0 6px 14px rgba(245,185,33,.4);
-    }
+    .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;display:block;
+        filter:grayscale(1) contrast(1.04)}
+    .portrait::after{content:"";position:absolute;inset:0;pointer-events:none;
+        background:linear-gradient(180deg,transparent 56%,rgba(8,18,12,.45) 100%)}
+    .portrait .plate{
+        position:absolute;left:16px;bottom:14px;z-index:1;display:flex;align-items:center;gap:9px;
+        font-weight:700;font-size:.86em;color:#fff;letter-spacing:.01em;text-shadow:0 1px 6px rgba(0,0,0,.4)}
+    .portrait .plate .dot{width:9px;height:9px;border-radius:50%;background:var(--banana);box-shadow:0 0 0 4px rgba(245,185,33,.28)}
     @media(max-width:760px){
         .hero .wrap{grid-template-columns:1fr;gap:36px}
         .portal{order:-1}
+        .portrait{width:min(280px,70vw)}
     }
 
     /* ---------- STATS BAND ---------- */
@@ -180,7 +182,8 @@
         padding:46px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;overflow:hidden;position:relative}
     .alter::before{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
         background:radial-gradient(circle,rgba(245,185,33,.25),transparent 70%)}
-    .alter .face{width:120px;height:120px;flex:none;object-fit:contain;position:relative;z-index:1}
+    .alter .face{height:148px;width:auto;flex:none;position:relative;z-index:1}
+    .alter .face svg{height:100%;width:auto;display:block;filter:drop-shadow(0 12px 18px rgba(0,0,0,.32))}
     .alter .txt{position:relative;z-index:1}
     .alter h2{font-size:clamp(1.6em,4vw,2.2em);font-weight:800;letter-spacing:-0.02em}
     .alter h2 span{color:var(--banana)}
@@ -240,12 +243,12 @@
             </div>
         </div>
 
-        <!-- Small chimp portal to HQ -->
+        <!-- Hero portrait -->
         <div class="portal">
-            <a class="ring" id="portal" href="/khakichimp/" aria-label="Enter Khakichimp HQ — my developer apps">
-                <img id="miniChimp" class="portal-img" src="/assets/chimp.svg" alt="Khakichimp mascot — chimp in khaki pants" draggable="false">
-                <span class="label">Tap to enter HQ →</span>
-            </a>
+            <figure class="portrait">
+                <img src="/assets/josh-engels.jpg" alt="Josh Engels" draggable="false">
+                <figcaption class="plate"><span class="dot"></span> Josh Engels</figcaption>
+            </figure>
         </div>
     </div>
 </header>
@@ -400,7 +403,7 @@
 <section class="block">
     <div class="wrap">
         <div class="alter reveal">
-            <img class="face" src="/assets/chimp.svg" alt="Khakichimp" draggable="false">
+            <div class="face" data-chimp role="img" aria-label="Khakichimp mascot"></div>
             <div class="txt">
                 <h2>By night, I build apps as <span>Khakichimp</span></h2>
                 <p>Native, privacy-first iOS apps — no trackers, no nonsense. Step into the lab to meet the chimp and explore everything I've shipped.</p>
@@ -425,6 +428,7 @@
 
 <script src="/assets/vendor/gsap.min.js"></script>
 <script src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script src="/assets/chimp.js"></script>
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();
@@ -509,27 +513,20 @@ document.querySelectorAll('#logos .logo').forEach(el=>{
     });
 })();
 
-/* Mini chimp: idle bob, leans toward cursor, "leaps" to HQ on click */
+/* Hero portrait: subtle keynote-style parallax tilt on pointer move */
 if(!reduceMotion && window.gsap){
-    const portal = document.getElementById('portal');
-    const mini = document.getElementById('miniChimp');
-    const bob = gsap.to(mini,{y:-6,duration:1.4,yoyo:true,repeat:-1,ease:'sine.inOut'});
-
-    portal.addEventListener('mousemove', e=>{
-        const r = portal.getBoundingClientRect();
-        const dx = (e.clientX - (r.left+r.width/2))/r.width;
-        gsap.to(mini,{x:dx*16,rotation:dx*5,duration:.4,overwrite:'auto'});
-    });
-    portal.addEventListener('mouseleave', ()=>gsap.to(mini,{x:0,rotation:0,duration:.5}));
-    /* leap transition */
-    portal.addEventListener('click', e=>{
-        e.preventDefault();
-        bob.kill();
-        gsap.killTweensOf(mini);
-        gsap.timeline({onComplete:()=>{window.location.href='/khakichimp/';}})
-            .to(mini,{y:-40,scale:1.08,duration:.18,ease:'power2.out'})
-            .to(mini,{y:-300,duration:.45,ease:'power2.in'},'+=0.02');
-    });
+    const portrait = document.querySelector('.portrait');
+    if(portrait){
+        const card = portrait;
+        card.style.transition = 'transform .3s ease';
+        card.addEventListener('mousemove', e=>{
+            const r = card.getBoundingClientRect();
+            const dx = (e.clientX - (r.left+r.width/2))/r.width;
+            const dy = (e.clientY - (r.top+r.height/2))/r.height;
+            gsap.to(card,{rotationY:dx*5,rotationX:-dy*5,transformPerspective:800,duration:.4,overwrite:'auto'});
+        });
+        card.addEventListener('mouseleave', ()=>gsap.to(card,{rotationY:0,rotationX:0,duration:.5}));
+    }
 }
 </script>
 </body>
