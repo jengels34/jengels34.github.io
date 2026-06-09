@@ -9,11 +9,11 @@
     <style>
         /* ---------- Theme (per-app accent) ---------- */
         :root{
-            --accent:#2f86eb; --accent-deep:#1f63c4; --accent-ink:#0f3c84;
-            --accent-soft:#eaf3ff; --accent-soft2:#f4f9ff;
+            --accent:#9e66d1; --accent-deep:#8843c6; --accent-ink:#7033a9;
+            --accent-soft:#f5effa; --accent-soft2:#fbf9fd;
             --privacy:#16a34a; --privacy-soft:#f0fdf4; --privacy-soft2:#dcfce7;
             --ink:#1f2937; --muted:#52607a; --faint:#6b7890;
-            --line:rgba(15,60,132,.12); --bg:#ffffff;
+            --line:rgba(81,37,121,.12); --bg:#ffffff;
         }
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth;background:var(--bg)}
@@ -23,7 +23,7 @@
             -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
         }
         a{color:inherit}
-        ::selection{background:rgba(47,134,235,.25);color:var(--ink)}
+        ::selection{background:rgba(158,102,209,.25);color:var(--ink)}
         .wrap{max-width:860px;margin:0 auto;padding:0 22px}
 
         /* ---------- HERO ---------- */
@@ -42,6 +42,7 @@
         .topbar a.back:hover{background:rgba(255,255,255,.14)}
         .hero-inner{position:relative;z-index:2;padding:34px 22px 64px;max-width:760px;margin:0 auto}
         .app-icon{font-size:3.6em;line-height:1;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+        .app-icon img{width:88px;height:88px;border-radius:20px;display:block;margin:0 auto}
         .hero h1{font-size:clamp(2.2em,7vw,3.3em);font-weight:800;letter-spacing:-0.03em;margin-top:14px}
         .hero .tag{font-size:clamp(1.02em,2.4vw,1.18em);opacity:.94;margin-top:12px}
         .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
@@ -76,7 +77,7 @@
 
         .contact-card{margin-top:30px;text-align:center;border-radius:22px;padding:34px 24px;color:#fff;
             background:linear-gradient(160deg,var(--accent) 0%,var(--accent-deep) 100%);
-            box-shadow:0 16px 40px rgba(31,99,196,.3)}
+            box-shadow:0 16px 40px rgba(136,67,198,.3)}
         .contact-card h3{font-size:1.3em;margin-bottom:6px}
         .contact-card a.email{display:inline-block;margin-top:10px;background:#fff;color:var(--accent-deep);
             font-weight:800;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:1.05em;transition:transform .18s}
@@ -124,7 +125,7 @@
             <a class="back" href="/khakichimp/">← Khakichimp HQ</a>
         </div>
         <div class="hero-inner">
-            <div class="app-icon">✅</div>
+            <div class="app-icon"><img src="/assets/icons/tasks-uniflow.png" alt="Tasks - Uniflow app icon" width="88" height="88"></div>
             <h1>Tasks - Uniflow</h1>
             <p class="tag">A native iOS task manager that unifies local tasks, Notion, and Apple Reminders.</p>
             <div class="cta-row">
