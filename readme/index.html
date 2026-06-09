@@ -43,8 +43,11 @@
         <p>A native reading companion in the works — built with the same privacy-first, on-device philosophy as every Khakichimp app. No trackers, no clutter, just your books.</p>
         <div class="links">
             <a class="btn primary" href="/khakichimp/">← Back to Khakichimp HQ</a>
-            <a class="btn ghost" href="mailto:khakichimp@gmail.com">Get notified</a>
+            <a class="btn ghost contact" data-u="khakichimp" data-d="gmail.com" href="#">Get notified</a>
         </div>
     </div>
+<script>
+document.querySelectorAll('a.contact[data-u]').forEach(a=>{a.href='mailto:'+a.dataset.u+'@'+a.dataset.d;});
+</script>
 </body>
 </html>

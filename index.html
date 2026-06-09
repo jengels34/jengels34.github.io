@@ -70,6 +70,9 @@
     .worked .row{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center}
     .logo{display:inline-flex;align-items:center;height:30px}
     .logo img{height:30px;width:auto;max-width:140px;object-fit:contain;opacity:.85;transition:opacity .2s,filter .2s;filter:saturate(.95)}
+    /* USAF mark stacks wings over the wordmark, so bump it to match visual weight */
+    .logo.logo-usaf{height:46px}
+    .logo.logo-usaf img{height:46px}
     .logo:hover img{opacity:1;filter:saturate(1.05)}
     .logo b{font-weight:800;color:var(--slate);opacity:.78;font-size:1.02em;letter-spacing:-0.01em}
     .logo.ok b{display:none}
@@ -232,7 +235,7 @@
                     <span class="logo" data-name="Apple" data-srcs="/assets/logos/apple.svg|/assets/logos/apple.png|https://logo.clearbit.com/apple.com"><b>Apple</b></span>
                     <span class="logo" data-name="DraftKings" data-srcs="/assets/logos/draftkings.svg|/assets/logos/draftkings.png|https://logo.clearbit.com/draftkings.com"><b>DraftKings</b></span>
                     <span class="logo" data-name="SAIC" data-srcs="/assets/logos/saic.svg|/assets/logos/saic.png|https://logo.clearbit.com/saic.com"><b>SAIC</b></span>
-                    <span class="logo" data-name="U.S. Air Force" data-srcs="/assets/logos/usaf.svg|/assets/logos/usaf.png|https://logo.clearbit.com/airforce.com"><b>U.S. Air Force</b></span>
+                    <span class="logo logo-usaf" data-name="U.S. Air Force" data-srcs="/assets/logos/usaf.svg|/assets/logos/usaf.png|https://logo.clearbit.com/airforce.com"><b>U.S. Air Force</b></span>
                 </div>
             </div>
         </div>
@@ -411,12 +414,12 @@
 <footer>
     <div class="wrap">
         <div class="links">
-            <a href="mailto:engelsjosh@gmail.com">engelsjosh@gmail.com</a>
+            <a class="contact" data-u="engelsjosh" data-d="gmail.com" href="#">Email me</a>
             <a href="https://www.linkedin.com/in/josh-engels/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
             <a href="/khakichimp/">Khakichimp HQ</a>
         </div>
-        <div class="copy">© <span id="yr"></span> Josh Engels · Overland Park, Kansas</div>
+        <div class="copy">© <span id="yr"></span> Josh Engels</div>
     </div>
 </footer>
 
@@ -425,6 +428,13 @@
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
+document.querySelectorAll('a.contact[data-u]').forEach(a=>{
+    const addr = a.dataset.u + '@' + a.dataset.d;
+    a.href = 'mailto:' + addr;
+    a.setAttribute('aria-label', 'Email ' + addr);
+});
 
 /* scroll progress bar */
 const progress = document.getElementById('progress');
