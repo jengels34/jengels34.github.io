@@ -78,6 +78,11 @@
     .cta:hover{box-shadow:0 16px 32px rgba(255,207,63,.45)}
     .cta.alt{background:transparent;color:var(--cream);border:1px solid rgba(251,246,234,.3);box-shadow:none}
     .cta.alt:hover{background:rgba(251,246,234,.08)}
+    .hero-apps{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:30px}
+    .hero-apps a{display:block;line-height:0;border-radius:15px;transition:transform .2s;will-change:transform}
+    .hero-apps a:hover{transform:translateY(-4px) scale(1.05)}
+    .hero-apps img{width:58px;height:58px;border-radius:15px;display:block;
+        box-shadow:0 10px 22px rgba(0,0,0,.4);border:1px solid rgba(251,246,234,.14)}
     .scrolldown{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;font-size:.78em;opacity:.7;letter-spacing:.12em;text-transform:uppercase}
     .scrolldown span{display:block;font-size:1.4em;margin-top:2px;animation:bob 1.6s ease-in-out infinite}
     @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
@@ -220,6 +225,11 @@
         <div class="cta-row">
             <a class="cta" id="ctaApps" href="#apps">See the apps ↓</a>
             <a class="cta alt" href="#stack">How they're built</a>
+        </div>
+        <div class="hero-apps" aria-label="The apps">
+            <a href="/tasks-uniflow/" title="Tasks - Uniflow"><img src="/assets/icons/tasks-uniflow.png" alt="Tasks - Uniflow app icon" width="58" height="58"></a>
+            <a href="/readme/" title="ReadMe"><img src="/assets/icons/readme.png" alt="ReadMe app icon" width="58" height="58"></a>
+            <a href="/food-in-five/" title="Food in Five"><img src="/assets/icons/food-in-five.png" alt="Food in Five app icon" width="58" height="58"></a>
         </div>
     </div>
 
