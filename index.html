@@ -10,9 +10,11 @@
     :root{
         --ink:#15202b; --slate:#475569; --mist:#64748b;
         --paper:#f7f6f2; --card:#ffffff; --line:#e6e2d8;
-        --khaki:#b89b6a; --khaki-deep:#8f7647;
-        --jungle:#2f7d4f; --jungle-deep:#1d5536; --banana:#f5b921; --coral:#ff6b54;
-        --accent:#2f7d4f;
+        /* indigo + coral accent system */
+        --khaki:#a5b4fc; --khaki-deep:#4f46e5;
+        --jungle:#5b53e6; --jungle-deep:#4338ca; --banana:#ff6b54; --coral:#ff6b54;
+        --accent:#4f46e5;
+        --panel-a:#23264d; --panel-b:#14172e;
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -42,7 +44,7 @@
     nav .menu a:hover{color:var(--ink)}
     nav .menu a.hq{
         color:var(--ink);background:var(--banana);padding:8px 15px;border-radius:999px;
-        box-shadow:0 6px 16px rgba(245,185,33,.35);display:inline-flex;align-items:center;gap:6px;
+        box-shadow:0 6px 16px rgba(255,107,84,.35);display:inline-flex;align-items:center;gap:6px;
     }
     nav .menu a.hq:hover{transform:translateY(-1px)}
     @media(max-width:640px){nav .menu a.txt{display:none}}
@@ -52,7 +54,7 @@
     .hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
     .hero .eyebrow{
         display:inline-block;font-size:.76em;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-        color:var(--jungle-deep);background:rgba(47,125,79,.1);padding:6px 13px;border-radius:999px;margin-bottom:18px;
+        color:var(--jungle-deep);background:rgba(79,70,229,.1);padding:6px 13px;border-radius:999px;margin-bottom:18px;
     }
     .hero h1{font-size:clamp(2.4em,6.5vw,4em);line-height:1.04;font-weight:800;letter-spacing:-0.03em}
     .hero h1 em{font-style:normal;color:var(--jungle-deep)}
@@ -81,17 +83,17 @@
     .portal{position:relative;display:flex;justify-content:center}
     .portrait{
         position:relative;width:min(330px,78vw);aspect-ratio:4/5;border-radius:26px;overflow:hidden;
-        background:#0e1813;margin:0;
+        background:var(--panel-b);margin:0;
         box-shadow:0 30px 60px rgba(21,32,43,.34), inset 0 0 0 1px rgba(21,32,43,.1);
     }
     .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;display:block;
         filter:grayscale(1) contrast(1.04)}
     .portrait::after{content:"";position:absolute;inset:0;pointer-events:none;
-        background:linear-gradient(180deg,transparent 56%,rgba(8,18,12,.45) 100%)}
+        background:linear-gradient(180deg,transparent 56%,rgba(20,23,46,.5) 100%)}
     .portrait .plate{
         position:absolute;left:16px;bottom:14px;z-index:1;display:flex;align-items:center;gap:9px;
         font-weight:700;font-size:.86em;color:#fff;letter-spacing:.01em;text-shadow:0 1px 6px rgba(0,0,0,.4)}
-    .portrait .plate .dot{width:9px;height:9px;border-radius:50%;background:var(--banana);box-shadow:0 0 0 4px rgba(245,185,33,.28)}
+    .portrait .plate .dot{width:9px;height:9px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 4px rgba(255,107,84,.28)}
     @media(max-width:760px){
         .hero .wrap{grid-template-columns:1fr;gap:36px}
         .portal{order:-1}
@@ -115,7 +117,7 @@
     .head .lead{color:var(--slate);margin-top:10px;max-width:620px}
 
     /* ---------- KEYNOTE (selected work) ---------- */
-    .keynote{background:linear-gradient(165deg,#15271d 0%,#0e1813 100%);color:#eef3ee;position:relative;overflow:hidden}
+    .keynote{background:linear-gradient(165deg,var(--panel-a) 0%,var(--panel-b) 100%);color:#eef0f8;position:relative;overflow:hidden}
     .keynote .kn-pin{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:70px 0}
     .kn-head{max-width:980px;margin:0 auto;padding:0 24px;width:100%;margin-bottom:34px}
     .kn-head .kicker{color:var(--banana)}
@@ -129,7 +131,7 @@
         padding:38px;display:flex;flex-direction:column;position:relative;overflow:hidden;
     }
     .kn-track.horizontal .kn-panel{flex:0 0 min(72vw,600px)}
-    .kn-panel .idx{font-size:3.2em;font-weight:800;line-height:1;color:rgba(245,185,33,.22);letter-spacing:-0.04em}
+    .kn-panel .idx{font-size:3.2em;font-weight:800;line-height:1;color:rgba(255,107,84,.28);letter-spacing:-0.04em}
     .kn-panel .era{font-size:.74em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--banana);opacity:.9;margin-top:14px}
     .kn-panel h3{font-size:clamp(1.4em,3vw,2em);font-weight:800;letter-spacing:-0.02em;margin:8px 0 12px;color:#fff}
     .kn-panel p{color:rgba(238,243,238,.82);font-size:1.02em;flex:1}
@@ -149,7 +151,7 @@
     .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:3px;
         background:linear-gradient(var(--jungle),var(--khaki));border-radius:3px}
     .role{position:relative;padding:0 0 34px 42px}
-    .role::before{content:"";position:absolute;left:0;top:4px;width:21px;height:21px;border-radius:50%;
+    .role::before{content:"";position:absolute;left:0;top:4px;width:21px;height:21px;border-radius:50%;box-sizing:border-box;
         background:var(--card);border:4px solid var(--jungle);box-shadow:0 2px 6px rgba(0,0,0,.1)}
     .role.current::before{border-color:var(--banana);background:var(--banana)}
     .role .when{font-size:.82em;font-weight:700;color:var(--khaki-deep);letter-spacing:.02em}
@@ -160,9 +162,9 @@
     .role .reflinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
     .role .reflinks a{
         font-size:.82em;font-weight:600;text-decoration:none;color:var(--jungle-deep);
-        background:rgba(47,125,79,.09);padding:6px 12px;border-radius:999px;transition:.2s;
+        background:rgba(79,70,229,.09);padding:6px 12px;border-radius:999px;transition:.2s;
     }
-    .role .reflinks a:hover{background:rgba(47,125,79,.18);transform:translateY(-1px)}
+    .role .reflinks a:hover{background:rgba(79,70,229,.18);transform:translateY(-1px)}
     .role .reflinks a.apps{background:var(--banana);color:var(--ink)}
 
     /* ---------- SKILLS / EDU ---------- */
@@ -178,10 +180,10 @@
     .edu .yr{float:right;color:var(--mist);font-size:.85em;font-weight:600}
 
     /* ---------- ALTER EGO ---------- */
-    .alter{background:linear-gradient(150deg,#1f4030,#15291f);color:#fbf6ea;border-radius:28px;
+    .alter{background:linear-gradient(150deg,#262a55,var(--panel-b));color:#eef0f8;border-radius:28px;
         padding:46px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;overflow:hidden;position:relative}
     .alter::before{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
-        background:radial-gradient(circle,rgba(245,185,33,.25),transparent 70%)}
+        background:radial-gradient(circle,rgba(255,107,84,.22),transparent 70%)}
     .alter .face{height:148px;width:auto;flex:none;position:relative;z-index:1}
     .alter .face svg{height:100%;width:auto;display:block;filter:drop-shadow(0 12px 18px rgba(0,0,0,.32))}
     .alter .txt{position:relative;z-index:1}
