@@ -90,7 +90,15 @@
         box-shadow:0 10px 24px rgba(0,0,0,.3);cursor:pointer;transition:transform .2s;user-select:none;
     }
     .banana-meter:hover{transform:translateY(-2px)}
-    .banana-meter .n{color:var(--banana);min-width:1ch}
+    .banana-meter{border:1px solid rgba(255,207,63,.35);font:inherit}
+    .banana-meter .lbl{opacity:.9;font-weight:600}
+    .banana-meter .track{width:52px;height:6px;border-radius:3px;background:rgba(251,246,234,.2);overflow:hidden;display:inline-block}
+    .banana-meter .fill{display:block;height:100%;width:0;background:var(--banana);border-radius:3px;transition:width .25s}
+    .banana-meter .n{color:var(--banana);font-variant-numeric:tabular-nums}
+    .banana-toast{position:fixed;left:50%;top:20%;transform:translate(-50%,-10px);z-index:56;max-width:90vw;
+        background:rgba(21,41,31,.94);border:1px solid rgba(255,207,63,.4);color:var(--cream);
+        padding:14px 22px;border-radius:14px;font-weight:700;text-align:center;
+        box-shadow:0 16px 40px rgba(0,0,0,.4);opacity:0;pointer-events:none}
     .combo-pop{position:fixed;z-index:55;transform:translate(-50%,-50%);pointer-events:none;
         font-weight:800;color:var(--banana);text-shadow:0 2px 10px rgba(0,0,0,.4);white-space:nowrap}
 
@@ -203,7 +211,7 @@
         <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" aria-label="Poke the chimp to throw bananas">
             <img id="chimp" class="chimp-img" src="/assets/chimp.svg" alt="Khakichimp — a chimp in khaki pants" draggable="false">
         </div>
-        <div class="chimp-hint">↑ poke me for bananas</div>
+        <div class="chimp-hint">↑ poke me to feed the chimp</div>
 
         <span class="eyebrow">Native · Privacy-first · iOS</span>
         <h1>Khaki<span class="pants">chimp</span> HQ</h1>
@@ -302,15 +310,19 @@
     <div class="mark">🐵</div>
     <h3>Khakichimp</h3>
     <div class="links">
-        <a href="mailto:khakichimp@gmail.com">khakichimp@gmail.com</a>
+        <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">Email me</a>
         <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
         <a href="/">← Back to Josh Engels</a>
     </div>
     <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
 </footer>
 
-<!-- live banana counter -->
-<div class="banana-meter" id="bananaMeter" title="Throw a banana">🍌 <span class="n" id="bananaN">0</span> thrown</div>
+<!-- feed-the-chimp goal meter -->
+<button class="banana-meter" id="bananaMeter" type="button" title="Feed the chimp a banana" aria-label="Feed the chimp a banana">
+    🍌 <span class="lbl">Feed the chimp</span>
+    <span class="track"><span class="fill" id="bananaFill"></span></span>
+    <span class="n"><span id="bananaN">0</span>/<span id="bananaGoal">12</span></span>
+</button>
 
 <!-- ============ LIBRARIES ============ -->
 <script src="/assets/vendor/gsap.min.js"></script>
@@ -322,6 +334,13 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 document.getElementById('yr').textContent = new Date().getFullYear();
 const chimp = document.getElementById('chimp');
 
+/* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
+document.querySelectorAll('a.contact[data-u]').forEach(a=>{
+    const addr = a.dataset.u + '@' + a.dataset.d;
+    a.href = 'mailto:' + addr;
+    a.setAttribute('aria-label', 'Email ' + addr);
+});
+
 /* scroll progress */
 const progress = document.getElementById('progress');
 function setProgress(){
@@ -330,29 +349,68 @@ function setProgress(){
 }
 window.addEventListener('scroll', setProgress, {passive:true}); setProgress();
 
-/* ---------- Banana cannon + live counter ---------- */
+/* ---------- Feed-the-chimp banana game ---------- */
 let bananaShape = null;
 if(typeof confetti === 'function' && confetti.shapeFromText){
     try{ bananaShape = confetti.shapeFromText({text:'🍌', scalar:2.2}); }catch(e){}
 }
-let bananaCount = 0;
-const bananaN = document.getElementById('bananaN');
-function bumpCounter(by){
-    bananaCount += by;
-    bananaN.textContent = bananaCount;
-    if(window.gsap && !reduceMotion) gsap.fromTo('#bananaMeter',{scale:1},{scale:1.12,duration:.12,yoyo:true,repeat:1});
+const fillEl = document.getElementById('bananaFill');
+const fedEl  = document.getElementById('bananaN');
+const goalEl = document.getElementById('bananaGoal');
+const meterEl = document.getElementById('bananaMeter');
+let fed = 0, goal = 12, level = 1, celebrating = false;
+goalEl.textContent = goal;
+
+/* cosmetic banana spray (does NOT touch the goal) */
+function spray(origin, count){
+    if(typeof confetti !== 'function') return;
+    confetti({
+        particleCount:count, spread:72, startVelocity:42, origin,
+        shapes: bananaShape?[bananaShape]:undefined,
+        colors: bananaShape?undefined:['#ffcf3f','#f5b921','#ff6b54'],
+        scalar: bananaShape?1.7:1.1, ticks:220
+    });
 }
-function throwBananas(origin, count){
-    count = count || 18;
-    if(typeof confetti === 'function'){
-        confetti({
-            particleCount:count, spread:72, startVelocity:42, origin,
-            shapes: bananaShape?[bananaShape]:undefined,
-            colors: bananaShape?undefined:['#ffcf3f','#f5b921','#ff6b54'],
-            scalar: bananaShape?1.7:1.1, ticks:220
-        });
+function updateMeter(){
+    fedEl.textContent = fed;
+    fillEl.style.width = Math.min(100, fed/goal*100) + '%';
+    if(window.gsap && !reduceMotion) gsap.fromTo(meterEl,{scale:1},{scale:1.08,duration:.1,yoyo:true,repeat:1});
+}
+function toast(msg){
+    const t = document.createElement('div');
+    t.className = 'banana-toast'; t.textContent = msg;
+    document.body.appendChild(t);
+    if(window.gsap && !reduceMotion){
+        gsap.fromTo(t,{opacity:0,y:-10},{opacity:1,y:0,duration:.3});
+        gsap.to(t,{opacity:0,y:-10,duration:.4,delay:2.4,onComplete:()=>t.remove()});
+    } else { t.style.opacity=1; setTimeout(()=>t.remove(),2600); }
+}
+function celebrate(){
+    celebrating = true;
+    if(typeof confetti === 'function' && !reduceMotion){
+        const end = Date.now()+800;
+        (function frame(){ spray({x:Math.random(), y:-0.1}, 7); if(Date.now()<end) requestAnimationFrame(frame); })();
+    } else spray({x:0.5,y:0.2}, 30);
+    if(window.gsap && !reduceMotion){
+        gsap.fromTo(chimp,{},{keyframes:[
+            {y:-44,scale:1.1,duration:.2,ease:'power2.out'},
+            {rotation:360,duration:.6,ease:'power1.inOut'},
+            {y:0,scale:1,rotation:0,duration:.4,ease:'bounce.out'}
+        ], transformOrigin:'50% 60%', overwrite:'auto'});
     }
-    bumpCounter(count);
+    toast(level===1
+        ? "🎉 You filled the chimp! He's stuffed — now go meet the apps ↓"
+        : "🍌 Level " + (level+1) + " — the chimp's hungry again!");
+    level++; goal += 8;
+    setTimeout(()=>{ fed=0; goalEl.textContent=goal; updateMeter(); celebrating=false; }, 1500);
+}
+/* feeding advances the goal; combo (rapid feeding) feeds more per tap */
+function feed(amount, origin){
+    if(celebrating) return;
+    fed += amount;
+    spray(origin, 6 + amount*4);
+    if(fed >= goal){ fed = goal; updateMeter(); celebrate(); }
+    else updateMeter();
 }
 
 /* ---------- Chimp leans toward cursor + poke ---------- */
@@ -379,41 +437,37 @@ function showCombo(n){
     gsap.fromTo(el,{y:0,opacity:1,scale:.7},{y:-70,opacity:0,scale:1.25,duration:.9,ease:'power2.out',onComplete:()=>el.remove()});
 }
 function poke(){
+    if(celebrating) return;
     combo++; clearTimeout(comboTimer); comboTimer = setTimeout(()=>combo=0, 1400);
-    const burst = Math.min(14 + combo*6, 72);
+    const amount = 1 + Math.min(combo-1, 4);   // 1–5 per poke; rapid taps feed faster
     const rect = stage.getBoundingClientRect();
-    throwBananas({x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight}, burst);
+    feed(amount, {x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight});
     if(combo>=2) showCombo(combo);
     if(reduceMotion || !window.gsap) return;
-    const lift = Math.min(30 + combo*4, 64);
+    const lift = Math.min(28 + combo*4, 60);
     gsap.fromTo(chimp,{},{keyframes:[
-        {y:-lift,scale:1.06,rotation:combo%2?5:-5,duration:.18,ease:'power2.out'},
-        {y:0,scale:1,rotation:0,duration:.55,ease:'bounce.out'}
+        {y:-lift,scale:1.05,rotation:combo%2?5:-5,duration:.18,ease:'power2.out'},
+        {y:0,scale:1,rotation:0,duration:.5,ease:'bounce.out'}
     ], transformOrigin:'50% 90%', overwrite:'auto'});
 }
 stage.addEventListener('click', poke);
 stage.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
 stage.tabIndex = 0;
 
-/* feed button + banana meter */
+/* "Feed the chimp" button feeds a chunk; the corner meter feeds one */
 document.getElementById('feedBtn').addEventListener('click', e=>{
     const r=e.currentTarget.getBoundingClientRect();
-    throwBananas({x:(r.left+r.width/2)/innerWidth, y:(r.top+r.height/2)/innerHeight}, 22);
+    feed(3, {x:(r.left+r.width/2)/innerWidth, y:(r.top+r.height/2)/innerHeight});
 });
-document.getElementById('bananaMeter').addEventListener('click', ()=>{
-    throwBananas({x:0.92, y:0.92}, 10);
+meterEl.addEventListener('click', ()=>{
+    const r=meterEl.getBoundingClientRect();
+    feed(1, {x:(r.left+r.width/2)/innerWidth, y:(r.top+r.height/2)/innerHeight});
 });
 
 /* idle bob */
 if(!reduceMotion && window.gsap){
     gsap.to('#chimpStage',{y:'+=8',duration:2.2,yoyo:true,repeat:-1,ease:'sine.inOut'});
 }
-
-/* welcome banana shower */
-window.addEventListener('load', ()=>{
-    if(reduceMotion) return;
-    setTimeout(()=>throwBananas({x:0.5, y:0.15}, 26), 450);
-});
 
 /* ---------- Rotating word ---------- */
 (function(){
