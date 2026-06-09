@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "jengels34-github-io",
+  "description": "Static site for Khakichimp apps (Josh Engels).",
+  "scripts": {
+    "lint:html": "htmlhint \"**/*.html\" --ignore \"node_modules/**\"",
+    "check:links": "node scripts/check-links.mjs .",
+    "test": "npm run check:links && npx --yes htmlhint@1 \"**/*.html\" --ignore \"node_modules/**\""
+  }
+}
