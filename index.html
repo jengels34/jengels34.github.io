@@ -182,7 +182,8 @@
         padding:46px;display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;overflow:hidden;position:relative}
     .alter::before{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
         background:radial-gradient(circle,rgba(245,185,33,.25),transparent 70%)}
-    .alter .face{width:120px;height:120px;flex:none;object-fit:contain;position:relative;z-index:1}
+    .alter .face{height:148px;width:auto;flex:none;position:relative;z-index:1}
+    .alter .face svg{height:100%;width:auto;display:block;filter:drop-shadow(0 12px 18px rgba(0,0,0,.32))}
     .alter .txt{position:relative;z-index:1}
     .alter h2{font-size:clamp(1.6em,4vw,2.2em);font-weight:800;letter-spacing:-0.02em}
     .alter h2 span{color:var(--banana)}
@@ -402,7 +403,7 @@
 <section class="block">
     <div class="wrap">
         <div class="alter reveal">
-            <img class="face" src="/assets/chimp.svg" alt="Khakichimp" draggable="false">
+            <div class="face" data-chimp role="img" aria-label="Khakichimp mascot"></div>
             <div class="txt">
                 <h2>By night, I build apps as <span>Khakichimp</span></h2>
                 <p>Native, privacy-first iOS apps — no trackers, no nonsense. Step into the lab to meet the chimp and explore everything I've shipped.</p>
@@ -427,6 +428,7 @@
 
 <script src="/assets/vendor/gsap.min.js"></script>
 <script src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script src="/assets/chimp.js"></script>
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();

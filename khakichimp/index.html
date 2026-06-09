@@ -224,7 +224,7 @@
 
     <div class="hero-inner">
         <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" aria-label="Poke the chimp to throw bananas">
-            <img id="chimp" class="chimp-img" src="/assets/chimp.svg" alt="Khakichimp — a chimp in khaki pants" draggable="false">
+            <div id="chimp" class="chimp-img" data-chimp aria-hidden="true"></div>
         </div>
         <div class="chimp-hint">↑ poke me to feed the chimp</div>
 
@@ -321,10 +321,14 @@
 <script src="/assets/vendor/ScrollTrigger.min.js"></script>
 <script src="/assets/vendor/vanilla-tilt.min.js"></script>
 <script src="/assets/vendor/confetti.browser.js"></script>
+<script src="/assets/chimp.js"></script>
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.getElementById('yr').textContent = new Date().getFullYear();
 const chimp = document.getElementById('chimp');
+function chimpRig(){ return chimp && chimp._chimp; }
+function chimpReact(c){ const r = chimpRig(); if(r) r.react(c); }
+function chimpCelebrate(){ const r = chimpRig(); if(r) r.celebrate(); }
 
 /* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
 document.querySelectorAll('a.contact[data-u]').forEach(a=>{
@@ -383,13 +387,7 @@ function celebrate(){
         const end = Date.now()+800;
         (function frame(){ spray({x:Math.random(), y:-0.1}, 7); if(Date.now()<end) requestAnimationFrame(frame); })();
     } else spray({x:0.5,y:0.2}, 30);
-    if(window.gsap && !reduceMotion){
-        gsap.fromTo(chimp,{},{keyframes:[
-            {y:-44,scale:1.1,duration:.2,ease:'power2.out'},
-            {rotation:360,duration:.6,ease:'power1.inOut'},
-            {y:0,scale:1,rotation:0,duration:.4,ease:'bounce.out'}
-        ], transformOrigin:'50% 60%', overwrite:'auto'});
-    }
+    chimpCelebrate();
     toast(level===1
         ? "🎉 You filled the chimp! He's stuffed — now go meet the apps ↓"
         : "🍌 Level " + (level+1) + " — the chimp's hungry again!");
@@ -405,15 +403,7 @@ function feed(amount, origin){
     else updateMeter();
 }
 
-/* ---------- Chimp leans toward cursor + poke ---------- */
-if(!reduceMotion && window.gsap){
-    window.addEventListener('mousemove', e=>{
-        const rect = chimp.getBoundingClientRect();
-        const dx = (e.clientX - (rect.left+rect.width/2)) / window.innerWidth;
-        const dy = (e.clientY - (rect.top+rect.height/2)) / window.innerHeight;
-        gsap.to(chimp, {rotation:dx*6, x:dx*14, y:dy*8, duration:.6, overwrite:'auto', transformOrigin:'50% 90%'});
-    });
-}
+/* ---------- Poke the chimp (head/eye tracking is handled by the rig) ---------- */
 const stage = document.getElementById('chimpStage');
 let combo = 0, comboTimer = null;
 function showCombo(n){
@@ -435,12 +425,7 @@ function poke(){
     const rect = stage.getBoundingClientRect();
     feed(amount, {x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight});
     if(combo>=2) showCombo(combo);
-    if(reduceMotion || !window.gsap) return;
-    const lift = Math.min(28 + combo*4, 60);
-    gsap.fromTo(chimp,{},{keyframes:[
-        {y:-lift,scale:1.05,rotation:combo%2?5:-5,duration:.18,ease:'power2.out'},
-        {y:0,scale:1,rotation:0,duration:.5,ease:'bounce.out'}
-    ], transformOrigin:'50% 90%', overwrite:'auto'});
+    chimpReact(combo);
 }
 stage.addEventListener('click', poke);
 stage.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
