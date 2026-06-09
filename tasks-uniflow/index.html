@@ -4,151 +4,253 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="j_NbcN-2qeRhGIFVQXqVtMTq3ZnCeipy3fx87GvOpDA" />
-    <title>Tasks - Uniflow</title>
+    <title>Tasks - Uniflow · Support & Info</title>
+    <meta name="description" content="Tasks - Uniflow — a native iOS task manager that unifies local tasks, Notion, and Apple Reminders. Support, features, and privacy.">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { background: white; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6; background: white; color: #262d35; min-height: 100vh;
-            letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        /* ---------- Theme (per-app accent) ---------- */
+        :root{
+            --accent:#2f86eb; --accent-deep:#1f63c4; --accent-ink:#0f3c84;
+            --accent-soft:#eaf3ff; --accent-soft2:#f4f9ff;
+            --privacy:#16a34a; --privacy-soft:#f0fdf4; --privacy-soft2:#dcfce7;
+            --ink:#1f2937; --muted:#52607a; --faint:#6b7890;
+            --line:rgba(15,60,132,.12); --bg:#ffffff;
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 30px 20px; }
-        .hero { text-align: center; padding: 30px 20px 10px; }
-        .hero h1 { font-size: 2.2em; color: hsl(210, 80%, 55%); margin: 0; }
-        .hero p { color: #475569; margin-top: 8px; }
-        .contact-card {
-            background: linear-gradient(135deg, hsl(210, 80%, 55%) 0%, hsl(210, 80%, 65%) 100%);
-            color: white; text-align: center; padding: 30px; border-radius: 24px; margin-bottom: 30px;
-            box-shadow: 0 8px 30px hsla(210, 80%, 55%, 0.35);
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;background:var(--bg)}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+            line-height:1.65;color:var(--ink);background:var(--bg);letter-spacing:-0.011em;
+            -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
         }
-        .contact-card h2 { color: white; margin: 0 0 15px 0; font-size: 1.4em; }
-        .email-link { color: white; text-decoration: none; font-weight: bold; font-size: 1.2em; }
-        .email-link:hover { text-decoration: underline; }
-        .section {
-            margin: 30px 0; padding: 25px; background: #fafafa; border-radius: 20px;
-            border-left: 4px solid hsl(210, 80%, 55%); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        a{color:inherit}
+        ::selection{background:rgba(47,134,235,.25);color:var(--ink)}
+        .wrap{max-width:860px;margin:0 auto;padding:0 22px}
+
+        /* ---------- HERO ---------- */
+        .hero{
+            position:relative;color:#fff;text-align:center;overflow:hidden;
+            background:linear-gradient(160deg,var(--accent) 0%,var(--accent-deep) 70%,var(--accent-ink) 100%);
         }
-        .section h2 { color: hsl(210, 80%, 55%); margin-top: 0; font-size: 1.4em; margin-bottom: 15px; }
-        .section p { color: #475569; }
-        .feature-list {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px; margin: 15px 0;
-        }
-        .feature-item {
-            background: white; padding: 15px; border-radius: 12px; border: 2px solid hsl(210, 80%, 55%);
-            text-align: center; font-weight: 500; color: #262d35;
-        }
-        .updates-section { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left-color: hsl(200, 80%, 60%); }
-        .updates-section h2 { color: hsl(200, 80%, 60%); }
-        .privacy-highlight { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-left-color: #22c55e; }
-        .privacy-highlight h2 { color: #16a34a; }
-        .app-store-link {
-            text-align: center; padding: 25px;
-            background: linear-gradient(135deg, hsl(210, 80%, 55%) 0%, hsl(210, 80%, 65%) 100%);
-            border-radius: 20px; color: white; margin: 30px 0; box-shadow: 0 8px 30px hsla(210, 80%, 55%, 0.35);
-        }
-        .app-store-link h2 { color: white; }
-        .app-store-link a {
-            display: inline-block; background: white; color: hsl(210, 80%, 55%); padding: 15px 30px;
-            border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 1.1em; margin-top: 15px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .app-store-link a:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
-        .updates-list {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;
-        }
-        .update-item {
-            background: white; padding: 15px; border-radius: 12px; border: 2px solid hsl(200, 80%, 60%);
-            font-weight: 500; color: #475569;
-        }
-        .update-item strong { color: hsl(200, 80%, 60%); }
-        .disclaimer {
-            font-size: 0.9em; color: #64748b; background: #f1f5f9; padding: 20px; border-radius: 12px;
-            margin-top: 30px; border-left: 4px solid #94a3b8;
-        }
-        .disclaimer strong { color: #475569; }
-        ::selection { background: hsla(210, 80%, 55%, 0.3); color: #262d35; }
+        .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+            background:radial-gradient(80% 60% at 50% -10%,rgba(255,255,255,.22),transparent 60%)}
+        .topbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;
+            padding:18px 22px;max-width:1100px;margin:0 auto;font-weight:700}
+        .topbar .brand{display:inline-flex;align-items:center;gap:9px;font-size:1.02em}
+        .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
+        .topbar a.back{text-decoration:none;font-weight:600;font-size:.9em;opacity:.92;
+            padding:8px 15px;border:1px solid rgba(255,255,255,.4);border-radius:999px;transition:.2s}
+        .topbar a.back:hover{background:rgba(255,255,255,.14)}
+        .hero-inner{position:relative;z-index:2;padding:34px 22px 64px;max-width:760px;margin:0 auto}
+        .app-icon{font-size:3.6em;line-height:1;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+        .hero h1{font-size:clamp(2.2em,7vw,3.3em);font-weight:800;letter-spacing:-0.03em;margin-top:14px}
+        .hero .tag{font-size:clamp(1.02em,2.4vw,1.18em);opacity:.94;margin-top:12px}
+        .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+        .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
+            padding:14px 26px;border-radius:999px;transition:transform .18s,box-shadow .18s;font-size:1.02em}
+        .btn.primary{background:#fff;color:var(--accent-deep);box-shadow:0 12px 26px rgba(0,0,0,.22)}
+        .btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(0,0,0,.28)}
+        .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+        .btn.ghost:hover{background:rgba(255,255,255,.12)}
+        .wave{display:block;width:100%;height:auto;margin-bottom:-1px}
+
+        /* ---------- SECTIONS (full-bleed bands) ---------- */
+        section{padding:64px 0;position:relative}
+        section.tint{background:var(--accent-soft2)}
+        .eyebrow{display:inline-block;font-size:.74em;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+            color:var(--accent-deep);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+        h2{font-size:clamp(1.5em,4vw,2.1em);font-weight:800;letter-spacing:-0.02em;color:var(--ink)}
+        section > .wrap > p{color:var(--muted);margin-top:12px;font-size:1.05em}
+        .lead{max-width:660px}
+
+        .chip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:26px}
+        .chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;
+            font-weight:600;box-shadow:0 4px 14px rgba(15,60,132,.05)}
+        .chip .ic{font-size:1.4em;display:block;margin-bottom:6px}
+
+        .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:30px}
+        .feature{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);
+            border-radius:16px;padding:20px;box-shadow:0 6px 18px rgba(15,60,132,.06)}
+        .feature h3{font-size:1.05em;color:var(--accent-deep);margin-bottom:6px}
+        .feature p{color:var(--muted);font-size:.97em}
+
+        .support-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:28px}
+        .support-grid .feature h3{color:var(--ink)}
+        .support-grid .feature{border-left-color:var(--accent)}
+
+        .contact-card{margin-top:30px;text-align:center;border-radius:22px;padding:34px 24px;color:#fff;
+            background:linear-gradient(160deg,var(--accent) 0%,var(--accent-deep) 100%);
+            box-shadow:0 16px 40px rgba(31,99,196,.3)}
+        .contact-card h3{font-size:1.3em;margin-bottom:6px}
+        .contact-card a.email{display:inline-block;margin-top:10px;background:#fff;color:var(--accent-deep);
+            font-weight:800;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:1.05em;transition:transform .18s}
+        .contact-card a.email:hover{transform:translateY(-2px)}
+        .contact-card .note{opacity:.9;font-size:.92em;margin-top:14px}
+
+        /* privacy band */
+        .privacy{background:linear-gradient(160deg,var(--privacy-soft) 0%,var(--privacy-soft2) 100%)}
+        .privacy .eyebrow{color:#0f7a37;background:rgba(22,163,74,.12)}
+        .privacy h2{color:#0f7a37}
+        .privacy .feature{border-left-color:var(--privacy)}
+        .privacy .feature h3{color:#0f7a37}
+        .privacy .more{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:800;
+            color:#0f7a37;text-decoration:none;padding:12px 22px;border:2px solid var(--privacy);border-radius:999px;transition:.2s}
+        .privacy .more:hover{background:var(--privacy);color:#fff}
+
+        /* final CTA */
+        .getapp{text-align:center;color:#fff;background:linear-gradient(160deg,var(--accent) 0%,var(--accent-ink) 100%)}
+        .getapp h2{color:#fff}
+        .getapp p{color:rgba(255,255,255,.9);margin-top:10px}
+        .getapp .btn.primary{margin-top:24px}
+
+        .developer p{color:var(--muted);margin-top:14px;font-size:1.02em}
+        .disclaimer{margin-top:30px;font-size:.9em;color:var(--faint);background:#f4f6fa;
+            border-left:4px solid #c2cbdb;border-radius:12px;padding:18px 20px}
+        .disclaimer strong{color:var(--muted)}
+
+        /* ---------- FOOTER ---------- */
+        footer{background:#101626;color:#cdd6e6;text-align:center;padding:54px 22px}
+        footer .mark{font-size:1.7em}
+        footer h3{color:#fff;font-weight:800;margin:8px 0 16px}
+        footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+        footer a{color:var(--accent);text-decoration:none;font-weight:600}
+        footer a:hover{text-decoration:underline}
+        footer .copy{opacity:.55;font-size:.85em}
+
+        @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+        <div class="topbar">
+            <span class="brand"><span class="dot"></span> Khakichimp</span>
+            <a class="back" href="/khakichimp/">← Khakichimp HQ</a>
+        </div>
+        <div class="hero-inner">
+            <div class="app-icon">✅</div>
             <h1>Tasks - Uniflow</h1>
-            <p>A native iOS task manager that unifies local tasks, Notion, and Apple Reminders.</p>
-        </div>
-
-        <div class="contact-card">
-            <h2>Need Help?</h2>
-            <p>Contact us at:</p>
-            <a href="mailto:khakichimp@gmail.com" class="email-link">khakichimp@gmail.com</a>
-            <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">We typically respond within 2 business days</p>
-        </div>
-
-        <div class="section">
-            <h2>About Tasks - Uniflow</h2>
-            <p>Tasks - Uniflow is a native iOS task manager designed for real life. Use it as a standalone app for fast, private task management, or connect it to Notion and Apple Reminders to unify everything in one beautiful interface. The choice is yours&mdash;Tasks - Uniflow adapts to how you work.</p>
-
-            <div class="feature-list">
-                <div class="feature-item">✓ Local Tasks</div>
-                <div class="feature-item">🔄 Notion Sync</div>
-                <div class="feature-item">📋 Reminders Sync</div>
-                <div class="feature-item">☁️ iCloud Backup</div>
-                <div class="feature-item">🔍 Smart Filtering</div>
-                <div class="feature-item">⚡ Background Sync</div>
-            </div>
-
-            <p style="margin-top: 20px;"><strong style="color: hsl(210, 80%, 55%);">Perfect for:</strong> Individuals who want a fast, clean task manager, Notion users wanting better mobile task management, Apple Reminders users needing more organization, teams using multiple task systems, people who value privacy and local-first apps, and anyone who wants flexibility without complexity.</p>
-        </div>
-
-        <div class="section updates-section">
-            <h2>Key Features</h2>
-            <p>Discover what makes Tasks - Uniflow the perfect task companion:</p>
-
-            <div class="updates-list">
-                <div class="update-item"><strong>Standalone Excellence:</strong> Works perfectly without any integrations - fast, local, and private</div>
-                <div class="update-item"><strong>Optional Notion Sync:</strong> Bidirectional sync with your Notion databases when you want it</div>
-                <div class="update-item"><strong>Apple Reminders:</strong> Sync with Reminders, making tasks accessible to Siri and Apple Watch</div>
-                <div class="update-item"><strong>Unified View:</strong> See all tasks together regardless of source with smart filtering</div>
-                <div class="update-item"><strong>iCloud Sync:</strong> Automatic sync across all your iOS devices using your private iCloud account</div>
-                <div class="update-item"><strong>Background Sync:</strong> Stays current automatically, even when the app is closed</div>
-                <div class="update-item"><strong>Quick Actions:</strong> Long-press the app icon to quickly add a task</div>
-                <div class="update-item"><strong>Shake to Undo:</strong> Accidentally completed a task? Shake to undo within 30 seconds</div>
+            <p class="tag">A native iOS task manager that unifies local tasks, Notion, and Apple Reminders.</p>
+            <div class="cta-row">
+                <a class="btn primary" href="https://apps.apple.com/us/app/tasks-uniflow/id6759228545"> Download for iOS</a>
+                <a class="btn ghost" href="#privacy">Privacy policy</a>
             </div>
         </div>
+        <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
+    </header>
 
-        <div class="section">
-            <h2>How We Can Help</h2>
-            <p><strong style="color: hsl(210, 80%, 55%);">Technical Issues:</strong> App crashes, syncing problems with Notion or Reminders, or any bugs you encounter</p>
-            <p style="margin-top: 10px;"><strong style="color: hsl(210, 80%, 55%);">Integration Support:</strong> Help setting up Notion integration, configuring Reminder lists, or troubleshooting sync</p>
-            <p style="margin-top: 10px;"><strong style="color: hsl(210, 80%, 55%);">Feature Requests:</strong> Ideas for improvements or new features you'd like to see</p>
-            <p style="margin-top: 10px;"><strong style="color: hsl(210, 80%, 55%);">Data &amp; Privacy:</strong> Questions about how your data is stored and synced</p>
+    <!-- ============ ABOUT ============ -->
+    <section class="about">
+        <div class="wrap">
+            <span class="eyebrow">About the app</span>
+            <h2>One task manager that adapts to you</h2>
+            <p class="lead">Tasks - Uniflow is a native iOS task manager designed for real life. Use it as a standalone app for fast, private task management, or connect it to Notion and Apple Reminders to unify everything in one beautiful interface. The choice is yours&mdash;Tasks - Uniflow adapts to how you work.</p>
+            <div class="chip-grid">
+                <div class="chip"><span class="ic">✓</span>Local Tasks</div>
+                <div class="chip"><span class="ic">🔄</span>Notion Sync</div>
+                <div class="chip"><span class="ic">📋</span>Reminders Sync</div>
+                <div class="chip"><span class="ic">☁️</span>iCloud Backup</div>
+                <div class="chip"><span class="ic">🔍</span>Smart Filtering</div>
+                <div class="chip"><span class="ic">⚡</span>Background Sync</div>
+            </div>
+            <p style="margin-top:24px"><strong style="color:var(--accent-deep)">Perfect for:</strong> Individuals who want a fast, clean task manager, Notion users wanting better mobile task management, Apple Reminders users needing more organization, teams using multiple task systems, people who value privacy and local-first apps, and anyone who wants flexibility without complexity.</p>
         </div>
+    </section>
 
-        <div class="section privacy-highlight">
-            <h2>Your Privacy Matters</h2>
-            <p><strong style="color: #16a34a;">Local-First Design:</strong> All tasks are stored locally on your device - no cloud account required</p>
-            <p style="margin-top: 10px;"><strong style="color: #16a34a;">Optional iCloud Sync:</strong> Uses your private iCloud account for cross-device sync - never leaves Apple's ecosystem</p>
-            <p style="margin-top: 10px;"><strong style="color: #16a34a;">Secure Credentials:</strong> Notion API tokens stored safely in iOS Keychain with encryption</p>
-            <p style="margin-top: 10px;"><strong style="color: #16a34a;">No Tracking:</strong> We don't collect analytics, usage data, or personal information</p>
-            <p style="margin-top: 10px;"><strong style="color: #16a34a;">No Ads:</strong> Clean, focused experience without advertisements or trackers</p>
-            <p style="margin-top: 20px;"><a href="privacy.html" style="color:#16a34a; font-weight:bold;">Read our full Privacy Policy &rarr;</a></p>
+    <!-- ============ FEATURES ============ -->
+    <section class="tint">
+        <div class="wrap">
+            <span class="eyebrow">Key features</span>
+            <h2>What makes it the perfect companion</h2>
+            <div class="feature-grid">
+                <div class="feature"><h3>Standalone Excellence</h3><p>Works perfectly without any integrations — fast, local, and private.</p></div>
+                <div class="feature"><h3>Optional Notion Sync</h3><p>Bidirectional sync with your Notion databases whenever you want it.</p></div>
+                <div class="feature"><h3>Apple Reminders</h3><p>Sync with Reminders, making tasks accessible to Siri and Apple Watch.</p></div>
+                <div class="feature"><h3>Unified View</h3><p>See all tasks together regardless of source, with smart filtering.</p></div>
+                <div class="feature"><h3>iCloud Sync</h3><p>Automatic sync across all your iOS devices using your private iCloud account.</p></div>
+                <div class="feature"><h3>Background Sync</h3><p>Stays current automatically, even when the app is closed.</p></div>
+                <div class="feature"><h3>Quick Actions</h3><p>Long-press the app icon to quickly add a task.</p></div>
+                <div class="feature"><h3>Shake to Undo</h3><p>Accidentally completed a task? Shake to undo within 30 seconds.</p></div>
+            </div>
         </div>
+    </section>
 
-        <div class="app-store-link">
+    <!-- ============ SUPPORT ============ -->
+    <section class="support">
+        <div class="wrap">
+            <span class="eyebrow">Need help?</span>
+            <h2>How we can help</h2>
+            <div class="support-grid">
+                <div class="feature"><h3>Technical Issues</h3><p>App crashes, syncing problems with Notion or Reminders, or any bugs you encounter.</p></div>
+                <div class="feature"><h3>Integration Support</h3><p>Help setting up Notion, configuring Reminder lists, or troubleshooting sync.</p></div>
+                <div class="feature"><h3>Feature Requests</h3><p>Ideas for improvements or new features you'd like to see.</p></div>
+                <div class="feature"><h3>Data &amp; Privacy</h3><p>Questions about how your data is stored and synced.</p></div>
+            </div>
+            <div class="contact-card">
+                <h3>Get in touch</h3>
+                <p>Have a question or found a bug? We'd love to hear from you.</p>
+                <a class="email contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp@gmail.com</a>
+                <p class="note">We typically respond within 2 business days.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PRIVACY ============ -->
+    <section class="privacy" id="privacy">
+        <div class="wrap">
+            <span class="eyebrow">Your privacy matters</span>
+            <h2>Local-first by design</h2>
+            <div class="feature-grid">
+                <div class="feature"><h3>Local-First Design</h3><p>All tasks are stored locally on your device — no cloud account required.</p></div>
+                <div class="feature"><h3>Optional iCloud Sync</h3><p>Uses your private iCloud account for cross-device sync — never leaves Apple's ecosystem.</p></div>
+                <div class="feature"><h3>Secure Credentials</h3><p>Notion API tokens are stored safely in the iOS Keychain with encryption.</p></div>
+                <div class="feature"><h3>No Tracking</h3><p>We don't collect analytics, usage data, or personal information.</p></div>
+                <div class="feature"><h3>No Ads</h3><p>A clean, focused experience without advertisements or trackers.</p></div>
+            </div>
+            <a class="more" href="privacy.html">Read our full Privacy Policy →</a>
+        </div>
+    </section>
+
+    <!-- ============ GET THE APP ============ -->
+    <section class="getapp">
+        <div class="wrap">
             <h2>Get Tasks - Uniflow</h2>
-            <p>Available on the App Store</p>
-            <a href="https://apps.apple.com/us/app/tasks-uniflow/id6759228545">Download for iOS</a>
+            <p>Available now on the App Store.</p>
+            <a class="btn primary" href="https://apps.apple.com/us/app/tasks-uniflow/id6759228545"> Download for iOS</a>
         </div>
+    </section>
 
-        <div class="section">
-            <h2>About the Developer</h2>
-            <p>Tasks - Uniflow is developed by <strong style="color: hsl(210, 80%, 55%);">Khakichimp</strong> with a focus on privacy, simplicity, and flexibility. Built natively for iOS using SwiftUI, SwiftData, and CloudKit, Tasks - Uniflow combines beautiful design with powerful functionality to create a task manager that respects your choices and workflow.</p>
+    <!-- ============ DEVELOPER ============ -->
+    <section class="developer tint">
+        <div class="wrap">
+            <span class="eyebrow">About the developer</span>
+            <h2>Built by Khakichimp</h2>
+            <p>Tasks - Uniflow is developed by <strong style="color:var(--accent-deep)">Khakichimp</strong> with a focus on privacy, simplicity, and flexibility. Built natively for iOS using SwiftUI, SwiftData, and CloudKit, it combines beautiful design with powerful functionality to create a task manager that respects your choices and workflow.</p>
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> Tasks - Uniflow is provided "as is" without warranty of any kind. While we strive to provide reliable sync with Notion and Apple Reminders, we cannot guarantee uninterrupted service due to factors outside our control (internet connectivity, third-party API changes, iOS updates). Users should maintain backups of critical task data. The developer is not liable for any data loss or issues arising from app usage.
+            </div>
         </div>
+    </section>
 
-        <div class="disclaimer">
-            <strong>Disclaimer:</strong> Tasks - Uniflow is provided "as is" without warranty of any kind. While we strive to provide reliable sync with Notion and Apple Reminders, we cannot guarantee uninterrupted service due to factors outside our control (internet connectivity, third-party API changes, iOS updates). Users should maintain backups of critical task data. The developer is not liable for any data loss or issues arising from app usage.
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="mark">🐵</div>
+        <h3>Khakichimp</h3>
+        <div class="links">
+            <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">Email</a>
+            <a href="/khakichimp/">← Khakichimp HQ</a>
+            <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
         </div>
-    </div>
+        <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
+    </footer>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+        /* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
+        document.querySelectorAll('a.contact[data-u]').forEach(a=>{
+            const addr = a.dataset.u + '@' + a.dataset.d;
+            a.href = 'mailto:' + addr;
+            a.setAttribute('aria-label', 'Email ' + addr);
+        });
+    </script>
 </body>
 </html>
