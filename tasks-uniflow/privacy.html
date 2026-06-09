@@ -3,44 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks - Uniflow | Privacy Policy</title>
+    <title>Tasks - Uniflow · Privacy Policy</title>
+    <meta name="description" content="Privacy Policy for Tasks - Uniflow — a local-first, privacy-respecting iOS task manager.">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { background: white; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6; background: white; color: #262d35; min-height: 100vh;
-            letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        :root{
+            --accent:#2f86eb; --accent-deep:#1f63c4; --accent-ink:#0f3c84;
+            --accent-soft:#eaf3ff;
+            --ink:#1f2937; --muted:#52607a; --faint:#6b7890;
+            --line:rgba(15,60,132,.12); --bg:#ffffff;
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 30px 20px; }
-        .header {
-            background: linear-gradient(135deg, hsl(210, 80%, 55%) 0%, hsl(210, 80%, 65%) 100%);
-            color: white; padding: 30px; border-radius: 24px; margin-bottom: 30px;
-            box-shadow: 0 8px 30px hsla(210, 80%, 55%, 0.35);
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;background:var(--bg)}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+            line-height:1.65;color:var(--ink);background:var(--bg);letter-spacing:-0.011em;
+            -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
         }
-        .header h1 { margin: 0; font-size: 1.8em; }
-        .header p { margin-top: 8px; opacity: 0.9; }
-        .header a { color: white; }
-        .content { color: #475569; }
-        .content h2 { color: hsl(210, 80%, 55%); margin: 28px 0 10px 0; font-size: 1.3em; }
-        .content h3 { color: hsl(200, 80%, 60%); margin: 18px 0 8px 0; font-size: 1.05em; }
-        .content p { margin: 8px 0; }
-        .content ul { margin: 10px 0 15px 22px; }
-        .content li { margin: 6px 0; color: #64748b; }
-        .content a { color: hsl(210, 80%, 55%); }
-        .content strong { color: #262d35; }
-        .back-link { display: inline-block; margin-top: 30px; color: hsl(210, 80%, 55%); text-decoration: none; font-weight: 600; }
-        ::selection { background: hsla(210, 80%, 55%, 0.3); color: #262d35; }
+        a{color:var(--accent-deep)}
+        ::selection{background:rgba(47,134,235,.25);color:var(--ink)}
+        .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+
+        .hero{position:relative;color:#fff;overflow:hidden;
+            background:linear-gradient(160deg,var(--accent) 0%,var(--accent-deep) 70%,var(--accent-ink) 100%)}
+        .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+            background:radial-gradient(80% 60% at 50% -10%,rgba(255,255,255,.22),transparent 60%)}
+        .topbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;
+            padding:18px 22px;max-width:1100px;margin:0 auto;font-weight:700}
+        .topbar .brand{display:inline-flex;align-items:center;gap:9px;font-size:1.02em;color:#fff}
+        .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
+        .topbar a.back{text-decoration:none;color:#fff;font-weight:600;font-size:.9em;opacity:.92;
+            padding:8px 15px;border:1px solid rgba(255,255,255,.4);border-radius:999px;transition:.2s}
+        .topbar a.back:hover{background:rgba(255,255,255,.14)}
+        .hero-inner{position:relative;z-index:2;max-width:820px;margin:0 auto;padding:30px 22px 56px}
+        .hero h1{font-size:clamp(1.9em,5vw,2.6em);font-weight:800;letter-spacing:-0.02em}
+        .hero p{opacity:.92;margin-top:8px}
+        .wave{display:block;width:100%;height:auto;margin-bottom:-1px}
+
+        .content{padding:52px 0 70px}
+        .content h2{color:var(--accent-deep);margin:34px 0 10px;font-size:1.35em;letter-spacing:-0.01em}
+        .content h2:first-child{margin-top:0}
+        .content h3{color:var(--accent);margin:20px 0 8px;font-size:1.08em}
+        .content p{margin:8px 0;color:var(--muted)}
+        .content ul{margin:10px 0 16px 22px}
+        .content li{margin:7px 0;color:var(--muted)}
+        .content strong{color:var(--ink)}
+        .summary{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:14px;
+            padding:18px 22px;margin-top:18px}
+        .summary p{color:var(--ink)}
+        .back-link{display:inline-flex;align-items:center;gap:8px;margin-top:36px;font-weight:800;
+            text-decoration:none;color:var(--accent-deep);padding:12px 22px;border:2px solid var(--accent);
+            border-radius:999px;transition:.2s}
+        .back-link:hover{background:var(--accent);color:#fff}
+        @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Privacy Policy</h1>
-            <p>Tasks - Uniflow &middot; Last updated: May 2026</p>
+    <header class="hero">
+        <div class="topbar">
+            <span class="brand"><span class="dot"></span> Khakichimp</span>
+            <a class="back" href="index.html">← Support</a>
         </div>
+        <div class="hero-inner">
+            <h1>Privacy Policy</h1>
+            <p>Tasks - Uniflow · Last updated: May 2026</p>
+        </div>
+        <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
+    </header>
 
-        <div class="content">
+    <main class="content">
+        <div class="wrap">
             <h2>1. Introduction</h2>
             <p>Tasks - Uniflow ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains our approach to data collection, use, and storage. <strong>We believe in a local-first, privacy-respecting approach to task management.</strong></p>
 
@@ -71,7 +102,6 @@
             </ul>
 
             <h2>4. Third-Party Integrations (Optional)</h2>
-
             <h3>4.1 Notion Integration</h3>
             <p>If you choose to connect Tasks - Uniflow to Notion:</p>
             <ul>
@@ -81,7 +111,6 @@
                 <li><strong>Notion's Policy:</strong> Data synced to Notion is subject to <a href="https://www.notion.so/Privacy-Policy-3468d120cf614d4c9014c09f6adc9091">Notion's Privacy Policy</a>.</li>
                 <li><strong>User Control:</strong> You can disconnect at any time, and your token is deleted from the device.</li>
             </ul>
-
             <h3>4.2 Apple Reminders Integration</h3>
             <p>If you choose to sync with Apple Reminders:</p>
             <ul>
@@ -156,15 +185,25 @@
             <h2>15. Contact Us</h2>
             <p>If you have any questions about this Privacy Policy or how the app handles data, please contact us at:</p>
             <ul>
-                <li>Email: <a href="mailto:khakichimp@gmail.com">khakichimp@gmail.com</a></li>
+                <li>Email: <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp@gmail.com</a></li>
                 <li>Developer: Khakichimp</li>
             </ul>
 
             <h2>16. Summary</h2>
-            <p><strong>In plain English:</strong> Tasks - Uniflow is a privacy-first app. Your tasks live on your device. We don't run servers that collect your data, we don't track you, and we don't sell anything to advertisers. When you optionally connect iCloud, Notion, or Apple Reminders, you're using your own accounts with those services.</p>
+            <div class="summary">
+                <p><strong>In plain English:</strong> Tasks - Uniflow is a privacy-first app. Your tasks live on your device. We don't run servers that collect your data, we don't track you, and we don't sell anything to advertisers. When you optionally connect iCloud, Notion, or Apple Reminders, you're using your own accounts with those services.</p>
+            </div>
 
-            <a class="back-link" href="index.html">&larr; Back to Support &amp; Home</a>
+            <a class="back-link" href="index.html">← Back to Support &amp; Info</a>
         </div>
-    </div>
+    </main>
+
+    <script>
+        document.querySelectorAll('a.contact[data-u]').forEach(a=>{
+            const addr = a.dataset.u + '@' + a.dataset.d;
+            a.href = 'mailto:' + addr;
+            a.setAttribute('aria-label', 'Email ' + addr);
+        });
+    </script>
 </body>
 </html>
