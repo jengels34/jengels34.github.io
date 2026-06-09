@@ -1,53 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ReadMe · Coming soon · Khakichimp</title>
-<meta name="description" content="ReadMe — a native, privacy-first reading companion from Khakichimp. Coming soon.">
-<style>
-    :root{--bark:#3a2f23;--cream:#fbf6ea;--khaki:#c2a878;--banana:#ffcf3f;--coral:#ff6b54;--jungle:#4caa6a}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-        min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 22px;
-        color:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased;
-        background:radial-gradient(120% 120% at 50% 0%,#5a4a8a 0%,#3a2f5a 45%,#241d2e 100%);
-    }
-    ::selection{background:var(--banana);color:var(--bark)}
-    .card{max-width:560px}
-    .icon{font-size:3.4em}
-    .mark{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.82em;letter-spacing:.04em;
-        opacity:.85;margin-bottom:22px;text-transform:uppercase}
-    .mark .dot{width:9px;height:9px;border-radius:50%;background:var(--banana)}
-    .badge{display:inline-block;font-size:.74em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-        background:rgba(255,207,63,.16);color:var(--banana);padding:6px 14px;border-radius:999px;margin:18px 0 14px}
-    h1{font-size:clamp(2.4em,9vw,3.6em);font-weight:800;letter-spacing:-0.03em}
-    p{opacity:.85;font-size:1.08em;margin-top:12px}
-    .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-    a.btn{text-decoration:none;font-weight:700;padding:12px 22px;border-radius:999px;transition:.2s;display:inline-flex;align-items:center;gap:7px}
-    a.primary{background:var(--banana);color:var(--bark);box-shadow:0 10px 22px rgba(255,207,63,.3)}
-    a.ghost{border:1px solid rgba(251,246,234,.28);color:var(--cream)}
-    a.btn:hover{transform:translateY(-2px)}
-    .float{display:inline-block;animation:float 3s ease-in-out infinite}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-    @media(prefers-reduced-motion:reduce){.float{animation:none}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadMe · Support & Info · Khakichimp</title>
+    <meta name="description" content="ReadMe — a native, privacy-first book tracker for iOS. Track your reading journey, organise your library, and watch your progress grow. Support, features, and privacy.">
+    <style>
+        /* ---------- Theme (per-app accent) ---------- */
+        :root{
+            --accent:hsl(270,75%,60%); --accent-deep:hsl(270,75%,50%); --accent-ink:hsl(270,75%,37%);
+            --accent-soft:hsl(270,75%,96%); --accent-soft2:hsl(270,72%,98.5%);
+            --sel:hsla(270,75%,60%,.25); --line:rgba(76,29,149,.12); --shadow:rgba(76,29,149,.07);
+            --privacy:#16a34a; --privacy-soft:#f0fdf4; --privacy-soft2:#dcfce7;
+            --ink:#1f2937; --muted:#52607a; --faint:#6b7890; --bg:#ffffff;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;background:var(--bg)}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+            line-height:1.65;color:var(--ink);background:var(--bg);letter-spacing:-0.011em;
+            -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+        }
+        a{color:inherit}
+        ::selection{background:var(--sel);color:var(--ink)}
+        .wrap{max-width:860px;margin:0 auto;padding:0 22px}
+
+        /* ---------- HERO ---------- */
+        .hero{
+            position:relative;color:#fff;text-align:center;overflow:hidden;
+            background:linear-gradient(160deg,var(--accent) 0%,var(--accent-deep) 70%,var(--accent-ink) 100%);
+        }
+        .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+            background:radial-gradient(80% 60% at 50% -10%,rgba(255,255,255,.22),transparent 60%)}
+        .topbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;
+            padding:18px 22px;max-width:1100px;margin:0 auto;font-weight:700}
+        .topbar .brand{display:inline-flex;align-items:center;gap:9px;font-size:1.02em}
+        .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
+        .topbar a.back{text-decoration:none;font-weight:600;font-size:.9em;opacity:.92;
+            padding:8px 15px;border:1px solid rgba(255,255,255,.4);border-radius:999px;transition:.2s}
+        .topbar a.back:hover{background:rgba(255,255,255,.14)}
+        .hero-inner{position:relative;z-index:2;padding:34px 22px 64px;max-width:760px;margin:0 auto}
+        .app-icon{font-size:3.6em;line-height:1;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+        .hero h1{font-size:clamp(2.2em,7vw,3.3em);font-weight:800;letter-spacing:-0.03em;margin-top:14px}
+        .hero .tag{font-size:clamp(1.02em,2.4vw,1.18em);opacity:.94;margin-top:12px}
+        .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+        .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
+            padding:14px 26px;border-radius:999px;transition:transform .18s,box-shadow .18s;font-size:1.02em}
+        .btn.primary{background:#fff;color:var(--accent-deep);box-shadow:0 12px 26px rgba(0,0,0,.22)}
+        .btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(0,0,0,.28)}
+        .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+        .btn.ghost:hover{background:rgba(255,255,255,.12)}
+        .wave{display:block;width:100%;height:auto;margin-bottom:-1px}
+
+        /* ---------- SECTIONS (full-bleed bands) ---------- */
+        section{padding:64px 0;position:relative}
+        section.tint{background:var(--accent-soft2)}
+        .eyebrow{display:inline-block;font-size:.74em;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+            color:var(--accent-deep);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+        h2{font-size:clamp(1.5em,4vw,2.1em);font-weight:800;letter-spacing:-0.02em;color:var(--ink)}
+        section > .wrap > p{color:var(--muted);margin-top:12px;font-size:1.05em}
+        .lead{max-width:660px}
+
+        .chip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:26px}
+        .chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;
+            font-weight:600;box-shadow:0 4px 14px var(--shadow)}
+        .chip .ic{font-size:1.4em;display:block;margin-bottom:6px}
+
+        .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:30px}
+        .feature{background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent);
+            border-radius:16px;padding:20px;box-shadow:0 6px 18px var(--shadow)}
+        .feature h3{font-size:1.05em;color:var(--accent-deep);margin-bottom:6px}
+        .feature p{color:var(--muted);font-size:.97em}
+
+        .support-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:28px}
+        .support-grid .feature h3{color:var(--ink)}
+
+        .contact-card{margin-top:30px;text-align:center;border-radius:22px;padding:34px 24px;color:#fff;
+            background:linear-gradient(160deg,var(--accent) 0%,var(--accent-deep) 100%);
+            box-shadow:0 16px 40px var(--shadow)}
+        .contact-card h3{font-size:1.3em;margin-bottom:6px}
+        .contact-card a.email{display:inline-block;margin-top:10px;background:#fff;color:var(--accent-deep);
+            font-weight:800;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:1.05em;transition:transform .18s}
+        .contact-card a.email:hover{transform:translateY(-2px)}
+        .contact-card .note{opacity:.9;font-size:.92em;margin-top:14px}
+
+        /* privacy band */
+        .privacy{background:linear-gradient(160deg,var(--privacy-soft) 0%,var(--privacy-soft2) 100%)}
+        .privacy .eyebrow{color:#0f7a37;background:rgba(22,163,74,.12)}
+        .privacy h2{color:#0f7a37}
+        .privacy .feature{border-left-color:var(--privacy)}
+        .privacy .feature h3{color:#0f7a37}
+        .privacy .more{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-weight:800;
+            color:#0f7a37;text-decoration:none;padding:12px 22px;border:2px solid var(--privacy);border-radius:999px;transition:.2s}
+        .privacy .more:hover{background:var(--privacy);color:#fff}
+
+        /* final CTA */
+        .getapp{text-align:center;color:#fff;background:linear-gradient(160deg,var(--accent) 0%,var(--accent-ink) 100%)}
+        .getapp h2{color:#fff}
+        .getapp p{color:rgba(255,255,255,.9);margin-top:10px}
+        .getapp .btn.primary{margin-top:24px}
+
+        .developer p{color:var(--muted);margin-top:14px;font-size:1.02em}
+        .disclaimer{margin-top:30px;font-size:.9em;color:var(--faint);background:#f4f6fa;
+            border-left:4px solid #c2cbdb;border-radius:12px;padding:18px 20px}
+        .disclaimer strong{color:var(--muted)}
+
+        /* ---------- FOOTER ---------- */
+        footer{background:#101626;color:#cdd6e6;text-align:center;padding:54px 22px}
+        footer .mark{font-size:1.7em}
+        footer h3{color:#fff;font-weight:800;margin:8px 0 16px}
+        footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+        footer a{color:var(--accent);text-decoration:none;font-weight:600}
+        footer a:hover{text-decoration:underline}
+        footer .copy{opacity:.55;font-size:.85em}
+
+        @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+    </style>
 </head>
 <body>
-    <div class="card">
-        <div class="mark"><span class="dot"></span> Khakichimp</div>
-        <div class="icon float">📖</div>
-        <div class="badge">Coming soon</div>
-        <h1>ReadMe</h1>
-        <p>A native reading companion in the works — built with the same privacy-first, on-device philosophy as every Khakichimp app. No trackers, no clutter, just your books.</p>
-        <div class="links">
-            <a class="btn primary" href="/khakichimp/">← Back to Khakichimp HQ</a>
-            <a class="btn ghost contact" data-u="khakichimp" data-d="gmail.com" href="#">Get notified</a>
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+        <div class="topbar">
+            <span class="brand"><span class="dot"></span> Khakichimp</span>
+            <a class="back" href="/khakichimp/">← Khakichimp HQ</a>
         </div>
-    </div>
-<script>
-document.querySelectorAll('a.contact[data-u]').forEach(a=>{a.href='mailto:'+a.dataset.u+'@'+a.dataset.d;});
-</script>
+        <div class="hero-inner">
+            <div class="app-icon">📖</div>
+            <h1>ReadMe</h1>
+            <p class="tag">A native, privacy-first book tracker — manage your library and track your reading journey, all stored privately on your device.</p>
+            <div class="cta-row">
+                <a class="btn primary" href="https://apps.apple.com/us/app/readme-book-tracker/id6752588976"> Download for iOS</a>
+                <a class="btn ghost" href="#privacy">Privacy policy</a>
+            </div>
+        </div>
+        <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
+    </header>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about">
+        <div class="wrap">
+            <span class="eyebrow">About the app</span>
+            <h2>Track your reading journey</h2>
+            <p class="lead">ReadMe is a beautiful book tracking application designed to help you manage your reading journey. Track your reading progress, organise your library, build a wish list, and discover new books — all stored privately on your device with optional iCloud sync.</p>
+            <div class="chip-grid">
+                <div class="chip"><span class="ic">📚</span>Digital Library</div>
+                <div class="chip"><span class="ic">📖</span>Progress Tracking</div>
+                <div class="chip"><span class="ic">📊</span>Reading Statistics</div>
+                <div class="chip"><span class="ic">🔍</span>Book Search</div>
+                <div class="chip"><span class="ic">❤️</span>Wish List</div>
+                <div class="chip"><span class="ic">☁️</span>iCloud Sync</div>
+                <div class="chip"><span class="ic">📱</span>iOS Optimized</div>
+                <div class="chip"><span class="ic">🌙</span>Dark Mode</div>
+            </div>
+            <p style="margin-top:24px"><strong style="color:var(--accent-deep)">Perfect for:</strong> Book lovers tracking their reading habits, students managing course reading, book clubs organising discussions, readers wanting to visualise their progress, and anyone building a digital library.</p>
+        </div>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="tint">
+        <div class="wrap">
+            <span class="eyebrow">Key features</span>
+            <h2>What makes it the perfect reading companion</h2>
+            <div class="feature-grid">
+                <div class="feature"><h3>Library Management</h3><p>Organise your books by status — reading, completed, to-read, or wish list.</p></div>
+                <div class="feature"><h3>Progress Tracking</h3><p>Log reading sessions with pages and time, and watch your progress grow.</p></div>
+                <div class="feature"><h3>Visual Statistics</h3><p>Beautiful charts showing your reading habits over time.</p></div>
+                <div class="feature"><h3>Book Search</h3><p>Find books instantly with Google Books integration, or add them manually.</p></div>
+                <div class="feature"><h3>iCloud Sync</h3><p>Optionally sync your library across all your Apple devices via your own iCloud account.</p></div>
+                <div class="feature"><h3>iOS Design</h3><p>Native Swift app following the latest iOS design standards.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SUPPORT ============ -->
+    <section class="support">
+        <div class="wrap">
+            <span class="eyebrow">Need help?</span>
+            <h2>How we can help</h2>
+            <div class="support-grid">
+                <div class="feature"><h3>Technical Issues</h3><p>App crashes, syncing problems, or any bugs you encounter.</p></div>
+                <div class="feature"><h3>Feature Requests</h3><p>Ideas for improvements or new features you'd like to see.</p></div>
+                <div class="feature"><h3>Data Support</h3><p>Help with exporting your data or privacy questions.</p></div>
+            </div>
+            <div class="contact-card">
+                <h3>Get in touch</h3>
+                <p>Have a question or found a bug? We'd love to hear from you.</p>
+                <a class="email contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp@gmail.com</a>
+                <p class="note">We typically respond within 2 business days.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PRIVACY ============ -->
+    <section class="privacy" id="privacy">
+        <div class="wrap">
+            <span class="eyebrow">Your privacy matters</span>
+            <h2>Your data belongs to you</h2>
+            <div class="feature-grid">
+                <div class="feature"><h3>No Account Required</h3><p>ReadMe works without any sign-in or account creation — your data belongs to you.</p></div>
+                <div class="feature"><h3>Stored On Your Device</h3><p>All your reading data is stored locally on your iPhone using Apple's SwiftData framework.</p></div>
+                <div class="feature"><h3>Your iCloud, Your Data</h3><p>Optional iCloud sync uses your own Apple iCloud account — your data never passes through our servers.</p></div>
+                <div class="feature"><h3>You Control Your Data</h3><p>Export your library at any time, or delete everything by removing the app and clearing iCloud data.</p></div>
+            </div>
+            <a class="more" href="privacy.html">Read our full Privacy Policy →</a>
+        </div>
+    </section>
+
+    <!-- ============ GET THE APP ============ -->
+    <section class="getapp">
+        <div class="wrap">
+            <h2>Get ReadMe</h2>
+            <p>Available now on the App Store.</p>
+            <a class="btn primary" href="https://apps.apple.com/us/app/readme-book-tracker/id6752588976"> Download for iOS</a>
+        </div>
+    </section>
+
+    <!-- ============ DEVELOPER ============ -->
+    <section class="developer tint">
+        <div class="wrap">
+            <span class="eyebrow">About the developer</span>
+            <h2>Built by Khakichimp</h2>
+            <p>ReadMe is developed by <strong style="color:var(--accent-deep)">Khakichimp</strong> with a passion for reading and beautiful design. Built natively for iOS using Swift, SwiftData, and CloudKit, ReadMe is a fully offline-capable app that puts your privacy first while delivering a seamless reading tracker you'll love to use every day.</p>
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> ReadMe is provided "as is" without warranty of any kind. While we strive to provide accurate book information through our search integrations, we cannot guarantee the completeness or accuracy of all data. Users should verify book details independently. The developer is not liable for any issues arising from app usage.
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="mark">🐵</div>
+        <h3>Khakichimp</h3>
+        <div class="links">
+            <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">Email</a>
+            <a href="/khakichimp/">← Khakichimp HQ</a>
+            <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
+    </footer>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+        /* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
+        document.querySelectorAll('a.contact[data-u]').forEach(a=>{
+            const addr = a.dataset.u + '@' + a.dataset.d;
+            a.href = 'mailto:' + addr;
+            a.setAttribute('aria-label', 'Email ' + addr);
+        });
+    </script>
 </body>
 </html>
