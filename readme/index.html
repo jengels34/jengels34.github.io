@@ -8,9 +8,9 @@
     <style>
         /* ---------- Theme (per-app accent) ---------- */
         :root{
-            --accent:hsl(270,75%,60%); --accent-deep:hsl(270,75%,50%); --accent-ink:hsl(270,75%,37%);
-            --accent-soft:hsl(270,75%,96%); --accent-soft2:hsl(270,72%,98.5%);
-            --sel:hsla(270,75%,60%,.25); --line:rgba(76,29,149,.12); --shadow:rgba(76,29,149,.07);
+            --accent:hsl(180,72%,40%); --accent-deep:hsl(180,72%,31%); --accent-ink:hsl(180,72%,22%);
+            --accent-soft:hsl(180,72%,96%); --accent-soft2:hsl(180,72%,98.5%);
+            --sel:hsla(180,72%,40%,.25); --line:rgba(9,53,53,.12); --shadow:rgba(9,53,53,.07);
             --privacy:#16a34a; --privacy-soft:#f0fdf4; --privacy-soft2:#dcfce7;
             --ink:#1f2937; --muted:#52607a; --faint:#6b7890; --bg:#ffffff;
         }
@@ -41,6 +41,7 @@
         .topbar a.back:hover{background:rgba(255,255,255,.14)}
         .hero-inner{position:relative;z-index:2;padding:34px 22px 64px;max-width:760px;margin:0 auto}
         .app-icon{font-size:3.6em;line-height:1;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+        .app-icon img{width:88px;height:88px;border-radius:20px;display:block;margin:0 auto}
         .hero h1{font-size:clamp(2.2em,7vw,3.3em);font-weight:800;letter-spacing:-0.03em;margin-top:14px}
         .hero .tag{font-size:clamp(1.02em,2.4vw,1.18em);opacity:.94;margin-top:12px}
         .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
@@ -123,7 +124,7 @@
             <a class="back" href="/khakichimp/">← Khakichimp HQ</a>
         </div>
         <div class="hero-inner">
-            <div class="app-icon">📖</div>
+            <div class="app-icon"><img src="/assets/icons/readme.png" alt="ReadMe app icon" width="88" height="88"></div>
             <h1>ReadMe</h1>
             <p class="tag">A native, privacy-first book tracker — manage your library and track your reading journey, all stored privately on your device.</p>
             <div class="cta-row">

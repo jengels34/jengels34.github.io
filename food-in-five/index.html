@@ -8,9 +8,9 @@
     <style>
         /* ---------- Theme (per-app accent) ---------- */
         :root{
-            --accent:#8b5cf6; --accent-deep:#7c3aed; --accent-ink:#6d28d9;
-            --accent-soft:#f3effe; --accent-soft2:#faf8ff;
-            --sel:rgba(139,92,246,.25); --line:rgba(91,33,182,.12); --shadow:rgba(91,33,182,.07);
+            --accent:#8a56ed; --accent-deep:#6d2de9; --accent-ink:#5716d1;
+            --accent-soft:#f2edfd; --accent-soft2:#faf8fe;
+            --sel:rgba(138,86,237,.25); --line:rgba(64,16,154,.12); --shadow:rgba(64,16,154,.07);
             --privacy:#16a34a; --privacy-soft:#f0fdf4; --privacy-soft2:#dcfce7;
             --ink:#1e293b; --muted:#52607a; --faint:#6b7890; --bg:#ffffff;
         }
@@ -41,6 +41,7 @@
         .topbar a.back:hover{background:rgba(255,255,255,.14)}
         .hero-inner{position:relative;z-index:2;padding:34px 22px 64px;max-width:760px;margin:0 auto}
         .app-icon{font-size:3.6em;line-height:1;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+        .app-icon img{width:88px;height:88px;border-radius:20px;display:block;margin:0 auto}
         .hero h1{font-size:clamp(2.2em,7vw,3.3em);font-weight:800;letter-spacing:-0.03em;margin-top:14px}
         .hero .tag{font-size:clamp(1.02em,2.4vw,1.18em);opacity:.94;margin-top:12px}
         .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
@@ -123,7 +124,7 @@
             <a class="back" href="/khakichimp/">← Khakichimp HQ</a>
         </div>
         <div class="hero-inner">
-            <div class="app-icon">🍽️</div>
+            <div class="app-icon"><img src="/assets/icons/food-in-five.png" alt="Food in Five app icon" width="88" height="88"></div>
             <h1>Food in Five</h1>
             <p class="tag">Discover great food near you in seconds — lightning-fast restaurant search, all stored on your device. No account required.</p>
             <div class="cta-row">
