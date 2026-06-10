@@ -37,7 +37,7 @@
     if (earR) earR.style.animation = 'none';
 
     /* idle head sway */
-    if (head) gsap.to(head, { y: -2, rotation: -1.2, duration: 2.4, yoyo: true, repeat: -1, ease: 'sine.inOut', svgOrigin: '120 124' });
+    if (head) gsap.to(head, { y: -2, rotation: -1.2, duration: 2.4, yoyo: true, repeat: -1, ease: 'sine.inOut', svgOrigin: '120 148' });
 
     /* follow the cursor with head + eyes */
     function onMove(e) {
@@ -45,22 +45,22 @@
       if (!r.width) return;
       var dx = clamp((e.clientX - (r.left + r.width / 2)) / (r.width / 2), -1, 1);
       var dy = clamp((e.clientY - (r.top + r.height / 2)) / (r.height / 1.5), -1, 1);
-      if (head) gsap.to(head, { rotation: dx * 5, x: dx * 5, duration: 0.6, overwrite: 'auto', svgOrigin: '120 124' });
+      if (head) gsap.to(head, { rotation: dx * 5, x: dx * 5, duration: 0.6, overwrite: 'auto', svgOrigin: '120 148' });
       if (pupils) gsap.to(pupils, { x: dx * 4, y: dy * 3, duration: 0.5, overwrite: 'auto' });
     }
     window.addEventListener('mousemove', onMove, { passive: true });
 
     function earFlick() {
-      if (earL) gsap.fromTo(earL, { rotation: 0 }, { rotation: -8, duration: 0.14, yoyo: true, repeat: 1, svgOrigin: '72 62' });
-      if (earR) gsap.fromTo(earR, { rotation: 0 }, { rotation: 8, duration: 0.14, yoyo: true, repeat: 1, svgOrigin: '168 62' });
+      if (earL) gsap.fromTo(earL, { rotation: 0 }, { rotation: -8, duration: 0.14, yoyo: true, repeat: 1, svgOrigin: '70 86' });
+      if (earR) gsap.fromTo(earR, { rotation: 0 }, { rotation: 8, duration: 0.14, yoyo: true, repeat: 1, svgOrigin: '170 86' });
     }
 
     api.wave = function () {
       if (!armR) return;
       gsap.timeline()
-        .to(armR, { rotation: -52, duration: 0.3, ease: 'power2.out', svgOrigin: '150 128' })
-        .to(armR, { rotation: -38, duration: 0.22, yoyo: true, repeat: 3, ease: 'sine.inOut', svgOrigin: '150 128' })
-        .to(armR, { rotation: 0, duration: 0.4, ease: 'power2.inOut', svgOrigin: '150 128' });
+        .to(armR, { rotation: -52, duration: 0.3, ease: 'power2.out', svgOrigin: '148 162' })
+        .to(armR, { rotation: -38, duration: 0.22, yoyo: true, repeat: 3, ease: 'sine.inOut', svgOrigin: '148 162' })
+        .to(armR, { rotation: 0, duration: 0.4, ease: 'power2.inOut', svgOrigin: '148 162' });
     };
     (function scheduleWave() {
       gsap.delayedCall(8 + Math.random() * 9, function () {

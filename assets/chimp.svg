@@ -1,6 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320" class="ck-chimp" role="img" aria-label="Khakichimp — a cartoon chimp in khaki pants">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 320" class="ck-chimp" role="img" aria-label="Khakichimp — a friendly cartoon chimp in khaki pants">
   <style>
-    .ck-chimp{--skin-d:#a9774b;--ear-in:#b07a5e;--pants-d:#9a8b50;--belt:#8c7c43;--btn:#6c6131;--stitch:#e7dcab;--mouth:#5a3622;--iris:#4f3422;--pupil:#20140c}
     .ck-chimp{display:block;overflow:visible}
     .ck-lids{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0)}
     @media (prefers-reduced-motion: no-preference){
@@ -16,131 +15,100 @@
     @keyframes ckEarL{0%,88%,100%{transform:rotate(0deg)}93%{transform:rotate(-7deg)}}
     @keyframes ckEarR{0%,86%,100%{transform:rotate(0deg)}92%{transform:rotate(7deg)}}
   </style>
-  <defs>
-    <radialGradient id="ckFur" cx="50%" cy="34%" r="70%">
-      <stop offset="0%" stop-color="#835a40"/><stop offset="62%" stop-color="#6b4831"/><stop offset="100%" stop-color="#503824"/>
-    </radialGradient>
-    <linearGradient id="ckArm" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#6f4c34"/><stop offset="100%" stop-color="#503824"/>
-    </linearGradient>
-    <radialGradient id="ckFace" cx="50%" cy="42%" r="64%">
-      <stop offset="0%" stop-color="#e2b483"/><stop offset="100%" stop-color="#bc895a"/>
-    </radialGradient>
-    <linearGradient id="ckBelly" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#d4a873"/><stop offset="100%" stop-color="#b68855"/>
-    </linearGradient>
-    <radialGradient id="ckMuzzle" cx="50%" cy="38%" r="65%">
-      <stop offset="0%" stop-color="#e7bb8b"/><stop offset="100%" stop-color="#cf9a69"/>
-    </radialGradient>
-    <radialGradient id="ckHand" cx="50%" cy="38%" r="68%">
-      <stop offset="0%" stop-color="#d09a69"/><stop offset="100%" stop-color="#a9774b"/>
-    </radialGradient>
-    <linearGradient id="ckPants" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#cec18b"/><stop offset="55%" stop-color="#bcb076"/><stop offset="100%" stop-color="#a3954f"/>
-    </linearGradient>
-  </defs>
 
   <!-- ground shadow -->
-  <ellipse cx="120" cy="298" rx="70" ry="9" fill="#000" opacity="0.16"/>
+  <ellipse cx="120" cy="302" rx="64" ry="10" fill="#000" opacity="0.12"/>
+
+  <!-- arms (behind torso so shoulder caps stay hidden; each group waves as one) -->
+  <g class="ck-arm-l">
+    <path d="M94,162 C72,172 62,192 62,218" fill="none" stroke="#3a2414" stroke-width="30" stroke-linecap="round"/>
+    <path d="M94,162 C72,172 62,192 62,218" fill="none" stroke="#7b5134" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="62" cy="222" r="14.5" fill="#f4c995" stroke="#3a2414" stroke-width="5"/>
+    <!-- banana held up in front of the left fist -->
+    <g transform="rotate(10 62 222)">
+      <path d="M68,228 C45,222 33,199 38,176 C43,173 50,173 55,177 C53,198 60,212 75,217 C75,222 72,226 68,228 Z" fill="#ffd34e" stroke="#3a2414" stroke-width="4.5" stroke-linejoin="round"/>
+      <rect x="41" y="165" width="11" height="13" rx="3" fill="#8a6d1f" stroke="#3a2414" stroke-width="3.5"/>
+    </g>
+    <path d="M55,218 q-2,6 0,11 M63,217 q-1,6 0,12" stroke="#dba76c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  </g>
+  <g class="ck-arm-r">
+    <path d="M146,162 C168,172 178,192 178,218" fill="none" stroke="#3a2414" stroke-width="30" stroke-linecap="round"/>
+    <path d="M146,162 C168,172 178,192 178,218" fill="none" stroke="#7b5134" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="178" cy="222" r="14.5" fill="#f4c995" stroke="#3a2414" stroke-width="5"/>
+    <path d="M185,216 q2,7 0,12 M178,215 q1,7 0,13" stroke="#dba76c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  </g>
 
   <!-- torso -->
   <g class="ck-torso">
-    <path d="M76,126 C84,112 156,112 164,126 C174,150 167,180 150,190 C132,199 108,199 90,190 C73,180 66,150 76,126 Z" fill="url(#ckFur)"/>
-    <ellipse cx="120" cy="154" rx="29" ry="31" fill="url(#ckBelly)"/>
-    <path d="M120,128 C124,140 124,150 120,162" stroke="#9a6f4a" stroke-width="1.4" fill="none" opacity="0.35"/>
+    <path d="M88,152 C96,142 144,142 152,152 C160,166 162,186 158,206 L82,206 C78,186 80,166 88,152 Z" fill="#7b5134" stroke="#3a2414" stroke-width="5.5" stroke-linejoin="round"/>
+    <ellipse cx="120" cy="182" rx="25" ry="24" fill="#f4c995"/>
   </g>
 
   <!-- pants -->
   <g class="ck-pants">
-    <path d="M85,166 C101,160 139,160 155,166 L153,186 C151,206 149,246 145,274 L127,274 C125,250 123,232 121,216 C119,232 117,250 115,274 L95,274 C91,246 89,206 87,186 Z" fill="url(#ckPants)"/>
-    <!-- leg volume shading -->
-    <path d="M99,190 C97,224 98,250 101,272 L107,272 C105,244 105,216 106,190 Z" fill="#d4c692" opacity="0.4"/>
-    <path d="M141,190 C143,224 142,250 139,272 L133,272 C135,244 135,216 134,190 Z" fill="#9a8b50" opacity="0.32"/>
-    <!-- knee creases -->
-    <path d="M96,230 q9,3 15,0" stroke="var(--pants-d)" stroke-width="1.3" fill="none" opacity="0.3"/>
-    <path d="M129,230 q9,3 15,0" stroke="var(--pants-d)" stroke-width="1.3" fill="none" opacity="0.3"/>
+    <path d="M84,200 C108,194 132,194 156,200 L159,234 C160,248 159,258 157,266 L127,266 C125,252 123,244 120,243 C117,244 115,252 113,266 L83,266 C81,258 80,248 81,234 Z" fill="#d9c18c" stroke="#3a2414" stroke-width="5.5" stroke-linejoin="round"/>
     <!-- cuffs -->
-    <path d="M93,268 L117,268 L115,274 L95,274 Z" fill="var(--pants-d)" opacity="0.45"/>
-    <path d="M123,268 L147,268 L145,274 L125,274 Z" fill="var(--pants-d)" opacity="0.45"/>
+    <path d="M84,256 L112,256 M128,256 L156,256" stroke="#b39a62" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- pockets -->
+    <path d="M88,212 q8,8 18,7 M152,212 q-8,8 -18,7" stroke="#b39a62" stroke-width="3" fill="none" stroke-linecap="round"/>
     <!-- belt -->
-    <path d="M85,164 C101,158 139,158 155,164 L155,177 C139,171 101,171 85,177 Z" fill="var(--belt)"/>
-    <rect x="96" y="161" width="5.5" height="18" rx="2" fill="var(--pants-d)"/>
-    <rect x="117.25" y="160" width="5.5" height="18" rx="2" fill="var(--pants-d)"/>
-    <rect x="138.5" y="161" width="5.5" height="18" rx="2" fill="var(--pants-d)"/>
-    <circle cx="120" cy="170" r="3.2" fill="var(--btn)"/>
-    <circle cx="119" cy="169" r="1" fill="#9a8b50"/>
-    <path d="M120,174 L120,206" stroke="var(--pants-d)" stroke-width="1.6" fill="none" opacity="0.55"/>
-    <path d="M92,182 C99,189 107,190 112,188" stroke="var(--stitch)" stroke-width="1.5" fill="none" opacity="0.65"/>
-    <path d="M148,182 C141,189 133,190 128,188" stroke="var(--stitch)" stroke-width="1.5" fill="none" opacity="0.65"/>
+    <path d="M83,197 C108,190 132,190 157,197 L157,211 C132,204 108,204 83,211 Z" fill="#7a5c3a" stroke="#3a2414" stroke-width="5" stroke-linejoin="round"/>
+    <rect x="111" y="194" width="18" height="13.5" rx="3.5" fill="#f0b94f" stroke="#3a2414" stroke-width="4"/>
+    <rect x="116.5" y="197.5" width="7" height="6.5" rx="1.5" fill="#7a5c3a"/>
   </g>
 
   <!-- feet -->
   <g class="ck-feet">
-    <ellipse cx="101" cy="289" rx="21" ry="9.5" fill="url(#ckHand)"/>
-    <ellipse cx="139" cy="289" rx="21" ry="9.5" fill="url(#ckHand)"/>
-    <ellipse cx="101" cy="286" rx="17" ry="6" fill="#dcab78" opacity="0.6"/>
-    <ellipse cx="139" cy="286" rx="17" ry="6" fill="#dcab78" opacity="0.6"/>
-  </g>
-
-  <!-- arms (each group = limb + hand so they wave as one) -->
-  <g class="ck-arm-l">
-    <path d="M92,126 C70,128 56,148 56,176 C56,196 61,208 68,214 C73,209 77,197 79,178 C81,156 87,138 94,130 Z" fill="url(#ckArm)"/>
-    <ellipse cx="64" cy="216" rx="13" ry="14" fill="url(#ckHand)"/>
-    <path d="M54,209 q-2,8 0,15 M62,206 q-1,9 0,16 M71,208 q2,8 -1,14" stroke="var(--skin-d)" stroke-width="1.3" fill="none" opacity="0.55"/>
-  </g>
-  <g class="ck-arm-r">
-    <path d="M148,126 C170,128 184,148 184,176 C184,196 179,208 172,214 C167,209 163,197 161,178 C159,156 153,138 146,130 Z" fill="url(#ckArm)"/>
-    <ellipse cx="176" cy="216" rx="13" ry="14" fill="url(#ckHand)"/>
-    <path d="M186,209 q2,8 0,15 M178,206 q1,9 0,16 M169,208 q-2,8 1,14" stroke="var(--skin-d)" stroke-width="1.3" fill="none" opacity="0.55"/>
+    <ellipse cx="98" cy="276" rx="21" ry="12" fill="#f4c995" stroke="#3a2414" stroke-width="5"/>
+    <ellipse cx="142" cy="276" rx="21" ry="12" fill="#f4c995" stroke="#3a2414" stroke-width="5"/>
+    <path d="M92,268 q0,5 0,8 M101,267 q0,5 0,8 M136,267 q0,5 0,8 M145,268 q0,5 0,8" stroke="#dba76c" stroke-width="2.6" fill="none" stroke-linecap="round"/>
   </g>
 
   <!-- ============ HEAD ============ -->
   <g class="ck-head">
     <g class="ck-ear-l">
-      <ellipse cx="62" cy="68" rx="18" ry="22" fill="url(#ckFur)"/>
-      <ellipse cx="65" cy="68" rx="9.5" ry="13" fill="var(--ear-in)"/>
+      <circle cx="52" cy="86" r="25" fill="#7b5134" stroke="#3a2414" stroke-width="5.5"/>
+      <circle cx="55" cy="86" r="12" fill="#dba76c"/>
     </g>
     <g class="ck-ear-r">
-      <ellipse cx="178" cy="68" rx="18" ry="22" fill="url(#ckFur)"/>
-      <ellipse cx="175" cy="68" rx="9.5" ry="13" fill="var(--ear-in)"/>
+      <circle cx="188" cy="86" r="25" fill="#7b5134" stroke="#3a2414" stroke-width="5.5"/>
+      <circle cx="185" cy="86" r="12" fill="#dba76c"/>
     </g>
 
-    <path d="M103,22 C108,14 116,14 120,22 C124,14 132,14 137,22 C141,16 148,18 150,26 C140,20 132,22 120,26 C108,22 100,20 90,26 C92,18 99,16 103,22 Z" fill="#503824"/>
+    <!-- skull -->
+    <ellipse cx="120" cy="92" rx="70" ry="66" fill="#7b5134" stroke="#3a2414" stroke-width="5.5"/>
+    <!-- hair tuft -->
+    <path d="M108,31 C107,19 115,12 120,21 C124,12 133,16 131,29 C124,23 115,24 108,31 Z" fill="#7b5134" stroke="#3a2414" stroke-width="4.5" stroke-linejoin="round"/>
 
-    <ellipse cx="120" cy="70" rx="55" ry="52" fill="url(#ckFur)"/>
-    <path d="M120,38 C150,38 165,60 164,86 C163,108 150,124 120,126 C90,124 77,108 76,86 C75,60 90,38 120,38 Z" fill="url(#ckFace)"/>
-
-    <!-- brow shading -->
-    <path d="M88,62 C98,55 112,56 119,61 C126,56 140,55 150,62 C140,60 128,63 119,65 C110,63 98,60 88,62 Z" fill="#a9774b" opacity="0.4"/>
+    <!-- face patch -->
+    <path d="M120,60 C112,52 96,54 88,66 C74,72 64,88 67,106 C70,128 90,144 120,144 C150,144 170,128 173,106 C176,88 166,72 152,66 C144,54 128,52 120,60 Z" fill="#f4c995"/>
 
     <g class="ck-eyes">
-      <ellipse cx="104" cy="74" rx="11.6" ry="13" fill="#f6efe2"/>
-      <ellipse cx="136" cy="74" rx="11.6" ry="13" fill="#f6efe2"/>
-      <g class="ck-pupils" style="transform-box:fill-box;transform-origin:50% 50%">
+      <ellipse cx="100" cy="88" rx="12.5" ry="13.5" fill="#ffffff" stroke="#3a2414" stroke-width="3"/>
+      <ellipse cx="140" cy="88" rx="12.5" ry="13.5" fill="#ffffff" stroke="#3a2414" stroke-width="3"/>
+      <g class="ck-pupils">
         <g class="ck-eye-in">
-          <circle cx="104" cy="75" r="6.4" fill="var(--iris)"/>
-          <circle cx="104" cy="75" r="3" fill="var(--pupil)"/>
-          <circle cx="101" cy="71.5" r="2.2" fill="#fff"/>
-          <circle cx="106" cy="78" r="1" fill="#fff" opacity="0.5"/>
+          <circle cx="101" cy="89" r="6.6" fill="#2a1a10"/>
+          <circle cx="98.5" cy="86" r="2.4" fill="#fff"/>
         </g>
         <g class="ck-eye-in">
-          <circle cx="136" cy="75" r="6.4" fill="var(--iris)"/>
-          <circle cx="136" cy="75" r="3" fill="var(--pupil)"/>
-          <circle cx="133" cy="71.5" r="2.2" fill="#fff"/>
-          <circle cx="138" cy="78" r="1" fill="#fff" opacity="0.5"/>
+          <circle cx="139" cy="89" r="6.6" fill="#2a1a10"/>
+          <circle cx="136.5" cy="86" r="2.4" fill="#fff"/>
         </g>
       </g>
-      <g class="ck-lids" fill="url(#ckFace)">
-        <ellipse cx="104" cy="74" rx="12.2" ry="13.6"/>
-        <ellipse cx="136" cy="74" rx="12.2" ry="13.6"/>
+      <g class="ck-lids" fill="#f4c995" transform="scale(1 0.0001)">
+        <ellipse cx="100" cy="88" rx="13.4" ry="14.4"/>
+        <ellipse cx="140" cy="88" rx="13.4" ry="14.4"/>
       </g>
     </g>
 
-    <!-- muzzle -->
-    <path d="M120,86 C108,86 100,86 94,93 C90,107 100,124 120,124 C140,124 150,107 146,93 C140,86 132,86 120,86 Z" fill="#b9885a" opacity="0.35"/>
-    <ellipse cx="120" cy="104" rx="27" ry="20" fill="url(#ckMuzzle)"/>
-    <ellipse cx="113" cy="99" rx="2.7" ry="3.4" fill="var(--mouth)" opacity="0.85"/>
-    <ellipse cx="127" cy="99" rx="2.7" ry="3.4" fill="var(--mouth)" opacity="0.85"/>
-    <path class="ck-mouth" d="M104,109 C112,121 128,121 136,109" stroke="var(--mouth)" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    <!-- cheeks -->
+    <circle cx="86" cy="108" r="6" fill="#ef9a6d" opacity="0.55"/>
+    <circle cx="154" cy="108" r="6" fill="#ef9a6d" opacity="0.55"/>
+
+    <!-- nose + mouth -->
+    <ellipse cx="114" cy="109" rx="2.6" ry="3.4" fill="#3a2414"/>
+    <ellipse cx="126" cy="109" rx="2.6" ry="3.4" fill="#3a2414"/>
+    <path class="ck-mouth" d="M101,118 C109,131 131,131 139,118" stroke="#3a2414" stroke-width="5" fill="none" stroke-linecap="round"/>
   </g>
 </svg>

@@ -6,6 +6,40 @@
 <meta name="google-site-verification" content="j_NbcN-2qeRhGIFVQXqVtMTq3ZnCeipy3fx87GvOpDA" />
 <title>Josh Engels · Technology Leader & iOS Developer</title>
 <meta name="description" content="Josh Engels — fifteen-plus years turning hard problems into resilient systems. Intelligence analyst, Apple Maps, Director of Incident Management at DraftKings, and indie iOS developer behind Khakichimp.">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="canonical" href="https://jengels34.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Josh Engels · Technology Leader & iOS Developer">
+<meta property="og:description" content="Fifteen-plus years across defense intelligence, Apple Maps, and high-scale iGaming — now also shipping privacy-first iOS apps as Khakichimp.">
+<meta property="og:url" content="https://jengels34.github.io/">
+<meta property="og:image" content="https://jengels34.github.io/assets/og-josh.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Josh Engels · Technology Leader & iOS Developer">
+<meta name="twitter:description" content="Fifteen-plus years across defense intelligence, Apple Maps, and high-scale iGaming — now also shipping privacy-first iOS apps as Khakichimp.">
+<meta name="twitter:image" content="https://jengels34.github.io/assets/og-josh.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Josh Engels",
+  "url": "https://jengels34.github.io/",
+  "image": "https://jengels34.github.io/assets/josh-engels.jpg",
+  "jobTitle": "Director, Problem & Incident Management",
+  "worksFor": { "@type": "Organization", "name": "DraftKings" },
+  "alumniOf": [
+    { "@type": "Organization", "name": "Apple" },
+    { "@type": "Organization", "name": "United States Air Force" },
+    { "@type": "CollegeOrUniversity", "name": "Northeastern University" }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/josh-engels/",
+    "https://github.com/jengels34"
+  ]
+}
+</script>
 <style>
     :root{
         --ink:#15202b; --slate:#475569; --mist:#64748b;
@@ -58,6 +92,7 @@
     }
     .hero h1{font-size:clamp(2.4em,6.5vw,4em);line-height:1.04;font-weight:800;letter-spacing:-0.03em}
     .hero h1 em{font-style:normal;color:var(--jungle-deep)}
+    .hero h1 em.grad{background:linear-gradient(92deg,var(--jungle-deep) 20%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero .sub{font-size:clamp(1.05em,2.4vw,1.25em);color:var(--slate);margin-top:16px;max-width:560px}
     .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
     .btn{text-decoration:none;font-weight:700;padding:13px 22px;border-radius:999px;transition:.2s;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent}
@@ -173,11 +208,15 @@
     .subhead{font-size:.78em;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--khaki-deep);margin-bottom:14px}
     .badges{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}
     .badges span{font-size:.88em;font-weight:600;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
-    .edu li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line)}
+    .edu li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px}
     .edu li:last-child{border-bottom:none}
+    .edu .elogo{display:none;width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--line);align-items:center;justify-content:center;flex:none;overflow:hidden}
+    .edu .elogo.ok{display:flex}
+    .edu .elogo img{width:26px;height:26px;object-fit:contain}
+    .edu .body{flex:1}
     .edu .deg{font-weight:700}
     .edu .school{color:var(--slate);font-size:.92em}
-    .edu .yr{float:right;color:var(--mist);font-size:.85em;font-weight:600}
+    .edu .yr{color:var(--mist);font-size:.85em;font-weight:600;margin-left:auto;flex:none;align-self:flex-start;padding-top:2px}
 
     /* ---------- ALTER EGO ---------- */
     .alter{background:linear-gradient(150deg,#262a55,var(--panel-b));color:#eef0f8;border-radius:28px;
@@ -228,18 +267,18 @@
     <div class="wrap">
         <div>
             <span class="eyebrow">Technology Leader · iOS Developer</span>
-            <h1>I turn hard problems into <em>resilient systems</em> and <em>products people trust</em>.</h1>
+            <h1>I turn hard problems into <em>resilient systems</em> and <em class="grad">products people trust</em>.</h1>
             <p class="sub">Fifteen-plus years across defense intelligence, Apple Maps, and high-scale iGaming — and these days, shipping privacy-first iOS apps end to end.</p>
             <div class="actions">
                 <a class="btn primary" href="#work">See what I've done ↓</a>
-                <a class="btn ghost" href="/khakichimp/">🐵 Enter Khakichimp HQ</a>
+                <a class="btn ghost" href="/assets/Josh-Engels-Resume.pdf" download="Josh-Engels-Resume.pdf">↓ Résumé (PDF)</a>
+                <a class="btn ghost" href="/khakichimp/">🐵 Khakichimp HQ</a>
             </div>
             <div class="worked">
                 <div class="lbl">Built &amp; led at</div>
                 <div class="row" id="logos">
-                    <span class="logo" data-name="Apple" data-srcs="/assets/logos/apple.svg|/assets/logos/apple.png|https://logo.clearbit.com/apple.com"><b>Apple</b></span>
                     <span class="logo" data-name="DraftKings" data-srcs="/assets/logos/draftkings.svg|/assets/logos/draftkings.png|https://logo.clearbit.com/draftkings.com"><b>DraftKings</b></span>
-                    <span class="logo" data-name="SAIC" data-srcs="/assets/logos/saic.svg|/assets/logos/saic.png|https://logo.clearbit.com/saic.com"><b>SAIC</b></span>
+                    <span class="logo" data-name="Apple" data-srcs="/assets/logos/apple.svg|/assets/logos/apple.png|https://logo.clearbit.com/apple.com"><b>Apple</b></span>
                     <span class="logo logo-usaf" data-name="U.S. Air Force" data-srcs="/assets/logos/usaf.svg|/assets/logos/usaf.png|https://logo.clearbit.com/airforce.com"><b>U.S. Air Force</b></span>
                 </div>
             </div>
@@ -391,10 +430,26 @@
             <div class="reveal">
                 <div class="subhead">Education</div>
                 <ul class="edu">
-                    <li><span class="yr">2020–22</span><div class="deg">M.S., Finance</div><div class="school">Northeastern University</div></li>
-                    <li><span class="yr">2014–15</span><div class="deg">M.S., Human Resource Management</div><div class="school">Golden Gate University</div></li>
-                    <li><span class="yr">2013–14</span><div class="deg">M.B.A.</div><div class="school">University of Phoenix</div></li>
-                    <li><span class="yr">2007–09</span><div class="deg">B.S., Criminal Justice (Minor: Sociology)</div><div class="school">University of Maryland University College</div></li>
+                    <li>
+                        <span class="elogo" data-name="Northeastern University" data-srcs="/assets/logos/northeastern.png|https://unavatar.io/northeastern.edu|https://www.google.com/s2/favicons?domain=northeastern.edu&amp;sz=64"></span>
+                        <div class="body"><div class="deg">M.S., Finance</div><div class="school">Northeastern University</div></div>
+                        <span class="yr">2020–22</span>
+                    </li>
+                    <li>
+                        <span class="elogo" data-name="Golden Gate University" data-srcs="/assets/logos/ggu.png|https://unavatar.io/ggu.edu|https://www.google.com/s2/favicons?domain=ggu.edu&amp;sz=64"></span>
+                        <div class="body"><div class="deg">M.S., Human Resource Management</div><div class="school">Golden Gate University</div></div>
+                        <span class="yr">2014–15</span>
+                    </li>
+                    <li>
+                        <span class="elogo" data-name="University of Phoenix" data-srcs="/assets/logos/phoenix.png|https://unavatar.io/phoenix.edu|https://www.google.com/s2/favicons?domain=phoenix.edu&amp;sz=64"></span>
+                        <div class="body"><div class="deg">M.B.A.</div><div class="school">University of Phoenix</div></div>
+                        <span class="yr">2013–14</span>
+                    </li>
+                    <li>
+                        <span class="elogo" data-name="University of Maryland University College" data-srcs="/assets/logos/umuc.png|https://unavatar.io/umuc.edu|https://www.google.com/s2/favicons?domain=umuc.edu&amp;sz=64"></span>
+                        <div class="body"><div class="deg">B.S., Criminal Justice (Minor: Sociology)</div><div class="school">University of Maryland University College</div></div>
+                        <span class="yr">2007–09</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -420,6 +475,7 @@
     <div class="wrap">
         <div class="links">
             <a class="contact" data-u="engelsjosh" data-d="gmail.com" href="#">Email me</a>
+            <a href="/assets/Josh-Engels-Resume.pdf" download="Josh-Engels-Resume.pdf">Résumé</a>
             <a href="https://www.linkedin.com/in/josh-engels/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
             <a href="/khakichimp/">Khakichimp HQ</a>
@@ -479,8 +535,9 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
     }
 })();
 
-/* Logo loader: try self-hosted, then CDN, else keep text fallback */
-document.querySelectorAll('#logos .logo').forEach(el=>{
+/* Logo loader (companies + schools): try self-hosted, then CDN; on total failure
+   company marks keep their text fallback and school tiles stay hidden */
+document.querySelectorAll('[data-srcs]').forEach(el=>{
     const srcs = (el.dataset.srcs||'').split('|').filter(Boolean);
     if(!srcs.length) return;
     let i = 0;
