@@ -6,5 +6,8 @@
     "lint:html": "htmlhint \"**/*.html\" --ignore \"node_modules/**\"",
     "check:links": "node scripts/check-links.mjs .",
     "test": "npm run check:links && npx --yes htmlhint@1 \"**/*.html\" --ignore \"node_modules/**\""
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2"
   }
 }
