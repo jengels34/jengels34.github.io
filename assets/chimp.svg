@@ -26,8 +26,8 @@
     <circle cx="62" cy="222" r="14.5" fill="#f4c995" stroke="#3a2414" stroke-width="5"/>
     <!-- banana held up in front of the left fist -->
     <g transform="rotate(10 62 222)">
-      <path d="M68,226 C50,222 40,204 44,184 L53,186 C52,202 58,212 70,217 Z" fill="#ffd34e" stroke="#3a2414" stroke-width="4.5" stroke-linejoin="round"/>
-      <rect x="43" y="176" width="9" height="10" rx="2.5" fill="#8a6d1f" stroke="#3a2414" stroke-width="3.5"/>
+      <path d="M68,228 C45,222 33,199 38,176 C43,173 50,173 55,177 C53,198 60,212 75,217 C75,222 72,226 68,228 Z" fill="#ffd34e" stroke="#3a2414" stroke-width="4.5" stroke-linejoin="round"/>
+      <rect x="41" y="165" width="11" height="13" rx="3" fill="#8a6d1f" stroke="#3a2414" stroke-width="3.5"/>
     </g>
     <path d="M55,218 q-2,6 0,11 M63,217 q-1,6 0,12" stroke="#dba76c" stroke-width="2.4" fill="none" stroke-linecap="round"/>
   </g>

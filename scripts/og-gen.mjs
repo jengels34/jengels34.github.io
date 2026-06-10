@@ -22,7 +22,7 @@ const careerCard = `
   <text x="84" y="180" font-size="22" font-weight="bold" letter-spacing="4" fill="#4f46e5">TECHNOLOGY LEADER · iOS DEVELOPER</text>
   <text x="80" y="290" font-size="96" font-weight="bold" fill="#15202b">Josh Engels</text>
   <text x="84" y="362" font-size="28" fill="#475569">Resilient systems. Products people trust.</text>
-  <text x="84" y="450" font-size="28" fill="#64748b">Apple  ·  DraftKings  ·  U.S. Air Force  ·  SAIC</text>
+  <text x="84" y="450" font-size="28" fill="#64748b">DraftKings  ·  Apple  ·  U.S. Air Force</text>
   <circle cx="92" cy="540" r="9" fill="#ff6b54"/>
   <text x="116" y="550" font-size="26" font-weight="bold" fill="#15202b">jengels34.github.io</text>
   <defs>
