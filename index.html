@@ -218,8 +218,10 @@
     .badges span{font-size:.88em;font-weight:600;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
     .edu li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px}
     .edu li:last-child{border-bottom:none}
-    .edu .elogo{display:flex;width:40px;height:40px;border-radius:10px;background:rgba(79,70,229,.08);border:1px solid var(--line);
+    .edu .elogo{position:relative;overflow:hidden;display:flex;width:40px;height:40px;border-radius:10px;background:rgba(79,70,229,.08);border:1px solid var(--line);
         align-items:center;justify-content:center;flex:none;font-weight:800;font-size:.74em;letter-spacing:.03em;color:var(--khaki-deep)}
+    /* Real logo layered over the monogram: covers it when present, letters show through if the file is missing. No external requests. */
+    .edu .elogo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:4px;border-radius:9px}
     .edu .body{flex:1}
     .edu .deg{font-weight:700}
     .edu .school{color:var(--slate);font-size:.92em}
@@ -279,10 +281,10 @@
         <div>
             <span class="eyebrow">Technology Leader · iOS Developer</span>
             <h1>I turn hard problems into <em>resilient systems</em> and <em class="grad">products people trust</em>.</h1>
-            <p class="sub">Fifteen-plus years across defense intelligence, Apple Maps, and high-scale iGaming — and these days, shipping privacy-first iOS apps end to end.</p>
+            <p class="sub">Fifteen-plus years across defense intelligence, Apple Maps, and high-scale iGaming. Today I lead problem &amp; incident management at DraftKings — and build privacy-first iOS apps on the side.</p>
             <div class="actions">
                 <a class="btn primary" href="#work">See what I've done ↓</a>
-                <a class="btn ghost" href="/assets/Josh-Engels-Resume.pdf" download="Josh-Engels-Resume.pdf">↓ Résumé (PDF)</a>
+                <a class="btn ghost" href="/assets/Josh-Engels-Resume.pdf" download="Josh-Engels-Resume.pdf">Resume</a>
                 <a class="btn ghost" href="/khakichimp/">🐵 Khakichimp HQ</a>
             </div>
             <div class="worked">
@@ -444,22 +446,22 @@
                 <div class="subhead">Education</div>
                 <ul class="edu">
                     <li>
-                        <span class="elogo" aria-hidden="true">NU</span>
+                        <span class="elogo" aria-hidden="true"><img src="/assets/logos/northeastern.png" alt="" loading="lazy" decoding="async">NU</span>
                         <div class="body"><div class="deg">M.S., Finance</div><div class="school">Northeastern University</div></div>
                         <span class="yr">2020–22</span>
                     </li>
                     <li>
-                        <span class="elogo" aria-hidden="true">GG</span>
+                        <span class="elogo" aria-hidden="true"><img src="/assets/logos/golden-gate.png" alt="" loading="lazy" decoding="async">GG</span>
                         <div class="body"><div class="deg">M.S., Human Resource Management</div><div class="school">Golden Gate University</div></div>
                         <span class="yr">2014–15</span>
                     </li>
                     <li>
-                        <span class="elogo" aria-hidden="true">UP</span>
+                        <span class="elogo" aria-hidden="true"><img src="/assets/logos/phoenix.png" alt="" loading="lazy" decoding="async">UP</span>
                         <div class="body"><div class="deg">M.B.A.</div><div class="school">University of Phoenix</div></div>
                         <span class="yr">2013–14</span>
                     </li>
                     <li>
-                        <span class="elogo" aria-hidden="true">UM</span>
+                        <span class="elogo" aria-hidden="true"><img src="/assets/logos/umuc.png" alt="" loading="lazy" decoding="async">UM</span>
                         <div class="body"><div class="deg">B.S., Criminal Justice (Minor: Sociology)</div><div class="school">University of Maryland University College</div></div>
                         <span class="yr">2007–09</span>
                     </li>
@@ -489,7 +491,7 @@
     <div class="wrap">
         <div class="links">
             <a class="contact" data-u="engelsjosh" data-d="gmail.com" href="#">Email me</a><noscript><span class="email-fallback">engelsjosh [at] gmail [dot] com</span></noscript>
-            <a href="/assets/Josh-Engels-Resume.pdf" download="Josh-Engels-Resume.pdf">Résumé</a>
+            <a href="/assets/Josh-Engels-Resume.pdf" download="Josh-Engels-Resume.pdf">Resume</a>
             <a href="https://www.linkedin.com/in/josh-engels/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
             <a href="/khakichimp/">Khakichimp HQ</a>
