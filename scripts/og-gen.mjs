@@ -55,7 +55,56 @@ const hqCard = `
   <svg x="775" y="65" width="410" height="530" viewBox="0 0 240 320">${chimp}</svg>
 </svg>`;
 
-for (const [name, src] of [['og-josh', careerCard], ['og-khakichimp', hqCard]]) {
+// Per-app share cards, tinted with each page's accent gradient.
+const APPS = [
+  {
+    slug: 'tasks-uniflow', name: 'Tasks - Uniflow', icon: iconTasks,
+    tag1: 'Local tasks, Notion, and Apple Reminders —',
+    tag2: 'unified in one native iOS app.',
+    accent: '#9e66d1', deep: '#8843c6', ink: '#7033a9',
+  },
+  {
+    slug: 'readme', name: 'ReadMe', icon: iconReadme,
+    tag1: 'A native, privacy-first book tracker.',
+    tag2: 'Your library, all on your device.',
+    accent: 'hsl(180,72%,40%)', deep: 'hsl(180,72%,31%)', ink: 'hsl(180,72%,22%)',
+  },
+  {
+    slug: 'food-in-five', name: 'Food in Five', icon: iconFood,
+    tag1: 'Discover great food near you in seconds.',
+    tag2: 'No account. No tracking. All on-device.',
+    accent: '#8a56ed', deep: '#6d2de9', ink: '#5716d1',
+  },
+];
+
+const appCard = (a) => `
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" font-family="DejaVu Sans">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="${a.accent}"/><stop offset="70%" stop-color="${a.deep}"/>
+      <stop offset="100%" stop-color="${a.ink}"/>
+    </linearGradient>
+    <clipPath id="ic"><rect x="880" y="175" width="230" height="230" rx="52"/></clipPath>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1060" cy="-40" r="300" fill="#ffffff" opacity="0.10"/>
+  <circle cx="120" cy="640" r="260" fill="#000000" opacity="0.10"/>
+  <text x="86" y="170" font-size="22" font-weight="bold" letter-spacing="4" fill="#ffffff" opacity="0.85">KHAKICHIMP · NATIVE iOS</text>
+  <text x="80" y="290" font-size="84" font-weight="bold" fill="#ffffff">${a.name}</text>
+  <text x="86" y="366" font-size="30" fill="#ffffff" opacity="0.92">${a.tag1}</text>
+  <text x="86" y="410" font-size="30" fill="#ffffff" opacity="0.92">${a.tag2}</text>
+  <rect x="86" y="470" width="256" height="52" rx="26" fill="#ffffff" opacity="0.16"/>
+  <text x="112" y="504" font-size="24" font-weight="bold" fill="#ffffff"> On the App Store</text>
+  <image href="${a.icon}" x="880" y="175" width="230" height="230" clip-path="url(#ic)"/>
+  <rect x="880" y="175" width="230" height="230" rx="52" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3"/>
+</svg>`;
+
+const cards = [
+  ['og-josh', careerCard],
+  ['og-khakichimp', hqCard],
+  ...APPS.map((a) => [`og-${a.slug}`, appCard(a)]),
+];
+for (const [name, src] of cards) {
   const r = new Resvg(src, { fitTo: { mode: 'width', value: 1200 } });
   fs.writeFileSync(`assets/${name}.png`, r.render().asPng());
   console.log('wrote assets/' + name + '.png');
