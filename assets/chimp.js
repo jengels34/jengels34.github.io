@@ -31,43 +31,61 @@
     var earR = svg.querySelector('.ck-ear-r');
     var armR = svg.querySelector('.ck-arm-r');
 
-    /* hand head + ears over to JS (they have CSS idle animations by default) */
-    if (head) head.style.animation = 'none';
-    if (earL) earL.style.animation = 'none';
-    if (earR) earR.style.animation = 'none';
-
-    /* idle head sway */
-    if (head) gsap.to(head, { y: -2, rotation: -1.2, duration: 2.4, yoyo: true, repeat: -1, ease: 'sine.inOut', svgOrigin: '120 148' });
-
-    /* follow the cursor with head + eyes */
-    function onMove(e) {
-      var r = svg.getBoundingClientRect();
-      if (!r.width) return;
-      var dx = clamp((e.clientX - (r.left + r.width / 2)) / (r.width / 2), -1, 1);
-      var dy = clamp((e.clientY - (r.top + r.height / 2)) / (r.height / 1.5), -1, 1);
-      if (head) gsap.to(head, { rotation: dx * 5, x: dx * 5, duration: 0.6, overwrite: 'auto', svgOrigin: '120 148' });
-      if (pupils) gsap.to(pupils, { x: dx * 4, y: dy * 3, duration: 0.5, overwrite: 'auto' });
-    }
-    window.addEventListener('mousemove', onMove, { passive: true });
+    /* rigged = the hand-drawn cartoon with per-part hooks; otherwise a flat
+       single-piece illustration we animate as a whole figure. */
+    var rigged = !!(head && pupils);
+    var figure = svg.querySelector('.ck-figure') || svg.querySelector('g') || svg;
 
     function earFlick() {
       if (earL) gsap.fromTo(earL, { rotation: 0 }, { rotation: -8, duration: 0.14, yoyo: true, repeat: 1, svgOrigin: '70 86' });
       if (earR) gsap.fromTo(earR, { rotation: 0 }, { rotation: 8, duration: 0.14, yoyo: true, repeat: 1, svgOrigin: '170 86' });
     }
 
-    api.wave = function () {
-      if (!armR) return;
-      gsap.timeline()
-        .to(armR, { rotation: -52, duration: 0.3, ease: 'power2.out', svgOrigin: '148 162' })
-        .to(armR, { rotation: -38, duration: 0.22, yoyo: true, repeat: 3, ease: 'sine.inOut', svgOrigin: '148 162' })
-        .to(armR, { rotation: 0, duration: 0.4, ease: 'power2.inOut', svgOrigin: '148 162' });
-    };
-    (function scheduleWave() {
-      gsap.delayedCall(8 + Math.random() * 9, function () {
-        if (!document.hidden) api.wave();
-        scheduleWave();
-      });
-    })();
+    if (rigged) {
+      /* hand head + ears over to JS (they have CSS idle animations by default) */
+      if (head) head.style.animation = 'none';
+      if (earL) earL.style.animation = 'none';
+      if (earR) earR.style.animation = 'none';
+
+      /* idle head sway */
+      if (head) gsap.to(head, { y: -2, rotation: -1.2, duration: 2.4, yoyo: true, repeat: -1, ease: 'sine.inOut', svgOrigin: '120 148' });
+
+      /* follow the cursor with head + eyes */
+      window.addEventListener('mousemove', function (e) {
+        var r = svg.getBoundingClientRect();
+        if (!r.width) return;
+        var dx = clamp((e.clientX - (r.left + r.width / 2)) / (r.width / 2), -1, 1);
+        var dy = clamp((e.clientY - (r.top + r.height / 2)) / (r.height / 1.5), -1, 1);
+        if (head) gsap.to(head, { rotation: dx * 5, x: dx * 5, duration: 0.6, overwrite: 'auto', svgOrigin: '120 148' });
+        if (pupils) gsap.to(pupils, { x: dx * 4, y: dy * 3, duration: 0.5, overwrite: 'auto' });
+      }, { passive: true });
+
+      api.wave = function () {
+        if (!armR) return;
+        gsap.timeline()
+          .to(armR, { rotation: -52, duration: 0.3, ease: 'power2.out', svgOrigin: '148 162' })
+          .to(armR, { rotation: -38, duration: 0.22, yoyo: true, repeat: 3, ease: 'sine.inOut', svgOrigin: '148 162' })
+          .to(armR, { rotation: 0, duration: 0.4, ease: 'power2.inOut', svgOrigin: '148 162' });
+      };
+      (function scheduleWave() {
+        gsap.delayedCall(8 + Math.random() * 9, function () {
+          if (!document.hidden) api.wave();
+          scheduleWave();
+        });
+      })();
+    } else {
+      /* flat single-piece artwork (no per-part hooks): keep it alive as a whole
+         figure. Idle breathing/bob + a subtle lean toward the cursor, animated on
+         the inner group so react()/celebrate() (on the <svg> root) layer on top. */
+      gsap.to(figure, { y: -16, duration: 2.6, yoyo: true, repeat: -1, ease: 'sine.inOut', svgOrigin: '1024 2048' });
+      gsap.to(figure, { scale: 1.015, duration: 3.6, yoyo: true, repeat: -1, ease: 'sine.inOut', svgOrigin: '1024 2048' });
+      window.addEventListener('mousemove', function (e) {
+        var r = svg.getBoundingClientRect();
+        if (!r.width) return;
+        var dx = clamp((e.clientX - (r.left + r.width / 2)) / (r.width / 2), -1, 1);
+        gsap.to(figure, { x: dx * 14, rotation: dx * 2.2, duration: 0.7, overwrite: 'auto', svgOrigin: '1024 1024' });
+      }, { passive: true });
+    }
 
     api.react = function (combo) {
       var lift = clamp(7 + (combo || 1) * 2, 7, 20);
