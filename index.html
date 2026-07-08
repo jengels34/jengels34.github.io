@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f6f2">
 <meta name="google-site-verification" content="j_NbcN-2qeRhGIFVQXqVtMTq3ZnCeipy3fx87GvOpDA" />
 <title>Josh Engels · Technology Leader & iOS Developer</title>
 <meta name="description" content="Josh Engels — fifteen-plus years turning hard problems into resilient systems. Intelligence analyst, Apple Maps, Director of Incident Management at DraftKings, and indie iOS developer behind Khakichimp.">
@@ -40,6 +41,7 @@
   ]
 }
 </script>
+<script>document.documentElement.classList.add('js')</script>
 <style>
     :root{
         --ink:#15202b; --slate:#475569; --mist:#64748b;
@@ -61,6 +63,11 @@
     a{color:var(--jungle-deep)}
     ::selection{background:var(--banana);color:var(--ink)}
     .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+    /* skip link (visible on keyboard focus only) */
+    .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--ink);color:#fff;
+        padding:12px 20px;border-radius:0 0 14px 0;font-weight:700;text-decoration:none}
+    .skip:focus{left:0}
 
     /* scroll progress */
     .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
@@ -92,7 +99,10 @@
     }
     .hero h1{font-size:clamp(2.4em,6.5vw,4em);line-height:1.04;font-weight:800;letter-spacing:-0.03em}
     .hero h1 em{font-style:normal;color:var(--jungle-deep)}
-    .hero h1 em.grad{background:linear-gradient(92deg,var(--jungle-deep) 20%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero h1 em.grad{color:var(--jungle-deep)}
+    @supports ((-webkit-background-clip:text) or (background-clip:text)){
+        .hero h1 em.grad{background:linear-gradient(92deg,var(--jungle-deep) 20%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+    }
     .hero .sub{font-size:clamp(1.05em,2.4vw,1.25em);color:var(--slate);margin-top:16px;max-width:560px}
     .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
     .btn{text-decoration:none;font-weight:700;padding:13px 22px;border-radius:999px;transition:.2s;display:inline-flex;align-items:center;gap:8px;border:1px solid transparent}
@@ -111,8 +121,6 @@
     .logo.logo-usaf{height:46px}
     .logo.logo-usaf img{height:46px}
     .logo:hover img{opacity:1;filter:saturate(1.05)}
-    .logo b{font-weight:800;color:var(--slate);opacity:.78;font-size:1.02em;letter-spacing:-0.01em}
-    .logo.ok b{display:none}
 
     /* hero portrait (keynote-style) */
     .portal{position:relative;display:flex;justify-content:center}
@@ -210,9 +218,8 @@
     .badges span{font-size:.88em;font-weight:600;padding:8px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
     .edu li{list-style:none;padding:12px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px}
     .edu li:last-child{border-bottom:none}
-    .edu .elogo{display:none;width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--line);align-items:center;justify-content:center;flex:none;overflow:hidden}
-    .edu .elogo.ok{display:flex}
-    .edu .elogo img{width:26px;height:26px;object-fit:contain}
+    .edu .elogo{display:flex;width:40px;height:40px;border-radius:10px;background:rgba(79,70,229,.08);border:1px solid var(--line);
+        align-items:center;justify-content:center;flex:none;font-weight:800;font-size:.74em;letter-spacing:.03em;color:var(--khaki-deep)}
     .edu .body{flex:1}
     .edu .deg{font-weight:700}
     .edu .school{color:var(--slate);font-size:.92em}
@@ -238,16 +245,20 @@
     footer a{color:var(--jungle-deep);text-decoration:none;font-weight:600}
     footer a:hover{text-decoration:underline}
     footer .copy{font-size:.85em}
+    .email-fallback{color:var(--slate);font-weight:600}
 
-    .reveal{opacity:0;transform:translateY(26px)}
+    /* reveal targets are only hidden when JS is running (html.js) so content
+       stays fully visible for no-JS visitors */
+    html.js .reveal{opacity:0;transform:translateY(26px)}
     @media(prefers-reduced-motion:reduce){
         *{animation:none!important;transition:none!important}
-        .reveal{opacity:1;transform:none}
+        html.js .reveal{opacity:1;transform:none}
         html{scroll-behavior:auto}
     }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="progress" id="progress"></div>
 
 <nav>
@@ -277,9 +288,9 @@
             <div class="worked">
                 <div class="lbl">Built &amp; led at</div>
                 <div class="row" id="logos">
-                    <span class="logo" data-name="DraftKings" data-srcs="/assets/logos/draftkings.svg|/assets/logos/draftkings.png|https://logo.clearbit.com/draftkings.com"><b>DraftKings</b></span>
-                    <span class="logo" data-name="Apple" data-srcs="/assets/logos/apple.svg|/assets/logos/apple.png|https://logo.clearbit.com/apple.com"><b>Apple</b></span>
-                    <span class="logo logo-usaf" data-name="U.S. Air Force" data-srcs="/assets/logos/usaf.svg|/assets/logos/usaf.png|https://logo.clearbit.com/airforce.com"><b>U.S. Air Force</b></span>
+                    <span class="logo"><img src="/assets/logos/draftkings.png" alt="DraftKings" loading="lazy" decoding="async"></span>
+                    <span class="logo"><img src="/assets/logos/apple.png" alt="Apple" loading="lazy" decoding="async"></span>
+                    <span class="logo logo-usaf"><img src="/assets/logos/usaf.png" alt="U.S. Air Force" loading="lazy" decoding="async"></span>
                 </div>
             </div>
         </div>
@@ -294,13 +305,14 @@
     </div>
 </header>
 
+<main id="main">
 <!-- ============ STATS ============ -->
 <section class="stats">
     <div class="wrap">
-        <div class="stat"><div class="num" data-count="15"><span class="val">0</span><span class="suf">+</span></div><div class="cap">Years building &amp; leading</div></div>
-        <div class="stat"><div class="num" data-count="4"><span class="val">0</span></div><div class="cap">Industries spanned</div></div>
-        <div class="stat"><div class="num" data-count="7"><span class="val">0</span><span class="suf">+</span></div><div class="cap">Years leading incident response</div></div>
-        <div class="stat"><div class="num" data-count="4"><span class="val">0</span></div><div class="cap">Degrees earned</div></div>
+        <div class="stat"><div class="num" data-count="15"><span class="val">15</span><span class="suf">+</span></div><div class="cap">Years building &amp; leading</div></div>
+        <div class="stat"><div class="num" data-count="3"><span class="val">3</span></div><div class="cap">Apps on the App Store</div></div>
+        <div class="stat"><div class="num" data-count="7"><span class="val">7</span><span class="suf">+</span></div><div class="cap">Years leading incident response</div></div>
+        <div class="stat"><div class="num" data-count="4"><span class="val">4</span></div><div class="cap">Degrees earned</div></div>
     </div>
 </section>
 
@@ -338,7 +350,7 @@
                     <div class="idx">04</div>
                     <div class="era">Khakichimp · 2025–present</div>
                     <h3>Shipping as an indie</h3>
-                    <p>Designing, building, and publishing privacy-first iOS apps solo — from first sketch to the App Store. Tasks - Uniflow is live, with more on the way.</p>
+                    <p>Designing, building, and publishing privacy-first iOS apps solo — from first sketch to the App Store. Three apps live: Tasks - Uniflow, ReadMe, and Food in Five.</p>
                     <a class="more" href="/khakichimp/">Explore the apps →</a>
                 </article>
             </div>
@@ -364,8 +376,9 @@
                 <p>Lead the charge on a robust incident management response process — partnering with business leaders to close gaps, enhance engineering resiliency, and improve overall stability. Manage cross-functional teams delivering 24/7 support to engineering, and build AI-enabled tools that streamline developer workflows and reduce downtime.</p>
                 <div class="reflinks">
                     <a href="https://www.pagerduty.com/customer/draftkings/" target="_blank" rel="noopener">PagerDuty case study ↗</a>
-                    <a href="https://www.youtube.com/watch?v=RaWqwQj3cCI" target="_blank" rel="noopener">Talk ↗</a>
-                    <a href="https://www.youtube.com/watch?v=Mu8cn7jN7ck" target="_blank" rel="noopener">Talk ↗</a>
+                    <!-- TODO(owner): swap these labels for the exact talk titles -->
+                    <a href="https://www.youtube.com/watch?v=RaWqwQj3cCI" target="_blank" rel="noopener">Watch: incident management at DraftKings ↗</a>
+                    <a href="https://www.youtube.com/watch?v=Mu8cn7jN7ck" target="_blank" rel="noopener">Watch: resiliency at scale ↗</a>
                 </div>
             </div>
 
@@ -373,7 +386,7 @@
                 <div class="when">Aug 2025 – Present</div>
                 <h3>Independent iOS Developer</h3>
                 <div class="org">Self-employed <span class="loc">· Khakichimp</span></div>
-                <p>Building native, privacy-first apps with SwiftUI, SwiftData, CloudKit, and modern Apple frameworks. Shipped Tasks - Uniflow to the App Store, with Food in Five and ReadMe in the works.</p>
+                <p>Building native, privacy-first apps with SwiftUI, SwiftData, CloudKit, and modern Apple frameworks. Shipped three apps to the App Store — Tasks - Uniflow, ReadMe, and Food in Five — each designed, built, and launched end to end.</p>
                 <div class="reflinks">
                     <a class="apps" href="/khakichimp/">🐵 See my apps as Khakichimp →</a>
                 </div>
@@ -431,22 +444,22 @@
                 <div class="subhead">Education</div>
                 <ul class="edu">
                     <li>
-                        <span class="elogo" data-name="Northeastern University" data-srcs="/assets/logos/northeastern.png|https://unavatar.io/northeastern.edu|https://www.google.com/s2/favicons?domain=northeastern.edu&amp;sz=64"></span>
+                        <span class="elogo" aria-hidden="true">NU</span>
                         <div class="body"><div class="deg">M.S., Finance</div><div class="school">Northeastern University</div></div>
                         <span class="yr">2020–22</span>
                     </li>
                     <li>
-                        <span class="elogo" data-name="Golden Gate University" data-srcs="/assets/logos/ggu.png|https://unavatar.io/ggu.edu|https://www.google.com/s2/favicons?domain=ggu.edu&amp;sz=64"></span>
+                        <span class="elogo" aria-hidden="true">GG</span>
                         <div class="body"><div class="deg">M.S., Human Resource Management</div><div class="school">Golden Gate University</div></div>
                         <span class="yr">2014–15</span>
                     </li>
                     <li>
-                        <span class="elogo" data-name="University of Phoenix" data-srcs="/assets/logos/phoenix.png|https://unavatar.io/phoenix.edu|https://www.google.com/s2/favicons?domain=phoenix.edu&amp;sz=64"></span>
+                        <span class="elogo" aria-hidden="true">UP</span>
                         <div class="body"><div class="deg">M.B.A.</div><div class="school">University of Phoenix</div></div>
                         <span class="yr">2013–14</span>
                     </li>
                     <li>
-                        <span class="elogo" data-name="University of Maryland University College" data-srcs="/assets/logos/umuc.png|https://unavatar.io/umuc.edu|https://www.google.com/s2/favicons?domain=umuc.edu&amp;sz=64"></span>
+                        <span class="elogo" aria-hidden="true">UM</span>
                         <div class="body"><div class="deg">B.S., Criminal Justice (Minor: Sociology)</div><div class="school">University of Maryland University College</div></div>
                         <span class="yr">2007–09</span>
                     </li>
@@ -469,12 +482,13 @@
         </div>
     </div>
 </section>
+</main>
 
 <!-- ============ FOOTER ============ -->
 <footer>
     <div class="wrap">
         <div class="links">
-            <a class="contact" data-u="engelsjosh" data-d="gmail.com" href="#">Email me</a>
+            <a class="contact" data-u="engelsjosh" data-d="gmail.com" href="#">Email me</a><noscript><span class="email-fallback">engelsjosh [at] gmail [dot] com</span></noscript>
             <a href="/assets/Josh-Engels-Resume.pdf" download="Josh-Engels-Resume.pdf">Résumé</a>
             <a href="https://www.linkedin.com/in/josh-engels/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
@@ -529,25 +543,14 @@ if(window.gsap && window.ScrollTrigger && !reduceMotion){
         gsap.to(obj,{n:target,duration:1.2,ease:'power2.out',onUpdate:()=>{val.textContent=Math.round(obj.n);}});
     }
     if(window.gsap && window.ScrollTrigger && !reduceMotion){
-        nums.forEach(el=>ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>run(el)}));
-    } else {
-        nums.forEach(run);
+        /* markup ships the real numbers (for no-JS visitors); zero them out
+           only when we know the count-up animation will run */
+        nums.forEach(el=>{
+            el.querySelector('.val').textContent = '0';
+            ScrollTrigger.create({trigger:el,start:'top 90%',once:true,onEnter:()=>run(el)});
+        });
     }
 })();
-
-/* Logo loader (companies + schools): try self-hosted, then CDN; on total failure
-   company marks keep their text fallback and school tiles stay hidden */
-document.querySelectorAll('[data-srcs]').forEach(el=>{
-    const srcs = (el.dataset.srcs||'').split('|').filter(Boolean);
-    if(!srcs.length) return;
-    let i = 0;
-    const img = new Image();
-    img.alt = el.dataset.name || '';
-    img.decoding = 'async';
-    img.onload = ()=>{ el.insertBefore(img, el.firstChild); el.classList.add('ok'); };
-    img.onerror = ()=>{ i++; if(i<srcs.length) img.src = srcs[i]; };
-    img.src = srcs[0];
-});
 
 /* Apple-keynote horizontal pinned "Selected work" (desktop only) */
 (function(){

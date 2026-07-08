@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1410">
 <title>Khakichimp HQ · Native, privacy-first iOS apps</title>
 <meta name="description" content="Khakichimp HQ — native, privacy-first iOS apps built by Josh Engels. Tasks - Uniflow, ReadMe, and Food in Five. No trackers, ever.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -19,6 +20,7 @@
 <meta name="twitter:title" content="Khakichimp HQ · Native, privacy-first iOS apps">
 <meta name="twitter:description" content="Tasks - Uniflow, ReadMe, and Food in Five — native iOS apps with no trackers, ever. Built by Josh Engels.">
 <meta name="twitter:image" content="https://jengels34.github.io/assets/og-khakichimp.png">
+<script>document.documentElement.classList.add('js')</script>
 <style>
     :root{
         /* vibrant jungle-pop */
@@ -29,6 +31,7 @@
         --cream:#f3fbf3; --ink:#08120c;
     }
     *{margin:0;padding:0;box-sizing:border-box}
+    [hidden]{display:none!important}
     html{scroll-behavior:smooth}
     body{
         font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
@@ -38,6 +41,11 @@
     }
     a{color:inherit}
     ::selection{background:var(--lime);color:var(--ink)}
+
+    /* skip link (visible on keyboard focus only) */
+    .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--lime);color:var(--ink);
+        padding:12px 20px;border-radius:0 0 14px 0;font-weight:700;text-decoration:none}
+    .skip:focus{left:0}
 
     /* scroll progress */
     .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
@@ -76,19 +84,24 @@
     @keyframes aura{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.07)}}
     .chimp-stage svg,.chimp-stage img{position:relative;z-index:1;width:100%;height:auto;display:block;filter:drop-shadow(0 22px 26px rgba(0,0,0,.45));will-change:transform}
     .chimp-hint{font-size:.8em;opacity:.6;letter-spacing:.04em;text-transform:uppercase;margin-top:-4px}
+    /* the mascot is injected and animated by JS — hide the stage and its hint for no-JS visitors */
+    .chimp-stage,.chimp-hint{display:none}
+    html.js .chimp-stage{display:block}
+    html.js .chimp-hint{display:block}
 
     .eyebrow{
         display:inline-block;font-size:.78em;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
         color:var(--lime);background:rgba(166,242,74,.14);padding:6px 14px;border-radius:999px;margin-bottom:18px;
         border:1px solid rgba(166,242,74,.28);
     }
-    .hero h1{
-        font-size:clamp(2.6em,8vw,4.6em);line-height:1.02;font-weight:800;letter-spacing:-0.03em;
-        background:linear-gradient(180deg,#ffffff 0%,#c9ffd9 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
-    }
-    .hero h1 .pants{
-        background:linear-gradient(180deg,var(--lime),var(--teal));-webkit-background-clip:text;background-clip:text;
-        -webkit-text-fill-color:transparent;color:transparent;
+    .hero h1{font-size:clamp(2.6em,8vw,4.6em);line-height:1.02;font-weight:800;letter-spacing:-0.03em;color:#fff}
+    .hero h1 .pants{color:var(--lime)}
+    @supports ((-webkit-background-clip:text) or (background-clip:text)){
+        .hero h1{background:linear-gradient(180deg,#ffffff 0%,#c9ffd9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+        .hero h1 .pants{
+            background:linear-gradient(180deg,var(--lime),var(--teal));-webkit-background-clip:text;background-clip:text;
+            -webkit-text-fill-color:transparent;color:transparent;
+        }
     }
     .hero .tag{font-size:clamp(1em,2.4vw,1.25em);opacity:.94;margin-top:14px;min-height:1.6em}
     .hero .tag .rot{color:var(--banana);font-weight:800;display:inline-block}
@@ -199,6 +212,9 @@
         background:linear-gradient(120deg,var(--banana),var(--lime));color:var(--ink);border:none;padding:12px 20px;border-radius:999px;
         box-shadow:0 12px 26px rgba(255,210,63,.3);transition:transform .15s}
     .feed-btn:active{transform:scale(.95)}
+    .craft{grid-column:1/-1;background:linear-gradient(160deg,rgba(168,120,255,.14),rgba(255,210,63,.06))}
+    .craft .src{display:inline-block;margin-top:14px;font-weight:700;color:var(--lime);text-decoration:none}
+    .craft .src:hover{text-decoration:underline}
 
     /* ---------- FOOTER ---------- */
     footer{background:#060c08;text-align:center;padding:60px 24px}
@@ -209,7 +225,10 @@
     footer a:hover{text-decoration:underline}
     footer .copy{opacity:.5;font-size:.85em}
 
-    .reveal{opacity:0;transform:translateY(30px)}
+    /* reveal targets are only hidden when JS is running (html.js) so content
+       stays fully visible for no-JS visitors */
+    html.js .reveal{opacity:0;transform:translateY(30px)}
+    .email-fallback{opacity:.8;font-weight:600}
 
     @media(max-width:760px){
         .stack .wrap{grid-template-columns:1fr;gap:30px}
@@ -217,12 +236,13 @@
     }
     @media(prefers-reduced-motion:reduce){
         *{animation:none!important;transition:none!important}
-        .reveal{opacity:1;transform:none}
+        html.js .reveal{opacity:1;transform:none}
         html{scroll-behavior:auto}
     }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="progress" id="progress"></div>
 
 <!-- ============ HERO ============ -->
@@ -234,7 +254,7 @@
     </div>
 
     <div class="hero-inner">
-        <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" aria-label="Poke the chimp to throw bananas">
+        <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" tabindex="0" aria-label="Poke the chimp to throw bananas">
             <div id="chimp" class="chimp-img" data-chimp aria-hidden="true"></div>
         </div>
         <div class="chimp-hint">↑ poke me to feed the chimp</div>
@@ -255,6 +275,7 @@
 
 </header>
 
+<main id="main">
 <!-- ============ APPS ============ -->
 <section class="apps" id="apps">
     <div class="wrap">
@@ -301,26 +322,33 @@
             <h3>Privacy isn't a feature — it's the default</h3>
             <p>No analytics SDKs, no ad networks, no hidden data collection. Your data lives on your device (and your iCloud, if you choose). That's the whole point.</p>
             <div class="feed">
-                <button class="feed-btn" id="feedBtn" type="button">🍌 Feed the chimp</button>
+                <button class="feed-btn" id="feedBtn" type="button" hidden>🍌 Feed the chimp</button>
             </div>
+        </div>
+        <div class="philosophy craft reveal">
+            <div class="big">🛠️</div>
+            <h3>Under the hood — this site is part of the portfolio</h3>
+            <p>Hand-built with zero frameworks: one inline stylesheet per page, vanilla JavaScript, and self-hosted GSAP. The chimp is a hand-drawn SVG driven by a small runtime rig — cursor head-and-eye tracking, idle sway, a wave scheduler, and poke reactions. CI lints every page and walks every internal link with a dependency-free checker, and the social share cards are rendered from SVG at build time.</p>
+            <a class="src" href="https://github.com/jengels34/jengels34.github.io" target="_blank" rel="noopener">View source on GitHub ↗</a>
         </div>
     </div>
 </section>
+</main>
 
 <!-- ============ FOOTER ============ -->
 <footer>
     <div class="mark">🐵</div>
     <h3>Khakichimp</h3>
     <div class="links">
-        <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">Email me</a>
+        <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">Email me</a><noscript><span class="email-fallback">khakichimp [at] gmail [dot] com</span></noscript>
         <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
         <a href="/">← Back to Josh Engels</a>
     </div>
     <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
 </footer>
 
-<!-- feed-the-chimp goal meter -->
-<button class="banana-meter" id="bananaMeter" type="button" title="Feed the chimp a banana" aria-label="Feed the chimp a banana">
+<!-- feed-the-chimp goal meter (revealed by JS — it's inert without it) -->
+<button class="banana-meter" id="bananaMeter" type="button" hidden title="Feed the chimp a banana" aria-label="Feed the chimp a banana">
     🍌 <span class="lbl">Feed the chimp</span>
     <span class="track"><span class="fill" id="bananaFill"></span></span>
     <span class="n"><span id="bananaN">0</span>/<span id="bananaGoal">12</span></span>
@@ -364,6 +392,10 @@ const fillEl = document.getElementById('bananaFill');
 const fedEl  = document.getElementById('bananaN');
 const goalEl = document.getElementById('bananaGoal');
 const meterEl = document.getElementById('bananaMeter');
+const feedBtn = document.getElementById('feedBtn');
+/* the game controls ship hidden — they're inert without JS */
+meterEl.hidden = false;
+feedBtn.hidden = false;
 let fed = 0, goal = 12, level = 1, celebrating = false;
 goalEl.textContent = goal;
 
@@ -439,10 +471,9 @@ function poke(){
 }
 stage.addEventListener('click', poke);
 stage.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
-stage.tabIndex = 0;
 
 /* "Feed the chimp" button feeds a chunk; the corner meter feeds one */
-document.getElementById('feedBtn').addEventListener('click', e=>{
+feedBtn.addEventListener('click', e=>{
     const r=e.currentTarget.getBoundingClientRect();
     feed(3, {x:(r.left+r.width/2)/innerWidth, y:(r.top+r.height/2)/innerHeight});
 });
