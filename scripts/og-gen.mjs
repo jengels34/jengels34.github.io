@@ -52,7 +52,7 @@ const hqCard = `
   <image href="${iconTasks}" x="84" y="468" width="92" height="92" clip-path="url(#i1)"/>
   <image href="${iconReadme}" x="196" y="468" width="92" height="92" clip-path="url(#i2)"/>
   <image href="${iconFood}" x="308" y="468" width="92" height="92" clip-path="url(#i3)"/>
-  <svg x="775" y="65" width="410" height="530" viewBox="0 0 240 320">${chimp}</svg>
+  <svg x="725" y="95" width="455" height="455" viewBox="0 0 2048 2048">${chimp}</svg>
 </svg>`;
 
 // Per-app share cards, tinted with each page's accent gradient.
