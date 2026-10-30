@@ -71,7 +71,7 @@
         </div>
         <div class="hero-inner">
             <h1>Privacy Policy</h1>
-            <p>ReadMe · Last updated: April 2026</p>
+            <p>ReadMe · Last updated: October 2026</p>
         </div>
         <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
     </header>
@@ -79,7 +79,7 @@
     <main class="content">
         <div class="wrap">
             <h2>1. Introduction</h2>
-            <p>ReadMe ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application. <strong>ReadMe does not require an account and does not collect personal data on our own servers.</strong></p>
+            <p>ReadMe ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application. <strong>ReadMe does not require an account and does not collect personal data on our own servers, except feedback you choose to send from the app (Section 2.4).</strong></p>
 
             <h2>2. Information We Collect</h2>
             <h3>2.1 Reading Data (stored locally on your device)</h3>
@@ -94,6 +94,7 @@
             <ul>
                 <li>When you search for a book, your search query is sent to the Google Books API to retrieve results. This is governed by Google's privacy policy.</li>
                 <li>Book cover images are loaded directly from Google's servers (books.google.com) whenever they are displayed in your library. As a result, Google may receive your device's IP address and which covers are being shown.</li>
+                <li>When you scan a barcode or look up an ISBN that Google Books doesn't have, the ISBN is sent to Open Library (openlibrary.org), and any cover it returns is loaded from Open Library's servers. Open Library may receive your device's IP address.</li>
                 <li>We do not store or log your search queries or cover image requests ourselves.</li>
             </ul>
             <h3>2.3 Device Information</h3>
@@ -101,13 +102,22 @@
                 <li>App version and iOS version, used only for local app operation</li>
                 <li>iCloud account status, used solely to enable or disable optional sync</li>
             </ul>
+            <h3>2.4 Feedback You Send</h3>
+            <p>ReadMe sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. Each submission includes:</p>
+            <ul>
+                <li>The feedback type, title and description you enter</li>
+                <li>App version and build, iOS version and device model</li>
+                <li>The Sync Diagnostics report (book and session counts, iCloud sync status and the last sync error), only if you turn on Include Sync Diagnostics</li>
+                <li>Your email address, only if you enter one, used only to tell you when your feedback is addressed</li>
+            </ul>
 
             <h2>3. How We Use Your Information</h2>
             <ul>
                 <li>All reading data is stored and used entirely on your device to provide the app's features</li>
                 <li>If you enable iCloud sync, your data is synced through your own Apple iCloud account via CloudKit — it does not pass through our servers</li>
                 <li>Search queries are sent to Google Books solely to return book results to you</li>
-                <li>We do not collect, transmit, or store your data on our own servers at any time</li>
+                <li>Feedback you send is used to triage and fix problems and to show you its status in Settings &gt; Your Feedback. If you entered an email address, it is used only to tell you when your feedback is addressed.</li>
+                <li>Apart from feedback you choose to send, we do not collect, transmit, or store your data on our own servers</li>
             </ul>
 
             <h2>4. Data Storage and Security</h2>
@@ -115,13 +125,14 @@
             <ul>
                 <li><strong>Local Storage:</strong> All reading data is stored on your device using Apple's SwiftData framework</li>
                 <li><strong>iCloud Sync (optional):</strong> If iCloud is enabled on your device, your library syncs via Apple's CloudKit using your personal iCloud account. This is governed by Apple's privacy policy.</li>
-                <li><strong>No Developer Servers:</strong> We do not operate any backend servers that store your data</li>
+                <li><strong>Feedback:</strong> Feedback you send is processed by a Cloudflare Worker we operate. The feedback text and diagnostics become an issue in a private GitHub repository for triage. Your email address, if you entered one, is stored in the Worker's database (Cloudflare D1) and is never put in the issue.</li>
+                <li><strong>No Other Developer Servers:</strong> We do not operate any servers that store your library or reading data</li>
             </ul>
             <h3>4.2 Security Measures</h3>
             <ul>
                 <li>All data is stored using Apple's native frameworks, which benefit from iOS sandboxing and device encryption</li>
                 <li>iCloud data is protected by Apple's end-to-end encryption and your Apple ID credentials</li>
-                <li>All network requests (e.g., to Google Books) are made over HTTPS/TLS</li>
+                <li>All network requests (e.g., to Google Books, Open Library and our feedback service) are made over HTTPS/TLS</li>
             </ul>
 
             <h2>5. Third-Party Services</h2>
@@ -139,12 +150,27 @@
                 <li>Apple's privacy policy applies to data stored in iCloud</li>
                 <li>You can disable iCloud sync at any time in your device's iCloud settings</li>
             </ul>
+            <h3>5.3 Open Library</h3>
+            <ul>
+                <li>Used to look up books by ISBN when Google Books has no match, and to load the covers it returns</li>
+                <li>Only the ISBN is sent. Open Library's privacy policy applies to data processed by their services.</li>
+            </ul>
+            <h3>5.4 Feedback Processors</h3>
+            <ul>
+                <li><strong>Cloudflare</strong> runs the service that receives feedback and stores optional email addresses</li>
+                <li><strong>GitHub</strong> hosts the private repository where feedback is triaged</li>
+                <li><strong>Resend</strong> delivers the email telling you your feedback was addressed, if you entered an email address</li>
+                <li>These services process feedback only on our behalf, and their privacy policies apply</li>
+            </ul>
 
             <h2>6. Data Retention</h2>
             <ul>
                 <li><strong>Local Data:</strong> Retained on your device until you delete the app</li>
                 <li><strong>iCloud Data:</strong> Retained in your iCloud account until you disable iCloud for the app or delete your iCloud account</li>
-                <li><strong>We hold no server-side data</strong> — there is nothing to delete from our end</li>
+                <li><strong>Feedback:</strong> Feedback issues are kept as part of our development backlog</li>
+                <li><strong>Email Address:</strong> Deleted after we send the final notice that a fix is out, when the feedback is closed without a fix, or after 180 days, whichever comes first</li>
+                <li><strong>Status Token:</strong> Your device keeps a random token so the app can show your feedback's status. Our service stores only a hash of it. No account is involved.</li>
+                <li>Apart from feedback, <strong>we hold no server-side data</strong></li>
             </ul>
 
             <h2>7. Your Rights and Data Deletion</h2>
@@ -152,11 +178,12 @@
                 <li><strong>Export:</strong> You can export a full copy of your library at any time from Settings &gt; Export Library (JSON)</li>
                 <li><strong>Delete Local Data:</strong> Delete the app from your device to remove all locally stored data</li>
                 <li><strong>Delete iCloud Data:</strong> To remove iCloud data, go to Settings &gt; Apple Account &gt; iCloud &gt; Manage Account Storage and remove ReadMe's data, or delete the app while iCloud sync is active</li>
+                <li><strong>Delete Feedback:</strong> To have a feedback submission deleted, email us at the address in Section 10 with the feedback's title</li>
                 <li><strong>No Account to Delete:</strong> ReadMe does not use accounts, so there is no account deletion process</li>
             </ul>
 
             <h2>8. Children's Privacy</h2>
-            <p>ReadMe does not knowingly collect any personal information from children. Because the app does not collect any personal data on our servers, it is suitable for general audiences.</p>
+            <p>ReadMe does not knowingly collect any personal information from children. Apart from feedback a user chooses to send, the app does not collect any personal data on our servers, and it is suitable for general audiences.</p>
 
             <h2>9. Changes to This Policy</h2>
             <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by updating the "Last updated" date above. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
@@ -172,14 +199,15 @@
             <ul>
                 <li><strong>Legitimate Interest:</strong> Providing reading tracking features and improving our app</li>
                 <li><strong>Consent:</strong> For optional iCloud sync, which you can disable at any time</li>
+                <li><strong>Consent:</strong> For feedback, which is sent only when you tap Send</li>
             </ul>
-            <p>Because all data is stored locally on your device or in your own iCloud account, the data is under your direct control at all times.</p>
+            <p>Apart from feedback you choose to send, all data is stored locally on your device or in your own iCloud account and is under your direct control at all times.</p>
 
             <h2>12. California Privacy Rights (CCPA)</h2>
             <p>California residents have additional rights under the California Consumer Privacy Act (CCPA):</p>
             <ul>
-                <li><strong>Right to Know:</strong> You can request details about what personal information we collect — in practice, we collect none on our servers</li>
-                <li><strong>Right to Delete:</strong> You can delete all your data by removing the app and clearing iCloud data as described in Section 7</li>
+                <li><strong>Right to Know:</strong> You can request details about what personal information we collect — the only personal information we collect on our servers is feedback you choose to send, described in Section 2.4</li>
+                <li><strong>Right to Delete:</strong> You can delete all your data by removing the app and clearing iCloud data, and request deletion of feedback you sent, as described in Section 7</li>
                 <li><strong>Right to Opt-Out:</strong> We do not sell personal information</li>
                 <li><strong>Non-Discrimination:</strong> We will not discriminate against you for exercising your privacy rights</li>
             </ul>
