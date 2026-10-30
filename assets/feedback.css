@@ -19,7 +19,7 @@
 
 .fb-field{margin-top:20px}
 .fb-field label{display:block;margin-bottom:7px}
-.fb input[type=text],.fb input[type=email],.fb textarea{width:100%;font:inherit;color:var(--fb-ink);background:#fbfdfd;
+.fb input[type=text],.fb textarea{width:100%;font:inherit;color:var(--fb-ink);background:#fbfdfd;
     border:1.5px solid rgba(9,53,53,.18);border-radius:14px;padding:12px 14px;transition:border-color .15s,box-shadow .15s}
 .fb textarea{resize:vertical;min-height:140px;line-height:1.55}
 .fb input::placeholder,.fb textarea::placeholder{color:#8a95a8}
@@ -31,7 +31,6 @@
 .fb-err{color:var(--fb-bad);font-weight:600}
 .fb-count{color:var(--fb-muted);font-variant-numeric:tabular-nums;margin-left:auto}
 .fb-count.over{color:var(--fb-bad);font-weight:700}
-.fb-hint{font-size:.86em;color:var(--fb-muted);margin-top:2px}
 
 /* Off-screen rather than display:none, which some bots know to skip. */
 .fb-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
