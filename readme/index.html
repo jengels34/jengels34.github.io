@@ -18,6 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://jengels34.github.io/assets/og-readme.png">
+<link rel="stylesheet" href="/assets/feedback.css">
     <style>
         /* ---------- Theme (per-app accent) ---------- */
         :root{
@@ -101,6 +102,9 @@
             font-weight:800;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:1.05em;transition:transform .18s}
         .contact-card a.email:hover{transform:translateY(-2px)}
         .contact-card .note{opacity:.9;font-size:.92em;margin-top:14px}
+        .support-split{display:grid;grid-template-columns:1fr;gap:22px;margin-top:30px;align-items:start}
+        .support-split .contact-card{margin-top:0}
+        @media(min-width:900px){.support-split{grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr)}}
 
         /* privacy band */
         .privacy{background:linear-gradient(160deg,var(--privacy-soft) 0%,var(--privacy-soft2) 100%)}
@@ -115,7 +119,7 @@
         /* final CTA */
         .getapp{text-align:center;color:#fff;background:linear-gradient(160deg,var(--accent) 0%,var(--accent-ink) 100%)}
         .getapp h2{color:#fff}
-        .getapp p{color:rgba(255,255,255,.9);margin-top:10px}
+        .getapp .wrap > p{color:rgba(255,255,255,.9);margin-top:10px}
         .getapp .btn.primary{margin-top:24px}
 
         .developer p{color:var(--muted);margin-top:14px;font-size:1.02em}
@@ -149,7 +153,8 @@
             <p class="tag">A native, privacy-first book tracker — manage your library and track your reading journey, all stored privately on your device.</p>
             <div class="cta-row">
                 <a class="btn primary" href="https://apps.apple.com/us/app/readme-book-tracker/id6752588976"> Download for iOS</a>
-                <a class="btn ghost" href="#privacy">Privacy policy</a>
+                <a class="btn ghost" href="#support">Report an issue</a>
+                <a class="btn ghost" href="#privacy">Privacy</a>
             </div>
         </div>
         <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
@@ -167,6 +172,9 @@
                 <div class="chip"><span class="ic">📖</span>Progress Tracking</div>
                 <div class="chip"><span class="ic">📊</span>Reading Statistics</div>
                 <div class="chip"><span class="ic">🔍</span>Book Search</div>
+                <div class="chip"><span class="ic">📷</span>Barcode Scanning</div>
+                <div class="chip"><span class="ic">🔥</span>Reading Streaks</div>
+                <div class="chip"><span class="ic">🧩</span>Home Screen Widgets</div>
                 <div class="chip"><span class="ic">❤️</span>Wish List</div>
                 <div class="chip"><span class="ic">☁️</span>iCloud Sync</div>
                 <div class="chip"><span class="ic">📱</span>iOS Optimized</div>
@@ -193,7 +201,7 @@
     </section>
 
     <!-- ============ SUPPORT ============ -->
-    <section class="support">
+    <section class="support" id="support">
         <div class="wrap">
             <span class="eyebrow">Need help?</span>
             <h2>How we can help</h2>
@@ -202,12 +210,22 @@
                 <div class="feature"><h3>Feature Requests</h3><p>Ideas for improvements or new features you'd like to see.</p></div>
                 <div class="feature"><h3>Data Support</h3><p>Help with exporting your data or privacy questions.</p></div>
             </div>
-            <div class="contact-card">
-                <h3>Get in touch</h3>
-                <p>Have a question or found a bug? Use Settings &gt; Send Feedback in the app, or email us. We'd love to hear from you.</p>
-                <a class="email contact" data-u="khakichimp" data-d="gmail.com" href="#">Email support</a>
-                <noscript><p class="email-fallback">khakichimp [at] gmail [dot] com</p></noscript>
-                <p class="note">We typically respond within 2 business days.</p>
+            <div class="support-split">
+                <!-- Web feedback form (assets/feedback.js). Same three values as
+                     readme/privacy.html; until they are set it shows an email fallback. -->
+                <div class="fb" data-feedback data-app="ReadMe" data-privacy="privacy.html#web-feedback"
+                     data-relay=""
+                     data-app-key=""
+                     data-sitekey="">
+                    <noscript><p>The feedback form needs JavaScript. Email khakichimp [at] gmail [dot] com instead.</p></noscript>
+                </div>
+                <div class="contact-card">
+                    <h3>Prefer email?</h3>
+                    <p>Questions, data help, or anything that isn't a bug. In the app, Settings &gt; Send Feedback can also attach diagnostics and show you its status.</p>
+                    <a class="email contact" data-u="khakichimp" data-d="gmail.com" href="#">Email support</a>
+                    <noscript><p class="email-fallback">khakichimp [at] gmail [dot] com</p></noscript>
+                    <p class="note">We typically respond within 2 business days.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -221,8 +239,9 @@
                 <div class="feature"><h3>No Account Required</h3><p>ReadMe works without any sign-in or account creation — your data belongs to you.</p></div>
                 <div class="feature"><h3>Stored On Your Device</h3><p>All your reading data is stored locally on your iPhone using Apple's SwiftData framework.</p></div>
                 <div class="feature"><h3>Your iCloud, Your Data</h3><p>Optional iCloud sync uses your own Apple iCloud account — your data never passes through our servers.</p></div>
+                <div class="feature"><h3>No Ads, No Tracking</h3><p>No advertising and no analytics or tracking SDKs. ReadMe never follows you across apps or websites.</p></div>
                 <div class="feature"><h3>You Control Your Data</h3><p>Export your library at any time, or delete everything by removing the app and clearing iCloud data.</p></div>
-                <div class="feature"><h3>Feedback Only When You Send It</h3><p>Send Feedback in Settings shares what you type and basic device details, plus sync diagnostics and an email address only if you add them. Nothing is sent until you tap Send.</p></div>
+                <div class="feature"><h3>Feedback Only When You Send It</h3><p>Send Feedback in Settings shares what you type and basic device details, plus sync diagnostics and an email address only if you add them. The form on this page sends only what you type. Nothing is sent until you tap Send.</p></div>
             </div>
             <a class="more" href="privacy.html">Read our full Privacy Policy →</a>
         </div>
@@ -262,6 +281,7 @@
         <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
     </footer>
 
+    <script src="/assets/feedback.js" defer></script>
     <script>
         document.getElementById('yr').textContent = new Date().getFullYear();
         /* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */

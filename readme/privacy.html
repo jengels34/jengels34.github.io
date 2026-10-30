@@ -3,225 +3,552 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="hsl(180,72%,40%)">
     <title>ReadMe · Privacy Policy</title>
-    <meta name="description" content="Privacy Policy for ReadMe — a local-first, privacy-respecting iOS book tracker.">
+    <meta name="description" content="ReadMe's privacy policy in plain English: no account, no ads, no tracking. Your library stays on your iPhone and in your own iCloud. Report a bug or share an idea right from this page.">
 <link rel="icon" href="/assets/icons/readme.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icons/readme.png">
 <link rel="canonical" href="https://jengels34.github.io/readme/privacy.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ReadMe · Privacy Policy">
-<meta property="og:description" content="Privacy Policy for ReadMe.">
+<meta property="og:description" content="No account, no ads, no tracking. Your reading life stays yours.">
 <meta property="og:url" content="https://jengels34.github.io/readme/privacy.html">
-<meta property="og:image" content="https://jengels34.github.io/assets/icons/readme.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://jengels34.github.io/assets/og-readme.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jengels34.github.io/assets/og-readme.png">
+<link rel="stylesheet" href="/assets/feedback.css">
     <style>
+        /* ---------- Theme (matches readme/index.html) ---------- */
         :root{
             --accent:hsl(180,72%,40%); --accent-deep:hsl(180,72%,31%); --accent-ink:hsl(180,72%,22%);
-            --accent-soft:hsl(180,72%,96%);
-            --sel:hsla(180,72%,40%,.25); --line:rgba(9,53,53,.12);
+            --accent-soft:hsl(180,72%,96%); --accent-soft2:hsl(180,72%,98.5%);
+            --sel:hsla(180,72%,40%,.25); --line:rgba(9,53,53,.12); --shadow:rgba(9,53,53,.07);
+            --privacy:#16a34a; --privacy-ink:#0f7a37; --privacy-soft:#f0fdf4; --privacy-soft2:#dcfce7;
             --ink:#1f2937; --muted:#52607a; --faint:#6b7890; --bg:#ffffff;
         }
         *{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth;background:var(--bg)}
+        html{scroll-behavior:smooth;background:var(--bg);scroll-padding-top:20px}
         body{
             font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
             line-height:1.65;color:var(--ink);background:var(--bg);letter-spacing:-0.011em;
             -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
         }
-        a{color:var(--accent-deep)}
+        a{color:inherit}
         ::selection{background:var(--sel);color:var(--ink)}
-        .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+        .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--accent-deep);color:#fff;
+            padding:12px 20px;border-radius:0 0 14px 0;font-weight:700;text-decoration:none}
+        .skip:focus{left:0}
+        .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+        .narrow{max-width:860px}
 
-        .hero{position:relative;color:#fff;overflow:hidden;
+        /* ---------- HERO ---------- */
+        .hero{position:relative;color:#fff;text-align:center;overflow:hidden;
             background:linear-gradient(160deg,var(--accent) 0%,var(--accent-deep) 70%,var(--accent-ink) 100%)}
         .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
             background:radial-gradient(80% 60% at 50% -10%,rgba(255,255,255,.22),transparent 60%)}
         .topbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;
             padding:18px 22px;max-width:1100px;margin:0 auto;font-weight:700}
-        .topbar .brand{display:inline-flex;align-items:center;gap:9px;font-size:1.02em;color:#fff}
+        .topbar .brand{display:inline-flex;align-items:center;gap:9px;font-size:1.02em;text-decoration:none}
         .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
-        .topbar a.back{text-decoration:none;color:#fff;font-weight:600;font-size:.9em;opacity:.92;
+        .topbar a.back{text-decoration:none;font-weight:600;font-size:.9em;opacity:.92;
             padding:8px 15px;border:1px solid rgba(255,255,255,.4);border-radius:999px;transition:.2s}
         .topbar a.back:hover{background:rgba(255,255,255,.14)}
-        .hero-inner{position:relative;z-index:2;max-width:820px;margin:0 auto;padding:30px 22px 56px}
-        .hero h1{font-size:clamp(1.9em,5vw,2.6em);font-weight:800;letter-spacing:-0.02em}
-        .hero p{opacity:.92;margin-top:8px}
+        .hero-inner{position:relative;z-index:2;padding:26px 22px 70px;max-width:760px;margin:0 auto}
+        .app-icon img{width:76px;height:76px;border-radius:18px;display:block;margin:0 auto;
+            filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+        .hero .kicker{display:inline-block;margin-top:18px;font-size:.74em;font-weight:800;letter-spacing:.16em;
+            text-transform:uppercase;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+            padding:6px 14px;border-radius:999px}
+        .hero h1{font-size:clamp(2.1em,6.4vw,3.2em);font-weight:800;letter-spacing:-0.03em;margin-top:12px;line-height:1.1}
+        .hero .tag{font-size:clamp(1.02em,2.4vw,1.16em);opacity:.94;margin-top:14px}
+        .hero .updated{font-size:.88em;opacity:.8;margin-top:10px}
+        .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+        .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
+            padding:14px 26px;border-radius:999px;transition:transform .18s,box-shadow .18s;font-size:1.02em}
+        .btn.primary{background:#fff;color:var(--accent-deep);box-shadow:0 12px 26px rgba(0,0,0,.22)}
+        .btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(0,0,0,.28)}
+        .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+        .btn.ghost:hover{background:rgba(255,255,255,.12)}
         .wave{display:block;width:100%;height:auto;margin-bottom:-1px}
 
-        .content{padding:52px 0 70px}
-        .content h2{color:var(--accent-deep);margin:34px 0 10px;font-size:1.35em;letter-spacing:-0.01em}
-        .content h2:first-child{margin-top:0}
-        .content h3{color:var(--accent);margin:20px 0 8px;font-size:1.08em}
-        .content p{margin:8px 0;color:var(--muted)}
-        .content ul{margin:10px 0 16px 22px}
-        .content li{margin:7px 0;color:var(--muted)}
-        .content strong{color:var(--ink)}
-        .back-link{display:inline-flex;align-items:center;gap:8px;margin-top:36px;font-weight:800;
-            text-decoration:none;color:var(--accent-deep);padding:12px 22px;border:2px solid var(--accent);
-            border-radius:999px;transition:.2s}
-        .back-link:hover{background:var(--accent);color:#fff}
-        @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+        /* ---------- SECTIONS ---------- */
+        section{padding:64px 0;position:relative}
+        section.tint{background:var(--accent-soft2)}
+        .eyebrow{display:inline-block;font-size:.74em;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+            color:var(--accent-deep);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+        h2{font-size:clamp(1.5em,4vw,2.1em);font-weight:800;letter-spacing:-0.02em;color:var(--ink);line-height:1.2}
+        .lead{color:var(--muted);margin-top:12px;font-size:1.05em;max-width:680px}
+
+        /* at a glance */
+        .glance{background:linear-gradient(160deg,var(--privacy-soft) 0%,var(--privacy-soft2) 100%)}
+        .glance .eyebrow{color:var(--privacy-ink);background:rgba(22,163,74,.12)}
+        .glance h2{color:var(--privacy-ink)}
+        .glance-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:30px}
+        .promise{background:rgba(255,255,255,.75);border:1px solid rgba(22,163,74,.18);border-radius:20px;padding:22px 22px 20px;
+            box-shadow:0 10px 24px rgba(15,122,55,.06);transition:transform .18s,box-shadow .18s}
+        .promise:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(15,122,55,.10)}
+        .promise .ic{font-size:1.6em;line-height:1;display:block}
+        .promise h3{font-size:1.06em;color:var(--privacy-ink);margin-top:12px}
+        .promise p{color:var(--muted);font-size:.96em;margin-top:4px}
+
+        /* what leaves your phone */
+        .flow{width:100%;border-collapse:separate;border-spacing:0;margin-top:28px;background:#fff;
+            border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 16px 40px var(--shadow)}
+        .flow th,.flow td{padding:16px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+        .flow thead th{font-size:.74em;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);background:var(--accent-soft)}
+        .flow tbody tr:last-child > *{border-bottom:0}
+        .flow tbody th{font-weight:800;color:var(--ink);white-space:nowrap}
+        .flow tbody th small{display:block;font-weight:600;color:var(--faint);font-size:.8em;white-space:normal}
+        .flow td{color:var(--muted)}
+        .flow .yours{background:linear-gradient(90deg,var(--privacy-soft),#fff)}
+        .flow .yours th{color:var(--privacy-ink)}
+        .flow-note{margin-top:16px;color:var(--muted);font-size:.95em}
+        .flow-note strong{color:var(--ink)}
+
+        /* ---------- POLICY ---------- */
+        .policy-grid{display:grid;grid-template-columns:1fr;gap:28px}
+        .toc{border:1px solid var(--line);border-radius:18px;background:#fff;padding:6px 8px}
+        .toc summary{cursor:pointer;font-weight:800;padding:10px 12px;color:var(--accent-deep);list-style:none}
+        .toc summary::-webkit-details-marker{display:none}
+        .toc summary::after{content:"+";float:right;font-weight:800}
+        .toc[open] summary::after{content:"−"}
+        .toc ol{list-style:none;padding:2px 4px 10px}
+        .toc a{display:block;text-decoration:none;color:var(--muted);font-weight:600;font-size:.92em;
+            padding:6px 10px;border-radius:10px;border-left:3px solid transparent;transition:background .15s,color .15s}
+        .toc a:hover{background:var(--accent-soft);color:var(--accent-deep)}
+        .toc a.on{color:var(--accent-deep);background:var(--accent-soft);border-left-color:var(--accent)}
+        @media(min-width:960px){
+            .policy-grid{grid-template-columns:240px 1fr;gap:56px}
+            .toc{position:sticky;top:24px;align-self:start;border:0;background:transparent;padding:0;max-height:calc(100vh - 48px);overflow:auto}
+            .toc summary{pointer-events:none;padding:0 10px 10px;font-size:.74em;letter-spacing:.16em;text-transform:uppercase}
+            .toc summary::after{content:none}
+            .toc ol{padding:0}
+        }
+        .policy{min-width:0}
+        .policy > article{padding:30px 0;border-top:1px solid var(--line)}
+        .policy > article:first-child{padding-top:0;border-top:0}
+        .policy h2{font-size:1.4em;color:var(--ink);display:flex;align-items:baseline;gap:12px}
+        .policy h2 .n{flex:none;display:inline-grid;place-items:center;min-width:34px;height:34px;padding:0 8px;border-radius:11px;
+            font-size:.68em;font-weight:800;color:var(--accent-deep);background:var(--accent-soft);transform:translateY(-3px)}
+        .policy h3{color:var(--accent-deep);margin:22px 0 6px;font-size:1.04em}
+        .policy p{margin:10px 0;color:var(--muted)}
+        .policy ul{margin:10px 0 6px 20px}
+        .policy li{margin:7px 0;color:var(--muted)}
+        .policy li::marker{color:var(--accent)}
+        .policy strong{color:var(--ink)}
+        .policy a{color:var(--accent-deep);font-weight:600}
+        .policy .new{display:inline-block;margin-left:8px;font-size:.62em;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+            color:var(--privacy-ink);background:var(--privacy-soft2);padding:3px 8px;border-radius:999px;vertical-align:middle}
+
+        /* ---------- FEEDBACK ---------- */
+        .feedback{background:linear-gradient(180deg,var(--accent-soft2) 0%,var(--accent-soft) 100%)}
+        .feedback-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:start;margin-top:8px}
+        @media(min-width:900px){.feedback-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:48px}}
+        .why{list-style:none;margin-top:22px}
+        .why li{display:flex;gap:12px;margin:14px 0;color:var(--muted)}
+        .why li .ic{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#fff;
+            box-shadow:0 6px 14px var(--shadow);font-size:1.05em}
+        .why strong{color:var(--ink);display:block}
+        .alt{margin-top:26px;padding:16px 18px;border-radius:16px;background:#fff;border:1px solid var(--line);color:var(--muted);font-size:.95em}
+        .alt a{color:var(--accent-deep);font-weight:700}
+
+        /* final CTA */
+        .getapp{text-align:center;color:#fff;background:linear-gradient(160deg,var(--accent) 0%,var(--accent-ink) 100%)}
+        .getapp h2{color:#fff}
+        .getapp p{color:rgba(255,255,255,.9);margin:10px auto 0;max-width:560px}
+        .getapp .cta-row{margin-top:24px}
+
+        /* ---------- FOOTER ---------- */
+        footer{background:#101626;color:#cdd6e6;text-align:center;padding:54px 22px}
+        footer .mark{font-size:1.7em}
+        footer h3{color:#fff;font-weight:800;margin:8px 0 16px}
+        footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+        footer a{color:var(--accent);text-decoration:none;font-weight:600}
+        footer a:hover{text-decoration:underline}
+        footer .copy{opacity:.55;font-size:.85em}
+        .email-fallback{font-weight:600}
+
+        /* ---------- PHONE ---------- */
+        @media(max-width:700px){
+            section{padding:52px 0}
+            .flow,.flow tbody,.flow tr,.flow th,.flow td{display:block;width:100%}
+            .flow thead{display:none}
+            .flow tbody tr{padding:14px 16px;border-bottom:1px solid var(--line)}
+            .flow tbody tr:last-child{border-bottom:0}
+            .flow th,.flow td{padding:0;border:0}
+            .flow tbody th{white-space:normal;margin-bottom:6px}
+            .flow td{margin-top:6px;font-size:.95em}
+            .flow td::before{content:attr(data-label);display:block;font-size:.72em;font-weight:800;letter-spacing:.12em;
+                text-transform:uppercase;color:var(--faint)}
+            .flow tbody tr:last-child > *{border-bottom:0}
+        }
+        @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
     </style>
 </head>
 <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- ============ HERO ============ -->
     <header class="hero">
         <div class="topbar">
-            <span class="brand"><span class="dot"></span> Khakichimp</span>
-            <a class="back" href="index.html">← Support</a>
+            <a class="brand" href="/khakichimp/"><span class="dot"></span> Khakichimp</a>
+            <a class="back" href="index.html">← ReadMe</a>
         </div>
         <div class="hero-inner">
-            <h1>Privacy Policy</h1>
-            <p>ReadMe · Last updated: October 2026</p>
+            <div class="app-icon"><img src="/assets/icons/readme.png" alt="ReadMe app icon" width="76" height="76"></div>
+            <span class="kicker">ReadMe Privacy Policy</span>
+            <h1>Your reading life stays yours.</h1>
+            <p class="tag">No account. No ads. No tracking. Your library lives on your iPhone and, if you choose, in your own iCloud. Here's exactly what leaves your device, and when.</p>
+            <p class="updated">Last updated October 2026 · Covers ReadMe 3.0</p>
+            <div class="cta-row">
+                <a class="btn primary" href="#feedback">Report an issue</a>
+                <a class="btn ghost" href="#policy">Read the full policy</a>
+            </div>
         </div>
-        <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
+        <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#f0fdf4" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
     </header>
 
-    <main class="content">
+    <main id="main">
+    <!-- ============ AT A GLANCE ============ -->
+    <section class="glance">
         <div class="wrap">
-            <h2>1. Introduction</h2>
-            <p>ReadMe ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application. <strong>ReadMe does not require an account and does not collect personal data on our own servers, except feedback you choose to send from the app (Section 2.4).</strong></p>
-
-            <h2>2. Information We Collect</h2>
-            <h3>2.1 Reading Data (stored locally on your device)</h3>
-            <ul>
-                <li>Books in your library (title, author, cover image, status)</li>
-                <li>Reading progress and session history</li>
-                <li>Reading statistics and preferences</li>
-                <li>Notes and ratings you add to books</li>
-                <li>Wish list entries</li>
-            </ul>
-            <h3>2.2 Book Search Queries and Cover Images</h3>
-            <ul>
-                <li>When you search for a book, your search query is sent to the Google Books API to retrieve results. This is governed by Google's privacy policy.</li>
-                <li>Book cover images are loaded directly from Google's servers (books.google.com) whenever they are displayed in your library. As a result, Google may receive your device's IP address and which covers are being shown.</li>
-                <li>When you scan a barcode or look up an ISBN that Google Books doesn't have, the ISBN is sent to Open Library (openlibrary.org), and any cover it returns is loaded from Open Library's servers. Open Library may receive your device's IP address.</li>
-                <li>We do not store or log your search queries or cover image requests ourselves.</li>
-            </ul>
-            <h3>2.3 Device Information</h3>
-            <ul>
-                <li>App version and iOS version, used only for local app operation</li>
-                <li>iCloud account status, used solely to enable or disable optional sync</li>
-            </ul>
-            <h3>2.4 Feedback You Send</h3>
-            <p>ReadMe sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. Each submission includes:</p>
-            <ul>
-                <li>The feedback type, title and description you enter</li>
-                <li>App version and build, iOS version and device model</li>
-                <li>The Sync Diagnostics report (book and session counts, iCloud sync status and the last sync error), only if you turn on Include Sync Diagnostics</li>
-                <li>Your email address, only if you enter one, used only to tell you when your feedback is addressed</li>
-            </ul>
-
-            <h2>3. How We Use Your Information</h2>
-            <ul>
-                <li>All reading data is stored and used entirely on your device to provide the app's features</li>
-                <li>If you enable iCloud sync, your data is synced through your own Apple iCloud account via CloudKit — it does not pass through our servers</li>
-                <li>Search queries are sent to Google Books solely to return book results to you</li>
-                <li>Feedback you send is used to triage and fix problems and to show you its status in Settings &gt; Your Feedback. If you entered an email address, it is used only to tell you when your feedback is addressed.</li>
-                <li>Apart from feedback you choose to send, we do not collect, transmit, or store your data on our own servers</li>
-            </ul>
-
-            <h2>4. Data Storage and Security</h2>
-            <h3>4.1 Data Storage</h3>
-            <ul>
-                <li><strong>Local Storage:</strong> All reading data is stored on your device using Apple's SwiftData framework</li>
-                <li><strong>iCloud Sync (optional):</strong> If iCloud is enabled on your device, your library syncs via Apple's CloudKit using your personal iCloud account. This is governed by Apple's privacy policy.</li>
-                <li><strong>Feedback:</strong> Feedback you send is processed by a Cloudflare Worker we operate. The feedback text and diagnostics become an issue in a private GitHub repository for triage. Your email address, if you entered one, is stored in the Worker's database (Cloudflare D1) and is never put in the issue.</li>
-                <li><strong>No Other Developer Servers:</strong> We do not operate any servers that store your library or reading data</li>
-            </ul>
-            <h3>4.2 Security Measures</h3>
-            <ul>
-                <li>All data is stored using Apple's native frameworks, which benefit from iOS sandboxing and device encryption</li>
-                <li>iCloud data is protected by Apple's end-to-end encryption and your Apple ID credentials</li>
-                <li>All network requests (e.g., to Google Books, Open Library and our feedback service) are made over HTTPS/TLS</li>
-            </ul>
-
-            <h2>5. Third-Party Services</h2>
-            <h3>5.1 Google Books API</h3>
-            <ul>
-                <li>We use the Google Books API to provide book search functionality</li>
-                <li>Search queries are sent to Google's servers when you search for a book</li>
-                <li>Book cover images are fetched from Google's servers when displayed in your library</li>
-                <li>Google's privacy policy applies to data processed by their services</li>
-                <li>We do not share any personal data with Google beyond the search query and the cover images your library displays</li>
-            </ul>
-            <h3>5.2 Apple iCloud / CloudKit</h3>
-            <ul>
-                <li>Optional iCloud sync is provided through Apple's CloudKit service using your existing iCloud account</li>
-                <li>Apple's privacy policy applies to data stored in iCloud</li>
-                <li>You can disable iCloud sync at any time in your device's iCloud settings</li>
-            </ul>
-            <h3>5.3 Open Library</h3>
-            <ul>
-                <li>Used to look up books by ISBN when Google Books has no match, and to load the covers it returns</li>
-                <li>Only the ISBN is sent. Open Library's privacy policy applies to data processed by their services.</li>
-            </ul>
-            <h3>5.4 Feedback Processors</h3>
-            <ul>
-                <li><strong>Cloudflare</strong> runs the service that receives feedback and stores optional email addresses</li>
-                <li><strong>GitHub</strong> hosts the private repository where feedback is triaged</li>
-                <li><strong>Resend</strong> delivers the email telling you your feedback was addressed, if you entered an email address</li>
-                <li>These services process feedback only on our behalf, and their privacy policies apply</li>
-            </ul>
-
-            <h2>6. Data Retention</h2>
-            <ul>
-                <li><strong>Local Data:</strong> Retained on your device until you delete the app</li>
-                <li><strong>iCloud Data:</strong> Retained in your iCloud account until you disable iCloud for the app or delete your iCloud account</li>
-                <li><strong>Feedback:</strong> Feedback issues are kept as part of our development backlog</li>
-                <li><strong>Email Address:</strong> Deleted after we send the final notice that a fix is out, when the feedback is closed without a fix, or after 180 days, whichever comes first</li>
-                <li><strong>Status Token:</strong> Your device keeps a random token so the app can show your feedback's status. Our service stores only a hash of it. No account is involved.</li>
-                <li>Apart from feedback, <strong>we hold no server-side data</strong></li>
-            </ul>
-
-            <h2>7. Your Rights and Data Deletion</h2>
-            <ul>
-                <li><strong>Export:</strong> You can export a full copy of your library at any time from Settings &gt; Export Library (JSON)</li>
-                <li><strong>Delete Local Data:</strong> Delete the app from your device to remove all locally stored data</li>
-                <li><strong>Delete iCloud Data:</strong> To remove iCloud data, go to Settings &gt; Apple Account &gt; iCloud &gt; Manage Account Storage and remove ReadMe's data, or delete the app while iCloud sync is active</li>
-                <li><strong>Delete Feedback:</strong> To have a feedback submission deleted, email us at the address in Section 10 with the feedback's title</li>
-                <li><strong>No Account to Delete:</strong> ReadMe does not use accounts, so there is no account deletion process</li>
-            </ul>
-
-            <h2>8. Children's Privacy</h2>
-            <p>ReadMe does not knowingly collect any personal information from children. Apart from feedback a user chooses to send, the app does not collect any personal data on our servers, and it is suitable for general audiences.</p>
-
-            <h2>9. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by updating the "Last updated" date above. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
-
-            <h2>10. Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy or your data, please contact us at:</p>
-            <ul>
-                <li>Email: <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp@gmail.com</a></li>
-            </ul>
-
-            <h2>11. Legal Basis (GDPR)</h2>
-            <p>For users in the European Union, our legal basis for processing your data is:</p>
-            <ul>
-                <li><strong>Legitimate Interest:</strong> Providing reading tracking features and improving our app</li>
-                <li><strong>Consent:</strong> For optional iCloud sync, which you can disable at any time</li>
-                <li><strong>Consent:</strong> For feedback, which is sent only when you tap Send</li>
-            </ul>
-            <p>Apart from feedback you choose to send, all data is stored locally on your device or in your own iCloud account and is under your direct control at all times.</p>
-
-            <h2>12. California Privacy Rights (CCPA)</h2>
-            <p>California residents have additional rights under the California Consumer Privacy Act (CCPA):</p>
-            <ul>
-                <li><strong>Right to Know:</strong> You can request details about what personal information we collect — the only personal information we collect on our servers is feedback you choose to send, described in Section 2.4</li>
-                <li><strong>Right to Delete:</strong> You can delete all your data by removing the app and clearing iCloud data, and request deletion of feedback you sent, as described in Section 7</li>
-                <li><strong>Right to Opt-Out:</strong> We do not sell personal information</li>
-                <li><strong>Non-Discrimination:</strong> We will not discriminate against you for exercising your privacy rights</li>
-            </ul>
-
-            <a class="back-link" href="index.html">← Back to Support &amp; Info</a>
+            <span class="eyebrow">At a glance</span>
+            <h2>Private by design, not by setting</h2>
+            <p class="lead">There's nothing to opt out of, because ReadMe never opted you in. Six promises, and the policy below holds us to every one.</p>
+            <div class="glance-grid">
+                <div class="promise"><span class="ic" aria-hidden="true">🙅</span><h3>No account, ever</h3><p>No sign-up, no login, no profile. Open the app and start reading.</p></div>
+                <div class="promise"><span class="ic" aria-hidden="true">📱</span><h3>On your device</h3><p>Your library, sessions, notes and stats are stored on your iPhone with Apple's SwiftData.</p></div>
+                <div class="promise"><span class="ic" aria-hidden="true">☁️</span><h3>Your iCloud, not ours</h3><p>Optional sync runs through your own private iCloud database. It never touches our servers.</p></div>
+                <div class="promise"><span class="ic" aria-hidden="true">🚫</span><h3>No ads, no tracking</h3><p>No advertising, no analytics or tracking SDKs, and no following you across apps or websites.</p></div>
+                <div class="promise"><span class="ic" aria-hidden="true">✉️</span><h3>Feedback only when you send it</h3><p>Nothing is sent to us until you tap Send. Diagnostics and email are opt-in, every time.</p></div>
+                <div class="promise"><span class="ic" aria-hidden="true">📦</span><h3>Take it or delete it</h3><p>Export your whole library as JSON any time. Delete the app and it's gone.</p></div>
+            </div>
         </div>
+    </section>
+
+    <!-- ============ WHAT LEAVES YOUR PHONE ============ -->
+    <section>
+        <div class="wrap narrow">
+            <span class="eyebrow">Full transparency</span>
+            <h2>What leaves your phone, and when</h2>
+            <p class="lead">This is the complete list. If a service isn't here, ReadMe doesn't talk to it.</p>
+            <table class="flow">
+                <thead><tr><th scope="col">Service</th><th scope="col">What it receives</th><th scope="col">When</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">Google Books<small>Book search and covers</small></th><td data-label="Receives">Your search text or a scanned ISBN, and your IP address when covers load</td><td data-label="When">When you search, scan, or a cover is shown</td></tr>
+                    <tr><th scope="row">Open Library<small>Backup ISBN lookup</small></th><td data-label="Receives">The ISBN only, and your IP address when its covers load</td><td data-label="When">When Google Books has no match for a barcode or ISBN</td></tr>
+                    <tr class="yours"><th scope="row">Your iCloud<small>Apple CloudKit</small></th><td data-label="Receives">Your library, in your own private iCloud database</td><td data-label="When">Only if iCloud is on for ReadMe</td></tr>
+                    <tr><th scope="row">ReadMe feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">What you type, app and iOS version, device model. Diagnostics and email only if you add them.</td><td data-label="When">Only when you tap Send</td></tr>
+                </tbody>
+            </table>
+            <p class="flow-note"><strong>Never sent anywhere:</strong> camera frames from barcode scanning, your notes, ratings, reading sessions and statistics, and the data behind your Home Screen widgets.</p>
+        </div>
+    </section>
+
+    <!-- ============ FULL POLICY ============ -->
+    <section class="tint" id="policy">
+        <div class="wrap">
+            <div class="policy-grid">
+                <details class="toc" open>
+                    <summary>Contents</summary>
+                    <nav aria-label="Policy sections">
+                        <ol>
+                            <li><a href="#s1">1. Introduction</a></li>
+                            <li><a href="#s2">2. Information we collect</a></li>
+                            <li><a href="#s3">3. How we use it</a></li>
+                            <li><a href="#s4">4. Storage and security</a></li>
+                            <li><a href="#s5">5. Third-party services</a></li>
+                            <li><a href="#s6">6. Data retention</a></li>
+                            <li><a href="#s7">7. Your rights and deletion</a></li>
+                            <li><a href="#s8">8. Children's privacy</a></li>
+                            <li><a href="#s9">9. Changes to this policy</a></li>
+                            <li><a href="#s10">10. Contact us</a></li>
+                            <li><a href="#s11">11. Legal basis (GDPR)</a></li>
+                            <li><a href="#s12">12. California rights (CCPA)</a></li>
+                        </ol>
+                    </nav>
+                </details>
+
+                <div class="policy">
+                    <article id="s1">
+                        <h2><span class="n">1</span>Introduction</h2>
+                        <p>ReadMe ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application and this website. <strong>ReadMe does not require an account and does not collect personal data on our own servers, except feedback you choose to send from the app or this website (Sections 2.4 and 2.5).</strong></p>
+                    </article>
+
+                    <article id="s2">
+                        <h2><span class="n">2</span>Information We Collect</h2>
+                        <h3>2.1 Reading Data (stored locally on your device)</h3>
+                        <ul>
+                            <li>Books in your library (title, author, cover image, status)</li>
+                            <li>Reading progress and session history</li>
+                            <li>Reading statistics and preferences</li>
+                            <li>Notes and ratings you add to books</li>
+                            <li>Wish list entries</li>
+                        </ul>
+                        <h3>2.2 Book Search Queries and Cover Images</h3>
+                        <ul>
+                            <li>When you search for a book, your search query is sent to the Google Books API to retrieve results. This is governed by Google's privacy policy.</li>
+                            <li>Book cover images are loaded directly from Google's servers (books.google.com) whenever they are displayed in your library. As a result, Google may receive your device's IP address and which covers are being shown.</li>
+                            <li>When you scan a barcode or look up an ISBN that Google Books doesn't have, the ISBN is sent to Open Library (openlibrary.org), and any cover it returns is loaded from Open Library's servers. Open Library may receive your device's IP address.</li>
+                            <li>We do not store or log your search queries or cover image requests ourselves.</li>
+                        </ul>
+                        <h3>2.3 Device Information</h3>
+                        <ul>
+                            <li>App version and iOS version, used only for local app operation</li>
+                            <li>iCloud account status, used solely to enable or disable optional sync</li>
+                            <li>Launch, hang and crash figures that Apple's MetricKit gives the app about this device. They are kept on your device and appear in Settings &gt; Sync Diagnostics. They leave your device only if you copy the report or include it with feedback (Section 2.4).</li>
+                        </ul>
+                        <h3 id="app-feedback">2.4 Feedback You Send From the App</h3>
+                        <p>ReadMe sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. Each submission includes:</p>
+                        <ul>
+                            <li>The feedback type, title and description you enter</li>
+                            <li>App version and build, iOS version and device model</li>
+                            <li>The Sync Diagnostics report (book and session counts, iCloud sync status, the last sync error, and the launch, hang and crash figures in Section 2.3), only if you turn on Include Sync Diagnostics</li>
+                            <li>Your email address, only if you enter one, used only to tell you when your feedback is addressed</li>
+                        </ul>
+                        <h3 id="web-feedback">2.5 Feedback You Send From This Website<span class="new">New</span></h3>
+                        <p>The feedback form on this page and on the ReadMe support page sends only when you press Send feedback. Each submission includes:</p>
+                        <ul>
+                            <li>The feedback type, title and description you enter</li>
+                            <li>Your email address, only if you enter one, used only to tell you when your feedback is addressed</li>
+                        </ul>
+                        <p>No app version, device details or diagnostics are attached, and the website keeps no status token, so web submissions can't be followed in the app. To keep out spam, the form uses Cloudflare Turnstile, which checks signals from your browser to tell people from bots. Our feedback service uses your IP address to limit how often submissions can be sent. It does not store your IP address.</p>
+                        <h3>2.6 Camera</h3>
+                        <ul>
+                            <li>ReadMe asks for camera access only to scan a book's barcode, and uses the camera only while you are scanning</li>
+                            <li>Barcodes are read on your device by Apple's VisionKit. Camera frames are never stored or sent anywhere. Only the ISBN read from the barcode is looked up, as described in Section 2.2.</li>
+                            <li>You can deny or turn off camera access in iOS Settings at any time. Search and manual entry still work.</li>
+                        </ul>
+                        <h3>2.7 Home Screen Widgets</h3>
+                        <ul>
+                            <li>To show your current books and progress, ReadMe keeps a small copy of that data and its covers in a container on your device that only ReadMe and its widgets can read</li>
+                            <li>This copy never leaves your device</li>
+                        </ul>
+                    </article>
+
+                    <article id="s3">
+                        <h2><span class="n">3</span>How We Use Your Information</h2>
+                        <ul>
+                            <li>All reading data is stored and used entirely on your device to provide the app's features</li>
+                            <li>If you enable iCloud sync, your data is synced through your own Apple iCloud account via CloudKit. It does not pass through our servers.</li>
+                            <li>Search queries are sent to Google Books solely to return book results to you</li>
+                            <li>Feedback you send is used to triage and fix problems. Feedback sent from the app is also used to show you its status in Settings &gt; Your Feedback. If you entered an email address, it is used only to tell you when your feedback is addressed.</li>
+                            <li>We do not use your data for advertising, sell it, or use it to track you across apps or websites</li>
+                            <li>Apart from feedback you choose to send, we do not collect, transmit, or store your data on our own servers</li>
+                        </ul>
+                    </article>
+
+                    <article id="s4">
+                        <h2><span class="n">4</span>Data Storage and Security</h2>
+                        <h3>4.1 Data Storage</h3>
+                        <ul>
+                            <li><strong>Local Storage:</strong> All reading data is stored on your device using Apple's SwiftData framework</li>
+                            <li><strong>iCloud Sync (optional):</strong> If iCloud is enabled on your device, your library syncs via Apple's CloudKit using your personal iCloud account. This is governed by Apple's privacy policy.</li>
+                            <li><strong>Feedback:</strong> Feedback you send, from the app or this website, is processed by a Cloudflare Worker we operate. The feedback text, and diagnostics if any, become an issue in a private GitHub repository for triage. Your email address, if you entered one, is stored in the Worker's database (Cloudflare D1) and is never put in the issue.</li>
+                            <li><strong>No Other Developer Servers:</strong> We do not operate any servers that store your library or reading data</li>
+                        </ul>
+                        <h3>4.2 Security Measures</h3>
+                        <ul>
+                            <li>All data is stored using Apple's native frameworks, which benefit from iOS sandboxing and device encryption</li>
+                            <li>iCloud data is protected by Apple's encryption and your Apple Account credentials</li>
+                            <li>All network requests (to Google Books, Open Library and our feedback service) are made over HTTPS/TLS</li>
+                        </ul>
+                        <h3>4.3 No Tracking or Advertising</h3>
+                        <ul>
+                            <li>ReadMe contains no advertising and no third-party analytics or tracking SDKs</li>
+                            <li>ReadMe does not track you as Apple defines it, so it never shows the App Tracking Transparency prompt</li>
+                            <li>This website uses no analytics or advertising of its own</li>
+                        </ul>
+                    </article>
+
+                    <article id="s5">
+                        <h2><span class="n">5</span>Third-Party Services</h2>
+                        <h3>5.1 Google Books API</h3>
+                        <ul>
+                            <li>We use the Google Books API to provide book search functionality</li>
+                            <li>Search queries are sent to Google's servers when you search for a book</li>
+                            <li>Book cover images are fetched from Google's servers when displayed in your library</li>
+                            <li>Google's privacy policy applies to data processed by their services</li>
+                            <li>We do not share any personal data with Google beyond the search query and the cover images your library displays</li>
+                        </ul>
+                        <h3>5.2 Apple iCloud / CloudKit</h3>
+                        <ul>
+                            <li>Optional iCloud sync is provided through Apple's CloudKit service using your existing iCloud account</li>
+                            <li>Apple's privacy policy applies to data stored in iCloud</li>
+                            <li>You can disable iCloud sync at any time in your device's iCloud settings</li>
+                        </ul>
+                        <h3>5.3 Open Library</h3>
+                        <ul>
+                            <li>Used to look up books by ISBN when Google Books has no match, and to load the covers it returns</li>
+                            <li>Only the ISBN is sent. Open Library's privacy policy applies to data processed by their services.</li>
+                        </ul>
+                        <h3>5.4 Feedback Processors</h3>
+                        <ul>
+                            <li><strong>Cloudflare</strong> runs the service that receives feedback and stores optional email addresses, and provides the Turnstile spam check on this website's form</li>
+                            <li><strong>GitHub</strong> hosts the private repository where feedback is triaged</li>
+                            <li><strong>Resend</strong> delivers the email telling you your feedback was addressed, if you entered an email address</li>
+                            <li>These services process feedback only on our behalf, and their privacy policies apply</li>
+                        </ul>
+                        <h3>5.5 This Website</h3>
+                        <ul>
+                            <li>This website is hosted on GitHub Pages. GitHub may log visitors' IP addresses for security, under GitHub's privacy statement.</li>
+                        </ul>
+                    </article>
+
+                    <article id="s6">
+                        <h2><span class="n">6</span>Data Retention</h2>
+                        <ul>
+                            <li><strong>Local Data:</strong> Retained on your device until you delete the app</li>
+                            <li><strong>iCloud Data:</strong> Retained in your iCloud account until you disable iCloud for the app or delete your iCloud account</li>
+                            <li><strong>Feedback:</strong> Feedback issues, from the app or this website, are kept as part of our development backlog</li>
+                            <li><strong>Email Address:</strong> Deleted after we send the final notice that a fix is out, when the feedback is closed without a fix, or after 180 days, whichever comes first</li>
+                            <li><strong>Status Token:</strong> For feedback sent from the app, your device keeps a random token so the app can show your feedback's status. Our service stores only a hash of it. No account is involved.</li>
+                            <li>Apart from feedback, <strong>we hold no server-side data</strong></li>
+                        </ul>
+                    </article>
+
+                    <article id="s7">
+                        <h2><span class="n">7</span>Your Rights and Data Deletion</h2>
+                        <ul>
+                            <li><strong>Export:</strong> You can export a full copy of your library at any time from Settings &gt; Export Library (JSON)</li>
+                            <li><strong>Delete Local Data:</strong> Delete the app from your device to remove all locally stored data</li>
+                            <li><strong>Delete iCloud Data:</strong> To remove iCloud data, go to Settings &gt; Apple Account &gt; iCloud &gt; Manage Account Storage and remove ReadMe's data, or delete the app while iCloud sync is active</li>
+                            <li><strong>Delete Feedback:</strong> To have a feedback submission deleted, from the app or this website, email us at the address in Section 10 with the feedback's title</li>
+                            <li><strong>No Account to Delete:</strong> ReadMe does not use accounts, so there is no account deletion process</li>
+                        </ul>
+                    </article>
+
+                    <article id="s8">
+                        <h2><span class="n">8</span>Children's Privacy</h2>
+                        <p>ReadMe does not knowingly collect any personal information from children. Apart from feedback a user chooses to send, the app does not collect any personal data on our servers, and it is suitable for general audiences.</p>
+                    </article>
+
+                    <article id="s9">
+                        <h2><span class="n">9</span>Changes to This Policy</h2>
+                        <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by updating the "Last updated" date above. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+                    </article>
+
+                    <article id="s10">
+                        <h2><span class="n">10</span>Contact Us</h2>
+                        <p>If you have any questions about this Privacy Policy or your data, please contact us at:</p>
+                        <ul>
+                            <li>Email: <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp [at] gmail [dot] com</a></li>
+                        </ul>
+                    </article>
+
+                    <article id="s11">
+                        <h2><span class="n">11</span>Legal Basis (GDPR)</h2>
+                        <p>For users in the European Union, our legal basis for processing your data is:</p>
+                        <ul>
+                            <li><strong>Legitimate Interest:</strong> Providing reading tracking features and improving our app</li>
+                            <li><strong>Consent:</strong> For optional iCloud sync, which you can disable at any time</li>
+                            <li><strong>Consent:</strong> For feedback, which is sent only when you tap Send in the app or press Send feedback on this website</li>
+                        </ul>
+                        <p>Apart from feedback you choose to send, all data is stored locally on your device or in your own iCloud account and is under your direct control at all times.</p>
+                    </article>
+
+                    <article id="s12">
+                        <h2><span class="n">12</span>California Privacy Rights (CCPA)</h2>
+                        <p>California residents have additional rights under the California Consumer Privacy Act (CCPA):</p>
+                        <ul>
+                            <li><strong>Right to Know:</strong> You can request details about what personal information we collect. The only personal information we collect on our servers is feedback you choose to send, described in Sections 2.4 and 2.5.</li>
+                            <li><strong>Right to Delete:</strong> You can delete all your data by removing the app and clearing iCloud data, and request deletion of feedback you sent, as described in Section 7</li>
+                            <li><strong>Right to Opt-Out:</strong> We do not sell or share personal information</li>
+                            <li><strong>Non-Discrimination:</strong> We will not discriminate against you for exercising your privacy rights</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FEEDBACK ============ -->
+    <section class="feedback" id="feedback">
+        <div class="wrap">
+            <div class="feedback-grid">
+                <div>
+                    <span class="eyebrow">Feedback</span>
+                    <h2>Found a bug? Have an idea?</h2>
+                    <p class="lead">Tell us here. It goes straight into the same queue as feedback from the app, and a real person reads every one.</p>
+                    <ul class="why">
+                        <li><span class="ic" aria-hidden="true">⚡</span><span><strong>Straight to the backlog</strong>Every submission becomes a tracked issue. No inbox to get lost in.</span></li>
+                        <li><span class="ic" aria-hidden="true">🔒</span><span><strong>Only what you type</strong>No device details attached. Email is optional and never shown in the issue.</span></li>
+                        <li><span class="ic" aria-hidden="true">🔔</span><span><strong>Hear back when it's fixed</strong>Leave an email and we'll tell you when a fix is on the way.</span></li>
+                    </ul>
+                    <p class="alt">On your iPhone? <strong>Settings &gt; Send Feedback</strong> in ReadMe can attach diagnostics and lets you follow status in the app. Or email <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp [at] gmail [dot] com</a>.</p>
+                </div>
+                <!-- Web feedback form (assets/feedback.js). Fill in the three values from
+                     the feedback-relay setup ("Adding a web form" in its README); until then
+                     the form shows an email fallback. The app key and site key are public. -->
+                <div class="fb" data-feedback data-app="ReadMe" data-privacy="#web-feedback"
+                     data-relay=""
+                     data-app-key=""
+                     data-sitekey="">
+                    <noscript><p>The feedback form needs JavaScript. Email khakichimp [at] gmail [dot] com instead.</p></noscript>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GET THE APP ============ -->
+    <section class="getapp">
+        <div class="wrap">
+            <h2>A reading tracker that respects you</h2>
+            <p>Track books, log sessions, scan barcodes, and watch your streaks grow. All private, all yours.</p>
+            <div class="cta-row">
+                <a class="btn primary" href="https://apps.apple.com/us/app/readme-book-tracker/id6752588976"> Download for iOS</a>
+                <a class="btn ghost" href="index.html">See features</a>
+            </div>
+        </div>
+    </section>
     </main>
 
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="mark">🐵</div>
+        <h3>Khakichimp</h3>
+        <div class="links">
+            <a href="index.html">ReadMe</a>
+            <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">Email</a><noscript><span class="email-fallback">khakichimp [at] gmail [dot] com</span></noscript>
+            <a href="/khakichimp/">Khakichimp HQ</a>
+            <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
+    </footer>
+
+    <script src="/assets/feedback.js" defer></script>
     <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+        /* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
         document.querySelectorAll('a.contact[data-u]').forEach(a=>{
             const addr = a.dataset.u + '@' + a.dataset.d;
             a.href = 'mailto:' + addr;
             a.setAttribute('aria-label', 'Email ' + addr);
+            if(a.textContent.includes('[at]')) a.textContent = addr;
         });
+
+        /* Contents: always open beside the policy on wide screens, collapsible on phones */
+        const toc = document.querySelector('.toc');
+        const wide = matchMedia('(min-width:960px)');
+        const syncToc = () => { if (wide.matches) toc.open = true; else toc.open = false; };
+        syncToc();
+        wide.addEventListener('change', syncToc);
+        toc.addEventListener('click', e => { if (e.target.matches('a') && !wide.matches) toc.open = false; });
+
+        /* Highlight the section being read */
+        if ('IntersectionObserver' in window) {
+            const links = new Map([...toc.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (!e.isIntersecting) return;
+                    links.forEach(a => a.classList.remove('on'));
+                    links.get(e.target.id)?.classList.add('on');
+                });
+            }, { rootMargin: '-15% 0px -75% 0px' });
+            document.querySelectorAll('.policy > article').forEach(s => io.observe(s));
+        }
     </script>
 </body>
 </html>
