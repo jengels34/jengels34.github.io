@@ -9,7 +9,7 @@
  * each app's page can reuse this file:
  *   data-feedback          marks the mount point
  *   data-relay             the relay's https origin, e.g. https://feedback-relay.example.workers.dev
- *   data-app-key           a web key from the relay's APPS ("web": true). Not a secret.
+ *   data-app-key           a web key from the relay's WEB_APPS (wrangler.toml). Not a secret.
  *   data-sitekey           the Turnstile widget's site key. Public.
  *   data-app               the app's display name, for copy
  *   data-privacy           link to the page's web-feedback disclosure
