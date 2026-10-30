@@ -222,7 +222,7 @@
                 <div class="promise"><span class="ic" aria-hidden="true">📱</span><h3>On your device</h3><p>Your library, sessions, notes and stats are stored on your iPhone with Apple's SwiftData.</p></div>
                 <div class="promise"><span class="ic" aria-hidden="true">☁️</span><h3>Your iCloud, not ours</h3><p>Optional sync runs through your own private iCloud database. It never touches our servers.</p></div>
                 <div class="promise"><span class="ic" aria-hidden="true">🚫</span><h3>No ads, no tracking</h3><p>No advertising, no analytics or tracking SDKs, and no following you across apps or websites.</p></div>
-                <div class="promise"><span class="ic" aria-hidden="true">✉️</span><h3>Feedback only when you send it</h3><p>Nothing is sent to us until you tap Send. Diagnostics and email are opt-in, every time.</p></div>
+                <div class="promise"><span class="ic" aria-hidden="true">✉️</span><h3>Feedback only when you send it</h3><p>Nothing is sent to us until you tap Send. Diagnostics are opt-in, every time.</p></div>
                 <div class="promise"><span class="ic" aria-hidden="true">📦</span><h3>Take it or delete it</h3><p>Export your whole library as JSON any time. Delete the app and it's gone.</p></div>
             </div>
         </div>
@@ -240,7 +240,7 @@
                     <tr><th scope="row">Google Books<small>Book search and covers</small></th><td data-label="Receives">Your search text or a scanned ISBN, and your IP address when covers load</td><td data-label="When">When you search, scan, or a cover is shown</td></tr>
                     <tr><th scope="row">Open Library<small>Backup ISBN lookup</small></th><td data-label="Receives">The ISBN only, and your IP address when its covers load</td><td data-label="When">When Google Books has no match for a barcode or ISBN</td></tr>
                     <tr class="yours"><th scope="row">Your iCloud<small>Apple CloudKit</small></th><td data-label="Receives">Your library, in your own private iCloud database</td><td data-label="When">Only if iCloud is on for ReadMe</td></tr>
-                    <tr><th scope="row">ReadMe feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">What you type, app and iOS version, device model. Diagnostics and email only if you add them.</td><td data-label="When">Only when you tap Send</td></tr>
+                    <tr><th scope="row">ReadMe feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">What you type, app and iOS version, device model. Diagnostics only if you add them.</td><td data-label="When">Only when you tap Send</td></tr>
                 </tbody>
             </table>
             <p class="flow-note"><strong>Never sent anywhere:</strong> camera frames from barcode scanning, your notes, ratings, reading sessions and statistics, and the data behind your Home Screen widgets.</p>
@@ -301,20 +301,18 @@
                             <li>Launch, hang and crash figures that Apple's MetricKit gives the app about this device. They are kept on your device and appear in Settings &gt; Sync Diagnostics. They leave your device only if you copy the report or include it with feedback (Section 2.4).</li>
                         </ul>
                         <h3 id="app-feedback">2.4 Feedback You Send From the App</h3>
-                        <p>ReadMe sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. Each submission includes:</p>
+                        <p>ReadMe sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. We don't ask for your email address. The app shows your feedback's status and tells you when it's fixed. Each submission includes:</p>
                         <ul>
                             <li>The feedback type, title and description you enter</li>
                             <li>App version and build, iOS version and device model</li>
                             <li>The Sync Diagnostics report (book and session counts, iCloud sync status, the last sync error, and the launch, hang and crash figures in Section 2.3), only if you turn on Include Sync Diagnostics</li>
-                            <li>Your email address, only if you enter one, used only to tell you when your feedback is addressed</li>
                         </ul>
                         <h3 id="web-feedback">2.5 Feedback You Send From This Website<span class="new">New</span></h3>
                         <p>The feedback form on this page and on the ReadMe support page sends only when you press Send feedback. Each submission includes:</p>
                         <ul>
                             <li>The feedback type, title and description you enter</li>
-                            <li>Your email address, only if you enter one, used only to tell you when your feedback is addressed</li>
                         </ul>
-                        <p>No app version, device details or diagnostics are attached, and the website keeps no status token, so web submissions can't be followed in the app. To keep out spam, the form uses Cloudflare Turnstile, which checks signals from your browser to tell people from bots. Our feedback service uses your IP address to limit how often submissions can be sent. It does not store your IP address.</p>
+                        <p>We don't ask for your email address. No app version, device details or diagnostics are attached, and the website keeps no status token, so web submissions can't be followed in the app and we can't tell you when they're addressed. To keep out spam, the form uses Cloudflare Turnstile, which checks signals from your browser to tell people from bots. Our feedback service uses your IP address to limit how often submissions can be sent. It does not store your IP address.</p>
                         <h3>2.6 Camera</h3>
                         <ul>
                             <li>ReadMe asks for camera access only to scan a book's barcode, and uses the camera only while you are scanning</li>
@@ -334,7 +332,7 @@
                             <li>All reading data is stored and used entirely on your device to provide the app's features</li>
                             <li>If you enable iCloud sync, your data is synced through your own Apple iCloud account via CloudKit. It does not pass through our servers.</li>
                             <li>Search queries are sent to Google Books solely to return book results to you</li>
-                            <li>Feedback you send is used to triage and fix problems. Feedback sent from the app is also used to show you its status in Settings &gt; Your Feedback. If you entered an email address, it is used only to tell you when your feedback is addressed.</li>
+                            <li>Feedback you send is used to triage and fix problems. Feedback sent from the app is also used to show you its status in Settings &gt; Your Feedback.</li>
                             <li>We do not use your data for advertising, sell it, or use it to track you across apps or websites</li>
                             <li>Apart from feedback you choose to send, we do not collect, transmit, or store your data on our own servers</li>
                         </ul>
@@ -346,7 +344,7 @@
                         <ul>
                             <li><strong>Local Storage:</strong> All reading data is stored on your device using Apple's SwiftData framework</li>
                             <li><strong>iCloud Sync (optional):</strong> If iCloud is enabled on your device, your library syncs via Apple's CloudKit using your personal iCloud account. This is governed by Apple's privacy policy.</li>
-                            <li><strong>Feedback:</strong> Feedback you send, from the app or this website, is processed by a Cloudflare Worker we operate. The feedback text, and diagnostics if any, become an issue in a private GitHub repository for triage. Your email address, if you entered one, is stored in the Worker's database (Cloudflare D1) and is never put in the issue.</li>
+                            <li><strong>Feedback:</strong> Feedback you send, from the app or this website, is processed by a Cloudflare Worker we operate. The feedback text, and diagnostics if any, become an issue in a private GitHub repository for triage.</li>
                             <li><strong>No Other Developer Servers:</strong> We do not operate any servers that store your library or reading data</li>
                         </ul>
                         <h3>4.2 Security Measures</h3>
@@ -386,9 +384,8 @@
                         </ul>
                         <h3>5.4 Feedback Processors</h3>
                         <ul>
-                            <li><strong>Cloudflare</strong> runs the service that receives feedback and stores optional email addresses, and provides the Turnstile spam check on this website's form</li>
+                            <li><strong>Cloudflare</strong> runs the service that receives feedback and provides the Turnstile spam check on this website's form</li>
                             <li><strong>GitHub</strong> hosts the private repository where feedback is triaged</li>
-                            <li><strong>Resend</strong> delivers the email telling you your feedback was addressed, if you entered an email address</li>
                             <li>These services process feedback only on our behalf, and their privacy policies apply</li>
                         </ul>
                         <h3>5.5 This Website</h3>
@@ -403,7 +400,6 @@
                             <li><strong>Local Data:</strong> Retained on your device until you delete the app</li>
                             <li><strong>iCloud Data:</strong> Retained in your iCloud account until you disable iCloud for the app or delete your iCloud account</li>
                             <li><strong>Feedback:</strong> Feedback issues, from the app or this website, are kept as part of our development backlog</li>
-                            <li><strong>Email Address:</strong> Deleted after we send the final notice that a fix is out, when the feedback is closed without a fix, or after 180 days, whichever comes first</li>
                             <li><strong>Status Token:</strong> For feedback sent from the app, your device keeps a random token so the app can show your feedback's status. Our service stores only a hash of it. No account is involved.</li>
                             <li>Apart from feedback, <strong>we hold no server-side data</strong></li>
                         </ul>
@@ -474,8 +470,8 @@
                     <p class="lead">Tell us here. It goes straight into the same queue as feedback from the app, and a real person reads every one.</p>
                     <ul class="why">
                         <li><span class="ic" aria-hidden="true">⚡</span><span><strong>Straight to the backlog</strong>Every submission becomes a tracked issue. No inbox to get lost in.</span></li>
-                        <li><span class="ic" aria-hidden="true">🔒</span><span><strong>Only what you type</strong>No device details attached. Email is optional and never shown in the issue.</span></li>
-                        <li><span class="ic" aria-hidden="true">🔔</span><span><strong>Hear back when it's fixed</strong>Leave an email and we'll tell you when a fix is on the way.</span></li>
+                        <li><span class="ic" aria-hidden="true">🔒</span><span><strong>Only what you type</strong>No device details and no email address.</span></li>
+                        <li><span class="ic" aria-hidden="true">🔔</span><span><strong>Want to hear back?</strong>Send it from the app instead, and ReadMe tells you when it's fixed.</span></li>
                     </ul>
                     <p class="alt">On your iPhone? <strong>Settings &gt; Send Feedback</strong> in ReadMe can attach diagnostics and lets you follow status in the app. Or email <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp [at] gmail [dot] com</a>.</p>
                 </div>
