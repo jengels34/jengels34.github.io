@@ -479,13 +479,13 @@
                     </ul>
                     <p class="alt">On your iPhone? <strong>Settings &gt; Send Feedback</strong> in ReadMe can attach diagnostics and lets you follow status in the app. Or email <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp [at] gmail [dot] com</a>.</p>
                 </div>
-                <!-- Web feedback form (assets/feedback.js). Fill in the three values from
-                     the feedback-relay setup ("Adding a web form" in its README); until then
-                     the form shows an email fallback. The app key and site key are public. -->
+                <!-- Web feedback form (assets/feedback.js). The relay URL, its web app key
+                     and the Turnstile site key are all public; see "Adding a web form" in
+                     the feedback-relay README. Keep them in step with readme/index.html. -->
                 <div class="fb" data-feedback data-app="ReadMe" data-privacy="#web-feedback"
-                     data-relay=""
-                     data-app-key=""
-                     data-sitekey="">
+                     data-relay="https://feedback-relay.engelsjosh.workers.dev"
+                     data-app-key="zXPjH6tQFp01a75VKOvXQz-OXPhwIYMt"
+                     data-sitekey="0x4AAAAAAFtMKN04WsXmwC55">
                     <noscript><p>The feedback form needs JavaScript. Email khakichimp [at] gmail [dot] com instead.</p></noscript>
                 </div>
             </div>
