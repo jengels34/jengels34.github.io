@@ -201,7 +201,7 @@
             <span class="kicker">ReadMe Privacy Policy</span>
             <h1>Your reading life stays yours.</h1>
             <p class="tag">No account. No ads. No tracking. Your library lives on your iPhone and, if you choose, in your own iCloud. Here's exactly what leaves your device, and when.</p>
-            <p class="updated">Last updated October 2026 · Covers ReadMe 3.0</p>
+            <p class="updated">Last updated November 2026 · Covers ReadMe 3.0</p>
             <div class="cta-row">
                 <a class="btn primary" href="#feedback">Report an issue</a>
                 <a class="btn ghost" href="#policy">Read the full policy</a>
@@ -222,7 +222,7 @@
                 <div class="promise"><span class="ic" aria-hidden="true">📱</span><h3>On your device</h3><p>Your library, sessions, notes and stats are stored on your iPhone with Apple's SwiftData.</p></div>
                 <div class="promise"><span class="ic" aria-hidden="true">☁️</span><h3>Your iCloud, not ours</h3><p>Optional sync runs through your own private iCloud database. It never touches our servers.</p></div>
                 <div class="promise"><span class="ic" aria-hidden="true">🚫</span><h3>No ads, no tracking</h3><p>No advertising, no analytics or tracking SDKs, and no following you across apps or websites.</p></div>
-                <div class="promise"><span class="ic" aria-hidden="true">✉️</span><h3>Feedback only when you send it</h3><p>Nothing is sent to us until you tap Send. Diagnostics are opt-in, every time.</p></div>
+                <div class="promise"><span class="ic" aria-hidden="true">✉️</span><h3>Feedback only when you send it</h3><p>Nothing is sent to us until you tap Send, crash reports included. Diagnostics are opt-in, every time.</p></div>
                 <div class="promise"><span class="ic" aria-hidden="true">📦</span><h3>Take it or delete it</h3><p>Export your whole library as JSON any time. Delete the app and it's gone.</p></div>
             </div>
         </div>
@@ -237,10 +237,10 @@
             <table class="flow">
                 <thead><tr><th scope="col">Service</th><th scope="col">What it receives</th><th scope="col">When</th></tr></thead>
                 <tbody>
-                    <tr><th scope="row">Google Books<small>Book search and covers</small></th><td data-label="Receives">Your search text or a scanned ISBN, and your IP address when covers load</td><td data-label="When">When you search, scan, or a cover is shown</td></tr>
+                    <tr><th scope="row">Google Books<small>Book search and covers</small></th><td data-label="Receives">Your search text or a scanned ISBN, and your IP address when covers load</td><td data-label="When">When you search, scan, or a cover is shown for the first time</td></tr>
                     <tr><th scope="row">Open Library<small>Backup ISBN lookup</small></th><td data-label="Receives">The ISBN only, and your IP address when its covers load</td><td data-label="When">When Google Books has no match for a barcode or ISBN</td></tr>
                     <tr class="yours"><th scope="row">Your iCloud<small>Apple CloudKit</small></th><td data-label="Receives">Your library, in your own private iCloud database</td><td data-label="When">Only if iCloud is on for ReadMe</td></tr>
-                    <tr><th scope="row">ReadMe feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">What you type, app and iOS version, device model. Diagnostics only if you add them.</td><td data-label="When">Only when you tap Send</td></tr>
+                    <tr><th scope="row">ReadMe feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">What you type, app and iOS version, device model. Diagnostics only if you add them. Crash details only if you send a crash report.</td><td data-label="When">Only when you tap Send</td></tr>
                 </tbody>
             </table>
             <p class="flow-note"><strong>Never sent anywhere:</strong> camera frames from barcode scanning, your notes, ratings, reading sessions and statistics, and the data behind your Home Screen widgets.</p>
@@ -290,7 +290,7 @@
                         <h3>2.2 Book Search Queries and Cover Images</h3>
                         <ul>
                             <li>When you search for a book, your search query is sent to the Google Books API to retrieve results. This is governed by Google's privacy policy.</li>
-                            <li>Book cover images are loaded directly from Google's servers (books.google.com) whenever they are displayed in your library. As a result, Google may receive your device's IP address and which covers are being shown.</li>
+                            <li>Book cover images are downloaded directly from Google's servers (books.google.com) the first time they are shown, then saved on your device so they don't need downloading again. As a result, Google may receive your device's IP address and which covers are being downloaded. Saved covers stay on your device and are not synced.</li>
                             <li>When you scan a barcode or look up an ISBN that Google Books doesn't have, the ISBN is sent to Open Library (openlibrary.org), and any cover it returns is loaded from Open Library's servers. Open Library may receive your device's IP address.</li>
                             <li>We do not store or log your search queries or cover image requests ourselves.</li>
                         </ul>
@@ -298,15 +298,22 @@
                         <ul>
                             <li>App version and iOS version, used only for local app operation</li>
                             <li>iCloud account status, used solely to enable or disable optional sync</li>
-                            <li>Launch, hang and crash figures that Apple's MetricKit gives the app about this device. They are kept on your device and appear in Settings &gt; Sync Diagnostics. They leave your device only if you copy the report or include it with feedback (Section 2.4).</li>
+                            <li>Launch, hang and crash figures that Apple's MetricKit gives the app about this device. They are kept on your device and appear in Settings &gt; Sync Diagnostics. They leave your device only if you copy the report, include it with feedback, or choose to send a crash report (Section 2.4).</li>
                         </ul>
                         <h3 id="app-feedback">2.4 Feedback You Send From the App</h3>
-                        <p>ReadMe sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. We don't ask for your email address. The app shows your feedback's status and tells you when it's fixed. Each submission includes:</p>
+                        <p>ReadMe sends feedback only when you tap Send in Settings &gt; Send Feedback, or in the crash report prompt described below. Nothing is sent otherwise. We don't ask for your email address. The app shows your feedback's status and tells you when it's fixed. Each submission includes:</p>
                         <ul>
                             <li>The feedback type, title and description you enter</li>
                             <li>App version and build, iOS version and device model</li>
                             <li>The Sync Diagnostics report (book and session counts, iCloud sync status, the last sync error, and the launch, hang and crash figures in Section 2.3), only if you turn on Include Sync Diagnostics</li>
                         </ul>
+                        <p id="crash-reports"><strong>Crash reports.</strong> If ReadMe closes unexpectedly, iOS gives the app a crash report through Apple's MetricKit the next time you open it, and ReadMe asks once whether to send it. Nothing is sent unless you tap Send. Don't Send discards it. A crash report you send includes:</p>
+                        <ul>
+                            <li>App version and build, iOS version and device model</li>
+                            <li>Technical details of the crash: the exception or termination reason, and the memory addresses and names of the code libraries that were running</li>
+                            <li>How many times the same crash happened on this device</li>
+                        </ul>
+                        <p>It contains none of your books, notes, sessions or anything you typed, and it doesn't appear in Settings &gt; Your Feedback. If sending fails, for example while you're offline, ReadMe tries again on a later launch, up to three times, without asking again.</p>
                         <h3 id="web-feedback">2.5 Feedback You Send From This Website<span class="new">New</span></h3>
                         <p>The feedback form on this page and on the ReadMe support page sends only when you press Send feedback. Each submission includes:</p>
                         <ul>
@@ -333,6 +340,7 @@
                             <li>If you enable iCloud sync, your data is synced through your own Apple iCloud account via CloudKit. It does not pass through our servers.</li>
                             <li>Search queries are sent to Google Books solely to return book results to you</li>
                             <li>Feedback you send is used to triage and fix problems. Feedback sent from the app is also used to show you its status in Settings &gt; Your Feedback.</li>
+                            <li>Crash reports you choose to send are used only to find and fix the crash</li>
                             <li>We do not use your data for advertising, sell it, or use it to track you across apps or websites</li>
                             <li>Apart from feedback you choose to send, we do not collect, transmit, or store your data on our own servers</li>
                         </ul>
@@ -344,7 +352,7 @@
                         <ul>
                             <li><strong>Local Storage:</strong> All reading data is stored on your device using Apple's SwiftData framework</li>
                             <li><strong>iCloud Sync (optional):</strong> If iCloud is enabled on your device, your library syncs via Apple's CloudKit using your personal iCloud account. This is governed by Apple's privacy policy.</li>
-                            <li><strong>Feedback:</strong> Feedback you send, from the app or this website, is processed by a Cloudflare Worker we operate. The feedback text, and diagnostics if any, become an issue in a private GitHub repository for triage.</li>
+                            <li><strong>Feedback:</strong> Feedback you send, from the app or this website, is processed by a Cloudflare Worker we operate. The feedback text, and any diagnostics or crash report you send, become an issue in a private GitHub repository for triage.</li>
                             <li><strong>No Other Developer Servers:</strong> We do not operate any servers that store your library or reading data</li>
                         </ul>
                         <h3>4.2 Security Measures</h3>
@@ -399,7 +407,7 @@
                         <ul>
                             <li><strong>Local Data:</strong> Retained on your device until you delete the app</li>
                             <li><strong>iCloud Data:</strong> Retained in your iCloud account until you disable iCloud for the app or delete your iCloud account</li>
-                            <li><strong>Feedback:</strong> Feedback issues, from the app or this website, are kept as part of our development backlog</li>
+                            <li><strong>Feedback:</strong> Feedback issues and crash reports, from the app or this website, are kept as part of our development backlog</li>
                             <li><strong>Status Token:</strong> For feedback sent from the app, your device keeps a random token so the app can show your feedback's status. Our service stores only a hash of it. No account is involved.</li>
                             <li>Apart from feedback, <strong>we hold no server-side data</strong></li>
                         </ul>
