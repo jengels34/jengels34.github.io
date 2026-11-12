@@ -255,7 +255,7 @@
                     <tr><th scope="row">Google Places<small>Restaurant search, details and photos</small></th><td data-label="Receives">The search location (your current location or one you picked) and radius, any craving you type, place names you type to search, the restaurant you open, and your IP address</td><td data-label="When">When you search, open a restaurant, or a photo loads for the first time</td></tr>
                     <tr><th scope="row">OpenStreetMap Nominatim<small>Address and ZIP lookup</small></th><td data-label="Receives">The address or ZIP code you type, and your IP address</td><td data-label="When">Only when you search by address or ZIP code</td></tr>
                     <tr><th scope="row">Apple Maps<small>MapKit</small></th><td data-label="Receives">The map area on screen, under Apple's privacy policy</td><td data-label="When">While the map is shown, and when you tap Directions</td></tr>
-                    <tr class="yours"><th scope="row">Food in Five feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">What you type, app version and build, iOS version, device model. Diagnostics only if you turn them on. Never your location.</td><td data-label="When">Only when you tap Send</td></tr>
+                    <tr class="yours"><th scope="row">Food in Five feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">The type, title and details you write, plus app version and build, iOS version and device model. With diagnostics on, also your locale, location permission status, last search error, favorites count, settings, and launch, hang and crash figures. Never your location.</td><td data-label="When">Only when you tap Send</td></tr>
                 </tbody>
             </table>
             <p class="flow-note"><strong>Never sent anywhere:</strong> your favorites, notes and collections, and the launch, hang and crash figures the app keeps on your device (unless you include diagnostics with feedback). The Home Screen widgets make no network requests and don't use your location.</p>
@@ -314,22 +314,27 @@
                             <li><strong>Preferences:</strong> Settings such as default search radius, number of results, sort order, appearance and haptics are stored locally on your device.</li>
                             <li><strong>Search Cache:</strong> Recent search results are kept in memory for up to 5 minutes to avoid repeat requests.</li>
                             <li><strong>Photo Cache:</strong> Restaurant photos are saved on your device for up to 7 days.</li>
-                            <li><strong>Sent Feedback:</strong> For each feedback submission, your device keeps its title, type and a random status token (Section 2.5).</li>
+                            <li><strong>Sent Feedback:</strong> For each of your 50 most recent feedback submissions, your device keeps its title, type and a random status token (Section 2.5).</li>
                         </ul>
                         <h3>2.4 Device Information and On-Device Metrics</h3>
                         <ul>
                             <li>App version, iOS version and device model, read on your device for local app operation and included with feedback you send</li>
-                            <li>Launch, hang and crash figures that Apple's MetricKit gives the app about this device. They are kept on your device and leave it only if you include diagnostics with feedback (Section 2.5).</li>
+                            <li>Launch, hang and crash figures that Apple's MetricKit gives the app about this device: launch times, hang times, and counts of crashes and hangs with their termination reasons. They are kept on your device and leave it only if you include diagnostics with feedback (Section 2.5).</li>
                         </ul>
                         <h3 id="app-feedback">2.5 Feedback You Send<span class="new">New</span></h3>
                         <p>Food in Five sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. We don't ask for your email address. Each submission includes:</p>
                         <ul>
-                            <li>The feedback type (Bug, Idea or Other), title and details you enter</li>
-                            <li>App version and build, iOS version and device model</li>
-                            <li>A diagnostics report, only if you turn on its toggle: your locale, location permission status, the last search error, how many favorites you've saved, the launch, hang and crash figures in Section 2.4, and your current app settings (search radius, open-only, price filter, maximum results, sort order, theme and haptics)</li>
+                            <li><strong>Your message:</strong> the feedback type (Bug, Idea or Other), title and details you enter</li>
+                            <li><strong>Device details:</strong> app version and build, iOS version and device model</li>
+                        </ul>
+                        <p>If you turn on the diagnostics toggle, it also includes a diagnostics report:</p>
+                        <ul>
+                            <li><strong>App state:</strong> your locale, location permission status, the last search error, how many favorites you've saved, and your current app settings (search radius, open-only, price filter, maximum results, sort order, theme and haptics)</li>
+                            <li><strong>Performance:</strong> the MetricKit launch and hang figures in Section 2.4</li>
+                            <li><strong>Crashes:</strong> the MetricKit crash and hang counts and termination reasons in Section 2.4</li>
                         </ul>
                         <p>Feedback never includes your location coordinates, your contacts, your email address, or the names or notes of your favorites.</p>
-                        <p>Your feedback goes to a service we operate on Cloudflare Workers, which files it as an issue in a private GitHub repository for triage. The service keeps a small record of each submission: the issue number, the title, its status and timestamps, and a SHA-256 hash of the random status token your device keeps. It uses your IP address only to limit how often submissions can be sent, and does not store it.</p>
+                        <p>Your feedback goes to a service we operate on Cloudflare Workers, which files it as an issue in a private GitHub repository for triage. The service keeps a small record of each submission: the issue number, the title, its status and timestamps, and a SHA-256 hash of the random status token your device keeps. This version of the app doesn't use the token to check or show your feedback's status. The service uses your IP address only to limit how often submissions can be sent, and does not store it.</p>
                         <h3>2.6 Home Screen Widgets and Quick Actions</h3>
                         <ul>
                             <li>Food in Five's widgets and Home Screen quick actions are shortcuts that open the app. They make no network requests, don't use your location, and hold no personal data.</li>
@@ -409,7 +414,7 @@
                             <li><strong>Search Cache:</strong> Cleared automatically after 5 minutes</li>
                             <li><strong>Photo Cache:</strong> Cleared automatically after 7 days</li>
                             <li><strong>Feedback:</strong> Feedback issues are kept as part of our development backlog, together with the small record described in Section 2.5</li>
-                            <li><strong>Status Token:</strong> Your device keeps a random token for each submission. Our service stores only a hash of it, and no account is involved.</li>
+                            <li><strong>Status Token:</strong> Your device keeps a random token for each of your 50 most recent submissions until you delete the app. Our service stores only a hash of it, and no account is involved.</li>
                             <li>Apart from feedback, <strong>we hold no server-side data</strong></li>
                         </ul>
                     </article>
