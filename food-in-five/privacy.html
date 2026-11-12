@@ -3,184 +3,547 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8a56ed">
     <title>Food in Five · Privacy Policy</title>
-    <meta name="description" content="Privacy Policy for Food in Five — an on-device, privacy-respecting restaurant discovery app for iOS.">
+    <meta name="description" content="Food in Five's privacy policy in plain English: no account, no ads, no tracking. Your location goes straight to the services that find your food, your favorites stay on your iPhone, and feedback is sent only when you tap Send.">
 <link rel="icon" href="/assets/icons/food-in-five.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icons/food-in-five.png">
 <link rel="canonical" href="https://jengels34.github.io/food-in-five/privacy.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Food in Five · Privacy Policy">
-<meta property="og:description" content="Privacy Policy for Food in Five.">
+<meta property="og:description" content="No account, no ads, no tracking. Find food fast without giving yourself away.">
 <meta property="og:url" content="https://jengels34.github.io/food-in-five/privacy.html">
-<meta property="og:image" content="https://jengels34.github.io/assets/icons/food-in-five.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://jengels34.github.io/assets/og-food-in-five.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jengels34.github.io/assets/og-food-in-five.png">
     <style>
+        /* ---------- Theme (matches food-in-five/index.html) ---------- */
         :root{
             --accent:#8a56ed; --accent-deep:#6d2de9; --accent-ink:#5716d1;
-            --accent-soft:#f2edfd;
-            --sel:rgba(138,86,237,.25); --line:rgba(64,16,154,.12);
+            --accent-soft:#f2edfd; --accent-soft2:#faf8fe;
+            --sel:rgba(138,86,237,.25); --line:rgba(64,16,154,.12); --shadow:rgba(64,16,154,.07);
+            --privacy:#16a34a; --privacy-ink:#0f7a37; --privacy-soft:#f0fdf4; --privacy-soft2:#dcfce7;
             --ink:#1e293b; --muted:#52607a; --faint:#6b7890; --bg:#ffffff;
         }
         *{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth;background:var(--bg)}
+        html{scroll-behavior:smooth;background:var(--bg);scroll-padding-top:20px}
         body{
             font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
             line-height:1.65;color:var(--ink);background:var(--bg);letter-spacing:-0.011em;
             -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;
         }
-        a{color:var(--accent-deep)}
+        a{color:inherit}
         ::selection{background:var(--sel);color:var(--ink)}
-        .wrap{max-width:820px;margin:0 auto;padding:0 22px}
+        .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--accent-deep);color:#fff;
+            padding:12px 20px;border-radius:0 0 14px 0;font-weight:700;text-decoration:none}
+        .skip:focus{left:0}
+        .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+        .narrow{max-width:860px}
+        .ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block}
 
-        .hero{position:relative;color:#fff;overflow:hidden;
+        /* ---------- HERO ---------- */
+        .hero{position:relative;color:#fff;text-align:center;overflow:hidden;
             background:linear-gradient(160deg,var(--accent) 0%,var(--accent-deep) 70%,var(--accent-ink) 100%)}
         .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
             background:radial-gradient(80% 60% at 50% -10%,rgba(255,255,255,.22),transparent 60%)}
         .topbar{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;
             padding:18px 22px;max-width:1100px;margin:0 auto;font-weight:700}
-        .topbar .brand{display:inline-flex;align-items:center;gap:9px;font-size:1.02em;color:#fff}
+        .topbar .brand{display:inline-flex;align-items:center;gap:9px;font-size:1.02em;text-decoration:none}
         .topbar .brand .dot{width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.25)}
-        .topbar a.back{text-decoration:none;color:#fff;font-weight:600;font-size:.9em;opacity:.92;
+        .topbar a.back{text-decoration:none;font-weight:600;font-size:.9em;opacity:.92;
             padding:8px 15px;border:1px solid rgba(255,255,255,.4);border-radius:999px;transition:.2s}
         .topbar a.back:hover{background:rgba(255,255,255,.14)}
-        .hero-inner{position:relative;z-index:2;max-width:820px;margin:0 auto;padding:30px 22px 56px}
-        .hero h1{font-size:clamp(1.9em,5vw,2.6em);font-weight:800;letter-spacing:-0.02em}
-        .hero p{opacity:.92;margin-top:8px}
+        .hero-inner{position:relative;z-index:2;padding:26px 22px 70px;max-width:760px;margin:0 auto}
+        .app-icon img{width:76px;height:76px;border-radius:18px;display:block;margin:0 auto;
+            filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+        .hero .kicker{display:inline-block;margin-top:18px;font-size:.74em;font-weight:800;letter-spacing:.16em;
+            text-transform:uppercase;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+            padding:6px 14px;border-radius:999px}
+        .hero h1{font-size:clamp(2.1em,6.4vw,3.2em);font-weight:800;letter-spacing:-0.03em;margin-top:12px;line-height:1.1}
+        .hero .tag{font-size:clamp(1.02em,2.4vw,1.16em);opacity:.94;margin-top:14px}
+        .hero .updated{font-size:.88em;opacity:.8;margin-top:10px}
+        .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+        .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;
+            padding:14px 26px;border-radius:999px;transition:transform .18s,box-shadow .18s;font-size:1.02em}
+        .btn.primary{background:#fff;color:var(--accent-deep);box-shadow:0 12px 26px rgba(0,0,0,.22)}
+        .btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px rgba(0,0,0,.28)}
+        .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5)}
+        .btn.ghost:hover{background:rgba(255,255,255,.12)}
         .wave{display:block;width:100%;height:auto;margin-bottom:-1px}
 
-        .content{padding:52px 0 70px}
-        .content h2{color:var(--accent-deep);margin:34px 0 10px;font-size:1.35em;letter-spacing:-0.01em}
-        .content h2:first-child{margin-top:0}
-        .content h3{color:var(--accent);margin:20px 0 8px;font-size:1.08em}
-        .content p{margin:8px 0;color:var(--muted)}
-        .content ul{margin:10px 0 16px 22px}
-        .content li{margin:7px 0;color:var(--muted)}
-        .content strong{color:var(--ink)}
-        .back-link{display:inline-flex;align-items:center;gap:8px;margin-top:36px;font-weight:800;
-            text-decoration:none;color:var(--accent-deep);padding:12px 22px;border:2px solid var(--accent);
-            border-radius:999px;transition:.2s}
-        .back-link:hover{background:var(--accent);color:#fff}
-        @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+        /* ---------- SECTIONS ---------- */
+        section{padding:64px 0;position:relative}
+        section.tint{background:var(--accent-soft2)}
+        .eyebrow{display:inline-block;font-size:.74em;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+            color:var(--accent-deep);background:var(--accent-soft);padding:6px 14px;border-radius:999px;margin-bottom:14px}
+        h2{font-size:clamp(1.5em,4vw,2.1em);font-weight:800;letter-spacing:-0.02em;color:var(--ink);line-height:1.2}
+        .lead{color:var(--muted);margin-top:12px;font-size:1.05em;max-width:680px}
+
+        /* at a glance */
+        .glance{background:linear-gradient(160deg,var(--privacy-soft) 0%,var(--privacy-soft2) 100%)}
+        .glance .eyebrow{color:var(--privacy-ink);background:rgba(22,163,74,.12)}
+        .glance h2{color:var(--privacy-ink)}
+        .glance-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:30px}
+        .promise{background:rgba(255,255,255,.75);border:1px solid rgba(22,163,74,.18);border-radius:20px;padding:22px 22px 20px;
+            box-shadow:0 10px 24px rgba(15,122,55,.06);transition:transform .18s,box-shadow .18s}
+        .promise:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(15,122,55,.10)}
+        .promise .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+            color:var(--privacy-ink);background:rgba(22,163,74,.12)}
+        .promise h3{font-size:1.06em;color:var(--privacy-ink);margin-top:12px}
+        .promise p{color:var(--muted);font-size:.96em;margin-top:4px}
+
+        /* what leaves your phone */
+        .flow{width:100%;border-collapse:separate;border-spacing:0;margin-top:28px;background:#fff;
+            border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 16px 40px var(--shadow)}
+        .flow th,.flow td{padding:16px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+        .flow thead th{font-size:.74em;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);background:var(--accent-soft)}
+        .flow tbody tr:last-child > *{border-bottom:0}
+        .flow tbody th{font-weight:800;color:var(--ink);white-space:nowrap}
+        .flow tbody th small{display:block;font-weight:600;color:var(--faint);font-size:.8em;white-space:normal}
+        .flow td{color:var(--muted)}
+        .flow .yours{background:linear-gradient(90deg,var(--privacy-soft),#fff)}
+        .flow .yours th{color:var(--privacy-ink)}
+        .flow-note{margin-top:16px;color:var(--muted);font-size:.95em}
+        .flow-note strong{color:var(--ink)}
+
+        /* ---------- POLICY ---------- */
+        .policy-grid{display:grid;grid-template-columns:1fr;gap:28px}
+        .toc{border:1px solid var(--line);border-radius:18px;background:#fff;padding:6px 8px}
+        .toc summary{cursor:pointer;font-weight:800;padding:10px 12px;color:var(--accent-deep);list-style:none}
+        .toc summary::-webkit-details-marker{display:none}
+        .toc summary::after{content:"+";float:right;font-weight:800}
+        .toc[open] summary::after{content:"-"}
+        .toc ol{list-style:none;padding:2px 4px 10px}
+        .toc a{display:block;text-decoration:none;color:var(--muted);font-weight:600;font-size:.92em;
+            padding:6px 10px;border-radius:10px;border-left:3px solid transparent;transition:background .15s,color .15s}
+        .toc a:hover{background:var(--accent-soft);color:var(--accent-deep)}
+        .toc a.on{color:var(--accent-deep);background:var(--accent-soft);border-left-color:var(--accent)}
+        @media(min-width:960px){
+            .policy-grid{grid-template-columns:240px 1fr;gap:56px}
+            .toc{position:sticky;top:24px;align-self:start;border:0;background:transparent;padding:0;max-height:calc(100vh - 48px);overflow:auto}
+            .toc summary{pointer-events:none;padding:0 10px 10px;font-size:.74em;letter-spacing:.16em;text-transform:uppercase}
+            .toc summary::after,.toc[open] summary::after{content:none}
+            .toc ol{padding:0}
+        }
+        .policy{min-width:0}
+        .policy > article{padding:30px 0;border-top:1px solid var(--line)}
+        .policy > article:first-child{padding-top:0;border-top:0}
+        .policy h2{font-size:1.4em;color:var(--ink);display:flex;align-items:baseline;gap:12px}
+        .policy h2 .n{flex:none;display:inline-grid;place-items:center;min-width:34px;height:34px;padding:0 8px;border-radius:11px;
+            font-size:.68em;font-weight:800;color:var(--accent-deep);background:var(--accent-soft);transform:translateY(-3px)}
+        .policy h3{color:var(--accent-deep);margin:22px 0 6px;font-size:1.04em}
+        .policy p{margin:10px 0;color:var(--muted)}
+        .policy ul{margin:10px 0 6px 20px}
+        .policy li{margin:7px 0;color:var(--muted)}
+        .policy li::marker{color:var(--accent)}
+        .policy strong{color:var(--ink)}
+        .policy a{color:var(--accent-deep);font-weight:600}
+        .policy .new{display:inline-block;margin-left:8px;font-size:.62em;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+            color:var(--privacy-ink);background:var(--privacy-soft2);padding:3px 8px;border-radius:999px;vertical-align:middle}
+
+        /* ---------- HELP ---------- */
+        .help{background:linear-gradient(180deg,var(--accent-soft2) 0%,var(--accent-soft) 100%)}
+        .help-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:28px}
+        .way{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 10px 24px var(--shadow)}
+        .way .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--accent-deep);background:var(--accent-soft)}
+        .way h3{font-size:1.06em;color:var(--ink);margin-top:12px}
+        .way p{color:var(--muted);font-size:.96em;margin-top:4px}
+        .way a{color:var(--accent-deep);font-weight:700}
+
+        /* final CTA */
+        .getapp{text-align:center;color:#fff;background:linear-gradient(160deg,var(--accent) 0%,var(--accent-ink) 100%)}
+        .getapp h2{color:#fff}
+        .getapp p{color:rgba(255,255,255,.9);margin:10px auto 0;max-width:560px}
+        .getapp .cta-row{margin-top:24px}
+
+        /* ---------- FOOTER ---------- */
+        footer{background:#101626;color:#cdd6e6;text-align:center;padding:54px 22px}
+        footer h3{color:#fff;font-weight:800;margin:0 0 16px}
+        footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+        footer a{color:var(--accent);text-decoration:none;font-weight:600}
+        footer a:hover{text-decoration:underline}
+        footer .copy{opacity:.55;font-size:.85em}
+        .email-fallback{font-weight:600}
+
+        /* ---------- PHONE ---------- */
+        @media(max-width:700px){
+            section{padding:52px 0}
+            .flow,.flow tbody,.flow tr,.flow th,.flow td{display:block;width:100%}
+            .flow thead{display:none}
+            .flow tbody tr{padding:14px 16px;border-bottom:1px solid var(--line)}
+            .flow tbody tr:last-child{border-bottom:0}
+            .flow th,.flow td{padding:0;border:0}
+            .flow tbody th{white-space:normal;margin-bottom:6px}
+            .flow td{margin-top:6px;font-size:.95em}
+            .flow td::before{content:attr(data-label);display:block;font-size:.72em;font-weight:800;letter-spacing:.12em;
+                text-transform:uppercase;color:var(--faint)}
+            .flow tbody tr:last-child > *{border-bottom:0}
+        }
+        @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
     </style>
 </head>
 <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- ============ HERO ============ -->
     <header class="hero">
         <div class="topbar">
-            <span class="brand"><span class="dot"></span> Khakichimp</span>
-            <a class="back" href="index.html">← Support</a>
+            <a class="brand" href="/khakichimp/"><span class="dot"></span> Khakichimp</a>
+            <a class="back" href="index.html">← Food in Five</a>
         </div>
         <div class="hero-inner">
-            <h1>Privacy Policy</h1>
-            <p>Food in Five · Last updated: June 2026</p>
+            <div class="app-icon"><img src="/assets/icons/food-in-five.png" alt="Food in Five app icon" width="76" height="76"></div>
+            <span class="kicker">Food in Five Privacy Policy</span>
+            <h1>Find food fast, without giving yourself away.</h1>
+            <p class="tag">No account. No ads. No tracking. Your location goes straight from your iPhone to the services that find your food, and your favorites stay on your device. Here's exactly what leaves your phone, and when.</p>
+            <p class="updated">Last updated November 2026</p>
+            <div class="cta-row">
+                <a class="btn primary" href="#flow">What leaves your phone</a>
+                <a class="btn ghost" href="#policy">Read the full policy</a>
+            </div>
         </div>
-        <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#ffffff" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
+        <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path fill="#f0fdf4" d="M0,32 C240,64 480,0 720,16 C960,32 1200,64 1440,40 L1440,60 L0,60 Z"></path></svg>
     </header>
 
-    <main class="content">
+    <main id="main">
+    <!-- ============ AT A GLANCE ============ -->
+    <section class="glance">
         <div class="wrap">
-            <h2>1. Introduction</h2>
-            <p>Food in Five ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our mobile application. <strong>Food in Five operates entirely on your device — there is no backend server, no user accounts, and no server-side data storage.</strong></p>
-
-            <h2>2. Information We Collect</h2>
-            <h3>2.1 Location Data</h3>
-            <ul>
-                <li><strong>Current Location:</strong> With your permission, the app accesses your current location (GPS coordinates) to find nearby restaurants.</li>
-                <li><strong>Search Locations:</strong> When you search by address or ZIP code, the text you enter is sent to the OpenStreetMap Nominatim geocoding service to convert it into coordinates (see Section 5.3). It is not stored on any server we operate.</li>
-                <li><strong>Usage:</strong> Location data is sent directly from your device to Google Places API to retrieve restaurant results. It is not transmitted to or stored on any server we operate.</li>
-            </ul>
-            <h3>2.2 On-Device Data</h3>
-            <ul>
-                <li><strong>Favorites:</strong> Saved restaurants and personal notes are stored locally on your device using SwiftData.</li>
-                <li><strong>Preferences:</strong> Settings such as search radius, sort order, and appearance theme are stored locally on your device.</li>
-                <li><strong>Search Cache:</strong> Recent search results are cached on your device for up to 5 minutes to reduce redundant API calls. You can clear this cache at any time from Settings.</li>
-            </ul>
-
-            <h2>3. How We Use Your Information</h2>
-            <ul>
-                <li>Provide restaurant search results based on your location</li>
-                <li>Display distances, ratings, hours, and other restaurant details</li>
-                <li>Store your favorites and preferences locally for a personalized experience</li>
-            </ul>
-
-            <h2>4. Data Storage and Security</h2>
-            <h3>4.1 Data Storage</h3>
-            <ul>
-                <li><strong>All data is stored on your device.</strong> There is no backend server or cloud database.</li>
-                <li><strong>Favorites and preferences</strong> persist on your device until you delete them or uninstall the app.</li>
-                <li><strong>Search cache</strong> expires automatically after 5 minutes or can be cleared manually.</li>
-                <li><strong>Photo cache</strong> is stored on your device with a 7-day expiry to improve performance.</li>
-            </ul>
-            <h3>4.2 Security Measures</h3>
-            <ul>
-                <li>All network communication uses HTTPS encryption</li>
-                <li>The Google Places API key is restricted to the app's bundle ID, preventing unauthorized use</li>
-                <li>No sensitive data is stored on remote servers</li>
-            </ul>
-
-            <h2>5. Third-Party Services</h2>
-            <h3>5.1 Google Places API</h3>
-            <ul>
-                <li>The app sends your search location directly to Google Places API to retrieve restaurant data</li>
-                <li>Google may process this data according to their own privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
-            </ul>
-            <h3>5.2 Apple MapKit</h3>
-            <ul>
-                <li>We use Apple MapKit for map display and navigation</li>
-                <li>Apple's privacy policy applies to MapKit services: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a></li>
-            </ul>
-            <h3>5.3 Nominatim (OpenStreetMap)</h3>
-            <ul>
-                <li>Address and ZIP code searches use the Nominatim geocoding service to convert locations to coordinates</li>
-                <li>OpenStreetMap's privacy policy applies: <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">OSM Privacy Policy</a></li>
-            </ul>
-
-            <h2>6. Data Retention</h2>
-            <ul>
-                <li><strong>On-device data:</strong> Persists until you delete it or uninstall the app</li>
-                <li><strong>Search cache:</strong> Automatically cleared after 5 minutes</li>
-                <li><strong>Photo cache:</strong> Automatically cleared after 7 days</li>
-                <li><strong>No server-side retention:</strong> We do not operate any servers that store your data</li>
-            </ul>
-
-            <h2>7. Your Rights</h2>
-            <ul>
-                <li><strong>Control:</strong> You can revoke location permission at any time in iOS Settings</li>
-                <li><strong>Deletion:</strong> Clear your search cache from the app's Settings screen, delete individual favorites, or uninstall the app to remove all local data</li>
-                <li><strong>Transparency:</strong> No data is collected by us — only the third-party services listed above receive data as part of normal app operation</li>
-            </ul>
-
-            <h2>8. Children's Privacy</h2>
-            <p>Our app is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
-
-            <h2>9. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
-
-            <h2>10. Contact Us</h2>
-            <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-            <ul>
-                <li>Email: <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp@gmail.com</a></li>
-            </ul>
-
-            <h2>11. Legal Basis (GDPR)</h2>
-            <p>For users in the European Union, our legal basis for processing your data is:</p>
-            <ul>
-                <li><strong>Consent:</strong> You grant location permission through iOS before any location data is accessed</li>
-                <li><strong>Legitimate Interest:</strong> Providing restaurant search results using the location you provide</li>
-            </ul>
-
-            <h2>12. California Privacy Rights (CCPA)</h2>
-            <p>California residents have additional rights under the California Consumer Privacy Act (CCPA). We do not sell personal information. Since the app operates entirely on-device with no user accounts, no personal information is collected or stored by us.</p>
-
-            <a class="back-link" href="index.html">← Back to Support &amp; Info</a>
+            <span class="eyebrow">At a glance</span>
+            <h2>Private by design, not by setting</h2>
+            <p class="lead">There's no account to create and no profile to build. Six promises, and the policy below holds us to every one.</p>
+            <div class="glance-grid">
+                <div class="promise">
+                    <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21v-1a6 6 0 0 1 10.5-4"/><path d="m16 16 5 5m0-5-5 5"/></svg></span>
+                    <h3>No account, ever</h3><p>No sign-up, no login, no profile. Open the app and find something to eat.</p>
+                </div>
+                <div class="promise">
+                    <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                    <h3>Your location, used once</h3><p>It goes from your phone to Google Places to find nearby restaurants. We never receive it or store it.</p>
+                </div>
+                <div class="promise">
+                    <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-9.3-9.4C1.5 7.4 3.6 4 7 4c2 0 3.4 1.1 5 3 1.6-1.9 3-3 5-3 3.4 0 5.5 3.4 4.3 6.6C19.5 15.4 12 20 12 20z"/></svg></span>
+                    <h3>Favorites on your device</h3><p>Saved restaurants, notes, collections and settings live on your iPhone. There's no cloud copy and no server.</p>
+                </div>
+                <div class="promise">
+                    <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
+                    <h3>No ads, no tracking</h3><p>No advertising, no analytics or tracking SDKs, and no following you across apps or websites.</p>
+                </div>
+                <div class="promise">
+                    <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span>
+                    <h3>Feedback only when you send it</h3><p>Nothing comes to us until you tap Send. Diagnostics are opt-in, every time, and never include your location.</p>
+                </div>
+                <div class="promise">
+                    <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg></span>
+                    <h3>Clear it any time</h3><p>Clear cached searches and photos in Settings, remove favorites one by one, or delete the app and it's all gone.</p>
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- ============ WHAT LEAVES YOUR PHONE ============ -->
+    <section id="flow">
+        <div class="wrap narrow">
+            <span class="eyebrow">Full transparency</span>
+            <h2>What leaves your phone, and when</h2>
+            <p class="lead">This is the complete list. If a service isn't here, Food in Five doesn't talk to it.</p>
+            <table class="flow">
+                <thead><tr><th scope="col">Service</th><th scope="col">What it receives</th><th scope="col">When</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">Google Places<small>Restaurant search, details and photos</small></th><td data-label="Receives">The search location (your current location or one you picked) and radius, any craving you type, place names you type to search, the restaurant you open, and your IP address</td><td data-label="When">When you search, open a restaurant, or a photo loads for the first time</td></tr>
+                    <tr><th scope="row">OpenStreetMap Nominatim<small>Address and ZIP lookup</small></th><td data-label="Receives">The address or ZIP code you type, and your IP address</td><td data-label="When">Only when you search by address or ZIP code</td></tr>
+                    <tr><th scope="row">Apple Maps<small>MapKit</small></th><td data-label="Receives">The map area on screen, under Apple's privacy policy</td><td data-label="When">While the map is shown, and when you tap Directions</td></tr>
+                    <tr class="yours"><th scope="row">Food in Five feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">What you type, app version and build, iOS version, device model. Diagnostics only if you turn them on. Never your location.</td><td data-label="When">Only when you tap Send</td></tr>
+                </tbody>
+            </table>
+            <p class="flow-note"><strong>Never sent anywhere:</strong> your favorites, notes and collections, and the launch, hang and crash figures the app keeps on your device (unless you include diagnostics with feedback). The Home Screen widgets make no network requests and don't use your location.</p>
+        </div>
+    </section>
+
+    <!-- ============ FULL POLICY ============ -->
+    <section class="tint" id="policy">
+        <div class="wrap">
+            <div class="policy-grid">
+                <details class="toc" open>
+                    <summary>Contents</summary>
+                    <nav aria-label="Policy sections">
+                        <ol>
+                            <li><a href="#s1">1. Introduction</a></li>
+                            <li><a href="#s2">2. Information we collect</a></li>
+                            <li><a href="#s3">3. How we use it</a></li>
+                            <li><a href="#s4">4. Storage and security</a></li>
+                            <li><a href="#s5">5. Third-party services</a></li>
+                            <li><a href="#s6">6. Data retention</a></li>
+                            <li><a href="#s7">7. Your rights and deletion</a></li>
+                            <li><a href="#s8">8. Children's privacy</a></li>
+                            <li><a href="#s9">9. Changes to this policy</a></li>
+                            <li><a href="#s10">10. Contact us</a></li>
+                            <li><a href="#s11">11. Legal basis (GDPR)</a></li>
+                            <li><a href="#s12">12. California rights (CCPA)</a></li>
+                        </ol>
+                    </nav>
+                </details>
+
+                <div class="policy">
+                    <article id="s1">
+                        <h2><span class="n">1</span>Introduction</h2>
+                        <p>Food in Five ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our mobile application and this website. <strong>Food in Five has no user accounts and no backend that stores your data. It collects nothing on our own servers except feedback you choose to send from the app (Section 2.5).</strong></p>
+                    </article>
+
+                    <article id="s2">
+                        <h2><span class="n">2</span>Information We Collect</h2>
+                        <h3>2.1 Location Data</h3>
+                        <ul>
+                            <li><strong>Current Location:</strong> With your permission, and only while you're using the app, Food in Five reads your current location to find nearby restaurants and show distances.</li>
+                            <li><strong>Where it goes:</strong> The search location is sent directly from your device to the Google Places API to retrieve restaurants (Section 5.1). It is never sent to or stored on any server we operate, and it is never included in feedback.</li>
+                            <li><strong>Search Locations:</strong> You can search around another place instead. A place name you pick from suggestions is looked up with Google Places. An address or ZIP code you type is sent to the OpenStreetMap Nominatim geocoding service to convert it into coordinates (Section 5.3).</li>
+                            <li>You can deny or turn off location access in iOS Settings at any time and still search by address or ZIP code.</li>
+                        </ul>
+                        <h3>2.2 Searches and Photos</h3>
+                        <ul>
+                            <li>When you search for a craving, the text you type is sent to Google Places with your search location to find matching restaurants.</li>
+                            <li>When you open a restaurant, its Google place ID is sent to Google Places to load hours, phone number and other details.</li>
+                            <li>Restaurant photos are downloaded from Google's servers the first time they are shown, then saved on your device. As a result, Google may receive your device's IP address and which photos are being downloaded.</li>
+                            <li>We do not store or log your searches or photo requests ourselves.</li>
+                        </ul>
+                        <h3>2.3 On-Device Data</h3>
+                        <ul>
+                            <li><strong>Favorites:</strong> Saved restaurants, your personal notes and collections are stored locally on your device using Apple's SwiftData. They are not synced to iCloud or anywhere else.</li>
+                            <li><strong>Preferences:</strong> Settings such as default search radius, number of results, sort order, appearance and haptics are stored locally on your device.</li>
+                            <li><strong>Search Cache:</strong> Recent search results are kept in memory for up to 5 minutes to avoid repeat requests.</li>
+                            <li><strong>Photo Cache:</strong> Restaurant photos are saved on your device for up to 7 days.</li>
+                            <li><strong>Sent Feedback:</strong> For each feedback submission, your device keeps its title, type and a random status token (Section 2.5).</li>
+                        </ul>
+                        <h3>2.4 Device Information and On-Device Metrics</h3>
+                        <ul>
+                            <li>App version, iOS version and device model, read on your device for local app operation and included with feedback you send</li>
+                            <li>Launch, hang and crash figures that Apple's MetricKit gives the app about this device. They are kept on your device and leave it only if you include diagnostics with feedback (Section 2.5).</li>
+                        </ul>
+                        <h3 id="app-feedback">2.5 Feedback You Send<span class="new">New</span></h3>
+                        <p>Food in Five sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. We don't ask for your email address. Each submission includes:</p>
+                        <ul>
+                            <li>The feedback type (Bug, Idea or Other), title and details you enter</li>
+                            <li>App version and build, iOS version and device model</li>
+                            <li>A diagnostics report, only if you turn on its toggle: your locale, location permission status, the last search error, how many favorites you've saved, the launch, hang and crash figures in Section 2.4, and your current app settings (search radius, open-only, price filter, maximum results, sort order, theme and haptics)</li>
+                        </ul>
+                        <p>Feedback never includes your location coordinates, your contacts, your email address, or the names or notes of your favorites.</p>
+                        <p>Your feedback goes to a service we operate on Cloudflare Workers, which files it as an issue in a private GitHub repository for triage. The service keeps a small record of each submission: the issue number, the title, its status and timestamps, and a SHA-256 hash of the random status token your device keeps. It uses your IP address only to limit how often submissions can be sent, and does not store it.</p>
+                        <h3>2.6 Home Screen Widgets and Quick Actions</h3>
+                        <ul>
+                            <li>Food in Five's widgets and Home Screen quick actions are shortcuts that open the app. They make no network requests, don't use your location, and hold no personal data.</li>
+                        </ul>
+                    </article>
+
+                    <article id="s3">
+                        <h2><span class="n">3</span>How We Use Your Information</h2>
+                        <ul>
+                            <li>Your location and searches are sent to Google Places and Nominatim solely to find restaurants near the place you chose</li>
+                            <li>Distances, ratings, hours and other restaurant details are shown and sorted on your device</li>
+                            <li>Favorites and preferences are stored on your device to give you a personal experience</li>
+                            <li>Feedback you send is used to triage and fix problems and to plan improvements</li>
+                            <li>We do not use your data for advertising, sell it, or use it to track you across apps or websites</li>
+                            <li>Apart from feedback you choose to send, we do not collect, transmit, or store your data on our own servers</li>
+                        </ul>
+                    </article>
+
+                    <article id="s4">
+                        <h2><span class="n">4</span>Data Storage and Security</h2>
+                        <h3>4.1 Data Storage</h3>
+                        <ul>
+                            <li><strong>Local Storage:</strong> Favorites, notes, collections and preferences are stored on your device until you delete them or delete the app</li>
+                            <li><strong>Caches:</strong> Search results expire after 5 minutes and photos after 7 days. Both can be cleared any time from Settings.</li>
+                            <li><strong>Feedback:</strong> Feedback you send is processed by a Cloudflare Worker we operate and becomes an issue in a private GitHub repository for triage</li>
+                            <li><strong>No Other Developer Servers:</strong> We do not operate any servers that store your location, searches or favorites</li>
+                        </ul>
+                        <h3>4.2 Security Measures</h3>
+                        <ul>
+                            <li>All network requests (to Google Places, Nominatim and our feedback service) are made over HTTPS/TLS</li>
+                            <li>The Google Places API key is restricted to the app's bundle ID, so it can't be used outside Food in Five</li>
+                            <li>On-device data benefits from iOS sandboxing and device encryption</li>
+                        </ul>
+                        <h3>4.3 No Tracking or Advertising</h3>
+                        <ul>
+                            <li>Food in Five contains no advertising and no third-party analytics or tracking SDKs</li>
+                            <li>Food in Five does not track you as Apple defines it, so it never shows the App Tracking Transparency prompt</li>
+                            <li>This website uses no analytics or advertising of its own</li>
+                        </ul>
+                    </article>
+
+                    <article id="s5">
+                        <h2><span class="n">5</span>Third-Party Services</h2>
+                        <h3>5.1 Google Places API</h3>
+                        <ul>
+                            <li>Provides restaurant search, restaurant details, place suggestions and photos</li>
+                            <li>Receives the search location and radius, the text you search for, the restaurants you open, photo requests and your IP address</li>
+                            <li>Google's privacy policy applies to data processed by its services: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+                        </ul>
+                        <h3>5.2 Apple MapKit</h3>
+                        <ul>
+                            <li>Used to show the map. Tapping Directions opens Apple Maps.</li>
+                            <li>Apple's privacy policy applies to MapKit and Apple Maps: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a></li>
+                        </ul>
+                        <h3>5.3 Nominatim (OpenStreetMap)</h3>
+                        <ul>
+                            <li>Converts an address or ZIP code you type into coordinates. Only that text is sent.</li>
+                            <li>OpenStreetMap's privacy policy applies: <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noopener">OSM Privacy Policy</a></li>
+                        </ul>
+                        <h3>5.4 Feedback Processors</h3>
+                        <ul>
+                            <li><strong>Cloudflare</strong> runs the service that receives feedback</li>
+                            <li><strong>GitHub</strong> hosts the private repository where feedback is triaged</li>
+                            <li>These services process feedback only on our behalf, and their privacy policies apply</li>
+                        </ul>
+                        <h3>5.5 This Website</h3>
+                        <ul>
+                            <li>This website is hosted on GitHub Pages. GitHub may log visitors' IP addresses for security, under GitHub's privacy statement.</li>
+                        </ul>
+                        <p>Calling a restaurant, opening its website or sharing it hands off to the Phone app, your browser or the share sheet you choose. What happens there is governed by those apps.</p>
+                    </article>
+
+                    <article id="s6">
+                        <h2><span class="n">6</span>Data Retention</h2>
+                        <ul>
+                            <li><strong>On-Device Data:</strong> Favorites and preferences stay on your device until you delete them or delete the app</li>
+                            <li><strong>Search Cache:</strong> Cleared automatically after 5 minutes</li>
+                            <li><strong>Photo Cache:</strong> Cleared automatically after 7 days</li>
+                            <li><strong>Feedback:</strong> Feedback issues are kept as part of our development backlog, together with the small record described in Section 2.5</li>
+                            <li><strong>Status Token:</strong> Your device keeps a random token for each submission. Our service stores only a hash of it, and no account is involved.</li>
+                            <li>Apart from feedback, <strong>we hold no server-side data</strong></li>
+                        </ul>
+                    </article>
+
+                    <article id="s7">
+                        <h2><span class="n">7</span>Your Rights and Data Deletion</h2>
+                        <ul>
+                            <li><strong>Location:</strong> Revoke location permission at any time in iOS Settings</li>
+                            <li><strong>Delete Local Data:</strong> Clear the search and photo cache in the app's Settings, delete individual favorites, or delete the app to remove all locally stored data</li>
+                            <li><strong>Delete Feedback:</strong> To have a feedback submission deleted, email us at the address in Section 10 with the feedback's title</li>
+                            <li><strong>No Account to Delete:</strong> Food in Five does not use accounts, so there is no account deletion process</li>
+                        </ul>
+                    </article>
+
+                    <article id="s8">
+                        <h2><span class="n">8</span>Children's Privacy</h2>
+                        <p>Food in Five is not intended for children under 13, and we do not knowingly collect personal information from children under 13. Apart from feedback a user chooses to send, the app does not collect any personal data on our servers.</p>
+                    </article>
+
+                    <article id="s9">
+                        <h2><span class="n">9</span>Changes to This Policy</h2>
+                        <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by updating the "Last updated" date above. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+                    </article>
+
+                    <article id="s10">
+                        <h2><span class="n">10</span>Contact Us</h2>
+                        <p>If you have any questions about this Privacy Policy or your data, please contact us at:</p>
+                        <ul>
+                            <li>Email: <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp [at] gmail [dot] com</a></li>
+                        </ul>
+                    </article>
+
+                    <article id="s11">
+                        <h2><span class="n">11</span>Legal Basis (GDPR)</h2>
+                        <p>For users in the European Union, our legal basis for processing your data is:</p>
+                        <ul>
+                            <li><strong>Consent:</strong> You grant location permission through iOS before any location data is accessed</li>
+                            <li><strong>Legitimate Interest:</strong> Providing restaurant search results using the location you provide</li>
+                            <li><strong>Consent:</strong> For feedback, which is sent only when you tap Send in the app, with diagnostics only if you turn them on</li>
+                        </ul>
+                        <p>Apart from feedback you choose to send, all data is stored locally on your device and is under your direct control at all times.</p>
+                    </article>
+
+                    <article id="s12">
+                        <h2><span class="n">12</span>California Privacy Rights (CCPA)</h2>
+                        <p>California residents have additional rights under the California Consumer Privacy Act (CCPA):</p>
+                        <ul>
+                            <li><strong>Right to Know:</strong> You can request details about what personal information we collect. The only personal information we collect on our servers is feedback you choose to send, described in Section 2.5.</li>
+                            <li><strong>Right to Delete:</strong> You can delete all your data by deleting the app, and request deletion of feedback you sent, as described in Section 7</li>
+                            <li><strong>Right to Opt-Out:</strong> We do not sell or share personal information</li>
+                            <li><strong>Non-Discrimination:</strong> We will not discriminate against you for exercising your privacy rights</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ HELP ============ -->
+    <section class="help" id="help">
+        <div class="wrap">
+            <span class="eyebrow">Questions?</span>
+            <h2>Found a bug? Have an idea?</h2>
+            <p class="lead">A real person reads every message. Pick whichever way suits you.</p>
+            <div class="help-grid">
+                <div class="way">
+                    <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+                    <h3>From the app</h3>
+                    <p>Open <strong>Settings &gt; Send Feedback</strong> in Food in Five. It goes straight into our backlog, and you choose whether to add diagnostics.</p>
+                </div>
+                <div class="way">
+                    <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+                    <h3>By email</h3>
+                    <p>Write to <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">khakichimp [at] gmail [dot] com</a> for privacy questions, deletion requests or anything else.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GET THE APP ============ -->
+    <section class="getapp">
+        <div class="wrap">
+            <h2>Great food nearby, minus the tracking</h2>
+            <p>Search a craving, filter by open now and price, spin the roulette, and save your favorites. All without an account.</p>
+            <div class="cta-row">
+                <a class="btn primary" href="https://apps.apple.com/us/app/food-in-five-find-food-fast/id6751514898"> Download for iOS</a>
+                <a class="btn ghost" href="index.html">See features</a>
+            </div>
+        </div>
+    </section>
     </main>
 
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <h3>Khakichimp</h3>
+        <div class="links">
+            <a href="index.html">Food in Five</a>
+            <a class="contact" data-u="khakichimp" data-d="gmail.com" href="#">Email</a><noscript><span class="email-fallback">khakichimp [at] gmail [dot] com</span></noscript>
+            <a href="/khakichimp/">Khakichimp HQ</a>
+            <a href="https://github.com/jengels34" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
+    </footer>
+
     <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+        /* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
         document.querySelectorAll('a.contact[data-u]').forEach(a=>{
             const addr = a.dataset.u + '@' + a.dataset.d;
             a.href = 'mailto:' + addr;
             a.setAttribute('aria-label', 'Email ' + addr);
+            if(a.textContent.includes('[at]')) a.textContent = addr;
         });
+
+        /* Contents: always open beside the policy on wide screens, collapsible on phones */
+        const toc = document.querySelector('.toc');
+        const wide = matchMedia('(min-width:960px)');
+        const syncToc = () => { toc.open = wide.matches; };
+        syncToc();
+        wide.addEventListener('change', syncToc);
+        toc.addEventListener('click', e => { if (e.target.matches('a') && !wide.matches) toc.open = false; });
+
+        /* Highlight the section being read */
+        if ('IntersectionObserver' in window) {
+            const links = new Map([...toc.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (!e.isIntersecting) return;
+                    links.forEach(a => a.classList.remove('on'));
+                    links.get(e.target.id)?.classList.add('on');
+                });
+            }, { rootMargin: '-15% 0px -75% 0px' });
+            document.querySelectorAll('.policy > article').forEach(s => io.observe(s));
+        }
     </script>
 </body>
 </html>
