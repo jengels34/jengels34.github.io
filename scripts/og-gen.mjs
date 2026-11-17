@@ -15,13 +15,13 @@ const chimp = fs.readFileSync('assets/chimp.svg', 'utf8')
   .replace(/<\/svg>\s*$/, '');
 
 const careerCard = `
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" font-family="DejaVu Sans">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" font-family="DejaVu Sans, Helvetica, Arial">
   <rect width="1200" height="630" fill="#f7f6f2"/>
   <rect x="0" y="0" width="1200" height="10" fill="#4f46e5"/>
   <circle cx="1080" cy="540" r="260" fill="#4f46e5" opacity="0.05"/>
-  <text x="84" y="180" font-size="22" font-weight="bold" letter-spacing="4" fill="#4f46e5">TECHNOLOGY LEADER · iOS DEVELOPER</text>
+  <text x="84" y="180" font-size="19" font-weight="bold" letter-spacing="3" fill="#4f46e5">RELIABILITY · INCIDENT MANAGEMENT · APPLIED AI</text>
   <text x="80" y="290" font-size="96" font-weight="bold" fill="#15202b">Josh Engels</text>
-  <text x="84" y="362" font-size="28" fill="#475569">Resilient systems. Products people trust.</text>
+  <text x="84" y="362" font-size="28" fill="#475569">Director, Problem &amp; Incident Management</text>
   <text x="84" y="450" font-size="28" fill="#64748b">DraftKings  ·  Apple  ·  U.S. Air Force</text>
   <circle cx="92" cy="540" r="9" fill="#ff6b54"/>
   <text x="116" y="550" font-size="26" font-weight="bold" fill="#15202b">jengels34.github.io</text>
@@ -104,7 +104,10 @@ const cards = [
   ['og-khakichimp', hqCard],
   ...APPS.map((a) => [`og-${a.slug}`, appCard(a)]),
 ];
+// Optional: node scripts/og-gen.mjs og-josh  (regenerate only the named cards)
+const only = process.argv.slice(2);
 for (const [name, src] of cards) {
+  if (only.length && !only.includes(name)) continue;
   const r = new Resvg(src, { fitTo: { mode: 'width', value: 1200 } });
   fs.writeFileSync(`assets/${name}.png`, r.render().asPng());
   console.log('wrote assets/' + name + '.png');
