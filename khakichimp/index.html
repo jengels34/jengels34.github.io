@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b1410">
 <title>Khakichimp HQ · Native, privacy-first iOS apps</title>
-<meta name="description" content="Khakichimp HQ — native, privacy-first iOS apps built by Josh Engels. Tasks - Uniflow, ReadMe, and Food in Five. No trackers, ever.">
+<meta name="description" content="Khakichimp HQ - native, privacy-first iOS apps built by Josh Engels. Tasks - Uniflow, ReadMe, and Food in Five. No trackers, ever.">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="canonical" href="https://jengels34.github.io/khakichimp/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Khakichimp HQ · Native, privacy-first iOS apps">
-<meta property="og:description" content="Tasks - Uniflow, ReadMe, and Food in Five — native iOS apps with no trackers, ever. Built by Josh Engels.">
+<meta property="og:description" content="Tasks - Uniflow, ReadMe, and Food in Five - native iOS apps with no trackers, ever. Built by Josh Engels.">
 <meta property="og:url" content="https://jengels34.github.io/khakichimp/">
 <meta property="og:image" content="https://jengels34.github.io/assets/og-khakichimp.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Khakichimp HQ · Native, privacy-first iOS apps">
-<meta name="twitter:description" content="Tasks - Uniflow, ReadMe, and Food in Five — native iOS apps with no trackers, ever. Built by Josh Engels.">
+<meta name="twitter:description" content="Tasks - Uniflow, ReadMe, and Food in Five - native iOS apps with no trackers, ever. Built by Josh Engels.">
 <meta name="twitter:image" content="https://jengels34.github.io/assets/og-khakichimp.png">
 <script>document.documentElement.classList.add('js')</script>
 <style>
@@ -84,7 +84,7 @@
     @keyframes aura{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.07)}}
     .chimp-stage svg,.chimp-stage img{position:relative;z-index:1;width:100%;height:auto;display:block;filter:drop-shadow(0 22px 26px rgba(0,0,0,.45));will-change:transform}
     .chimp-hint{font-size:.8em;opacity:.6;letter-spacing:.04em;text-transform:uppercase;margin-top:-4px}
-    /* the mascot is injected and animated by JS — hide the stage and its hint for no-JS visitors */
+    /* the mascot is injected and animated by JS - hide the stage and its hint for no-JS visitors */
     .chimp-stage,.chimp-hint{display:none}
     html.js .chimp-stage{display:block}
     html.js .chimp-hint{display:block}
@@ -120,22 +120,6 @@
     .hero-apps img{width:58px;height:58px;border-radius:15px;display:block;
         box-shadow:0 10px 22px rgba(0,0,0,.4);border:1px solid rgba(243,251,243,.14)}
 
-    /* live banana counter chip */
-    .banana-meter{
-        position:fixed;right:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;
-        background:rgba(11,20,16,.82);backdrop-filter:blur(8px);border:1px solid rgba(166,242,74,.4);
-        color:var(--cream);padding:9px 14px;border-radius:999px;font-weight:700;font-size:.9em;
-        box-shadow:0 10px 24px rgba(0,0,0,.34);cursor:pointer;transition:transform .2s;user-select:none;font:inherit;
-    }
-    .banana-meter:hover{transform:translateY(-2px)}
-    .banana-meter .lbl{opacity:.9;font-weight:600}
-    .banana-meter .track{width:52px;height:6px;border-radius:3px;background:rgba(243,251,243,.2);overflow:hidden;display:inline-block}
-    .banana-meter .fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--banana),var(--lime));border-radius:3px;transition:width .25s}
-    .banana-meter .n{color:var(--banana);font-variant-numeric:tabular-nums}
-    .banana-toast{position:fixed;left:50%;top:20%;transform:translate(-50%,-10px);z-index:56;max-width:90vw;
-        background:rgba(11,20,16,.94);border:1px solid rgba(166,242,74,.45);color:var(--cream);
-        padding:14px 22px;border-radius:14px;font-weight:700;text-align:center;
-        box-shadow:0 16px 40px rgba(0,0,0,.4);opacity:0;pointer-events:none}
     .combo-pop{position:fixed;z-index:55;transform:translate(-50%,-50%);pointer-events:none;
         font-weight:800;color:var(--banana);text-shadow:0 2px 10px rgba(0,0,0,.4);white-space:nowrap}
 
@@ -163,7 +147,7 @@
         transform-style:preserve-3d;transition:border-color .25s,box-shadow .25s,transform .25s;
         position:relative;overflow:hidden;min-height:288px;
     }
-    /* per-app corner glow — replaces the generic top stripe */
+    /* per-app corner glow - replaces the generic top stripe */
     .app-card::after{
         content:"";position:absolute;width:260px;height:260px;border-radius:50%;
         top:-110px;right:-80px;filter:blur(10px);opacity:.5;z-index:0;transition:opacity .25s,transform .25s;
@@ -207,11 +191,6 @@
     .philosophy .big{font-size:2.4em}
     .philosophy h3{margin:10px 0 6px;font-size:1.3em}
     .philosophy p{opacity:.84;font-size:.98em}
-    .feed{margin-top:22px}
-    .feed-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:700;font-size:.95em;
-        background:linear-gradient(120deg,var(--banana),var(--lime));color:var(--ink);border:none;padding:12px 20px;border-radius:999px;
-        box-shadow:0 12px 26px rgba(255,210,63,.3);transition:transform .15s}
-    .feed-btn:active{transform:scale(.95)}
     .craft{grid-column:1/-1;background:linear-gradient(160deg,rgba(168,120,255,.14),rgba(255,210,63,.06))}
     .craft .src{display:inline-block;margin-top:14px;font-weight:700;color:var(--lime);text-decoration:none}
     .craft .src:hover{text-decoration:underline}
@@ -257,14 +236,14 @@
         <div class="chimp-stage" id="chimpStage" title="Give him a poke" role="button" tabindex="0" aria-label="Poke the chimp to throw bananas">
             <div id="chimp" class="chimp-img" data-chimp aria-hidden="true"></div>
         </div>
-        <div class="chimp-hint">↑ poke me to feed the chimp</div>
+        <div class="chimp-hint">↑ give him a poke</div>
 
         <span class="eyebrow">Native · Privacy-first · iOS</span>
         <h1>Khaki<span class="pants">chimp</span> HQ</h1>
         <p class="tag">Building iOS apps that are <span class="rot" id="rotator">native</span>.</p>
         <div class="cta-row">
             <a class="cta" id="ctaApps" href="#apps">See the apps ↓</a>
-            <a class="cta alt" href="#stack">How they're built</a>
+            <a class="cta alt" href="#stack">How I build them</a>
         </div>
         <div class="hero-apps" aria-label="The apps">
             <a href="/tasks-uniflow/" title="Tasks - Uniflow"><img src="/assets/icons/tasks-uniflow.png" alt="Tasks - Uniflow app icon" width="58" height="58"></a>
@@ -288,22 +267,22 @@
             <a class="app-card tasks reveal" href="/tasks-uniflow/" data-tilt>
                 <div class="app-icon"><img src="/assets/icons/tasks-uniflow.png" alt="Tasks - Uniflow app icon" width="52" height="52"></div>
                 <h3>Tasks - Uniflow</h3>
-                <p class="desc">One task manager that unifies local tasks, Notion, and Apple Reminders — synced via CloudKit, secured in Keychain.</p>
-                <div class="pills"><span>SwiftUI</span><span>CloudKit</span><span>Notion API</span><span>Keychain</span></div>
+                <p class="desc">One task manager that unifies local tasks, Notion, and Apple Reminders - synced via CloudKit, secured in Keychain.</p>
+                <div class="pills"><span>SwiftUI</span><span>SwiftData</span><span>CloudKit</span><span>Notion API</span><span>Keychain</span></div>
                 <div class="foot"><span class="badge live">On the App Store</span><span class="go">Open →</span></div>
             </a>
             <a class="app-card readme reveal" href="/readme/" data-tilt>
                 <div class="app-icon"><img src="/assets/icons/readme.png" alt="ReadMe app icon" width="52" height="52"></div>
                 <h3>ReadMe</h3>
-                <p class="desc">A native, privacy-first book tracker — manage your library, log reading sessions, and watch your progress grow. All on-device, with optional iCloud sync.</p>
+                <p class="desc">A native, privacy-first book tracker - manage your library, log reading sessions, and watch your progress grow. All on-device, with optional iCloud sync.</p>
                 <div class="pills"><span>SwiftUI</span><span>SwiftData</span><span>CloudKit</span><span>On-device</span></div>
                 <div class="foot"><span class="badge live">On the App Store</span><span class="go">Open →</span></div>
             </a>
             <a class="app-card food reveal" href="/food-in-five/" data-tilt>
                 <div class="app-icon"><img src="/assets/icons/food-in-five.png" alt="Food in Five app icon" width="52" height="52"></div>
                 <h3>Food in Five</h3>
-                <p class="desc">Location-based restaurant discovery powered by Google Places, MapKit &amp; SwiftData — smart filters and favorites, all on-device.</p>
-                <div class="pills"><span>MapKit</span><span>Google Places</span><span>SwiftData</span><span>No backend</span></div>
+                <p class="desc">Location-based restaurant discovery powered by Google Places, MapKit &amp; SwiftData - smart filters and favorites, all on-device.</p>
+                <div class="pills"><span>SwiftUI</span><span>SwiftData</span><span>MapKit</span><span>Google Places</span></div>
                 <div class="foot"><span class="badge live">On the App Store</span><span class="go">Open →</span></div>
             </a>
         </div>
@@ -315,21 +294,18 @@
     <div class="wrap">
         <div class="reveal">
             <h2>Built the Apple way</h2>
-            <p>Every Khakichimp app is fully native and declarative — SwiftUI front to back, with data that stays on your device unless you explicitly sync it. No cross-platform shortcuts, no compromise on feel.</p>
+            <p>All three apps are written in Swift with SwiftUI, and keep your data on your iPhone with SwiftData. ReadMe and Tasks - Uniflow can sync through iCloud if you turn it on. Each app has Home Screen widgets and uses Apple's own tools where it can: MapKit in Food in Five, Apple Reminders in Tasks - Uniflow, and the camera barcode scanner in ReadMe. No cross-platform shortcuts.</p>
         </div>
         <div class="philosophy reveal">
             <div class="big">🔒</div>
-            <h3>Privacy isn't a feature — it's the default</h3>
-            <p>No analytics SDKs, no ad networks, no hidden data collection. Your data lives on your device (and your iCloud, if you choose). That's the whole point.</p>
-            <div class="feed">
-                <button class="feed-btn" id="feedBtn" type="button" hidden>🍌 Feed the chimp</button>
-            </div>
+            <h3>Privacy isn't a feature - it's the default</h3>
+            <p>No analytics trackers, no ad networks, no hidden data collection. Your data lives on your device (and your iCloud, if you choose). That's the whole point.</p>
         </div>
         <div class="philosophy craft reveal">
             <div class="big">🛠️</div>
-            <h3>Under the hood — this site is part of the portfolio</h3>
-            <p>Hand-built with zero frameworks: one inline stylesheet per page, vanilla JavaScript, and self-hosted GSAP. The chimp is a detailed vector illustration — optimized from 6&nbsp;MB down to ~2&nbsp;MB with SVGO — brought to life with GSAP: idle breathing, a lean toward your cursor, and a poke-to-feed banana game. CI lints every page and walks every internal link with a dependency-free checker, and the social share cards are rendered from SVG at build time.</p>
-            <a class="src" href="https://github.com/jengels34/jengels34.github.io" target="_blank" rel="noopener">View source on GitHub ↗</a>
+            <h3>Built and shipped solo</h3>
+            <p>I design, build, test, and release each app myself, using AI coding tools to move faster. That covers everything from the first idea to App Store review, privacy policies, in-app feedback, and crash reporting. All three are still being updated: ReadMe is on version 3 and Food in Five on version 2.</p>
+            <a class="src" href="https://github.com/jengels34/jengels34.github.io" target="_blank" rel="noopener">This site's source on GitHub ↗</a>
         </div>
     </div>
 </section>
@@ -347,13 +323,6 @@
     <div class="copy">© <span id="yr"></span> Khakichimp · Built by Josh Engels</div>
 </footer>
 
-<!-- feed-the-chimp goal meter (revealed by JS — it's inert without it) -->
-<button class="banana-meter" id="bananaMeter" type="button" hidden title="Feed the chimp a banana" aria-label="Feed the chimp a banana">
-    🍌 <span class="lbl">Feed the chimp</span>
-    <span class="track"><span class="fill" id="bananaFill"></span></span>
-    <span class="n"><span id="bananaN">0</span>/<span id="bananaGoal">12</span></span>
-</button>
-
 <!-- ============ LIBRARIES ============ -->
 <script src="/assets/vendor/gsap.min.js"></script>
 <script src="/assets/vendor/ScrollTrigger.min.js"></script>
@@ -366,7 +335,6 @@ document.getElementById('yr').textContent = new Date().getFullYear();
 const chimp = document.getElementById('chimp');
 function chimpRig(){ return chimp && chimp._chimp; }
 function chimpReact(c){ const r = chimpRig(); if(r) r.react(c); }
-function chimpCelebrate(){ const r = chimpRig(); if(r) r.celebrate(); }
 
 /* Assemble email links in JS so the address isn't in the static HTML (anti-scrape) */
 document.querySelectorAll('a.contact[data-u]').forEach(a=>{
@@ -383,66 +351,19 @@ function setProgress(){
 }
 window.addEventListener('scroll', setProgress, {passive:true}); setProgress();
 
-/* ---------- Feed-the-chimp banana game ---------- */
+/* ---------- Poke the chimp: a banana spray per poke ---------- */
 let bananaShape = null;
 if(typeof confetti === 'function' && confetti.shapeFromText){
     try{ bananaShape = confetti.shapeFromText({text:'🍌', scalar:2.2}); }catch(e){}
 }
-const fillEl = document.getElementById('bananaFill');
-const fedEl  = document.getElementById('bananaN');
-const goalEl = document.getElementById('bananaGoal');
-const meterEl = document.getElementById('bananaMeter');
-const feedBtn = document.getElementById('feedBtn');
-/* the game controls ship hidden — they're inert without JS */
-meterEl.hidden = false;
-feedBtn.hidden = false;
-let fed = 0, goal = 12, level = 1, celebrating = false;
-goalEl.textContent = goal;
-
-/* cosmetic banana spray (does NOT touch the goal) */
 function spray(origin, count){
-    if(typeof confetti !== 'function') return;
+    if(typeof confetti !== 'function' || reduceMotion) return;
     confetti({
         particleCount:count, spread:72, startVelocity:42, origin,
         shapes: bananaShape?[bananaShape]:undefined,
         colors: bananaShape?undefined:['#ffd23f','#a6f24a','#16d6c4'],
         scalar: bananaShape?1.7:1.1, ticks:220
     });
-}
-function updateMeter(){
-    fedEl.textContent = fed;
-    fillEl.style.width = Math.min(100, fed/goal*100) + '%';
-    if(window.gsap && !reduceMotion) gsap.fromTo(meterEl,{scale:1},{scale:1.08,duration:.1,yoyo:true,repeat:1});
-}
-function toast(msg){
-    const t = document.createElement('div');
-    t.className = 'banana-toast'; t.textContent = msg;
-    document.body.appendChild(t);
-    if(window.gsap && !reduceMotion){
-        gsap.fromTo(t,{opacity:0,y:-10},{opacity:1,y:0,duration:.3});
-        gsap.to(t,{opacity:0,y:-10,duration:.4,delay:2.4,onComplete:()=>t.remove()});
-    } else { t.style.opacity=1; setTimeout(()=>t.remove(),2600); }
-}
-function celebrate(){
-    celebrating = true;
-    if(typeof confetti === 'function' && !reduceMotion){
-        const end = Date.now()+800;
-        (function frame(){ spray({x:Math.random(), y:-0.1}, 7); if(Date.now()<end) requestAnimationFrame(frame); })();
-    } else spray({x:0.5,y:0.2}, 30);
-    chimpCelebrate();
-    toast(level===1
-        ? "🎉 You filled the chimp! He's stuffed — now go meet the apps ↓"
-        : "🍌 Level " + (level+1) + " — the chimp's hungry again!");
-    level++; goal += 8;
-    setTimeout(()=>{ fed=0; goalEl.textContent=goal; updateMeter(); celebrating=false; }, 1500);
-}
-/* feeding advances the goal; combo (rapid feeding) feeds more per tap */
-function feed(amount, origin){
-    if(celebrating) return;
-    fed += amount;
-    spray(origin, 6 + amount*4);
-    if(fed >= goal){ fed = goal; updateMeter(); celebrate(); }
-    else updateMeter();
 }
 
 /* ---------- Poke the chimp (head/eye tracking is handled by the rig) ---------- */
@@ -461,26 +382,15 @@ function showCombo(n){
     gsap.fromTo(el,{y:0,opacity:1,scale:.7},{y:-70,opacity:0,scale:1.25,duration:.9,ease:'power2.out',onComplete:()=>el.remove()});
 }
 function poke(){
-    if(celebrating) return;
     combo++; clearTimeout(comboTimer); comboTimer = setTimeout(()=>combo=0, 1400);
-    const amount = 1 + Math.min(combo-1, 4);   // 1–5 per poke; rapid taps feed faster
+    const amount = 1 + Math.min(combo-1, 4);   // rapid pokes throw more bananas
     const rect = stage.getBoundingClientRect();
-    feed(amount, {x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight});
+    spray({x:(rect.left+rect.width/2)/innerWidth, y:(rect.top+rect.height*0.35)/innerHeight}, 6 + amount*4);
     if(combo>=2) showCombo(combo);
     chimpReact(combo);
 }
 stage.addEventListener('click', poke);
 stage.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();poke();}});
-
-/* "Feed the chimp" button feeds a chunk; the corner meter feeds one */
-feedBtn.addEventListener('click', e=>{
-    const r=e.currentTarget.getBoundingClientRect();
-    feed(3, {x:(r.left+r.width/2)/innerWidth, y:(r.top+r.height/2)/innerHeight});
-});
-meterEl.addEventListener('click', ()=>{
-    const r=meterEl.getBoundingClientRect();
-    feed(1, {x:(r.left+r.width/2)/innerWidth, y:(r.top+r.height/2)/innerHeight});
-});
 
 /* idle bob */
 if(!reduceMotion && window.gsap){
