@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "jengels34-github-io",
-  "description": "Static site for Khakichimp apps (Josh Engels).",
+  "description": "Josh Engels' career profile and the Khakichimp iOS app pages, served by GitHub Pages.",
   "scripts": {
     "lint:html": "htmlhint \"**/*.html\" --ignore \"node_modules/**\"",
     "check:links": "node scripts/check-links.mjs .",
