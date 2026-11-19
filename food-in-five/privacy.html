@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#8a56ed">
     <title>Food in Five · Privacy Policy</title>
-    <meta name="description" content="Food in Five's privacy policy in plain English: no account, no ads, no tracking. Your location goes straight to the services that find your food, your favorites stay on your iPhone, and feedback is sent only when you tap Send.">
+    <meta name="description" content="Food in Five's privacy policy in plain English: no account, no ads, no tracking. Your location goes straight to the services that find your food, your favorites stay on your iPhone, and feedback and crash reports are sent only when you tap Send.">
 <link rel="icon" href="/assets/icons/food-in-five.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icons/food-in-five.png">
 <link rel="canonical" href="https://jengels34.github.io/food-in-five/privacy.html">
@@ -233,7 +233,7 @@
                 </div>
                 <div class="promise">
                     <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span>
-                    <h3>Feedback only when you send it</h3><p>Nothing comes to us until you tap Send. Diagnostics are opt-in, every time, and never include your location.</p>
+                    <h3>Feedback and crash reports only when you send them</h3><p>Nothing comes to us until you tap Send. Diagnostics are opt-in, every time, and after a crash the app asks before sending a report. Neither ever includes your location.</p>
                 </div>
                 <div class="promise">
                     <span class="ic" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg></span>
@@ -256,9 +256,10 @@
                     <tr><th scope="row">OpenStreetMap Nominatim<small>Address and ZIP lookup</small></th><td data-label="Receives">The address or ZIP code you type, and your IP address</td><td data-label="When">Only when you search by address or ZIP code</td></tr>
                     <tr><th scope="row">Apple Maps<small>MapKit</small></th><td data-label="Receives">The map area on screen, under Apple's privacy policy</td><td data-label="When">While the map is shown, and when you tap Directions</td></tr>
                     <tr class="yours"><th scope="row">Food in Five feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">The type, title and details you write, plus app version and build, iOS version and device model. With diagnostics on, also your locale, location permission status, last search error, favorites count, settings, and launch, hang and crash figures. Never your location.</td><td data-label="When">Only when you tap Send</td></tr>
+                    <tr class="yours"><th scope="row">Food in Five crash reports<small>Cloudflare and GitHub</small></th><td data-label="Receives">App version and build, iOS version, device model and chip architecture, whether it's a TestFlight build, the exception and termination reason, and the code addresses of the crashed thread. Never your location, searches, favorites or anything you typed.</td><td data-label="When">Only when you tap Send on the crash alert</td></tr>
                 </tbody>
             </table>
-            <p class="flow-note"><strong>Never sent anywhere:</strong> your favorites, notes and collections, and the launch, hang and crash figures the app keeps on your device (unless you include diagnostics with feedback). The Home Screen widgets make no network requests and don't use your location.</p>
+            <p class="flow-note"><strong>Never sent anywhere:</strong> your favorites, notes and collections, and the launch, hang and crash figures the app keeps on your device (unless you include diagnostics with feedback or send a crash report). The Home Screen widgets make no network requests and don't use your location.</p>
         </div>
     </section>
 
@@ -289,7 +290,7 @@
                 <div class="policy">
                     <article id="s1">
                         <h2><span class="n">1</span>Introduction</h2>
-                        <p>Food in Five ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our mobile application and this website. <strong>Food in Five has no user accounts and no backend that stores your data. It collects nothing on our own servers except feedback you choose to send from the app (Section 2.5).</strong></p>
+                        <p>Food in Five ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we handle your information when you use our mobile application and this website. <strong>Food in Five has no user accounts and no backend that stores your data. It collects nothing on our own servers except feedback and crash reports you choose to send from the app (Section 2.5).</strong></p>
                     </article>
 
                     <article id="s2">
@@ -297,7 +298,7 @@
                         <h3>2.1 Location Data</h3>
                         <ul>
                             <li><strong>Current Location:</strong> With your permission, and only while you're using the app, Food in Five reads your current location to find nearby restaurants and show distances.</li>
-                            <li><strong>Where it goes:</strong> The search location is sent directly from your device to the Google Places API to retrieve restaurants (Section 5.1). It is never sent to or stored on any server we operate, and it is never included in feedback.</li>
+                            <li><strong>Where it goes:</strong> The search location is sent directly from your device to the Google Places API to retrieve restaurants (Section 5.1). It is never sent to or stored on any server we operate, and it is never included in feedback or crash reports.</li>
                             <li><strong>Search Locations:</strong> You can search around another place instead. A place name you pick from suggestions is looked up with Google Places. An address or ZIP code you type is sent to the OpenStreetMap Nominatim geocoding service to convert it into coordinates (Section 5.3).</li>
                             <li>You can deny or turn off location access in iOS Settings at any time and still search by address or ZIP code.</li>
                         </ul>
@@ -315,14 +316,16 @@
                             <li><strong>Search Cache:</strong> Recent search results are kept in memory for up to 5 minutes to avoid repeat requests.</li>
                             <li><strong>Photo Cache:</strong> Restaurant photos are saved on your device for up to 7 days.</li>
                             <li><strong>Sent Feedback:</strong> For each of your 50 most recent feedback submissions, your device keeps its title, type and a random status token (Section 2.5).</li>
+                            <li><strong>Waiting Crash Reports:</strong> After a crash, your device keeps the crash report (up to 5) until you answer the crash alert. Don't Send deletes it, and a report you approve is deleted once it's sent or after 3 failed attempts (Section 2.5).</li>
                         </ul>
                         <h3>2.4 Device Information and On-Device Metrics</h3>
                         <ul>
-                            <li>App version, iOS version and device model, read on your device for local app operation and included with feedback you send</li>
+                            <li>App version, iOS version and device model, read on your device for local app operation and included with feedback and crash reports you send</li>
                             <li>Launch, hang and crash figures that Apple's MetricKit gives the app about this device: launch times, hang times, and counts of crashes and hangs with their termination reasons. They are kept on your device and leave it only if you include diagnostics with feedback (Section 2.5).</li>
+                            <li>Details of a crash that Apple's MetricKit gives the app after it happens. They are kept on your device and leave it only in a crash report you choose to send (see <a href="#crash-reports">Crash reports</a> in Section 2.5).</li>
                         </ul>
                         <h3 id="app-feedback">2.5 Feedback You Send<span class="new">New</span></h3>
-                        <p>Food in Five sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise. We don't ask for your email address. Each submission includes:</p>
+                        <p>Food in Five sends feedback only when you tap Send in Settings &gt; Send Feedback. Nothing is sent otherwise, apart from a crash report you choose to send (see <a href="#crash-reports">Crash reports</a> below). We don't ask for your email address. Each submission includes:</p>
                         <ul>
                             <li><strong>Your message:</strong> the feedback type (Bug, Idea or Other), title and details you enter</li>
                             <li><strong>Device details:</strong> app version and build, iOS version and device model</li>
@@ -335,6 +338,15 @@
                         </ul>
                         <p>Feedback never includes your location coordinates, your contacts, your email address, or the names or notes of your favorites.</p>
                         <p>Your feedback goes to a service we operate on Cloudflare Workers, which files it as an issue in a private GitHub repository for triage. The service keeps a small record of each submission: the issue number, the title, its status and timestamps, and a SHA-256 hash of the random status token your device keeps. This version of the app doesn't use the token to check or show your feedback's status. The service uses your IP address only to limit how often submissions can be sent, and does not store it.</p>
+                        <h3 id="crash-reports">Crash reports<span class="new">New</span></h3>
+                        <p>If Food in Five closes unexpectedly, the next time you open it you'll see an alert titled "Food in Five Closed Unexpectedly" asking whether to send a crash report. Nothing is sent unless you tap Send. Don't Send discards the report, and each crash is asked about only once. A report you send includes:</p>
+                        <ul>
+                            <li><strong>Device details:</strong> app version and build, iOS version, device model and chip architecture, and whether it's a TestFlight build</li>
+                            <li><strong>The crash:</strong> the exception type, code and signal, the termination reason, and the name and message of the exception if the app raised one</li>
+                            <li><strong>Where it happened:</strong> the code addresses of the thread that crashed (unsymbolicated stack frames), the identifiers (UUIDs) of the app binaries they came from, and how many times the same crash has happened on your device</li>
+                        </ul>
+                        <p>A crash report never includes your location, your searches, your favorites or notes, or any text you typed. The alert says so: "Your location, searches and favorites are not included."</p>
+                        <p>A crash report goes through the same Cloudflare service as feedback and becomes an issue, labeled as a bug, in the same private GitHub repository. The service keeps the same small record of it as of feedback. If a report fails to send, the app tries again on later launches, up to 3 attempts in total.</p>
                         <h3>2.6 Home Screen Widgets and Quick Actions</h3>
                         <ul>
                             <li>Food in Five's widgets and Home Screen quick actions are shortcuts that open the app. They make no network requests, don't use your location, and hold no personal data.</li>
@@ -348,8 +360,9 @@
                             <li>Distances, ratings, hours and other restaurant details are shown and sorted on your device</li>
                             <li>Favorites and preferences are stored on your device to give you a personal experience</li>
                             <li>Feedback you send is used to triage and fix problems and to plan improvements</li>
+                            <li>Crash reports you send are used only to find and fix the crash</li>
                             <li>We do not use your data for advertising, sell it, or use it to track you across apps or websites</li>
-                            <li>Apart from feedback you choose to send, we do not collect, transmit, or store your data on our own servers</li>
+                            <li>Apart from feedback and crash reports you choose to send, we do not collect, transmit, or store your data on our own servers</li>
                         </ul>
                     </article>
 
@@ -359,7 +372,7 @@
                         <ul>
                             <li><strong>Local Storage:</strong> Favorites, notes, collections and preferences are stored on your device until you delete them or delete the app</li>
                             <li><strong>Caches:</strong> Search results expire after 5 minutes and photos after 7 days. Both can be cleared any time from Settings.</li>
-                            <li><strong>Feedback:</strong> Feedback you send is processed by a Cloudflare Worker we operate and becomes an issue in a private GitHub repository for triage</li>
+                            <li><strong>Feedback and Crash Reports:</strong> Feedback and crash reports you send are processed by a Cloudflare Worker we operate and become issues in a private GitHub repository for triage</li>
                             <li><strong>No Other Developer Servers:</strong> We do not operate any servers that store your location, searches or favorites</li>
                         </ul>
                         <h3>4.2 Security Measures</h3>
@@ -396,9 +409,9 @@
                         </ul>
                         <h3>5.4 Feedback Processors</h3>
                         <ul>
-                            <li><strong>Cloudflare</strong> runs the service that receives feedback</li>
-                            <li><strong>GitHub</strong> hosts the private repository where feedback is triaged</li>
-                            <li>These services process feedback only on our behalf, and their privacy policies apply</li>
+                            <li><strong>Cloudflare</strong> runs the service that receives feedback and crash reports</li>
+                            <li><strong>GitHub</strong> hosts the private repository where feedback and crash reports are triaged</li>
+                            <li>These services process feedback and crash reports only on our behalf, and their privacy policies apply</li>
                         </ul>
                         <h3>5.5 This Website</h3>
                         <ul>
@@ -414,8 +427,9 @@
                             <li><strong>Search Cache:</strong> Cleared automatically after 5 minutes</li>
                             <li><strong>Photo Cache:</strong> Cleared automatically after 7 days</li>
                             <li><strong>Feedback:</strong> Feedback issues are kept as part of our development backlog, together with the small record described in Section 2.5</li>
+                            <li><strong>Crash Reports:</strong> Crash reports are kept as GitHub issues in the same backlog, like feedback</li>
                             <li><strong>Status Token:</strong> Your device keeps a random token for each of your 50 most recent submissions until you delete the app. Our service stores only a hash of it, and no account is involved.</li>
-                            <li>Apart from feedback, <strong>we hold no server-side data</strong></li>
+                            <li>Apart from feedback and crash reports, <strong>we hold no server-side data</strong></li>
                         </ul>
                     </article>
 
@@ -424,14 +438,14 @@
                         <ul>
                             <li><strong>Location:</strong> Revoke location permission at any time in iOS Settings</li>
                             <li><strong>Delete Local Data:</strong> Clear the search and photo cache in the app's Settings, delete individual favorites, or delete the app to remove all locally stored data</li>
-                            <li><strong>Delete Feedback:</strong> To have a feedback submission deleted, email us at the address in Section 10 with the feedback's title</li>
+                            <li><strong>Delete Feedback:</strong> To have a feedback submission or crash report deleted, email us at the address in Section 10 with the feedback's title, or the date and app version of the crash</li>
                             <li><strong>No Account to Delete:</strong> Food in Five does not use accounts, so there is no account deletion process</li>
                         </ul>
                     </article>
 
                     <article id="s8">
                         <h2><span class="n">8</span>Children's Privacy</h2>
-                        <p>Food in Five is not intended for children under 13, and we do not knowingly collect personal information from children under 13. Apart from feedback a user chooses to send, the app does not collect any personal data on our servers.</p>
+                        <p>Food in Five is not intended for children under 13, and we do not knowingly collect personal information from children under 13. Apart from feedback and crash reports a user chooses to send, the app does not collect any personal data on our servers.</p>
                     </article>
 
                     <article id="s9">
@@ -454,16 +468,17 @@
                             <li><strong>Consent:</strong> You grant location permission through iOS before any location data is accessed</li>
                             <li><strong>Legitimate Interest:</strong> Providing restaurant search results using the location you provide</li>
                             <li><strong>Consent:</strong> For feedback, which is sent only when you tap Send in the app, with diagnostics only if you turn them on</li>
+                            <li><strong>Consent:</strong> For crash reports, which are sent only when you tap Send on the crash alert</li>
                         </ul>
-                        <p>Apart from feedback you choose to send, all data is stored locally on your device and is under your direct control at all times.</p>
+                        <p>Apart from feedback and crash reports you choose to send, all data is stored locally on your device and is under your direct control at all times.</p>
                     </article>
 
                     <article id="s12">
                         <h2><span class="n">12</span>California Privacy Rights (CCPA)</h2>
                         <p>California residents have additional rights under the California Consumer Privacy Act (CCPA):</p>
                         <ul>
-                            <li><strong>Right to Know:</strong> You can request details about what personal information we collect. The only personal information we collect on our servers is feedback you choose to send, described in Section 2.5.</li>
-                            <li><strong>Right to Delete:</strong> You can delete all your data by deleting the app, and request deletion of feedback you sent, as described in Section 7</li>
+                            <li><strong>Right to Know:</strong> You can request details about what personal information we collect. The only personal information we collect on our servers is feedback and crash reports you choose to send, described in Section 2.5.</li>
+                            <li><strong>Right to Delete:</strong> You can delete all your data by deleting the app, and request deletion of feedback or crash reports you sent, as described in Section 7</li>
                             <li><strong>Right to Opt-Out:</strong> We do not sell or share personal information</li>
                             <li><strong>Non-Discrimination:</strong> We will not discriminate against you for exercising your privacy rights</li>
                         </ul>
