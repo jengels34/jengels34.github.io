@@ -4,9 +4,10 @@ import fs from 'fs';
 
 const b64 = (p, mime) => `data:${mime};base64,` + fs.readFileSync(p).toString('base64');
 const portrait = b64('assets/josh-engels.jpg', 'image/jpeg');
-const iconTasks = b64('assets/icons/tasks-uniflow.png', 'image/png');
-const iconReadme = b64('assets/icons/readme.png', 'image/png');
-const iconFood = b64('assets/icons/food-in-five.png', 'image/png');
+// 512px icon sources so the 2x app cards stay sharp (assets/icons/ is 256px).
+const iconTasks = b64('scripts/og-icons/tasks-uniflow.png', 'image/png');
+const iconReadme = b64('scripts/og-icons/readme.png', 'image/png');
+const iconFood = b64('scripts/og-icons/food-in-five.png', 'image/png');
 
 // chimp artwork, lids stripped (resvg can't apply the CSS that hides them)
 const chimp = fs.readFileSync('assets/chimp.svg', 'utf8')
@@ -59,14 +60,14 @@ const hqCard = `
 const APPS = [
   {
     slug: 'tasks-uniflow', name: 'Tasks - Uniflow', icon: iconTasks,
-    tag1: 'Local tasks, Notion, and Apple Reminders —',
-    tag2: 'unified in one native iOS app.',
+    tag1: 'Local tasks, Notion, and Apple Reminders',
+    tag2: 'in one native iOS app.',
     accent: '#9e66d1', deep: '#8843c6', ink: '#7033a9',
   },
   {
     slug: 'readme', name: 'ReadMe', icon: iconReadme,
-    tag1: 'A native, privacy-first book tracker.',
-    tag2: 'Your library, all on your device.',
+    tag1: 'Log pages, build streaks, see your stats.',
+    tag2: 'No account. No ads. No tracking.',
     accent: 'hsl(180,72%,40%)', deep: 'hsl(180,72%,31%)', ink: 'hsl(180,72%,22%)',
   },
   {
@@ -93,22 +94,25 @@ const appCard = (a) => `
   <text x="80" y="290" font-size="84" font-weight="bold" fill="#ffffff">${a.name}</text>
   <text x="86" y="366" font-size="30" fill="#ffffff" opacity="0.92">${a.tag1}</text>
   <text x="86" y="410" font-size="30" fill="#ffffff" opacity="0.92">${a.tag2}</text>
-  <rect x="86" y="470" width="256" height="52" rx="26" fill="#ffffff" opacity="0.16"/>
-  <text x="112" y="504" font-size="24" font-weight="bold" fill="#ffffff"> On the App Store</text>
+  <!-- Pill sized to the text: DejaVu Sans Bold 24px "On the App Store" is ~234px wide, plus 28px each side. -->
+  <rect x="86" y="470" width="290" height="52" rx="26" fill="#ffffff" opacity="0.16"/>
+  <text x="231" y="504" text-anchor="middle" font-size="24" font-weight="bold" fill="#ffffff">On the App Store</text>
   <image href="${a.icon}" x="880" y="175" width="230" height="230" clip-path="url(#ic)"/>
   <rect x="880" y="175" width="230" height="230" rx="52" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="3"/>
 </svg>`;
 
+// App cards render at 2x (2400x1260): LinkedIn downscales and recompresses
+// share images, and a 1x source came out soft on high-density screens.
 const cards = [
-  ['og-josh', careerCard],
-  ['og-khakichimp', hqCard],
-  ...APPS.map((a) => [`og-${a.slug}`, appCard(a)]),
+  ['og-josh', careerCard, 1200],
+  ['og-khakichimp', hqCard, 1200],
+  ...APPS.map((a) => [`og-${a.slug}`, appCard(a), 2400]),
 ];
 // Optional: node scripts/og-gen.mjs og-josh  (regenerate only the named cards)
 const only = process.argv.slice(2);
-for (const [name, src] of cards) {
+for (const [name, src, width] of cards) {
   if (only.length && !only.includes(name)) continue;
-  const r = new Resvg(src, { fitTo: { mode: 'width', value: 1200 } });
+  const r = new Resvg(src, { fitTo: { mode: 'width', value: width } });
   fs.writeFileSync(`assets/${name}.png`, r.render().asPng());
   console.log('wrote assets/' + name + '.png');
 }
