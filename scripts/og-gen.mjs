@@ -71,8 +71,8 @@ const APPS = [
   },
   {
     slug: 'food-in-five', name: 'Food in Five', icon: iconFood,
-    tag1: 'Discover great food near you in seconds.',
-    tag2: 'No account. No tracking. All on-device.',
+    tag1: "See what's open near you, right now.",
+    tag2: 'No account. No ads. No tracking.',
     accent: '#8a56ed', deep: '#6d2de9', ink: '#5716d1',
   },
 ];
