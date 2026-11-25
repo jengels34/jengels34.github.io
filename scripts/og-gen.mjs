@@ -20,9 +20,9 @@ const careerCard = `
   <rect width="1200" height="630" fill="#f7f6f2"/>
   <rect x="0" y="0" width="1200" height="10" fill="#4f46e5"/>
   <circle cx="1080" cy="540" r="260" fill="#4f46e5" opacity="0.05"/>
-  <text x="84" y="180" font-size="19" font-weight="bold" letter-spacing="3" fill="#4f46e5">RELIABILITY · INCIDENT MANAGEMENT · APPLIED AI</text>
+  <text x="84" y="180" font-size="17" font-weight="bold" letter-spacing="2" fill="#4f46e5">BUILDING TEAMS · RELIABILITY AT SCALE · APPLIED AI</text>
   <text x="80" y="290" font-size="96" font-weight="bold" fill="#15202b">Josh Engels</text>
-  <text x="84" y="362" font-size="28" fill="#475569">Director, Problem &amp; Incident Management</text>
+  <text x="84" y="362" font-size="28" fill="#475569">Builds and runs technology teams</text>
   <text x="84" y="450" font-size="28" fill="#64748b">DraftKings  ·  Apple  ·  U.S. Air Force</text>
   <circle cx="92" cy="540" r="9" fill="#ff6b54"/>
   <text x="116" y="550" font-size="26" font-weight="bold" fill="#15202b">jengels34.github.io</text>
@@ -104,7 +104,7 @@ const appCard = (a) => `
 // App cards render at 2x (2400x1260): LinkedIn downscales and recompresses
 // share images, and a 1x source came out soft on high-density screens.
 const cards = [
-  ['og-josh', careerCard, 1200],
+  ['og-josh', careerCard, 2400],
   ['og-khakichimp', hqCard, 1200],
   ...APPS.map((a) => [`og-${a.slug}`, appCard(a), 2400]),
 ];
