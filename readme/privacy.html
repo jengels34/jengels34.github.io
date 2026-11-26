@@ -238,7 +238,7 @@
                 <thead><tr><th scope="col">Service</th><th scope="col">What it receives</th><th scope="col">When</th></tr></thead>
                 <tbody>
                     <tr><th scope="row">Google Books<small>Book search and covers</small></th><td data-label="Receives">Your search text or a scanned ISBN, and your IP address when covers load</td><td data-label="When">When you search, scan, or a cover is shown for the first time</td></tr>
-                    <tr><th scope="row">Open Library<small>Backup ISBN lookup</small></th><td data-label="Receives">The ISBN only, and your IP address when its covers load</td><td data-label="When">When Google Books has no match for a barcode or ISBN</td></tr>
+                    <tr><th scope="row">Open Library<small>Backup ISBN lookup</small></th><td data-label="Receives">The ISBN only, and your IP address when its covers load</td><td data-label="When">When Google Books has no match for a barcode or ISBN, or returns a search result without a title</td></tr>
                     <tr class="yours"><th scope="row">Your iCloud<small>Apple CloudKit</small></th><td data-label="Receives">Your library, in your own private iCloud database</td><td data-label="When">Only if iCloud is on for ReadMe</td></tr>
                     <tr><th scope="row">ReadMe feedback<small>Cloudflare and GitHub</small></th><td data-label="Receives">What you type, app and iOS version, device model. Diagnostics only if you add them. Crash details only if you send a crash report.</td><td data-label="When">Only when you tap Send</td></tr>
                 </tbody>
@@ -291,7 +291,7 @@
                         <ul>
                             <li>When you search for a book, your search query is sent to the Google Books API to retrieve results. This is governed by Google's privacy policy.</li>
                             <li>Book cover images are downloaded directly from Google's servers (books.google.com) the first time they are shown, then saved on your device so they don't need downloading again. As a result, Google may receive your device's IP address and which covers are being downloaded. Saved covers stay on your device and are not synced.</li>
-                            <li>When you scan a barcode or look up an ISBN that Google Books doesn't have, the ISBN is sent to Open Library (openlibrary.org), and any cover it returns is loaded from Open Library's servers. Open Library may receive your device's IP address.</li>
+                            <li>When you scan a barcode or look up an ISBN that Google Books doesn't have, the ISBN is sent to Open Library (openlibrary.org), and any cover it returns is loaded from Open Library's servers. When Google Books returns a search result that has an ISBN but no title, ReadMe sends that book's ISBN to Open Library to fill in the title. Open Library may receive your device's IP address.</li>
                             <li>We do not store or log your search queries or cover image requests ourselves.</li>
                         </ul>
                         <h3>2.3 Device Information</h3>
@@ -387,7 +387,7 @@
                         </ul>
                         <h3>5.3 Open Library</h3>
                         <ul>
-                            <li>Used to look up books by ISBN when Google Books has no match, and to load the covers it returns</li>
+                            <li>Used to look up books by ISBN when Google Books has no match, to fill in the title of a Google Books search result that arrives without one, and to load the covers it returns</li>
                             <li>Only the ISBN is sent. Open Library's privacy policy applies to data processed by their services.</li>
                         </ul>
                         <h3>5.4 Feedback Processors</h3>
